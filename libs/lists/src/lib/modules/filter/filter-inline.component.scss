@@ -1,0 +1,7 @@
+@import 'libs/theme/src/lib/styles/mixins';
+
+.sky-filter-inline {
+  background-color: $sky-background-color-neutral-light;
+  display: flex;
+  align-items: center;
+}

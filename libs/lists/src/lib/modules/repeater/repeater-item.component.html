@@ -1,0 +1,126 @@
+<div
+  class="sky-repeater-item sky-padding-even-default"
+  role="option"
+  tabindex="0"
+  [ngClass]="{
+    'sky-repeater-item-active': isActive,
+    'sky-repeater-item-collapsible': isCollapsible,
+    'sky-repeater-item-selected': isSelected
+  }"
+  (click)="onRepeaterItemClick($event)"
+  (keydown)="onItemKeyDown($event)"
+  #itemRef
+>
+  <div #inlineDelete>
+    <ng-content select="sky-inline-delete"></ng-content>
+  </div>
+
+  <ng-container *ngIf="inlineFormTemplate">
+    <sky-inline-form
+      [config]="inlineFormConfig"
+      [showForm]="showInlineForm"
+      [template]="inlineFormTemplate"
+      (close)="onInlineFormClose($event)"
+    >
+      <ng-container *ngTemplateOutlet="skyRepeaterItemLeft"></ng-container>
+      <ng-container *ngTemplateOutlet="skyRepeaterItemRight"></ng-container>
+    </sky-inline-form>
+  </ng-container>
+
+  <ng-container *ngIf="!inlineFormTemplate">
+    <ng-container *ngTemplateOutlet="skyRepeaterItemLeft"></ng-container>
+    <ng-container *ngTemplateOutlet="skyRepeaterItemRight"></ng-container>
+  </ng-container>
+</div>
+
+<ng-template #skyRepeaterItemLeft>
+  <div class="sky-repeater-item-left">
+    <ng-container *ngIf="reorderable">
+      <span
+        aria-live="assertive"
+        class="sky-repeater-item-reorder-assistive-text"
+        [id]="contentId + '-reorder-state'"
+      >
+        {{ reorderState }}
+      </span>
+      <button
+        class="sky-btn sky-tile-tools-control sky-repeater-item-grab-handle"
+        type="button"
+        [attr.aria-label]="reorderButtonLabel"
+        (blur)="onReorderHandleBlur($event)"
+        (keydown)="onReorderHandleKeyDown($event)"
+        #grabHandle
+      >
+        <sky-icon icon="arrows-v"></sky-icon>
+      </button>
+    </ng-container>
+    <sky-checkbox
+      *ngIf="selectable"
+      class="sky-repeater-item-checkbox"
+      [checked]="isSelected"
+      [label]="'skyux_repeater_item_checkbox_label' | skyLibResources"
+      (change)="onCheckboxChange($event)"
+    >
+    </sky-checkbox>
+    <div
+      class="sky-repeater-item-context-menu"
+      [hidden]="contextMenuEl.children.length === 0"
+      #contextMenuEl
+    >
+      <ng-content select="sky-repeater-item-context-menu"></ng-content>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #skyRepeaterItemRight>
+  <div class="sky-repeater-item-right" #itemHeaderRef>
+    <div
+      class="sky-repeater-item-header"
+      [hidden]="titleRef.children.length === 0"
+      (click)="headerClick()"
+    >
+      <div class="sky-repeater-item-title sky-emphasized" #titleRef>
+        <ng-content select="sky-repeater-item-title"></ng-content>
+      </div>
+      <button
+        *ngIf="reorderable"
+        class="sky-btn sky-btn-link sky-repeater-item-reorder-top"
+        type="button"
+        [attr.aria-label]="
+          'skyux_repeater_item_reorder_top_label' | skyLibResources
+        "
+        (click)="moveToTop($event)"
+      >
+        <sky-icon icon="arrow-circle-up"></sky-icon>
+        {{ 'skyux_repeater_item_reorder_top' | skyLibResources }}
+      </button>
+      <div *ngIf="isCollapsible" class="sky-repeater-item-chevron">
+        <sky-chevron
+          [attr.aria-controls]="contentId"
+          [attr.aria-expanded]="isExpanded"
+          [direction]="isExpanded ? 'up' : 'down'"
+          (directionChange)="chevronDirectionChange($event)"
+        >
+        </sky-chevron>
+      </div>
+      <!-- Used for when the chevron is hidden to ensure that the right side is the same height as the left.-->
+      <div
+        *ngIf="!isCollapsible && !contextMenu"
+        class="sky-repeater-item-chevron-placeholder"
+      ></div>
+      <!-- Used to ensure that the right side is the same height as the left.-->
+      <div
+        *ngIf="contextMenu"
+        class="sky-repeater-item-chevron-placeholder-with-context"
+      ></div>
+    </div>
+    <div
+      class="sky-repeater-item-content"
+      [id]="contentId"
+      [@skyAnimationSlide]="slideDirection"
+      #itemContentRef
+    >
+      <ng-content select="sky-repeater-item-content"></ng-content>
+    </div>
+  </div>
+</ng-template>

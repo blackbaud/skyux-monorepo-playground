@@ -1,0 +1,12 @@
+{
+  "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
+  "dest": "../../dist/libs/theme",
+  "lib": {
+    "entryFile": "src/index.ts"
+  },
+  "whitelistedNonPeerDependencies": [
+    "@blackbaud/skyux-design-tokens",
+    "@skyux/icons",
+    "fontfaceobserver"
+  ]
+}
