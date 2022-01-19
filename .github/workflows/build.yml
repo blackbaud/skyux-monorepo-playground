@@ -25,8 +25,8 @@ jobs:
           node-version: '14'
       - run: npm ci
       - run: npx nx-cloud start-ci-run
-      - run: npx nx affected --base=main --target=build --parallel --maxParallel=3 --exclude=showcase
-      - run: npx nx affected --base=main --target=test --parallel --maxParallel=2 --watch=false --codeCoverage --browsers=ChromeHeadless --exclude=showcase
+      - run: npx nx affected --target=build --parallel --maxParallel=3 --exclude=showcase
+      - run: npx nx affected --target=test --parallel --maxParallel=2 --watch=false --codeCoverage --browsers=ChromeHeadless --exclude=showcase
       - run: npx nx-cloud stop-all-agents
   pr:
     runs-on: ubuntu-latest
@@ -43,8 +43,8 @@ jobs:
           node-version: '14'
       - run: npm ci
       - run: npx nx-cloud start-ci-run
-      - run: npx nx affected --base=main --target=build --parallel --maxParallel=3 --exclude=showcase
-      - run: npx nx affected --base=main --target=test --parallel --maxParallel=2 --watch=false --codeCoverage --browsers=ChromeHeadless --exclude=showcase
+      - run: npx nx affected --target=build --parallel --maxParallel=3 --exclude=showcase
+      - run: npx nx affected --target=test --parallel --maxParallel=2 --watch=false --codeCoverage --browsers=ChromeHeadless --exclude=showcase
       - run: npx nx-cloud stop-all-agents
   agents:
     runs-on: ubuntu-latest
