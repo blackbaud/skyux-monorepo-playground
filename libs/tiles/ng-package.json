@@ -4,8 +4,5 @@
   "lib": {
     "entryFile": "src/index.ts"
   },
-  "whitelistedNonPeerDependencies": [
-    "dragula",
-    "ng2-dragula"
-  ]
+  "whitelistedNonPeerDependencies": ["dragula", "ng2-dragula"]
 }
