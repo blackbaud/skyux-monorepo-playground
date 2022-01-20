@@ -16,7 +16,7 @@ module.exports = () => {
     ],
     client: {
       jasmine: {
-        random: false
+        random: false,
       },
       clearContext: false, // leave Jasmine Spec Runner output visible in browser
     },
@@ -24,7 +24,7 @@ module.exports = () => {
       dir: join(__dirname, '../../coverage'),
       reporters: [{ type: 'html' }, { type: 'text-summary' }],
     },
-    reporters: ['progress',],
+    reporters: ['progress'],
     port: 9876,
     colors: true,
     logLevel: constants.LOG_INFO,

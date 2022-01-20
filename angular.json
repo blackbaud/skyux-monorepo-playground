@@ -9,9 +9,7 @@
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
-          "outputs": [
-            "dist/libs/a11y"
-          ],
+          "outputs": ["dist/libs/a11y"],
           "options": {
             "project": "libs/a11y/ng-package.json",
             "updateBuildableProjectDepsInPackageJson": false
@@ -37,9 +35,7 @@
               "libs/theme/src/lib/styles/themes/modern/styles.scss"
             ],
             "codeCoverage": true,
-            "codeCoverageExclude": [
-              "**/fixtures/**"
-            ]
+            "codeCoverageExclude": ["**/fixtures/**"]
           }
         },
         "lint": {
@@ -61,9 +57,7 @@
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
-          "outputs": [
-            "dist/libs/action-bars"
-          ],
+          "outputs": ["dist/libs/action-bars"],
           "options": {
             "project": "libs/action-bars/ng-package.json",
             "updateBuildableProjectDepsInPackageJson": false
@@ -89,9 +83,7 @@
               "libs/theme/src/lib/styles/themes/modern/styles.scss"
             ],
             "codeCoverage": true,
-            "codeCoverageExclude": [
-              "**/fixtures/**"
-            ]
+            "codeCoverageExclude": ["**/fixtures/**"]
           }
         },
         "lint": {
@@ -113,9 +105,7 @@
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
-          "outputs": [
-            "dist/libs/ag-grid"
-          ],
+          "outputs": ["dist/libs/ag-grid"],
           "options": {
             "project": "libs/ag-grid/ng-package.json",
             "updateBuildableProjectDepsInPackageJson": false
@@ -142,9 +132,7 @@
               "libs/ag-grid/src/lib/styles/ag-grid-styles.scss"
             ],
             "codeCoverage": true,
-            "codeCoverageExclude": [
-              "**/fixtures/**"
-            ]
+            "codeCoverageExclude": ["**/fixtures/**"]
           }
         },
         "lint": {
@@ -166,9 +154,7 @@
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
-          "outputs": [
-            "dist/libs/angular-tree-component"
-          ],
+          "outputs": ["dist/libs/angular-tree-component"],
           "options": {
             "project": "libs/angular-tree-component/ng-package.json",
             "updateBuildableProjectDepsInPackageJson": false
@@ -194,9 +180,7 @@
               "libs/theme/src/lib/styles/themes/modern/styles.scss"
             ],
             "codeCoverage": true,
-            "codeCoverageExclude": [
-              "**/fixtures/**"
-            ]
+            "codeCoverageExclude": ["**/fixtures/**"]
           }
         },
         "lint": {
@@ -218,9 +202,7 @@
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
-          "outputs": [
-            "dist/libs/animations"
-          ],
+          "outputs": ["dist/libs/animations"],
           "options": {
             "project": "libs/animations/ng-package.json",
             "updateBuildableProjectDepsInPackageJson": false
@@ -246,9 +228,7 @@
               "libs/theme/src/lib/styles/themes/modern/styles.scss"
             ],
             "codeCoverage": true,
-            "codeCoverageExclude": [
-              "**/fixtures/**"
-            ]
+            "codeCoverageExclude": ["**/fixtures/**"]
           }
         },
         "lint": {
@@ -270,9 +250,7 @@
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
-          "outputs": [
-            "dist/libs/assets"
-          ],
+          "outputs": ["dist/libs/assets"],
           "options": {
             "project": "libs/assets/ng-package.json",
             "updateBuildableProjectDepsInPackageJson": false
@@ -298,9 +276,7 @@
               "libs/theme/src/lib/styles/themes/modern/styles.scss"
             ],
             "codeCoverage": true,
-            "codeCoverageExclude": [
-              "**/fixtures/**"
-            ]
+            "codeCoverageExclude": ["**/fixtures/**"]
           }
         },
         "lint": {
@@ -322,9 +298,7 @@
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
-          "outputs": [
-            "dist/libs/autonumeric"
-          ],
+          "outputs": ["dist/libs/autonumeric"],
           "options": {
             "project": "libs/autonumeric/ng-package.json",
             "updateBuildableProjectDepsInPackageJson": false
@@ -350,9 +324,7 @@
               "libs/theme/src/lib/styles/themes/modern/styles.scss"
             ],
             "codeCoverage": true,
-            "codeCoverageExclude": [
-              "**/fixtures/**"
-            ]
+            "codeCoverageExclude": ["**/fixtures/**"]
           }
         },
         "lint": {
@@ -374,9 +346,7 @@
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
-          "outputs": [
-            "dist/libs/avatar"
-          ],
+          "outputs": ["dist/libs/avatar"],
           "options": {
             "project": "libs/avatar/ng-package.json",
             "updateBuildableProjectDepsInPackageJson": false
@@ -402,9 +372,7 @@
               "libs/theme/src/lib/styles/themes/modern/styles.scss"
             ],
             "codeCoverage": true,
-            "codeCoverageExclude": [
-              "**/fixtures/**"
-            ]
+            "codeCoverageExclude": ["**/fixtures/**"]
           }
         },
         "lint": {
@@ -426,9 +394,7 @@
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
-          "outputs": [
-            "dist/libs/colorpicker"
-          ],
+          "outputs": ["dist/libs/colorpicker"],
           "options": {
             "project": "libs/colorpicker/ng-package.json",
             "updateBuildableProjectDepsInPackageJson": false
@@ -454,9 +420,7 @@
               "libs/theme/src/lib/styles/themes/modern/styles.scss"
             ],
             "codeCoverage": true,
-            "codeCoverageExclude": [
-              "**/fixtures/**"
-            ]
+            "codeCoverageExclude": ["**/fixtures/**"]
           }
         },
         "lint": {
@@ -478,9 +442,7 @@
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
-          "outputs": [
-            "dist/libs/config"
-          ],
+          "outputs": ["dist/libs/config"],
           "options": {
             "project": "libs/config/ng-package.json",
             "updateBuildableProjectDepsInPackageJson": false
@@ -506,9 +468,7 @@
               "libs/theme/src/lib/styles/themes/modern/styles.scss"
             ],
             "codeCoverage": true,
-            "codeCoverageExclude": [
-              "**/fixtures/**"
-            ]
+            "codeCoverageExclude": ["**/fixtures/**"]
           }
         },
         "lint": {
@@ -530,9 +490,7 @@
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
-          "outputs": [
-            "dist/libs/core"
-          ],
+          "outputs": ["dist/libs/core"],
           "options": {
             "project": "libs/core/ng-package.json",
             "updateBuildableProjectDepsInPackageJson": false
@@ -558,9 +516,7 @@
               "libs/theme/src/lib/styles/themes/modern/styles.scss"
             ],
             "codeCoverage": true,
-            "codeCoverageExclude": [
-              "**/fixtures/**"
-            ]
+            "codeCoverageExclude": ["**/fixtures/**"]
           }
         },
         "lint": {
@@ -582,9 +538,7 @@
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
-          "outputs": [
-            "dist/libs/data-manager"
-          ],
+          "outputs": ["dist/libs/data-manager"],
           "options": {
             "project": "libs/data-manager/ng-package.json",
             "updateBuildableProjectDepsInPackageJson": false
@@ -610,9 +564,7 @@
               "libs/theme/src/lib/styles/themes/modern/styles.scss"
             ],
             "codeCoverage": true,
-            "codeCoverageExclude": [
-              "**/fixtures/**"
-            ]
+            "codeCoverageExclude": ["**/fixtures/**"]
           }
         },
         "lint": {
@@ -634,9 +586,7 @@
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
-          "outputs": [
-            "dist/libs/datetime"
-          ],
+          "outputs": ["dist/libs/datetime"],
           "options": {
             "project": "libs/datetime/ng-package.json",
             "updateBuildableProjectDepsInPackageJson": false
@@ -662,9 +612,7 @@
               "libs/theme/src/lib/styles/themes/modern/styles.scss"
             ],
             "codeCoverage": true,
-            "codeCoverageExclude": [
-              "**/fixtures/**"
-            ]
+            "codeCoverageExclude": ["**/fixtures/**"]
           }
         },
         "lint": {
@@ -686,9 +634,7 @@
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
-          "outputs": [
-            "dist/libs/errors"
-          ],
+          "outputs": ["dist/libs/errors"],
           "options": {
             "project": "libs/errors/ng-package.json",
             "updateBuildableProjectDepsInPackageJson": false
@@ -714,9 +660,7 @@
               "libs/theme/src/lib/styles/themes/modern/styles.scss"
             ],
             "codeCoverage": true,
-            "codeCoverageExclude": [
-              "**/fixtures/**"
-            ]
+            "codeCoverageExclude": ["**/fixtures/**"]
           }
         },
         "lint": {
@@ -738,9 +682,7 @@
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
-          "outputs": [
-            "dist/libs/flyout"
-          ],
+          "outputs": ["dist/libs/flyout"],
           "options": {
             "project": "libs/flyout/ng-package.json",
             "updateBuildableProjectDepsInPackageJson": false
@@ -766,9 +708,7 @@
               "libs/theme/src/lib/styles/themes/modern/styles.scss"
             ],
             "codeCoverage": true,
-            "codeCoverageExclude": [
-              "**/fixtures/**"
-            ]
+            "codeCoverageExclude": ["**/fixtures/**"]
           }
         },
         "lint": {
@@ -790,9 +730,7 @@
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
-          "outputs": [
-            "dist/libs/forms"
-          ],
+          "outputs": ["dist/libs/forms"],
           "options": {
             "project": "libs/forms/ng-package.json",
             "updateBuildableProjectDepsInPackageJson": false
@@ -818,9 +756,7 @@
               "libs/theme/src/lib/styles/themes/modern/styles.scss"
             ],
             "codeCoverage": true,
-            "codeCoverageExclude": [
-              "**/fixtures/**"
-            ]
+            "codeCoverageExclude": ["**/fixtures/**"]
           }
         },
         "lint": {
@@ -842,9 +778,7 @@
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
-          "outputs": [
-            "dist/libs/grids"
-          ],
+          "outputs": ["dist/libs/grids"],
           "options": {
             "project": "libs/grids/ng-package.json",
             "updateBuildableProjectDepsInPackageJson": false
@@ -870,9 +804,7 @@
               "libs/theme/src/lib/styles/themes/modern/styles.scss"
             ],
             "codeCoverage": true,
-            "codeCoverageExclude": [
-              "**/fixtures/**"
-            ]
+            "codeCoverageExclude": ["**/fixtures/**"]
           }
         },
         "lint": {
@@ -894,9 +826,7 @@
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
-          "outputs": [
-            "dist/libs/http"
-          ],
+          "outputs": ["dist/libs/http"],
           "options": {
             "project": "libs/http/ng-package.json",
             "updateBuildableProjectDepsInPackageJson": false
@@ -922,9 +852,7 @@
               "libs/theme/src/lib/styles/themes/modern/styles.scss"
             ],
             "codeCoverage": true,
-            "codeCoverageExclude": [
-              "**/fixtures/**"
-            ]
+            "codeCoverageExclude": ["**/fixtures/**"]
           }
         },
         "lint": {
@@ -946,9 +874,7 @@
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
-          "outputs": [
-            "dist/libs/i18n"
-          ],
+          "outputs": ["dist/libs/i18n"],
           "options": {
             "project": "libs/i18n/ng-package.json",
             "updateBuildableProjectDepsInPackageJson": false
@@ -974,9 +900,7 @@
               "libs/theme/src/lib/styles/themes/modern/styles.scss"
             ],
             "codeCoverage": true,
-            "codeCoverageExclude": [
-              "**/fixtures/**"
-            ]
+            "codeCoverageExclude": ["**/fixtures/**"]
           }
         },
         "lint": {
@@ -998,9 +922,7 @@
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
-          "outputs": [
-            "dist/libs/indicators"
-          ],
+          "outputs": ["dist/libs/indicators"],
           "options": {
             "project": "libs/indicators/ng-package.json",
             "updateBuildableProjectDepsInPackageJson": false
@@ -1026,9 +948,7 @@
               "libs/theme/src/lib/styles/themes/modern/styles.scss"
             ],
             "codeCoverage": true,
-            "codeCoverageExclude": [
-              "**/fixtures/**"
-            ]
+            "codeCoverageExclude": ["**/fixtures/**"]
           }
         },
         "lint": {
@@ -1050,9 +970,7 @@
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
-          "outputs": [
-            "dist/libs/inline-form"
-          ],
+          "outputs": ["dist/libs/inline-form"],
           "options": {
             "project": "libs/inline-form/ng-package.json",
             "updateBuildableProjectDepsInPackageJson": false
@@ -1078,9 +996,7 @@
               "libs/theme/src/lib/styles/themes/modern/styles.scss"
             ],
             "codeCoverage": true,
-            "codeCoverageExclude": [
-              "**/fixtures/**"
-            ]
+            "codeCoverageExclude": ["**/fixtures/**"]
           }
         },
         "lint": {
@@ -1102,9 +1018,7 @@
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
-          "outputs": [
-            "dist/libs/layout"
-          ],
+          "outputs": ["dist/libs/layout"],
           "options": {
             "project": "libs/layout/ng-package.json",
             "updateBuildableProjectDepsInPackageJson": false
@@ -1130,9 +1044,7 @@
               "libs/theme/src/lib/styles/themes/modern/styles.scss"
             ],
             "codeCoverage": true,
-            "codeCoverageExclude": [
-              "**/fixtures/**"
-            ]
+            "codeCoverageExclude": ["**/fixtures/**"]
           }
         },
         "lint": {
@@ -1154,9 +1066,7 @@
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
-          "outputs": [
-            "dist/libs/list-builder"
-          ],
+          "outputs": ["dist/libs/list-builder"],
           "options": {
             "project": "libs/list-builder/ng-package.json",
             "updateBuildableProjectDepsInPackageJson": false
@@ -1182,9 +1092,7 @@
               "libs/theme/src/lib/styles/themes/modern/styles.scss"
             ],
             "codeCoverage": true,
-            "codeCoverageExclude": [
-              "**/fixtures/**"
-            ]
+            "codeCoverageExclude": ["**/fixtures/**"]
           }
         },
         "lint": {
@@ -1206,9 +1114,7 @@
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
-          "outputs": [
-            "dist/libs/list-builder-common"
-          ],
+          "outputs": ["dist/libs/list-builder-common"],
           "options": {
             "project": "libs/list-builder-common/ng-package.json",
             "updateBuildableProjectDepsInPackageJson": false
@@ -1234,9 +1140,7 @@
               "libs/theme/src/lib/styles/themes/modern/styles.scss"
             ],
             "codeCoverage": true,
-            "codeCoverageExclude": [
-              "**/fixtures/**"
-            ]
+            "codeCoverageExclude": ["**/fixtures/**"]
           }
         },
         "lint": {
@@ -1258,9 +1162,7 @@
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
-          "outputs": [
-            "dist/libs/list-builder-view-checklist"
-          ],
+          "outputs": ["dist/libs/list-builder-view-checklist"],
           "options": {
             "project": "libs/list-builder-view-checklist/ng-package.json",
             "updateBuildableProjectDepsInPackageJson": false
@@ -1286,9 +1188,7 @@
               "libs/theme/src/lib/styles/themes/modern/styles.scss"
             ],
             "codeCoverage": true,
-            "codeCoverageExclude": [
-              "**/fixtures/**"
-            ]
+            "codeCoverageExclude": ["**/fixtures/**"]
           }
         },
         "lint": {
@@ -1310,9 +1210,7 @@
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
-          "outputs": [
-            "dist/libs/list-builder-view-grids"
-          ],
+          "outputs": ["dist/libs/list-builder-view-grids"],
           "options": {
             "project": "libs/list-builder-view-grids/ng-package.json",
             "updateBuildableProjectDepsInPackageJson": false
@@ -1338,9 +1236,7 @@
               "libs/theme/src/lib/styles/themes/modern/styles.scss"
             ],
             "codeCoverage": true,
-            "codeCoverageExclude": [
-              "**/fixtures/**"
-            ]
+            "codeCoverageExclude": ["**/fixtures/**"]
           }
         },
         "lint": {
@@ -1362,9 +1258,7 @@
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
-          "outputs": [
-            "dist/libs/lists"
-          ],
+          "outputs": ["dist/libs/lists"],
           "options": {
             "project": "libs/lists/ng-package.json",
             "updateBuildableProjectDepsInPackageJson": false
@@ -1390,9 +1284,7 @@
               "libs/theme/src/lib/styles/themes/modern/styles.scss"
             ],
             "codeCoverage": true,
-            "codeCoverageExclude": [
-              "**/fixtures/**"
-            ]
+            "codeCoverageExclude": ["**/fixtures/**"]
           }
         },
         "lint": {
@@ -1414,9 +1306,7 @@
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
-          "outputs": [
-            "dist/libs/lookup"
-          ],
+          "outputs": ["dist/libs/lookup"],
           "options": {
             "project": "libs/lookup/ng-package.json",
             "updateBuildableProjectDepsInPackageJson": false
@@ -1442,9 +1332,7 @@
               "libs/theme/src/lib/styles/themes/modern/styles.scss"
             ],
             "codeCoverage": true,
-            "codeCoverageExclude": [
-              "**/fixtures/**"
-            ]
+            "codeCoverageExclude": ["**/fixtures/**"]
           }
         },
         "lint": {
@@ -1466,9 +1354,7 @@
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
-          "outputs": [
-            "dist/libs/modals"
-          ],
+          "outputs": ["dist/libs/modals"],
           "options": {
             "project": "libs/modals/ng-package.json",
             "updateBuildableProjectDepsInPackageJson": false
@@ -1494,9 +1380,7 @@
               "libs/theme/src/lib/styles/themes/modern/styles.scss"
             ],
             "codeCoverage": true,
-            "codeCoverageExclude": [
-              "**/fixtures/**"
-            ]
+            "codeCoverageExclude": ["**/fixtures/**"]
           }
         },
         "lint": {
@@ -1518,9 +1402,7 @@
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
-          "outputs": [
-            "dist/libs/navbar"
-          ],
+          "outputs": ["dist/libs/navbar"],
           "options": {
             "project": "libs/navbar/ng-package.json",
             "updateBuildableProjectDepsInPackageJson": false
@@ -1546,9 +1428,7 @@
               "libs/theme/src/lib/styles/themes/modern/styles.scss"
             ],
             "codeCoverage": true,
-            "codeCoverageExclude": [
-              "**/fixtures/**"
-            ]
+            "codeCoverageExclude": ["**/fixtures/**"]
           }
         },
         "lint": {
@@ -1570,9 +1450,7 @@
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
-          "outputs": [
-            "dist/libs/omnibar-interop"
-          ],
+          "outputs": ["dist/libs/omnibar-interop"],
           "options": {
             "project": "libs/omnibar-interop/ng-package.json",
             "updateBuildableProjectDepsInPackageJson": false
@@ -1598,9 +1476,7 @@
               "libs/theme/src/lib/styles/themes/modern/styles.scss"
             ],
             "codeCoverage": true,
-            "codeCoverageExclude": [
-              "**/fixtures/**"
-            ]
+            "codeCoverageExclude": ["**/fixtures/**"]
           }
         },
         "lint": {
@@ -1622,9 +1498,7 @@
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
-          "outputs": [
-            "dist/libs/pages"
-          ],
+          "outputs": ["dist/libs/pages"],
           "options": {
             "project": "libs/pages/ng-package.json",
             "updateBuildableProjectDepsInPackageJson": false
@@ -1650,9 +1524,7 @@
               "libs/theme/src/lib/styles/themes/modern/styles.scss"
             ],
             "codeCoverage": true,
-            "codeCoverageExclude": [
-              "**/fixtures/**"
-            ]
+            "codeCoverageExclude": ["**/fixtures/**"]
           }
         },
         "lint": {
@@ -1674,9 +1546,7 @@
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
-          "outputs": [
-            "dist/libs/phone-field"
-          ],
+          "outputs": ["dist/libs/phone-field"],
           "options": {
             "project": "libs/phone-field/ng-package.json",
             "updateBuildableProjectDepsInPackageJson": false
@@ -1702,9 +1572,7 @@
               "libs/theme/src/lib/styles/themes/modern/styles.scss"
             ],
             "codeCoverage": true,
-            "codeCoverageExclude": [
-              "**/fixtures/**"
-            ]
+            "codeCoverageExclude": ["**/fixtures/**"]
           }
         },
         "lint": {
@@ -1726,9 +1594,7 @@
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
-          "outputs": [
-            "dist/libs/popovers"
-          ],
+          "outputs": ["dist/libs/popovers"],
           "options": {
             "project": "libs/popovers/ng-package.json",
             "updateBuildableProjectDepsInPackageJson": false
@@ -1754,9 +1620,7 @@
               "libs/theme/src/lib/styles/themes/modern/styles.scss"
             ],
             "codeCoverage": true,
-            "codeCoverageExclude": [
-              "**/fixtures/**"
-            ]
+            "codeCoverageExclude": ["**/fixtures/**"]
           }
         },
         "lint": {
@@ -1778,9 +1642,7 @@
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
-          "outputs": [
-            "dist/libs/progress-indicator"
-          ],
+          "outputs": ["dist/libs/progress-indicator"],
           "options": {
             "project": "libs/progress-indicator/ng-package.json",
             "updateBuildableProjectDepsInPackageJson": false
@@ -1806,9 +1668,7 @@
               "libs/theme/src/lib/styles/themes/modern/styles.scss"
             ],
             "codeCoverage": true,
-            "codeCoverageExclude": [
-              "**/fixtures/**"
-            ]
+            "codeCoverageExclude": ["**/fixtures/**"]
           }
         },
         "lint": {
@@ -1830,9 +1690,7 @@
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
-          "outputs": [
-            "dist/libs/router"
-          ],
+          "outputs": ["dist/libs/router"],
           "options": {
             "project": "libs/router/ng-package.json",
             "updateBuildableProjectDepsInPackageJson": false
@@ -1858,9 +1716,7 @@
               "libs/theme/src/lib/styles/themes/modern/styles.scss"
             ],
             "codeCoverage": true,
-            "codeCoverageExclude": [
-              "**/fixtures/**"
-            ]
+            "codeCoverageExclude": ["**/fixtures/**"]
           }
         },
         "lint": {
@@ -1882,9 +1738,7 @@
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
-          "outputs": [
-            "dist/libs/select-field"
-          ],
+          "outputs": ["dist/libs/select-field"],
           "options": {
             "project": "libs/select-field/ng-package.json",
             "updateBuildableProjectDepsInPackageJson": false
@@ -1910,9 +1764,7 @@
               "libs/theme/src/lib/styles/themes/modern/styles.scss"
             ],
             "codeCoverage": true,
-            "codeCoverageExclude": [
-              "**/fixtures/**"
-            ]
+            "codeCoverageExclude": ["**/fixtures/**"]
           }
         },
         "lint": {
@@ -1934,9 +1786,7 @@
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
-          "outputs": [
-            "{options.outputPath}"
-          ],
+          "outputs": ["{options.outputPath}"],
           "options": {
             "outputPath": "dist/apps/showcase",
             "index": "apps/showcase/src/index.html",
@@ -1948,9 +1798,7 @@
               "apps/showcase/src/favicon.ico",
               "apps/showcase/src/assets"
             ],
-            "styles": [
-              "apps/showcase/src/styles.scss"
-            ],
+            "styles": ["apps/showcase/src/styles.scss"],
             "scripts": []
           },
           "configurations": {
@@ -2015,9 +1863,7 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/apps/showcase"
-          ],
+          "outputs": ["coverage/apps/showcase"],
           "options": {
             "jestConfig": "apps/showcase/jest.config.js",
             "passWithNoTests": true
@@ -2045,13 +1891,9 @@
         },
         "lint": {
           "builder": "@nrwl/linter:eslint",
-          "outputs": [
-            "{options.outputFile}"
-          ],
+          "outputs": ["{options.outputFile}"],
           "options": {
-            "lintFilePatterns": [
-              "apps/showcase-e2e/**/*.{js,ts}"
-            ]
+            "lintFilePatterns": ["apps/showcase-e2e/**/*.{js,ts}"]
           }
         }
       }
@@ -2064,9 +1906,7 @@
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
-          "outputs": [
-            "dist/libs/split-view"
-          ],
+          "outputs": ["dist/libs/split-view"],
           "options": {
             "project": "libs/split-view/ng-package.json",
             "updateBuildableProjectDepsInPackageJson": false
@@ -2092,9 +1932,7 @@
               "libs/theme/src/lib/styles/themes/modern/styles.scss"
             ],
             "codeCoverage": true,
-            "codeCoverageExclude": [
-              "**/fixtures/**"
-            ]
+            "codeCoverageExclude": ["**/fixtures/**"]
           }
         },
         "lint": {
@@ -2116,9 +1954,7 @@
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
-          "outputs": [
-            "dist/libs/tabs"
-          ],
+          "outputs": ["dist/libs/tabs"],
           "options": {
             "project": "libs/tabs/ng-package.json",
             "updateBuildableProjectDepsInPackageJson": false
@@ -2144,9 +1980,7 @@
               "libs/theme/src/lib/styles/themes/modern/styles.scss"
             ],
             "codeCoverage": true,
-            "codeCoverageExclude": [
-              "**/fixtures/**"
-            ]
+            "codeCoverageExclude": ["**/fixtures/**"]
           }
         },
         "lint": {
@@ -2168,9 +2002,7 @@
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
-          "outputs": [
-            "dist/libs/text-editor"
-          ],
+          "outputs": ["dist/libs/text-editor"],
           "options": {
             "project": "libs/text-editor/ng-package.json",
             "updateBuildableProjectDepsInPackageJson": false
@@ -2196,9 +2028,7 @@
               "libs/theme/src/lib/styles/themes/modern/styles.scss"
             ],
             "codeCoverage": true,
-            "codeCoverageExclude": [
-              "**/fixtures/**"
-            ]
+            "codeCoverageExclude": ["**/fixtures/**"]
           }
         },
         "lint": {
@@ -2220,9 +2050,7 @@
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
-          "outputs": [
-            "dist/libs/theme"
-          ],
+          "outputs": ["dist/libs/theme"],
           "options": {
             "project": "libs/theme/ng-package.json",
             "updateBuildableProjectDepsInPackageJson": false
@@ -2248,9 +2076,7 @@
               "libs/theme/src/lib/styles/themes/modern/styles.scss"
             ],
             "codeCoverage": true,
-            "codeCoverageExclude": [
-              "**/fixtures/**"
-            ]
+            "codeCoverageExclude": ["**/fixtures/**"]
           }
         },
         "lint": {
@@ -2272,9 +2098,7 @@
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
-          "outputs": [
-            "dist/libs/tiles"
-          ],
+          "outputs": ["dist/libs/tiles"],
           "options": {
             "project": "libs/tiles/ng-package.json",
             "updateBuildableProjectDepsInPackageJson": false
@@ -2300,9 +2124,7 @@
               "libs/theme/src/lib/styles/themes/modern/styles.scss"
             ],
             "codeCoverage": true,
-            "codeCoverageExclude": [
-              "**/fixtures/**"
-            ]
+            "codeCoverageExclude": ["**/fixtures/**"]
           }
         },
         "lint": {
@@ -2324,9 +2146,7 @@
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
-          "outputs": [
-            "dist/libs/toast"
-          ],
+          "outputs": ["dist/libs/toast"],
           "options": {
             "project": "libs/toast/ng-package.json",
             "updateBuildableProjectDepsInPackageJson": false
@@ -2352,9 +2172,7 @@
               "libs/theme/src/lib/styles/themes/modern/styles.scss"
             ],
             "codeCoverage": true,
-            "codeCoverageExclude": [
-              "**/fixtures/**"
-            ]
+            "codeCoverageExclude": ["**/fixtures/**"]
           }
         },
         "lint": {
@@ -2376,9 +2194,7 @@
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
-          "outputs": [
-            "dist/libs/validation"
-          ],
+          "outputs": ["dist/libs/validation"],
           "options": {
             "project": "libs/validation/ng-package.json",
             "updateBuildableProjectDepsInPackageJson": false
@@ -2404,9 +2220,7 @@
               "libs/theme/src/lib/styles/themes/modern/styles.scss"
             ],
             "codeCoverage": true,
-            "codeCoverageExclude": [
-              "**/fixtures/**"
-            ]
+            "codeCoverageExclude": ["**/fixtures/**"]
           }
         },
         "lint": {
