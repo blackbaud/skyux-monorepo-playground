@@ -1,6 +1,6 @@
 const { join } = require('path');
 const getBaseKarmaConfig = require('./karma.conf');
-const applyBrowserStackKarmaConfig = require('./scripts/utils/apply-browserstack-karma-config');
+// const applyBrowserStackKarmaConfig = require('./scripts/utils/apply-browserstack-karma-config');
 
 module.exports = function (config) {
   const projectName = process.argv.slice(2)[1].replace(':test', '');
@@ -33,10 +33,10 @@ module.exports = function (config) {
     },
   });
 
-  applyBrowserStackKarmaConfig(config, 'paranoid', {
-    username: process.env.BROWSER_STACK_USERNAME,
-    accessKey: process.env.BROWSER_STACK_ACCESS_KEY,
-    buildId: process.env.GITHUB_RUN_ID,
-    project: `skyux-monorepo-${projectName}`,
-  });
+  // applyBrowserStackKarmaConfig(config, 'paranoid', {
+  //   username: process.env.BROWSER_STACK_USERNAME,
+  //   accessKey: process.env.BROWSER_STACK_ACCESS_KEY,
+  //   buildId: process.env.GITHUB_RUN_ID,
+  //   project: `skyux-monorepo-${projectName}`,
+  // });
 };
