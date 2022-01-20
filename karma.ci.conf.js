@@ -1,68 +1,94 @@
+const { constants } = require('karma');
 const { join } = require('path');
-const getBaseKarmaConfig = require('./karma.conf');
-// const applyBrowserStackKarmaConfig = require('./scripts/utils/apply-browserstack-karma-config');
 
 module.exports = function (config) {
   const projectName = process.argv.slice(2)[1].replace(':test', '');
   console.log('Running tests for project:', projectName);
 
-  const baseConfig = getBaseKarmaConfig();
   config.set({
-    ...baseConfig,
-    ...{
-      coverageReporter: {
-        dir: join(__dirname, '../../coverage/libs', projectName),
-        reporters: [
-          { type: 'html' },
-          { type: 'text-summary' },
-          { type: 'lcovonly' },
-        ],
-        check: {
-          global: {
-            branches: 100,
-            functions: 100,
-            lines: 100,
-            statements: 100,
-          },
+    basePath: '',
+    frameworks: ['jasmine', '@angular-devkit/build-angular'],
+    plugins: [
+      require('karma-jasmine'),
+      require('karma-chrome-launcher'),
+      require('karma-browserstack-launcher'),
+      require('karma-coverage'),
+      require('@angular-devkit/build-angular/plugins/karma'),
+    ],
+    client: {
+      jasmine: {
+        random: false,
+      },
+      clearContext: false, // leave Jasmine Spec Runner output visible in browser
+    },
+    coverageReporter: {
+      dir: join(__dirname, 'coverage/libs', projectName),
+      reporters: [
+        { type: 'html' },
+        { type: 'text-summary' },
+        { type: 'lcovonly' },
+      ],
+      check: {
+        global: {
+          branches: 100,
+          functions: 100,
+          lines: 100,
+          statements: 100,
         },
       },
-      autoWatch: false,
-      browserDisconnectTolerance: 3,
-      browsers: ['ChromeHeadless'],
-      singleRun: true,
     },
-  });
+    port: 9876,
+    colors: true,
+    logLevel: constants.LOG_INFO,
+    autoWatch: false,
+    restartOnFileChange: false,
 
-  config.plugins.push(require('karma-browserstack-launcher'));
+    browserDisconnectTimeout: 60000,
+    browserDisconnectTolerance: 2,
+    browserNoActivityTimeout: 30000,
+    captureTimeout: 60000,
 
-  config.set({
     browserStack: {
       username: process.env.BROWSER_STACK_USERNAME,
       accessKey: process.env.BROWSER_STACK_ACCESS_KEY,
+      build: 'some-build-id',
+      name: `${projectName}:test`,
+      project: projectName,
     },
-    customLaunchers: {
-      bs_firefox_mac: {
-        base: 'BrowserStack',
-        browser: 'firefox',
-        browser_version: '21.0',
-        os: 'OS X',
-        os_version: 'Mountain Lion',
-      },
-      bs_iphone5: {
-        base: 'BrowserStack',
-        device: 'iPhone 5',
-        os: 'ios',
-        os_version: '6.0',
-      },
-    },
-    browsers: ['bs_firefox_mac', 'bs_iphone5'],
-    reporters: ['dots', 'BrowserStack'],
-  });
 
-  // applyBrowserStackKarmaConfig(config, 'paranoid', {
-  //   username: process.env.BROWSER_STACK_USERNAME,
-  //   accessKey: process.env.BROWSER_STACK_ACCESS_KEY,
-  //   buildId: process.env.GITHUB_RUN_ID,
-  //   project: `skyux-monorepo-${projectName}`,
-  // });
+    customLaunchers: {
+      bsBrowserChrome: {
+        base: 'BrowserStack',
+        browser: 'Chrome',
+        os: 'Windows',
+        os_version: '10',
+      },
+      bsBrowserEdge: {
+        base: 'BrowserStack',
+        browser: 'Edge',
+        os: 'Windows',
+        os_version: '10',
+      },
+      bsBrowserFirefox: {
+        base: 'BrowserStack',
+        browser: 'Firefox',
+        os: 'OS X',
+        os_version: 'Big Sur',
+      },
+      bsBrowserSafari: {
+        base: 'BrowserStack',
+        browser: 'Safari',
+        os: 'OS X',
+        os_version: 'Big Sur',
+      },
+    },
+    browsers: [
+      'bsBrowserChrome',
+      'bsBrowserEdge',
+      'bsBrowserFirefox',
+      'bsBrowserSafari',
+    ],
+    reporters: ['progress', 'BrowserStack'],
+    singleRun: true,
+  });
 };
