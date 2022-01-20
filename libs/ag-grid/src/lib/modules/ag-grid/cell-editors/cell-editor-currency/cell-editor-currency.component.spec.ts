@@ -34,6 +34,7 @@ describe('SkyCellEditorCurrencyComponent', () => {
     currencyEditorFixture.detectChanges();
   });
 
+  // This one fails:
   it('renders a numeric input when editing a currency cell in an ag grid', () => {
     const gridFixture = TestBed.createComponent(SkyAgGridFixtureComponent);
     const gridNativeElement = gridFixture.nativeElement;
@@ -43,6 +44,8 @@ describe('SkyCellEditorCurrencyComponent', () => {
     const currencyCellElement = gridNativeElement.querySelector(
       `.${SkyCellClass.Currency}`
     );
+
+    console.log('ELEMENT:', currencyCellElement);
 
     expect(currencyCellElement).toBeVisible();
   });

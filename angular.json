@@ -135,7 +135,7 @@
           "options": {
             "main": "libs/ag-grid/src/test.ts",
             "tsConfig": "libs/ag-grid/tsconfig.spec.json",
-            "karmaConfig": "libs/ag-grid/karma.conf.js",
+            "karmaConfig": "karma.conf.js",
             "styles": [
               "libs/theme/src/lib/styles/sky.scss",
               "libs/theme/src/lib/styles/themes/modern/styles.scss",
