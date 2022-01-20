@@ -12,6 +12,11 @@ module.exports = function (config) {
     ...{
       coverageReporter: {
         dir: join(__dirname, '../../coverage/libs', projectName),
+        reporters: [
+          { type: 'html' },
+          { type: 'text-summary' },
+          { type: 'lcovonly' },
+        ],
         check: {
           global: {
             branches: 100,
@@ -27,9 +32,6 @@ module.exports = function (config) {
       singleRun: true,
     },
   });
-
-  // Add support for Codecov reports.
-  config.coverageReporter.reporters.push({ type: 'lcovonly' });
 
   applyBrowserStackKarmaConfig(config, 'paranoid', {
     username: process.env.BROWSER_STACK_USERNAME,
