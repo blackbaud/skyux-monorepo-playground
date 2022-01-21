@@ -115,7 +115,7 @@ module.exports = function (config) {
   });
 
   if (process.env.BROWSER_STACK_ACCESS_KEY) {
-    const customLaunchers = getBrowserStackLaunchers('paranoid');
+    const customLaunchers = getBrowserStackLaunchers('speedy');
 
     config.set({
       customLaunchers,
