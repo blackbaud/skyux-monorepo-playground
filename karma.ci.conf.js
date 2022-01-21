@@ -17,14 +17,14 @@ function getBrowserSet(key) {
     base: 'BrowserStack',
     browser: 'Firefox',
     os: 'OS X',
-    os_version: 'Big Sur',
+    os_version: 'Monterey',
   };
 
   const bsBrowserSafari = {
     base: 'BrowserStack',
     browser: 'Safari',
     os: 'OS X',
-    os_version: 'Big Sur',
+    os_version: 'Monterey',
   };
 
   const browserSets = {
@@ -115,7 +115,7 @@ module.exports = function (config) {
   });
 
   if (process.env.BROWSER_STACK_ACCESS_KEY) {
-    const customLaunchers = getBrowserStackLaunchers('speedy');
+    const customLaunchers = getBrowserStackLaunchers('paranoid');
 
     config.set({
       customLaunchers,
