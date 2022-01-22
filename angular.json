@@ -125,7 +125,7 @@
           "options": {
             "main": "libs/ag-grid/src/test.ts",
             "tsConfig": "libs/ag-grid/tsconfig.spec.json",
-            "karmaConfig": "karma.conf.js",
+            "karmaConfig": "libs/ag-grid/karma.conf.js",
             "styles": [
               "libs/theme/src/lib/styles/sky.scss",
               "libs/theme/src/lib/styles/themes/modern/styles.scss",
@@ -2230,6 +2230,27 @@
               "libs/validation/src/**/*.ts",
               "libs/validation/src/**/*.html"
             ]
+          }
+        }
+      }
+    },
+    "all": {
+      "projectType": "library",
+      "root": "",
+      "architect": {
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "test-all.ts",
+            "tsConfig": "tsconfig.test-all.json",
+            "karmaConfig": "karma.all.conf.js",
+            "styles": [
+              "libs/theme/src/lib/styles/sky.scss",
+              "libs/theme/src/lib/styles/themes/modern/styles.scss",
+              "libs/ag-grid/src/lib/styles/ag-grid-styles.scss"
+            ],
+            "codeCoverage": true,
+            "codeCoverageExclude": ["**/fixtures/**"]
           }
         }
       }
