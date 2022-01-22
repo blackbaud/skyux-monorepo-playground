@@ -105,6 +105,14 @@ module.exports = function (config) {
         { type: 'text-summary' },
         { type: 'lcovonly' }, // Add support for Codecov reports.
       ],
+      check: {
+        global: {
+          statements: 100,
+          branches: 100,
+          functions: 100,
+          lines: 100,
+        },
+      },
     },
     reporters: ['dots'],
     port: 9876,
