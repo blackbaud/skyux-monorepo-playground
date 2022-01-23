@@ -45,11 +45,11 @@ jobs:
         with:
           node-version: '14'
       - run: |
-        npm install
-        npx nx-cloud start-ci-run
-        npx nx affected --target=build --parallel --maxParallel=5 --exclude=showcase
-        npx nx run all:test --skip-nx-cache
-        npx nx-cloud stop-all-agents
+          npm install
+          npx nx-cloud start-ci-run
+          npx nx affected --target=build --parallel --maxParallel=5 --exclude=showcase
+          npx nx run all:test --skip-nx-cache
+          npx nx-cloud stop-all-agents
   agents:
     runs-on: ubuntu-latest
     name: Agent 1
