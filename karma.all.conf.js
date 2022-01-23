@@ -117,7 +117,7 @@ module.exports = function (config) {
     reporters: ['dots'],
     port: 9876,
     colors: true,
-    logLevel: config.LOG_DEBUG,
+    logLevel: config.LOG_INFO,
     autoWatch: false, // Angular sets this to true by default.
     browsers: ['ChromeHeadless'], // Angular sets this to 'Chrome' by default.
     singleRun: true, // Angular sets this to false by default.
