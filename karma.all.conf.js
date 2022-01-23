@@ -94,7 +94,7 @@ module.exports = function (config) {
         // or set a specific seed with `seed: 4321`
         random: false,
       },
-      captureConsole: false,
+      // captureConsole: false,
       clearContext: false, // leave Jasmine Spec Runner output visible in browser
     },
     coverageReporter: {
@@ -114,10 +114,10 @@ module.exports = function (config) {
         },
       },
     },
-    reporters: ['dots'],
+    reporters: ['progress'],
     port: 9876,
     colors: true,
-    logLevel: config.LOG_INFO,
+    logLevel: config.LOG_DEBUG,
     autoWatch: false, // Angular sets this to true by default.
     browsers: ['ChromeHeadless'], // Angular sets this to 'Chrome' by default.
     singleRun: true, // Angular sets this to false by default.
