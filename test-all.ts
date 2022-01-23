@@ -22,9 +22,7 @@ getTestBed().initTestEnvironment(
   { teardown: { destroyAfterEach: true }},
 );
 
-// These projects are failing: ag-grid
-
-const context = require.context(`./libs`, true, /(a11y|action-bars|ag-grid|angular-tree-component|animations|assets|autonumeric|avatar|colorpicker|config|core|data-manager|datetime|errors|flyout|forms|grids|http|i18n|indicators|inline-form|layout|list-builder|list-builder-common|list-builder-view-checklist|list-builder-view-grids|lists|lookup|modals|navbar|omnibar-interop|pages|phone-field|popovers|progress-indicator|router|select-field|split-view|tabs|text-editor|theme|tiles|toast|validation)\/src\/lib\/.+\.spec\.ts$/);
-
+// Then we find all the tests.
+const context = require.context(`./libs`, true, /\.spec\.ts$/);
 // And load the modules.
 context.keys().map(context);
