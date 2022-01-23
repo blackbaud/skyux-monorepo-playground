@@ -116,7 +116,7 @@ describe('SkyCellEditorCurrencyComponent', () => {
     });
 
     it('returns the value if it is 0', () => {
-      let value = 0;
+      const value = 0;
       currencyEditorComponent.value = value;
 
       currencyEditorFixture.detectChanges();
