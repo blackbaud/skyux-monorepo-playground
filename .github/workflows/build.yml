@@ -39,12 +39,15 @@ jobs:
           fetch-depth: 0
       - name: Derive appropriate SHAs for base and head for `nx affected` commands
         uses: nrwl/nx-set-shas@v2
+          with:
+            main-branch-name: 'main'
       - uses: actions/setup-node@v1
         with:
           node-version: '14'
       - run: npm install
       - run: npx nx-cloud start-ci-run
       - run: npx nx affected --target=build --parallel --maxParallel=5 --exclude=showcase
+      - run: npx nx reset
       - run: npx nx run all:test --skip-nx-cache
       - run: npx nx-cloud stop-all-agents
   agents:
