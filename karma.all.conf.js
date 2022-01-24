@@ -145,7 +145,7 @@ module.exports = function (config) {
   if (process.env.BROWSER_STACK_ACCESS_KEY) {
     const tunnelIdentifier = `foobar_${counter++}`;
 
-    const customLaunchers = getBrowserStackLaunchers('speedy');
+    const customLaunchers = getBrowserStackLaunchers('paranoid');
 
     config.set({
       customLaunchers,
@@ -163,9 +163,9 @@ module.exports = function (config) {
         video: false,
       },
       // Try Websocket for a faster transmission first. Fallback to polling if necessary.
-      // transports: ['websocket', 'polling'],
+      transports: ['websocket', 'polling'],
 
-      // browserConsoleLogOptions: { terminal: true, level: 'log' },
+      browserConsoleLogOptions: { terminal: true, level: 'log' },
     });
 
     config.set({
