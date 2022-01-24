@@ -485,7 +485,7 @@
     "core": {
       "projectType": "library",
       "root": "libs/core",
-      "sourceRoot": "libs/core/src",
+      "sourceRoot": "libs/core",
       "prefix": "sky",
       "architect": {
         "build": {
@@ -1349,7 +1349,7 @@
     "modals": {
       "projectType": "library",
       "root": "libs/modals",
-      "sourceRoot": "libs/modals/src",
+      "sourceRoot": "libs/modals",
       "prefix": "sky",
       "architect": {
         "build": {
@@ -2236,7 +2236,8 @@
     },
     "all": {
       "projectType": "library",
-      "root": "",
+      "root": "libs",
+      "sourceRoot": "libs",
       "architect": {
         "test": {
           "builder": "@angular-devkit/build-angular:karma",

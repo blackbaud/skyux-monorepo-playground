@@ -1,4 +1,4 @@
-const { join } = require('path');
+// const { join } = require('path');
 
 let counter = 0;
 
@@ -142,51 +142,51 @@ module.exports = function (config) {
     restartOnFileChange: false, // Angular sets this to true by default.
   });
 
-  // if (process.env.BROWSER_STACK_ACCESS_KEY) {
-  //   const tunnelIdentifier = `foobar_${counter++}`;
+  if (process.env.BROWSER_STACK_ACCESS_KEY) {
+    const tunnelIdentifier = `foobar_${counter++}`;
 
-  //   const customLaunchers = getBrowserStackLaunchers('speedy');
+    const customLaunchers = getBrowserStackLaunchers('speedy');
 
-  //   config.set({
-  //     customLaunchers,
-  //     browsers: Object.keys(customLaunchers),
-  //     browserStack: {
-  //       accessKey: process.env.BROWSER_STACK_ACCESS_KEY,
-  //       username: process.env.BROWSER_STACK_USERNAME,
-  //       name: `nx run ${projectName}:test`,
-  //       project: projectName,
-  //       enableLoggingForApi: true,
-  //       startTunnel: true,
-  //       forceLocal: true,
-  //       // timeout: 1800,
-  //       tunnelIdentifier,
-  //       video: false,
-  //     },
-  //     // Try Websocket for a faster transmission first. Fallback to polling if necessary.
-  //     // transports: ['websocket', 'polling'],
+    config.set({
+      customLaunchers,
+      browsers: Object.keys(customLaunchers),
+      browserStack: {
+        accessKey: process.env.BROWSER_STACK_ACCESS_KEY,
+        username: process.env.BROWSER_STACK_USERNAME,
+        name: `nx run ${projectName}:test`,
+        project: projectName,
+        enableLoggingForApi: true,
+        startTunnel: true,
+        forceLocal: true,
+        // timeout: 1800,
+        tunnelIdentifier,
+        video: false,
+      },
+      // Try Websocket for a faster transmission first. Fallback to polling if necessary.
+      // transports: ['websocket', 'polling'],
 
-  //     // browserConsoleLogOptions: { terminal: true, level: 'log' },
-  //   });
+      // browserConsoleLogOptions: { terminal: true, level: 'log' },
+    });
 
-  //   config.set({
-  //     browserDisconnectTimeout: 60000,
-  //     browserDisconnectTolerance: 2,
-  //     browserNoActivityTimeout: 30000,
-  //     captureTimeout: 60000,
-  //   });
+    config.set({
+      browserDisconnectTimeout: 60000,
+      browserDisconnectTolerance: 2,
+      browserNoActivityTimeout: 30000,
+      captureTimeout: 60000,
+    });
 
-  //   config.plugins.push(require('karma-browserstack-launcher'));
+    config.plugins.push(require('karma-browserstack-launcher'));
 
-  //   // Create a custom plugin to log the BrowserStack session.
-  //   // config.reporters.push('BrowserStack', 'blackbaud-browserstack');
-  //   // config.plugins.push({
-  //   //   'reporter:blackbaud-browserstack': [
-  //   //     'type',
-  //   //     function (/* BrowserStack:sessionMapping */ sessions) {
-  //   //       this.onBrowserComplete = (browser) =>
-  //   //         logBrowserStackSession(sessions[browser.id]);
-  //   //     },
-  //   //   ],
-  //   // });
-  // }
+    // Create a custom plugin to log the BrowserStack session.
+    config.reporters.push('BrowserStack', 'blackbaud-browserstack');
+    config.plugins.push({
+      'reporter:blackbaud-browserstack': [
+        'type',
+        function (/* BrowserStack:sessionMapping */ sessions) {
+          this.onBrowserComplete = (browser) =>
+            logBrowserStackSession(sessions[browser.id]);
+        },
+      ],
+    });
+  }
 };
