@@ -84,6 +84,7 @@ module.exports = function (config) {
       captureConsole: false,
     },
     coverageReporter: {
+      ...baseConfig.coverageReporter,
       dir: require('path').join(process.cwd(), './coverage'),
     },
     reporters: ['dots'],

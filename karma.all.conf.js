@@ -6,6 +6,7 @@ module.exports = function (config) {
   config.set({
     ...baseConfig,
     coverageReporter: {
+      ...baseConfig.coverageReporter,
       dir: require('path').join(process.cwd(), './coverage/all'),
     },
     browsers: ['ChromeHeadless'],
