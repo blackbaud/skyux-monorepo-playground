@@ -47,8 +47,9 @@ jobs:
       - run: npx nx affected --target=build --parallel --maxParallel=5 --exclude=showcase
       # Disable cache on Nx Cloud to test all libraries.
       - run: NX_CLOUD_DISTRIBUTED_EXECUTION=false npx nx run all:test --skip-nx-cache
-      - run: NX_CLOUD_DISTRIBUTED_EXECUTION=true npx nx-cloud stop-all-agents
-      - run: echo "Hello?"
+      - name: Stop Nx Cloud agents
+        if: always()
+        run: npx nx-cloud stop-all-agents
   agents:
     runs-on: ubuntu-latest
     name: Agent 1
