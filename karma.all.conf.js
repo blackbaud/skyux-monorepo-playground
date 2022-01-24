@@ -158,35 +158,35 @@ module.exports = function (config) {
         enableLoggingForApi: true,
         startTunnel: true,
         forceLocal: true,
-        // timeout: 1800,
+        timeout: 1800,
         tunnelIdentifier,
         video: false,
       },
       // Try Websocket for a faster transmission first. Fallback to polling if necessary.
-      transports: ['websocket', 'polling'],
+      // transports: ['websocket', 'polling'],
 
-      browserConsoleLogOptions: { terminal: true, level: 'log' },
+      // browserConsoleLogOptions: { terminal: true, level: 'log' },
     });
 
     config.set({
-      browserDisconnectTimeout: 60000,
+      // browserDisconnectTimeout: 60000,
       browserDisconnectTolerance: 2,
       // browserNoActivityTimeout: 30000,
-      captureTimeout: 60000,
+      // captureTimeout: 60000,
     });
 
     config.plugins.push(require('karma-browserstack-launcher'));
 
     // Create a custom plugin to log the BrowserStack session.
-    config.reporters.push('BrowserStack', 'blackbaud-browserstack');
-    config.plugins.push({
-      'reporter:blackbaud-browserstack': [
-        'type',
-        function (/* BrowserStack:sessionMapping */ sessions) {
-          this.onBrowserComplete = (browser) =>
-            logBrowserStackSession(sessions[browser.id]);
-        },
-      ],
-    });
+    // config.reporters.push('BrowserStack', 'blackbaud-browserstack');
+    // config.plugins.push({
+    //   'reporter:blackbaud-browserstack': [
+    //     'type',
+    //     function (/* BrowserStack:sessionMapping */ sessions) {
+    //       this.onBrowserComplete = (browser) =>
+    //         logBrowserStackSession(sessions[browser.id]);
+    //     },
+    //   ],
+    // });
   }
 };
