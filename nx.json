@@ -8,7 +8,11 @@
       "dependencies": "*",
       "devDependencies": "*"
     },
-    ".eslintrc.json": "*"
+    ".eslintrc.json": "*",
+    "karma.all.conf.js": "*",
+    "karma.ci.conf.js": "*",
+    "karma.conf.js": "*",
+    "test-all.ts": "*"
   },
   "tasksRunnerOptions": {
     "default": {
