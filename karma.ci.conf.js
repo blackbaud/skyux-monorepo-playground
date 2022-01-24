@@ -81,6 +81,7 @@ module.exports = function (config) {
   config.set({
     ...baseConfig,
     client: {
+      ...baseConfig.client,
       captureConsole: false,
     },
     coverageReporter: {
