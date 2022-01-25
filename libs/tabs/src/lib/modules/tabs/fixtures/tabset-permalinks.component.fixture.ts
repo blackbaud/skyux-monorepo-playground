@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-tabset-permalinks-test',
+  selector: 'sky-tabset-permalinks-test',
   templateUrl: './tabset-permalinks.component.fixture.html',
 })
 export class SkyTabsetPermalinksFixtureComponent {

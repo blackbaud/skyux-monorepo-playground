@@ -4,7 +4,7 @@
     "a11y": {
       "projectType": "library",
       "root": "libs/a11y",
-      "sourceRoot": "libs/a11y/src",
+      "sourceRoot": "libs/a11y",
       "prefix": "sky",
       "architect": {
         "build": {
@@ -52,7 +52,7 @@
     "action-bars": {
       "projectType": "library",
       "root": "libs/action-bars",
-      "sourceRoot": "libs/action-bars/src",
+      "sourceRoot": "libs/action-bars",
       "prefix": "sky",
       "architect": {
         "build": {
@@ -100,7 +100,7 @@
     "ag-grid": {
       "projectType": "library",
       "root": "libs/ag-grid",
-      "sourceRoot": "libs/ag-grid/src",
+      "sourceRoot": "libs/ag-grid",
       "prefix": "sky",
       "architect": {
         "build": {
@@ -149,7 +149,7 @@
     "angular-tree-component": {
       "projectType": "library",
       "root": "libs/angular-tree-component",
-      "sourceRoot": "libs/angular-tree-component/src",
+      "sourceRoot": "libs/angular-tree-component",
       "prefix": "sky",
       "architect": {
         "build": {
@@ -197,7 +197,7 @@
     "animations": {
       "projectType": "library",
       "root": "libs/animations",
-      "sourceRoot": "libs/animations/src",
+      "sourceRoot": "libs/animations",
       "prefix": "sky",
       "architect": {
         "build": {
@@ -245,7 +245,7 @@
     "assets": {
       "projectType": "library",
       "root": "libs/assets",
-      "sourceRoot": "libs/assets/src",
+      "sourceRoot": "libs/assets",
       "prefix": "sky",
       "architect": {
         "build": {
@@ -293,7 +293,7 @@
     "autonumeric": {
       "projectType": "library",
       "root": "libs/autonumeric",
-      "sourceRoot": "libs/autonumeric/src",
+      "sourceRoot": "libs/autonumeric",
       "prefix": "sky",
       "architect": {
         "build": {
@@ -341,7 +341,7 @@
     "avatar": {
       "projectType": "library",
       "root": "libs/avatar",
-      "sourceRoot": "libs/avatar/src",
+      "sourceRoot": "libs/avatar",
       "prefix": "sky",
       "architect": {
         "build": {
@@ -389,7 +389,7 @@
     "colorpicker": {
       "projectType": "library",
       "root": "libs/colorpicker",
-      "sourceRoot": "libs/colorpicker/src",
+      "sourceRoot": "libs/colorpicker",
       "prefix": "sky",
       "architect": {
         "build": {
@@ -437,7 +437,7 @@
     "config": {
       "projectType": "library",
       "root": "libs/config",
-      "sourceRoot": "libs/config/src",
+      "sourceRoot": "libs/config",
       "prefix": "sky",
       "architect": {
         "build": {
@@ -533,7 +533,7 @@
     "data-manager": {
       "projectType": "library",
       "root": "libs/data-manager",
-      "sourceRoot": "libs/data-manager/src",
+      "sourceRoot": "libs/data-manager",
       "prefix": "sky",
       "architect": {
         "build": {
@@ -581,7 +581,7 @@
     "datetime": {
       "projectType": "library",
       "root": "libs/datetime",
-      "sourceRoot": "libs/datetime/src",
+      "sourceRoot": "libs/datetime",
       "prefix": "sky",
       "architect": {
         "build": {
@@ -629,7 +629,7 @@
     "errors": {
       "projectType": "library",
       "root": "libs/errors",
-      "sourceRoot": "libs/errors/src",
+      "sourceRoot": "libs/errors",
       "prefix": "sky",
       "architect": {
         "build": {
@@ -677,7 +677,7 @@
     "flyout": {
       "projectType": "library",
       "root": "libs/flyout",
-      "sourceRoot": "libs/flyout/src",
+      "sourceRoot": "libs/flyout",
       "prefix": "sky",
       "architect": {
         "build": {
@@ -725,7 +725,7 @@
     "forms": {
       "projectType": "library",
       "root": "libs/forms",
-      "sourceRoot": "libs/forms/src",
+      "sourceRoot": "libs/forms",
       "prefix": "sky",
       "architect": {
         "build": {
@@ -773,7 +773,7 @@
     "grids": {
       "projectType": "library",
       "root": "libs/grids",
-      "sourceRoot": "libs/grids/src",
+      "sourceRoot": "libs/grids",
       "prefix": "sky",
       "architect": {
         "build": {
@@ -821,7 +821,7 @@
     "http": {
       "projectType": "library",
       "root": "libs/http",
-      "sourceRoot": "libs/http/src",
+      "sourceRoot": "libs/http",
       "prefix": "sky",
       "architect": {
         "build": {
@@ -869,7 +869,7 @@
     "i18n": {
       "projectType": "library",
       "root": "libs/i18n",
-      "sourceRoot": "libs/i18n/src",
+      "sourceRoot": "libs/i18n",
       "prefix": "sky",
       "architect": {
         "build": {
@@ -917,7 +917,7 @@
     "indicators": {
       "projectType": "library",
       "root": "libs/indicators",
-      "sourceRoot": "libs/indicators/src",
+      "sourceRoot": "libs/indicators",
       "prefix": "sky",
       "architect": {
         "build": {
@@ -965,7 +965,7 @@
     "inline-form": {
       "projectType": "library",
       "root": "libs/inline-form",
-      "sourceRoot": "libs/inline-form/src",
+      "sourceRoot": "libs/inline-form",
       "prefix": "sky",
       "architect": {
         "build": {
@@ -1013,7 +1013,7 @@
     "layout": {
       "projectType": "library",
       "root": "libs/layout",
-      "sourceRoot": "libs/layout/src",
+      "sourceRoot": "libs/layout",
       "prefix": "sky",
       "architect": {
         "build": {
@@ -1061,7 +1061,7 @@
     "list-builder": {
       "projectType": "library",
       "root": "libs/list-builder",
-      "sourceRoot": "libs/list-builder/src",
+      "sourceRoot": "libs/list-builder",
       "prefix": "sky",
       "architect": {
         "build": {
@@ -1109,7 +1109,7 @@
     "list-builder-common": {
       "projectType": "library",
       "root": "libs/list-builder-common",
-      "sourceRoot": "libs/list-builder-common/src",
+      "sourceRoot": "libs/list-builder-common",
       "prefix": "sky",
       "architect": {
         "build": {
@@ -1157,7 +1157,7 @@
     "list-builder-view-checklist": {
       "projectType": "library",
       "root": "libs/list-builder-view-checklist",
-      "sourceRoot": "libs/list-builder-view-checklist/src",
+      "sourceRoot": "libs/list-builder-view-checklist",
       "prefix": "sky",
       "architect": {
         "build": {
@@ -1205,7 +1205,7 @@
     "list-builder-view-grids": {
       "projectType": "library",
       "root": "libs/list-builder-view-grids",
-      "sourceRoot": "libs/list-builder-view-grids/src",
+      "sourceRoot": "libs/list-builder-view-grids",
       "prefix": "sky",
       "architect": {
         "build": {
@@ -1253,7 +1253,7 @@
     "lists": {
       "projectType": "library",
       "root": "libs/lists",
-      "sourceRoot": "libs/lists/src",
+      "sourceRoot": "libs/lists",
       "prefix": "sky",
       "architect": {
         "build": {
@@ -1301,7 +1301,7 @@
     "lookup": {
       "projectType": "library",
       "root": "libs/lookup",
-      "sourceRoot": "libs/lookup/src",
+      "sourceRoot": "libs/lookup",
       "prefix": "sky",
       "architect": {
         "build": {
@@ -1397,7 +1397,7 @@
     "navbar": {
       "projectType": "library",
       "root": "libs/navbar",
-      "sourceRoot": "libs/navbar/src",
+      "sourceRoot": "libs/navbar",
       "prefix": "sky",
       "architect": {
         "build": {
@@ -1445,7 +1445,7 @@
     "omnibar-interop": {
       "projectType": "library",
       "root": "libs/omnibar-interop",
-      "sourceRoot": "libs/omnibar-interop/src",
+      "sourceRoot": "libs/omnibar-interop",
       "prefix": "sky",
       "architect": {
         "build": {
@@ -1493,7 +1493,7 @@
     "pages": {
       "projectType": "library",
       "root": "libs/pages",
-      "sourceRoot": "libs/pages/src",
+      "sourceRoot": "libs/pages",
       "prefix": "sky",
       "architect": {
         "build": {
@@ -1541,7 +1541,7 @@
     "phone-field": {
       "projectType": "library",
       "root": "libs/phone-field",
-      "sourceRoot": "libs/phone-field/src",
+      "sourceRoot": "libs/phone-field",
       "prefix": "sky",
       "architect": {
         "build": {
@@ -1589,7 +1589,7 @@
     "popovers": {
       "projectType": "library",
       "root": "libs/popovers",
-      "sourceRoot": "libs/popovers/src",
+      "sourceRoot": "libs/popovers",
       "prefix": "sky",
       "architect": {
         "build": {
@@ -1637,7 +1637,7 @@
     "progress-indicator": {
       "projectType": "library",
       "root": "libs/progress-indicator",
-      "sourceRoot": "libs/progress-indicator/src",
+      "sourceRoot": "libs/progress-indicator",
       "prefix": "sky",
       "architect": {
         "build": {
@@ -1685,7 +1685,7 @@
     "router": {
       "projectType": "library",
       "root": "libs/router",
-      "sourceRoot": "libs/router/src",
+      "sourceRoot": "libs/router",
       "prefix": "sky",
       "architect": {
         "build": {
@@ -1733,7 +1733,7 @@
     "select-field": {
       "projectType": "library",
       "root": "libs/select-field",
-      "sourceRoot": "libs/select-field/src",
+      "sourceRoot": "libs/select-field",
       "prefix": "sky",
       "architect": {
         "build": {
@@ -1901,7 +1901,7 @@
     "split-view": {
       "projectType": "library",
       "root": "libs/split-view",
-      "sourceRoot": "libs/split-view/src",
+      "sourceRoot": "libs/split-view",
       "prefix": "sky",
       "architect": {
         "build": {
@@ -1949,7 +1949,7 @@
     "tabs": {
       "projectType": "library",
       "root": "libs/tabs",
-      "sourceRoot": "libs/tabs/src",
+      "sourceRoot": "libs/tabs",
       "prefix": "sky",
       "architect": {
         "build": {
@@ -1997,7 +1997,7 @@
     "text-editor": {
       "projectType": "library",
       "root": "libs/text-editor",
-      "sourceRoot": "libs/text-editor/src",
+      "sourceRoot": "libs/text-editor",
       "prefix": "sky",
       "architect": {
         "build": {
@@ -2045,7 +2045,7 @@
     "theme": {
       "projectType": "library",
       "root": "libs/theme",
-      "sourceRoot": "libs/theme/src",
+      "sourceRoot": "libs/theme",
       "prefix": "sky",
       "architect": {
         "build": {
@@ -2093,7 +2093,7 @@
     "tiles": {
       "projectType": "library",
       "root": "libs/tiles",
-      "sourceRoot": "libs/tiles/src",
+      "sourceRoot": "libs/tiles",
       "prefix": "sky",
       "architect": {
         "build": {
@@ -2141,7 +2141,7 @@
     "toast": {
       "projectType": "library",
       "root": "libs/toast",
-      "sourceRoot": "libs/toast/src",
+      "sourceRoot": "libs/toast",
       "prefix": "sky",
       "architect": {
         "build": {
@@ -2189,7 +2189,7 @@
     "validation": {
       "projectType": "library",
       "root": "libs/validation",
-      "sourceRoot": "libs/validation/src",
+      "sourceRoot": "libs/validation",
       "prefix": "sky",
       "architect": {
         "build": {

@@ -19,8 +19,8 @@ const RESOURCES: { [locale: string]: SkyLibResources } = {
   'EN-US': {
     skyux_back_to_top: { message: 'Back to top' },
     skyux_card_checkbox_label: { message: 'Select card' },
-    skyux_definition_list_none_found: { message: 'None found' },
-    skyux_description_list_none_found: { message: 'None found' },
+    skyux_definition_list_none_found: { message: 'None found.' },
+    skyux_description_list_none_found: { message: 'None found.' },
     skyux_inline_delete_assistive_text: {
       message: 'Are you sure you want to delete this item?',
     },

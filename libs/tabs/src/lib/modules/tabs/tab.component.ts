@@ -116,7 +116,7 @@ export class SkyTabComponent implements OnChanges, OnDestroy {
    * The close button is added to the tab when you specify a listener for this event.
    */
   @Output()
-  public close = new EventEmitter<void>();
+  public close = new EventEmitter<void>(); // eslint-disable-line @angular-eslint/no-output-native
 
   public get closeable(): boolean {
     return this.close.observers.length > 0;

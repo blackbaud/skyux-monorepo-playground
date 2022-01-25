@@ -9,6 +9,7 @@
       "devDependencies": "*"
     },
     ".eslintrc.json": "*",
+    ".github/workflows/build.yml": "*",
     "karma.all.conf.js": "*",
     "karma.ci.conf.js": "*",
     "karma.conf.js": "*",
@@ -19,7 +20,7 @@
       "runner": "@nrwl/nx-cloud",
       "options": {
         "cacheableOperations": ["build", "lint", "test", "e2e"],
-        "accessToken": "ZTAyYzQ0ZWMtZDI1Ni00ZWE0LTlmZTgtNzQ0YjA3NjFhZThifHJlYWQtd3JpdGU="
+        "accessToken": "YzI0NGY2NGQtNjEwMy00MWY3LThkMGQtMTE5YTQ5NmQ4MWIxfHJlYWQtd3JpdGU="
       }
     }
   },

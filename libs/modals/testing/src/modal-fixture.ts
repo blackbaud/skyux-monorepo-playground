@@ -75,7 +75,7 @@ export class SkyModalFixture {
     if (modalDivElement) {
       const possibleSizes = ['small', 'medium', 'large'];
 
-      for (const size of possibleSizes) {
+      for (let size of possibleSizes) {
         if (modalDivElement.classList.contains('sky-modal-' + size)) {
           return size;
         }

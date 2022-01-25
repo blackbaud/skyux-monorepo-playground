@@ -14,7 +14,7 @@ import { SkyTabsetFixture } from './tabset-fixture';
 
 //#region Test component
 @Component({
-  selector: 'tabset-test',
+  selector: 'sky-tabset-test',
   template: `
     <sky-tabset
       data-sky-id="test-tabset"
