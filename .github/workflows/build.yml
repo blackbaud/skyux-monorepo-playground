@@ -53,6 +53,8 @@ jobs:
       - run: npm install
       - name: Start Nx Cloud agents
         run: npx nx-cloud start-ci-run
+      - name: Check code formatting
+        run: npx prettier --check .
       - name: Run lint
         run: npx nx affected --target=lint --parallel --maxParallel=5 --exclude=showcase
       - name: Build libraries
