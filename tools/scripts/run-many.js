@@ -9,7 +9,9 @@ try {
   const npmVersion = execSync('npm -v').toString();
   console.log('NPM version:', npmVersion);
 
-  const affected = execSync(`npx nx print-affected`).toString('utf-8');
+  const affected = execSync(`npx nx print-affected`, {
+    stdio: 'inherit',
+  }).toString('utf-8');
 
   const array = JSON.parse(affected)
     .tasks.map((t) => t.target.project)
@@ -31,7 +33,7 @@ try {
         ','
       )} --parallel ${restArgs()}`,
       {
-        stdio: [0, 1, 2],
+        stdio: 'inherit',
       }
     );
   }
