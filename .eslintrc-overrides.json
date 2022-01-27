@@ -26,6 +26,13 @@
         "prefer-rest-params": "warn",
         "prefer-spread": "warn"
       }
+    },
+    {
+      "files": ["*.spec.ts", "**/fixtures/**/*.ts"],
+      "rules": {
+        "@nrwl/nx/enforce-module-boundaries": "warn",
+        "@angular-eslint/component-selector": "warn"
+      }
     }
   ]
 }
