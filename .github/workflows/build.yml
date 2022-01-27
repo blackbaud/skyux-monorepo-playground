@@ -83,8 +83,8 @@ jobs:
         target: ['lint', 'test', 'build']
         index: [1, 2, 3]
     steps:
-      - uses: nrwl/nx-set-shas@v2
       - uses: actions/checkout@v2
+      - uses: nrwl/nx-set-shas@v2
       - run: npm install
       - name: Compute Nx arguments
         if: matrix.target == 'test'
