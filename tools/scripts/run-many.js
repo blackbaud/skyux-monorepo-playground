@@ -8,7 +8,7 @@ try {
   // const baseSha = isMain ? 'origin/main~1' : 'origin/main';
 
   const output = execSync(
-    `nx print-affected --target=${target} --select=tasks.target.project --exclude=all,showcase,showcase-e2e`,
+    `npx nx print-affected --target=${target} --select=tasks.target.project --exclude=all,showcase,showcase-e2e`,
     {
       stdio: 'pipe',
     }
