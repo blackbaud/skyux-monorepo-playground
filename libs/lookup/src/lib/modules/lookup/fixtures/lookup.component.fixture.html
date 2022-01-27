@@ -1,0 +1,29 @@
+<form [formGroup]="form" novalidate>
+  <label id="my-lookup-label"> My friends </label>
+  <sky-lookup
+    formControlName="friends"
+    [ariaLabel]="ariaLabel"
+    [ariaLabelledBy]="ariaLabelledBy"
+    [autocompleteAttribute]="autocompleteAttribute"
+    [data]="data"
+    [descriptorProperty]="descriptorProperty"
+    [enableShowMore]="enableShowMore"
+    [idProperty]="idProperty"
+    [placeholderText]="placeholderText"
+    [propertiesToSearch]="propertiesToSearch"
+    [searchResultTemplate]="enabledSearchResultTemplate"
+    [search]="customSearch"
+    [selectMode]="selectMode"
+    [showAddButton]="showAddButton"
+    [showMoreConfig]="showMoreConfig"
+    (addClick)="addButtonClicked($event)"
+  ></sky-lookup>
+</form>
+
+<ng-template let-item="item" #customSearchResultTemplate>
+  {{ item.description }}
+</ng-template>
+
+<ng-template let-item="item" #customShowMoreTemplate>
+  {{ item.name }} - {{ item.birthDate }}
+</ng-template>

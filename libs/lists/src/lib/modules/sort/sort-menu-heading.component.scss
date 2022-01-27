@@ -1,0 +1,24 @@
+@import 'libs/theme/src/lib/styles/mixins';
+@import 'libs/theme/src/lib/styles/_compat/mixins';
+@import 'libs/theme/src/lib/styles/themes/modern/_compat/mixins';
+
+.sky-sort-menu-heading {
+  background-color: transparent;
+  border: none;
+  display: block;
+  margin: 4px;
+  min-width: 160px;
+  text-align: left;
+  transition: background-color $sky-transition-time-short;
+  padding: 3px $sky-padding-double;
+  text-align: left;
+  width: 100%;
+}
+
+@include sky-theme-modern {
+  .sky-sort-menu-heading {
+    margin: 0;
+    margin-top: $sky-theme-modern-space-sm;
+    padding: $sky-theme-modern-space-sm $sky-theme-modern-space-lg;
+  }
+}
