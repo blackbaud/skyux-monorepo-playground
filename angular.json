@@ -4,7 +4,7 @@
     "a11y": {
       "projectType": "library",
       "root": "libs/a11y",
-      "sourceRoot": "libs/a11y",
+      "sourceRoot": "libs/a11y/src",
       "prefix": "sky",
       "architect": {
         "build": {
@@ -52,7 +52,7 @@
     "action-bars": {
       "projectType": "library",
       "root": "libs/action-bars",
-      "sourceRoot": "libs/action-bars",
+      "sourceRoot": "libs/action-bars/src",
       "prefix": "sky",
       "architect": {
         "build": {
@@ -97,10 +97,32 @@
         }
       }
     },
+    "action-bars-testing": {
+      "projectType": "library",
+      "root": "libs/action-bars/testing",
+      "sourceRoot": "libs/action-bars/testing/src",
+      "prefix": "sky",
+      "architect": {
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "libs/action-bars/testing/src/test.ts",
+            "tsConfig": "libs/action-bars/testing/tsconfig.spec.json",
+            "karmaConfig": "libs/action-bars/testing/karma.conf.js",
+            "codeCoverage": true,
+            "styles": [
+              "libs/theme/src/lib/styles/sky.scss",
+              "libs/theme/src/lib/styles/themes/modern/styles.scss"
+            ],
+            "codeCoverageExclude": ["**/fixtures/**"]
+          }
+        }
+      }
+    },
     "ag-grid": {
       "projectType": "library",
       "root": "libs/ag-grid",
-      "sourceRoot": "libs/ag-grid",
+      "sourceRoot": "libs/ag-grid/src",
       "prefix": "sky",
       "architect": {
         "build": {
@@ -149,7 +171,7 @@
     "angular-tree-component": {
       "projectType": "library",
       "root": "libs/angular-tree-component",
-      "sourceRoot": "libs/angular-tree-component",
+      "sourceRoot": "libs/angular-tree-component/src",
       "prefix": "sky",
       "architect": {
         "build": {
@@ -197,7 +219,7 @@
     "animations": {
       "projectType": "library",
       "root": "libs/animations",
-      "sourceRoot": "libs/animations",
+      "sourceRoot": "libs/animations/src",
       "prefix": "sky",
       "architect": {
         "build": {
@@ -245,7 +267,7 @@
     "assets": {
       "projectType": "library",
       "root": "libs/assets",
-      "sourceRoot": "libs/assets",
+      "sourceRoot": "libs/assets/src",
       "prefix": "sky",
       "architect": {
         "build": {
@@ -293,7 +315,7 @@
     "autonumeric": {
       "projectType": "library",
       "root": "libs/autonumeric",
-      "sourceRoot": "libs/autonumeric",
+      "sourceRoot": "libs/autonumeric/src",
       "prefix": "sky",
       "architect": {
         "build": {
@@ -341,7 +363,7 @@
     "avatar": {
       "projectType": "library",
       "root": "libs/avatar",
-      "sourceRoot": "libs/avatar",
+      "sourceRoot": "libs/avatar/src",
       "prefix": "sky",
       "architect": {
         "build": {
@@ -386,10 +408,32 @@
         }
       }
     },
+    "avatar-testing": {
+      "projectType": "library",
+      "root": "libs/avatar/testing",
+      "sourceRoot": "libs/avatar/testing/src",
+      "prefix": "sky",
+      "architect": {
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "libs/avatar/testing/src/test.ts",
+            "tsConfig": "libs/avatar/testing/tsconfig.spec.json",
+            "karmaConfig": "libs/avatar/testing/karma.conf.js",
+            "codeCoverage": true,
+            "styles": [
+              "libs/theme/src/lib/styles/sky.scss",
+              "libs/theme/src/lib/styles/themes/modern/styles.scss"
+            ],
+            "codeCoverageExclude": ["**/fixtures/**"]
+          }
+        }
+      }
+    },
     "colorpicker": {
       "projectType": "library",
       "root": "libs/colorpicker",
-      "sourceRoot": "libs/colorpicker",
+      "sourceRoot": "libs/colorpicker/src",
       "prefix": "sky",
       "architect": {
         "build": {
@@ -434,10 +478,32 @@
         }
       }
     },
+    "colorpicker-testing": {
+      "projectType": "library",
+      "root": "libs/colorpicker/testing",
+      "sourceRoot": "libs/colorpicker/testing/src",
+      "prefix": "sky",
+      "architect": {
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "libs/colorpicker/testing/src/test.ts",
+            "tsConfig": "libs/colorpicker/testing/tsconfig.spec.json",
+            "karmaConfig": "libs/colorpicker/testing/karma.conf.js",
+            "codeCoverage": true,
+            "styles": [
+              "libs/theme/src/lib/styles/sky.scss",
+              "libs/theme/src/lib/styles/themes/modern/styles.scss"
+            ],
+            "codeCoverageExclude": ["**/fixtures/**"]
+          }
+        }
+      }
+    },
     "config": {
       "projectType": "library",
       "root": "libs/config",
-      "sourceRoot": "libs/config",
+      "sourceRoot": "libs/config/src",
       "prefix": "sky",
       "architect": {
         "build": {
@@ -485,7 +551,7 @@
     "core": {
       "projectType": "library",
       "root": "libs/core",
-      "sourceRoot": "libs/core",
+      "sourceRoot": "libs/core/src",
       "prefix": "sky",
       "architect": {
         "build": {
@@ -530,10 +596,32 @@
         }
       }
     },
+    "core-testing": {
+      "projectType": "library",
+      "root": "libs/core/testing",
+      "sourceRoot": "libs/core/testing/src",
+      "prefix": "sky",
+      "architect": {
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "libs/core/testing/src/test.ts",
+            "tsConfig": "libs/core/testing/tsconfig.spec.json",
+            "karmaConfig": "libs/core/testing/karma.conf.js",
+            "codeCoverage": true,
+            "styles": [
+              "libs/theme/src/lib/styles/sky.scss",
+              "libs/theme/src/lib/styles/themes/modern/styles.scss"
+            ],
+            "codeCoverageExclude": ["**/fixtures/**"]
+          }
+        }
+      }
+    },
     "data-manager": {
       "projectType": "library",
       "root": "libs/data-manager",
-      "sourceRoot": "libs/data-manager",
+      "sourceRoot": "libs/data-manager/src",
       "prefix": "sky",
       "architect": {
         "build": {
@@ -581,7 +669,7 @@
     "datetime": {
       "projectType": "library",
       "root": "libs/datetime",
-      "sourceRoot": "libs/datetime",
+      "sourceRoot": "libs/datetime/src",
       "prefix": "sky",
       "architect": {
         "build": {
@@ -626,10 +714,32 @@
         }
       }
     },
+    "datetime-testing": {
+      "projectType": "library",
+      "root": "libs/datetime/testing",
+      "sourceRoot": "libs/datetime/testing/src",
+      "prefix": "sky",
+      "architect": {
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "libs/datetime/testing/src/test.ts",
+            "tsConfig": "libs/datetime/testing/tsconfig.spec.json",
+            "karmaConfig": "libs/datetime/testing/karma.conf.js",
+            "codeCoverage": true,
+            "styles": [
+              "libs/theme/src/lib/styles/sky.scss",
+              "libs/theme/src/lib/styles/themes/modern/styles.scss"
+            ],
+            "codeCoverageExclude": ["**/fixtures/**"]
+          }
+        }
+      }
+    },
     "errors": {
       "projectType": "library",
       "root": "libs/errors",
-      "sourceRoot": "libs/errors",
+      "sourceRoot": "libs/errors/src",
       "prefix": "sky",
       "architect": {
         "build": {
@@ -674,10 +784,32 @@
         }
       }
     },
+    "errors-testing": {
+      "projectType": "library",
+      "root": "libs/errors/testing",
+      "sourceRoot": "libs/errors/testing/src",
+      "prefix": "sky",
+      "architect": {
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "libs/errors/testing/src/test.ts",
+            "tsConfig": "libs/errors/testing/tsconfig.spec.json",
+            "karmaConfig": "libs/errors/testing/karma.conf.js",
+            "codeCoverage": true,
+            "styles": [
+              "libs/theme/src/lib/styles/sky.scss",
+              "libs/theme/src/lib/styles/themes/modern/styles.scss"
+            ],
+            "codeCoverageExclude": ["**/fixtures/**"]
+          }
+        }
+      }
+    },
     "flyout": {
       "projectType": "library",
       "root": "libs/flyout",
-      "sourceRoot": "libs/flyout",
+      "sourceRoot": "libs/flyout/src",
       "prefix": "sky",
       "architect": {
         "build": {
@@ -725,7 +857,7 @@
     "forms": {
       "projectType": "library",
       "root": "libs/forms",
-      "sourceRoot": "libs/forms",
+      "sourceRoot": "libs/forms/src",
       "prefix": "sky",
       "architect": {
         "build": {
@@ -770,10 +902,32 @@
         }
       }
     },
+    "forms-testing": {
+      "projectType": "library",
+      "root": "libs/forms/testing",
+      "sourceRoot": "libs/forms/testing/src",
+      "prefix": "sky",
+      "architect": {
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "libs/forms/testing/src/test.ts",
+            "tsConfig": "libs/forms/testing/tsconfig.spec.json",
+            "karmaConfig": "libs/forms/testing/karma.conf.js",
+            "codeCoverage": true,
+            "styles": [
+              "libs/theme/src/lib/styles/sky.scss",
+              "libs/theme/src/lib/styles/themes/modern/styles.scss"
+            ],
+            "codeCoverageExclude": ["**/fixtures/**"]
+          }
+        }
+      }
+    },
     "grids": {
       "projectType": "library",
       "root": "libs/grids",
-      "sourceRoot": "libs/grids",
+      "sourceRoot": "libs/grids/src",
       "prefix": "sky",
       "architect": {
         "build": {
@@ -821,7 +975,7 @@
     "http": {
       "projectType": "library",
       "root": "libs/http",
-      "sourceRoot": "libs/http",
+      "sourceRoot": "libs/http/src",
       "prefix": "sky",
       "architect": {
         "build": {
@@ -866,10 +1020,32 @@
         }
       }
     },
+    "http-testing": {
+      "projectType": "library",
+      "root": "libs/http/testing",
+      "sourceRoot": "libs/http/testing/src",
+      "prefix": "sky",
+      "architect": {
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "libs/http/testing/src/test.ts",
+            "tsConfig": "libs/http/testing/tsconfig.spec.json",
+            "karmaConfig": "libs/http/testing/karma.conf.js",
+            "codeCoverage": true,
+            "styles": [
+              "libs/theme/src/lib/styles/sky.scss",
+              "libs/theme/src/lib/styles/themes/modern/styles.scss"
+            ],
+            "codeCoverageExclude": ["**/fixtures/**"]
+          }
+        }
+      }
+    },
     "i18n": {
       "projectType": "library",
       "root": "libs/i18n",
-      "sourceRoot": "libs/i18n",
+      "sourceRoot": "libs/i18n/src",
       "prefix": "sky",
       "architect": {
         "build": {
@@ -917,7 +1093,7 @@
     "indicators": {
       "projectType": "library",
       "root": "libs/indicators",
-      "sourceRoot": "libs/indicators",
+      "sourceRoot": "libs/indicators/src",
       "prefix": "sky",
       "architect": {
         "build": {
@@ -962,10 +1138,32 @@
         }
       }
     },
+    "indicators-testing": {
+      "projectType": "library",
+      "root": "libs/indicators/testing",
+      "sourceRoot": "libs/indicators/testing/src",
+      "prefix": "sky",
+      "architect": {
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "libs/indicators/testing/src/test.ts",
+            "tsConfig": "libs/indicators/testing/tsconfig.spec.json",
+            "karmaConfig": "libs/indicators/testing/karma.conf.js",
+            "codeCoverage": true,
+            "styles": [
+              "libs/theme/src/lib/styles/sky.scss",
+              "libs/theme/src/lib/styles/themes/modern/styles.scss"
+            ],
+            "codeCoverageExclude": ["**/fixtures/**"]
+          }
+        }
+      }
+    },
     "inline-form": {
       "projectType": "library",
       "root": "libs/inline-form",
-      "sourceRoot": "libs/inline-form",
+      "sourceRoot": "libs/inline-form/src",
       "prefix": "sky",
       "architect": {
         "build": {
@@ -1013,7 +1211,7 @@
     "layout": {
       "projectType": "library",
       "root": "libs/layout",
-      "sourceRoot": "libs/layout",
+      "sourceRoot": "libs/layout/src",
       "prefix": "sky",
       "architect": {
         "build": {
@@ -1058,10 +1256,32 @@
         }
       }
     },
+    "layout-testing": {
+      "projectType": "library",
+      "root": "libs/layout/testing",
+      "sourceRoot": "libs/layout/testing/src",
+      "prefix": "sky",
+      "architect": {
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "libs/layout/testing/src/test.ts",
+            "tsConfig": "libs/layout/testing/tsconfig.spec.json",
+            "karmaConfig": "libs/layout/testing/karma.conf.js",
+            "codeCoverage": true,
+            "styles": [
+              "libs/theme/src/lib/styles/sky.scss",
+              "libs/theme/src/lib/styles/themes/modern/styles.scss"
+            ],
+            "codeCoverageExclude": ["**/fixtures/**"]
+          }
+        }
+      }
+    },
     "list-builder": {
       "projectType": "library",
       "root": "libs/list-builder",
-      "sourceRoot": "libs/list-builder",
+      "sourceRoot": "libs/list-builder/src",
       "prefix": "sky",
       "architect": {
         "build": {
@@ -1109,7 +1329,7 @@
     "list-builder-common": {
       "projectType": "library",
       "root": "libs/list-builder-common",
-      "sourceRoot": "libs/list-builder-common",
+      "sourceRoot": "libs/list-builder-common/src",
       "prefix": "sky",
       "architect": {
         "build": {
@@ -1157,7 +1377,7 @@
     "list-builder-view-checklist": {
       "projectType": "library",
       "root": "libs/list-builder-view-checklist",
-      "sourceRoot": "libs/list-builder-view-checklist",
+      "sourceRoot": "libs/list-builder-view-checklist/src",
       "prefix": "sky",
       "architect": {
         "build": {
@@ -1202,10 +1422,32 @@
         }
       }
     },
+    "list-builder-view-checklist-testing": {
+      "projectType": "library",
+      "root": "libs/list-builder-view-checklist/testing",
+      "sourceRoot": "libs/list-builder-view-checklist/testing/src",
+      "prefix": "sky",
+      "architect": {
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "libs/list-builder-view-checklist/testing/src/test.ts",
+            "tsConfig": "libs/list-builder-view-checklist/testing/tsconfig.spec.json",
+            "karmaConfig": "libs/list-builder-view-checklist/testing/karma.conf.js",
+            "codeCoverage": true,
+            "styles": [
+              "libs/theme/src/lib/styles/sky.scss",
+              "libs/theme/src/lib/styles/themes/modern/styles.scss"
+            ],
+            "codeCoverageExclude": ["**/fixtures/**"]
+          }
+        }
+      }
+    },
     "list-builder-view-grids": {
       "projectType": "library",
       "root": "libs/list-builder-view-grids",
-      "sourceRoot": "libs/list-builder-view-grids",
+      "sourceRoot": "libs/list-builder-view-grids/src",
       "prefix": "sky",
       "architect": {
         "build": {
@@ -1250,10 +1492,32 @@
         }
       }
     },
+    "list-builder-view-grids-testing": {
+      "projectType": "library",
+      "root": "libs/list-builder-view-grids/testing",
+      "sourceRoot": "libs/list-builder-view-grids/testing/src",
+      "prefix": "sky",
+      "architect": {
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "libs/list-builder-view-grids/testing/src/test.ts",
+            "tsConfig": "libs/list-builder-view-grids/testing/tsconfig.spec.json",
+            "karmaConfig": "libs/list-builder-view-grids/testing/karma.conf.js",
+            "codeCoverage": true,
+            "styles": [
+              "libs/theme/src/lib/styles/sky.scss",
+              "libs/theme/src/lib/styles/themes/modern/styles.scss"
+            ],
+            "codeCoverageExclude": ["**/fixtures/**"]
+          }
+        }
+      }
+    },
     "lists": {
       "projectType": "library",
       "root": "libs/lists",
-      "sourceRoot": "libs/lists",
+      "sourceRoot": "libs/lists/src",
       "prefix": "sky",
       "architect": {
         "build": {
@@ -1298,10 +1562,32 @@
         }
       }
     },
+    "lists-testing": {
+      "projectType": "library",
+      "root": "libs/lists/testing",
+      "sourceRoot": "libs/lists/testing/src",
+      "prefix": "sky",
+      "architect": {
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "libs/lists/testing/src/test.ts",
+            "tsConfig": "libs/lists/testing/tsconfig.spec.json",
+            "karmaConfig": "libs/lists/testing/karma.conf.js",
+            "codeCoverage": true,
+            "styles": [
+              "libs/theme/src/lib/styles/sky.scss",
+              "libs/theme/src/lib/styles/themes/modern/styles.scss"
+            ],
+            "codeCoverageExclude": ["**/fixtures/**"]
+          }
+        }
+      }
+    },
     "lookup": {
       "projectType": "library",
       "root": "libs/lookup",
-      "sourceRoot": "libs/lookup",
+      "sourceRoot": "libs/lookup/src",
       "prefix": "sky",
       "architect": {
         "build": {
@@ -1346,10 +1632,32 @@
         }
       }
     },
+    "lookup-testing": {
+      "projectType": "library",
+      "root": "libs/lookup/testing",
+      "sourceRoot": "libs/lookup/testing/src",
+      "prefix": "sky",
+      "architect": {
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "libs/lookup/testing/src/test.ts",
+            "tsConfig": "libs/lookup/testing/tsconfig.spec.json",
+            "karmaConfig": "libs/lookup/testing/karma.conf.js",
+            "codeCoverage": true,
+            "styles": [
+              "libs/theme/src/lib/styles/sky.scss",
+              "libs/theme/src/lib/styles/themes/modern/styles.scss"
+            ],
+            "codeCoverageExclude": ["**/fixtures/**"]
+          }
+        }
+      }
+    },
     "modals": {
       "projectType": "library",
       "root": "libs/modals",
-      "sourceRoot": "libs/modals",
+      "sourceRoot": "libs/modals/src",
       "prefix": "sky",
       "architect": {
         "build": {
@@ -1394,10 +1702,32 @@
         }
       }
     },
+    "modals-testing": {
+      "projectType": "library",
+      "root": "libs/modals/testing",
+      "sourceRoot": "libs/modals/testing/src",
+      "prefix": "sky",
+      "architect": {
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "libs/modals/testing/src/test.ts",
+            "tsConfig": "libs/modals/testing/tsconfig.spec.json",
+            "karmaConfig": "libs/modals/testing/karma.conf.js",
+            "codeCoverage": true,
+            "styles": [
+              "libs/theme/src/lib/styles/sky.scss",
+              "libs/theme/src/lib/styles/themes/modern/styles.scss"
+            ],
+            "codeCoverageExclude": ["**/fixtures/**"]
+          }
+        }
+      }
+    },
     "navbar": {
       "projectType": "library",
       "root": "libs/navbar",
-      "sourceRoot": "libs/navbar",
+      "sourceRoot": "libs/navbar/src",
       "prefix": "sky",
       "architect": {
         "build": {
@@ -1445,7 +1775,7 @@
     "omnibar-interop": {
       "projectType": "library",
       "root": "libs/omnibar-interop",
-      "sourceRoot": "libs/omnibar-interop",
+      "sourceRoot": "libs/omnibar-interop/src",
       "prefix": "sky",
       "architect": {
         "build": {
@@ -1493,7 +1823,7 @@
     "pages": {
       "projectType": "library",
       "root": "libs/pages",
-      "sourceRoot": "libs/pages",
+      "sourceRoot": "libs/pages/src",
       "prefix": "sky",
       "architect": {
         "build": {
@@ -1541,7 +1871,7 @@
     "phone-field": {
       "projectType": "library",
       "root": "libs/phone-field",
-      "sourceRoot": "libs/phone-field",
+      "sourceRoot": "libs/phone-field/src",
       "prefix": "sky",
       "architect": {
         "build": {
@@ -1586,10 +1916,32 @@
         }
       }
     },
+    "phone-field-testing": {
+      "projectType": "library",
+      "root": "libs/phone-field/testing",
+      "sourceRoot": "libs/phone-field/testing/src",
+      "prefix": "sky",
+      "architect": {
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "libs/phone-field/testing/src/test.ts",
+            "tsConfig": "libs/phone-field/testing/tsconfig.spec.json",
+            "karmaConfig": "libs/phone-field/testing/karma.conf.js",
+            "codeCoverage": true,
+            "styles": [
+              "libs/theme/src/lib/styles/sky.scss",
+              "libs/theme/src/lib/styles/themes/modern/styles.scss"
+            ],
+            "codeCoverageExclude": ["**/fixtures/**"]
+          }
+        }
+      }
+    },
     "popovers": {
       "projectType": "library",
       "root": "libs/popovers",
-      "sourceRoot": "libs/popovers",
+      "sourceRoot": "libs/popovers/src",
       "prefix": "sky",
       "architect": {
         "build": {
@@ -1634,10 +1986,32 @@
         }
       }
     },
+    "popovers-testing": {
+      "projectType": "library",
+      "root": "libs/popovers/testing",
+      "sourceRoot": "libs/popovers/testing/src",
+      "prefix": "sky",
+      "architect": {
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "libs/popovers/testing/src/test.ts",
+            "tsConfig": "libs/popovers/testing/tsconfig.spec.json",
+            "karmaConfig": "libs/popovers/testing/karma.conf.js",
+            "codeCoverage": true,
+            "styles": [
+              "libs/theme/src/lib/styles/sky.scss",
+              "libs/theme/src/lib/styles/themes/modern/styles.scss"
+            ],
+            "codeCoverageExclude": ["**/fixtures/**"]
+          }
+        }
+      }
+    },
     "progress-indicator": {
       "projectType": "library",
       "root": "libs/progress-indicator",
-      "sourceRoot": "libs/progress-indicator",
+      "sourceRoot": "libs/progress-indicator/src",
       "prefix": "sky",
       "architect": {
         "build": {
@@ -1685,7 +2059,7 @@
     "router": {
       "projectType": "library",
       "root": "libs/router",
-      "sourceRoot": "libs/router",
+      "sourceRoot": "libs/router/src",
       "prefix": "sky",
       "architect": {
         "build": {
@@ -1733,7 +2107,7 @@
     "select-field": {
       "projectType": "library",
       "root": "libs/select-field",
-      "sourceRoot": "libs/select-field",
+      "sourceRoot": "libs/select-field/src",
       "prefix": "sky",
       "architect": {
         "build": {
@@ -1901,7 +2275,7 @@
     "split-view": {
       "projectType": "library",
       "root": "libs/split-view",
-      "sourceRoot": "libs/split-view",
+      "sourceRoot": "libs/split-view/src",
       "prefix": "sky",
       "architect": {
         "build": {
@@ -1946,10 +2320,32 @@
         }
       }
     },
+    "split-view-testing": {
+      "projectType": "library",
+      "root": "libs/split-view/testing",
+      "sourceRoot": "libs/split-view/testing/src",
+      "prefix": "sky",
+      "architect": {
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "libs/split-view/testing/src/test.ts",
+            "tsConfig": "libs/split-view/testing/tsconfig.spec.json",
+            "karmaConfig": "libs/split-view/testing/karma.conf.js",
+            "codeCoverage": true,
+            "styles": [
+              "libs/theme/src/lib/styles/sky.scss",
+              "libs/theme/src/lib/styles/themes/modern/styles.scss"
+            ],
+            "codeCoverageExclude": ["**/fixtures/**"]
+          }
+        }
+      }
+    },
     "tabs": {
       "projectType": "library",
       "root": "libs/tabs",
-      "sourceRoot": "libs/tabs",
+      "sourceRoot": "libs/tabs/src",
       "prefix": "sky",
       "architect": {
         "build": {
@@ -1994,10 +2390,32 @@
         }
       }
     },
+    "tabs-testing": {
+      "projectType": "library",
+      "root": "libs/tabs/testing",
+      "sourceRoot": "libs/tabs/testing/src",
+      "prefix": "sky",
+      "architect": {
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "libs/tabs/testing/src/test.ts",
+            "tsConfig": "libs/tabs/testing/tsconfig.spec.json",
+            "karmaConfig": "libs/tabs/testing/karma.conf.js",
+            "codeCoverage": true,
+            "styles": [
+              "libs/theme/src/lib/styles/sky.scss",
+              "libs/theme/src/lib/styles/themes/modern/styles.scss"
+            ],
+            "codeCoverageExclude": ["**/fixtures/**"]
+          }
+        }
+      }
+    },
     "text-editor": {
       "projectType": "library",
       "root": "libs/text-editor",
-      "sourceRoot": "libs/text-editor",
+      "sourceRoot": "libs/text-editor/src",
       "prefix": "sky",
       "architect": {
         "build": {
@@ -2045,7 +2463,7 @@
     "theme": {
       "projectType": "library",
       "root": "libs/theme",
-      "sourceRoot": "libs/theme",
+      "sourceRoot": "libs/theme/src",
       "prefix": "sky",
       "architect": {
         "build": {
@@ -2093,7 +2511,7 @@
     "tiles": {
       "projectType": "library",
       "root": "libs/tiles",
-      "sourceRoot": "libs/tiles",
+      "sourceRoot": "libs/tiles/src",
       "prefix": "sky",
       "architect": {
         "build": {
@@ -2141,7 +2559,7 @@
     "toast": {
       "projectType": "library",
       "root": "libs/toast",
-      "sourceRoot": "libs/toast",
+      "sourceRoot": "libs/toast/src",
       "prefix": "sky",
       "architect": {
         "build": {
@@ -2186,10 +2604,32 @@
         }
       }
     },
+    "toast-testing": {
+      "projectType": "library",
+      "root": "libs/toast/testing",
+      "sourceRoot": "libs/toast/testing/src",
+      "prefix": "sky",
+      "architect": {
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "libs/toast/testing/src/test.ts",
+            "tsConfig": "libs/toast/testing/tsconfig.spec.json",
+            "karmaConfig": "libs/toast/testing/karma.conf.js",
+            "codeCoverage": true,
+            "styles": [
+              "libs/theme/src/lib/styles/sky.scss",
+              "libs/theme/src/lib/styles/themes/modern/styles.scss"
+            ],
+            "codeCoverageExclude": ["**/fixtures/**"]
+          }
+        }
+      }
+    },
     "validation": {
       "projectType": "library",
       "root": "libs/validation",
-      "sourceRoot": "libs/validation",
+      "sourceRoot": "libs/validation/src",
       "prefix": "sky",
       "architect": {
         "build": {
