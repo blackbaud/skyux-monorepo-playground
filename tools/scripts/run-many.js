@@ -6,8 +6,11 @@ try {
   const jobCount = Number(process.argv[4]);
   // const isMain = process.argv[5] === 'refs/heads/main';
   // const baseSha = isMain ? 'origin/main~1' : 'origin/main';
+  const npmVersion = execSync('npm -v').toString();
+  console.log('NPM version:', npmVersion);
 
   const affected = execSync(`npx nx print-affected`).toString('utf-8');
+
   const array = JSON.parse(affected)
     .tasks.map((t) => t.target.project)
     .slice()
