@@ -6,22 +6,15 @@ try {
   const jobCount = Number(process.argv[4]);
   // const isMain = process.argv[5] === 'refs/heads/main';
   // const baseSha = isMain ? 'origin/main~1' : 'origin/main';
-  const npmVersion = execSync('npm -v').toString();
-  console.log('NPM version:', npmVersion);
 
-  const affected = execSync(
-    'nx print-affected --target=build --select=tasks.target.project',
+  const output = execSync(
+    `nx print-affected --target=${target} --select=tasks.target.project --exclude=all,showcase,showcase-e2e`,
     {
-      stdio: 'inherit',
+      stdio: 'pipe',
     }
   ).toString('utf-8');
 
-  const array = JSON.parse(affected)
-    .tasks.map((t) => t.target.project)
-    .slice()
-    .sort();
-
-  console.log('Affected?', affected);
+  const array = output.trim().split(', ').sort();
 
   const sliceSize = Math.max(Math.floor(array.length / jobCount), 1);
 
