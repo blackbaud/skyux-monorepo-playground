@@ -4,6 +4,7 @@ on:
     branches:
       - main
   pull_request:
+  workflow_dispatch:
 
 env:
   NX_CLOUD_DISTRIBUTED_EXECUTION: true
@@ -28,8 +29,8 @@ jobs:
           node-version: '14'
       - run: npm install
       - run: npx nx-cloud start-ci-run
-      - run: npx nx affected --target=lint --parallel --maxParallel=5 --exclude=showcase
-      - run: npx nx affected --target=build --parallel --maxParallel=5 --exclude=showcase
+      - run: npx nx affected --target=lint --parallel --maxParallel=2 --exclude=showcase
+      - run: npx nx affected --target=build --parallel --maxParallel=2 --exclude=showcase
       - run: npx nx run all:test --karmaConfig=karma.ci.conf.js --skip-nx-cache
       - name: Stop Nx Cloud agents
         if: always()
@@ -53,9 +54,9 @@ jobs:
       - name: Start Nx Cloud agents
         run: npx nx-cloud start-ci-run
       - name: Run lint
-        run: npx nx affected --target=lint --parallel --maxParallel=5 --exclude=showcase
+        run: npx nx affected --target=lint --parallel --maxParallel=2 --exclude=showcase
       - name: Build libraries
-        run: npx nx affected --target=build --parallel --maxParallel=5 --exclude=showcase
+        run: npx nx affected --target=build --parallel --maxParallel=2 --exclude=showcase
       - name: Run code coverage
         run: npx nx run all:test --karmaConfig=karma.ci.conf.js --skip-nx-cache
       - name: Stop Nx Cloud agents
@@ -67,7 +68,7 @@ jobs:
     timeout-minutes: 60
     strategy:
       matrix:
-        agent: [1, 2, 3]
+        agent: [1, 2]
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
