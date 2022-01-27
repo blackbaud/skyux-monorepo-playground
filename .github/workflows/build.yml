@@ -11,91 +11,31 @@ env:
   BROWSER_STACK_ACCESS_KEY: ${{ secrets.BROWSER_STACK_ACCESS_KEY }}
 
 jobs:
-  # main:
-  #   runs-on: ubuntu-latest
-  #   if: ${{ github.event_name != 'pull_request' }}
-  #   steps:
-  #     - uses: actions/checkout@v2
-  #       name: Checkout [main]
-  #       with:
-  #         # We need to fetch all branches and commits so that Nx affected has a base to compare against.
-  #         fetch-depth: 0
-  #     - name: Derive appropriate SHAs for base and head for `nx affected` commands
-  #       uses: nrwl/nx-set-shas@v2
-  #     - uses: actions/setup-node@v1
-  #       with:
-  #         node-version: '14'
-  #     - run: npm install
-  #     - run: npx nx-cloud start-ci-run
-  #     - run: npx nx affected --target=lint --parallel --maxParallel=5 --exclude=showcase
-  #     - run: npx nx affected --target=build --parallel --maxParallel=5 --exclude=showcase
-  #     - run: npx nx run all:test --karmaConfig=karma.ci.conf.js --skip-nx-cache
-  #     - name: Stop Nx Cloud agents
-  #       if: always()
-  #       run: npx nx-cloud stop-all-agents
-  # pr:
-  #   runs-on: ubuntu-latest
-  #   if: ${{ github.event_name == 'pull_request' }}
-  #   steps:
-  #     - uses: actions/checkout@v2
-  #       with:
-  #         ref: ${{ github.event.pull_request.head.ref }}
-  #         # We need to fetch all branches and commits so that Nx affected has a base to compare against.
-  #         fetch-depth: 0
-  #     - name: Derive appropriate SHAs for base and head for `nx affected` commands
-  #       uses: nrwl/nx-set-shas@v2
-  #     - uses: actions/setup-node@v1
-  #       with:
-  #         node-version: '14'
-  #     - run: npm install
-  #     - name: Start Nx Cloud agents
-  #       run: npx nx-cloud start-ci-run
-  #     - name: Run lint
-  #       run: npx nx affected --target=lint --parallel --maxParallel=5 --exclude=showcase
-  #     - name: Build libraries
-  #       run: npx nx affected --target=build --parallel --maxParallel=5 --exclude=showcase
-  #     - name: Run code coverage
-  #       run: npx nx run all:test --karmaConfig=karma.ci.conf.js --skip-nx-cache
-  #     - name: Stop Nx Cloud agents
-  #       if: always()
-  #       run: npx nx-cloud stop-all-agents
-  # agents:
-  #   runs-on: ubuntu-latest
-  #   name: Agent 1
-  #   timeout-minutes: 60
-  #   strategy:
-  #     matrix:
-  #       agent: [1, 2, 3]
-  #   steps:
-  #     - uses: actions/checkout@v2
-  #     - uses: actions/setup-node@v1
-  #       with:
-  #         node-version: '14'
-  #     - run: npm install
-  #     - name: Start Nx Agent ${{ matrix.agent }}
-  #       run: npx nx-cloud start-agent
-
-  # install-deps:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - uses: actions/cache@v2
-  #       id: npm-cache
-  #       with:
-  #         path: ~/.npm
-  #         key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-  #         restore-keys: |
-  #           ${{ runner.os }}-node-
-  #     - name: Install Dependencies
-  #       if: steps.npm-cache.outputs.cache-hit != 'true'
-  #       run: npm install
-
-  distributed:
+  main:
     runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        target: ['lint', 'test', 'build']
-        index: [1, 2, 3]
+    if: ${{ github.event_name != 'pull_request' }}
+    steps:
+      - uses: actions/checkout@v2
+        name: Checkout [main]
+        with:
+          # We need to fetch all branches and commits so that Nx affected has a base to compare against.
+          fetch-depth: 0
+      - name: Derive appropriate SHAs for base and head for `nx affected` commands
+        uses: nrwl/nx-set-shas@v2
+      - uses: actions/setup-node@v2
+        with:
+          cache: 'npm'
+          node-version: '14'
+      - run: npm install
+      - run: npx nx-cloud start-ci-run
+      - run: npx nx affected --target=lint --parallel --maxParallel=5 --exclude=showcase
+      - run: npx nx affected --target=build --parallel --maxParallel=5 --exclude=showcase
+      - run: npx nx run all:test --karmaConfig=karma.ci.conf.js --skip-nx-cache
+      - name: Stop Nx Cloud agents
+        if: always()
+        run: npx nx-cloud stop-all-agents
+  pr:
+    runs-on: ubuntu-latest
     if: ${{ github.event_name == 'pull_request' }}
     steps:
       - uses: actions/checkout@v2
@@ -107,24 +47,33 @@ jobs:
         uses: nrwl/nx-set-shas@v2
       - uses: actions/setup-node@v2
         with:
-          node-version: '14'
           cache: 'npm'
+          node-version: '14'
       - run: npm install
-      # - name: Cache Nx
-      #   uses: actions/cache@v2
-      #   with:
-      #     path: node_modules/.cache/nx
-      #     key: ${{ env.NX_CACHE }}-${{ hashFiles('package-lock.json') }}-${{ matrix.target }}-${{ matrix.index }}-${{ github.sha }}
-      #     restore-keys: |
-      #       ${{ env.NX_CACHE }}-${{ hashFiles('package-lock.json') }}-${{ matrix.target }}-${{ matrix.index }}-
-      #       ${{ env.NX_CACHE }}-${{ hashFiles('package-lock.json') }}-
-      #       ${{ env.NX_CACHE }}-
-      - name: Compute Nx arguments
-        if: matrix.target == 'test'
-        run: echo "NX_ARGUMENTS=--karmaConfig=karma.ci.conf.js" >> $GITHUB_ENV
-      - name: nx run-many:${{ matrix.target }}
-        if: matrix.target != 'test'
-        run: node ./tools/scripts/run-many.js ${{ matrix.target }} ${{ matrix.index }} 3 $GITHUB_REF $NX_ARGUMENTS
-      - name: nx run-many:test
-        if: matrix.target == 'test'
-        run: node ./tools/scripts/run-many.js ${{ matrix.target }} ${{ matrix.index }} 3 $GITHUB_REF $NX_ARGUMENTS
+      - name: Start Nx Cloud agents
+        run: npx nx-cloud start-ci-run
+      - name: Run lint
+        run: npx nx affected --target=lint --parallel --maxParallel=5 --exclude=showcase
+      - name: Build libraries
+        run: npx nx affected --target=build --parallel --maxParallel=5 --exclude=showcase
+      - name: Run code coverage
+        run: npx nx run all:test --karmaConfig=karma.ci.conf.js --skip-nx-cache
+      - name: Stop Nx Cloud agents
+        if: always()
+        run: npx nx-cloud stop-all-agents
+  agents:
+    runs-on: ubuntu-latest
+    name: Agent 1
+    timeout-minutes: 60
+    strategy:
+      matrix:
+        agent: [1, 2, 3]
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          cache: 'npm'
+          node-version: '14'
+      - run: npm install
+      - name: Start Nx Agent ${{ matrix.agent }}
+        run: npx nx-cloud start-agent
