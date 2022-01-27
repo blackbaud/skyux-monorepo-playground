@@ -9,9 +9,12 @@ try {
   const npmVersion = execSync('npm -v').toString();
   console.log('NPM version:', npmVersion);
 
-  const affected = execSync(`npx nx print-affected`, {
-    stdio: 'inherit',
-  }).toString('utf-8');
+  const affected = execSync(
+    'nx print-affected --target=build --select=tasks.target.project',
+    {
+      stdio: 'inherit',
+    }
+  ).toString('utf-8');
 
   const array = JSON.parse(affected)
     .tasks.map((t) => t.target.project)
