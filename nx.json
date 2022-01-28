@@ -20,7 +20,7 @@
       "runner": "@nrwl/nx-cloud",
       "options": {
         "cacheableOperations": ["build", "lint", "test", "e2e"],
-        "accessToken": "MTE0ZGM5NjItNTRlYy00YzNkLWI0ZTAtMjcwMDc1YmVjMzJhfHJlYWQtd3JpdGU="
+        "accessToken": "ZjIyMjExYzItNWZmMC00ZDcxLWJlOTItOTgwNDNlYTgyYTQxfHJlYWQtd3JpdGU="
       }
     }
   },
@@ -99,6 +99,13 @@
     "inline-form": {
       "tags": []
     },
+    "integration": {
+      "tags": []
+    },
+    "integration-e2e": {
+      "tags": [],
+      "implicitDependencies": ["integration"]
+    },
     "layout": {
       "tags": []
     },
@@ -146,13 +153,6 @@
     },
     "select-field": {
       "tags": []
-    },
-    "showcase": {
-      "tags": []
-    },
-    "showcase-e2e": {
-      "tags": [],
-      "implicitDependencies": ["showcase"]
     },
     "split-view": {
       "tags": []

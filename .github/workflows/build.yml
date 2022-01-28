@@ -29,8 +29,8 @@ jobs:
           node-version: '14'
       - run: npm install
       - run: npx nx-cloud start-ci-run
-      - run: npx nx affected --target=lint --parallel --maxParallel=5 --exclude=showcase
-      - run: npx nx affected --target=build --parallel --maxParallel=5 --exclude=showcase
+      - run: npx nx affected --target=lint --compact --silent --parallel --maxParallel=5
+      - run: npx nx affected --target=build --parallel --maxParallel=5
       - run: npx nx run all:test --karmaConfig=karma.ci.conf.js --skip-nx-cache
       - name: Stop Nx Cloud agents
         if: always()
@@ -56,9 +56,9 @@ jobs:
       - name: Check code formatting
         run: npx prettier --check .
       - name: Run lint
-        run: npx nx affected --target=lint --parallel --maxParallel=5 --exclude=showcase
+        run: npx nx affected --target=lint --compact --silent --parallel --maxParallel=5
       - name: Build libraries
-        run: npx nx affected --target=build --parallel --maxParallel=5 --exclude=showcase
+        run: npx nx affected --target=build --parallel --maxParallel=5
       - name: Run code coverage
         run: npx nx run all:test --karmaConfig=karma.ci.conf.js --skip-nx-cache
       - name: Stop Nx Cloud agents
