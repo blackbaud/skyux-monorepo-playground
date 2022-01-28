@@ -9,9 +9,7 @@ module.exports = function (config) {
       ...baseConfig.coverageReporter,
       dir: require('path').join(process.cwd(), './coverage/all'),
     },
-    browsers: [
-      'ChromeHeadlessCustom', // 'FirefoxHeadless'
-    ],
+    browsers: ['ChromeHeadlessCustom', 'FirefoxHeadlessCustom'],
     reporters: ['dots'],
     autoWatch: false,
     restartOnFileChange: false,
@@ -44,6 +42,11 @@ module.exports = function (config) {
       },
     },
   });
+
+  // Tell karma to wait for bundle to be completed before launching browsers.
+  // See: https://github.com/karma-runner/karma-chrome-launcher/issues/154#issuecomment-986661937
+  config.plugins.unshift(require('./karma.waitwebpack'));
+  config.frameworks.unshift('waitwebpack');
 
   config.client.captureConsole = false;
 };
