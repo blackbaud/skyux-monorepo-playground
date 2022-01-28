@@ -1,7 +1,5 @@
 const getBaseKarmaConfig = require('./karma.conf');
 
-let counter = 0;
-
 function getBrowserSet(key) {
   const bsBrowserChrome = {
     base: 'BrowserStack',
@@ -99,15 +97,13 @@ module.exports = function (config) {
   config.coverageReporter.reporters.push({ type: 'lcovonly' });
 
   if (process.env.BROWSER_STACK_ACCESS_KEY) {
-    const tunnelIdentifier = `foobar_${counter++}`;
+    const tunnelIdentifier = `tunnel_${new Date().getTime()}`;
 
     const customLaunchers = getBrowserStackLaunchers('paranoid');
 
     config.set({
       customLaunchers,
-      browsers: ['ChromeHeadless', 'FirefoxHeadless'].concat(
-        Object.keys(customLaunchers)
-      ),
+      browsers: Object.keys(customLaunchers),
       browserStack: {
         accessKey: process.env.BROWSER_STACK_ACCESS_KEY,
         username: process.env.BROWSER_STACK_USERNAME,
