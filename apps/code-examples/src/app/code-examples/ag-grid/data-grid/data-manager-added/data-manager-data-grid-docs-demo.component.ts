@@ -77,7 +77,7 @@ export class SkyDataManagerDataGridDemoComponent implements OnInit {
   public gridOptions!: GridOptions;
   public noRowsTemplate: string;
 
-  public searchText: string = '';
+  public searchText = '';
   public activeViewId = 'dataManagerGridView';
   public viewId = 'dataManagerGridView';
   public viewConfig: SkyDataViewConfig = {
@@ -223,14 +223,14 @@ export class SkyDataManagerDataGridDemoComponent implements OnInit {
   }
 
   public setInitialColumnOrder(): void {
-    let viewState = this.dataState.getViewStateById(this.viewId);
-    let visibleColumns = viewState.displayedColumnIds;
+    const viewState = this.dataState.getViewStateById(this.viewId);
+    const visibleColumns = viewState.displayedColumnIds;
 
     this.columnDefs.sort((col1, col2) => {
-      let col1Index = visibleColumns.findIndex(
+      const col1Index = visibleColumns.findIndex(
         (colId: string) => colId === col1.colId
       );
-      let col2Index = visibleColumns.findIndex(
+      const col2Index = visibleColumns.findIndex(
         (colId: string) => colId === col2.colId
       );
 
@@ -258,7 +258,7 @@ export class SkyDataManagerDataGridDemoComponent implements OnInit {
   }
 
   public sortItems(): void {
-    let sortOption = this.dataState.activeSortOption;
+    const sortOption = this.dataState.activeSortOption;
     if (this.columnApi && sortOption) {
       const allColumns = this.columnApi.getAllColumns() || [];
       allColumns.forEach((column) => {
@@ -273,11 +273,11 @@ export class SkyDataManagerDataGridDemoComponent implements OnInit {
 
   public clearAll(): void {
     if (this.dataState) {
-      let selectedIds = this.dataState.selectedIds || [];
+      const selectedIds = this.dataState.selectedIds || [];
 
       this.displayedItems.forEach((item) => {
         if (item.selected) {
-          let itemIndex = selectedIds.indexOf(item.id);
+          const itemIndex = selectedIds.indexOf(item.id);
           item.selected = false;
           selectedIds.splice(itemIndex, 1);
         }
@@ -289,7 +289,7 @@ export class SkyDataManagerDataGridDemoComponent implements OnInit {
 
   public selectAll(): void {
     if (this.dataState) {
-      let selectedIds = this.dataState.selectedIds || [];
+      const selectedIds = this.dataState.selectedIds || [];
 
       this.displayedItems.forEach((item) => {
         if (!item.selected) {
@@ -305,7 +305,7 @@ export class SkyDataManagerDataGridDemoComponent implements OnInit {
 
   public searchItems(items: any[]): any[] {
     let searchedItems = items;
-    let searchText = this.dataState && this.dataState.searchText;
+    const searchText = this.dataState && this.dataState.searchText;
 
     if (searchText) {
       searchedItems = items.filter(function (item: any) {
@@ -330,10 +330,10 @@ export class SkyDataManagerDataGridDemoComponent implements OnInit {
 
   public filterItems(items: any[]): any[] {
     let filteredItems = items;
-    let filterData = this.dataState && this.dataState.filterData;
+    const filterData = this.dataState && this.dataState.filterData;
 
     if (filterData && filterData.filters) {
-      let filters = filterData.filters;
+      const filters = filterData.filters;
       filteredItems = items.filter((item: any) => {
         return (
           ((filters.hideSales && item.department.name !== 'Sales') ||
