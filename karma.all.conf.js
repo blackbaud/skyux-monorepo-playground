@@ -9,7 +9,7 @@ module.exports = function (config) {
       ...baseConfig.coverageReporter,
       dir: require('path').join(process.cwd(), './coverage/all'),
     },
-    browsers: ['ChromeHeadlessCustom', 'FirefoxHeadless'],
+    browsers: ['ChromeHeadlessCustom', 'FirefoxHeadlessCustom'],
     reporters: ['dots'],
     browserDisconnectTimeout: 60000,
     browserNoActivityTimeout: 30000,
@@ -24,6 +24,14 @@ module.exports = function (config) {
           '--disable-translate',
           '--disable-extensions',
         ],
+      },
+      FirefoxHeadlessCustom: {
+        base: 'FirefoxHeadless',
+        flags: ['--headless'],
+        prefs: {
+          'media.navigator.permission.disabled': true,
+          'network.proxy.type': 0,
+        },
       },
     },
   });
