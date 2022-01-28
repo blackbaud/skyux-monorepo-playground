@@ -10,7 +10,9 @@ module.exports = function (config) {
       ...baseConfig.coverageReporter,
       dir: require('path').join(process.cwd(), './coverage/all'),
     },
-    browsers: ['ChromeHeadless', 'FirefoxHeadless'],
+    browsers: [
+      'ChromeHeadless', // 'FirefoxHeadless'
+    ],
     reporters: ['dots'],
     autoWatch: false,
     restartOnFileChange: false,
