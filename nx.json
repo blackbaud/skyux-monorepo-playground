@@ -93,6 +93,10 @@
     "indicators": {
       "tags": []
     },
+    "indicators-e2e": {
+      "tags": [],
+      "implicitDependencies": ["indicators"]
+    },
     "inline-form": {
       "tags": []
     },

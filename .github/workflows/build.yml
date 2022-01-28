@@ -10,6 +10,7 @@ env:
   NX_CLOUD_DISTRIBUTED_EXECUTION: true
   BROWSER_STACK_USERNAME: ${{ secrets.BROWSER_STACK_USERNAME }}
   BROWSER_STACK_ACCESS_KEY: ${{ secrets.BROWSER_STACK_ACCESS_KEY }}
+  PERCEY_TOKEN: ${{ secrets.PERCY_TOKEN }}
 
 jobs:
   main:
@@ -32,6 +33,7 @@ jobs:
       - run: npx nx affected --target=lint --parallel --maxParallel=5 --exclude=showcase
       - run: npx nx affected --target=build --parallel --maxParallel=5 --exclude=showcase
       - run: npx nx run all:test --karmaConfig=karma.ci.conf.js --skip-nx-cache
+      - run: npx nx affected --target=e2e --exclude=showcase,showcase-e2e
       - name: Stop Nx Cloud agents
         if: always()
         run: npx nx-cloud stop-all-agents
@@ -56,11 +58,13 @@ jobs:
       - name: Check code formatting
         run: npx prettier --check .
       - name: Run lint
-        run: npx nx affected --target=lint --parallel --maxParallel=5 --exclude=showcase
+        run: npx nx affected --target=lint --parallel --maxParallel=5 --exclude=showcase,showcase-e2e
       - name: Build libraries
-        run: npx nx affected --target=build --parallel --maxParallel=5 --exclude=showcase
+        run: npx nx affected --target=build --parallel --maxParallel=5 --exclude=showcase,showcase-e2e
       - name: Run code coverage
         run: npx nx run all:test --karmaConfig=karma.ci.conf.js --skip-nx-cache
+      - name: Run visual tests
+        run: npx nx affected --target=e2e --exclude=showcase,showcase-e2e
       - name: Stop Nx Cloud agents
         if: always()
         run: npx nx-cloud stop-all-agents
