@@ -83,5 +83,6 @@ jobs:
         with:
           cache: 'npm'
           node-version: '14'
+      - run: npm install
       - name: Stop Nx Cloud agents
         run: npx nx-cloud stop-all-agents

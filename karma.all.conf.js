@@ -23,6 +23,8 @@ module.exports = function (config) {
           '--disable-gpu',
           '--disable-translate',
           '--disable-extensions',
+          '--disable-web-security',
+          '--disable-site-isolation-trials',
         ],
       },
       FirefoxHeadlessCustom: {
@@ -31,6 +33,9 @@ module.exports = function (config) {
         prefs: {
           'media.navigator.permission.disabled': true,
           'network.proxy.type': 0,
+          'toolkit.telemetry.reportingpolicy.firstRun': false,
+          'extensions.enabledScopes': 0,
+          'app.update.disabledForTesting': true,
         },
       },
     },
