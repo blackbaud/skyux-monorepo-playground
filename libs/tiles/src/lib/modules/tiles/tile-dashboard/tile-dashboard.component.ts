@@ -90,9 +90,6 @@ export class SkyTileDashboardComponent implements AfterViewInit, OnDestroy {
 
   public tileMovedReport: string;
 
-  public moveInstructionsId =
-    this.dashboardService.bagId + '-move-instructions';
-
   private _config: SkyTileDashboardConfig;
 
   private configSet = false;

@@ -15,7 +15,6 @@ import { SkyTileComponent } from './tile.component';
 import { SkyTileSummaryComponent } from './tile-summary.component';
 
 import { SkyTileTitleComponent } from './tile-title.component';
-import { SkyIdModule } from '@skyux/core';
 
 @NgModule({
   declarations: [
@@ -26,7 +25,6 @@ import { SkyIdModule } from '@skyux/core';
   imports: [
     CommonModule,
     SkyChevronModule,
-    SkyIdModule,
     SkyI18nModule,
     SkyIconModule,
     SkyThemeModule,

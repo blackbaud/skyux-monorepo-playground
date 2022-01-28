@@ -51,25 +51,7 @@ describe('Repeater item component', () => {
   }
 
   function getReorderHandles(el: HTMLElement): NodeListOf<HTMLElement> {
-    return el.querySelectorAll(
-      '.sky-repeater-item .sky-repeater-item-grab-handle'
-    );
-  }
-
-  function getChrevronButtons(el: HTMLElement): NodeListOf<HTMLButtonElement> {
-    return el.querySelectorAll('.sky-repeater-item sky-chevron button');
-  }
-
-  function getReorderTopButtons(
-    el: HTMLElement
-  ): NodeListOf<HTMLButtonElement> {
-    return el.querySelectorAll(
-      '.sky-repeater-item .sky-repeater-item-reorder-top'
-    );
-  }
-
-  function getCheckboxes(el: HTMLElement): NodeListOf<HTMLButtonElement> {
-    return el.querySelectorAll('.sky-repeater-item .sky-checkbox-input');
+    return el.querySelectorAll('.sky-repeater-item-grab-handle');
   }
 
   function reorderItemWithKey(
@@ -150,94 +132,11 @@ describe('Repeater item component', () => {
     fixture.detectChanges();
     tick();
 
-    const repeaterItemContent = el.querySelector('.sky-repeater-item-content');
-
-    expect(getChrevronButtons(el)[0].getAttribute('aria-controls')).toBe(
-      repeaterItemContent.getAttribute('id')
+    expect(el.querySelector('sky-chevron').getAttribute('aria-controls')).toBe(
+      el.querySelector('.sky-repeater-item-content').getAttribute('id')
     );
 
     flushDropdownTimer();
-  }));
-
-  it('should create default aria labels when itemName is not defined', fakeAsync(() => {
-    let fixture = TestBed.createComponent(RepeaterTestComponent);
-    fixture.componentInstance.selectable = true;
-    fixture.componentInstance.reorderable = true;
-    fixture.detectChanges();
-    tick();
-    fixture.detectChanges();
-    tick();
-    const el = fixture.nativeElement;
-
-    const reorderHandles = getReorderHandles(el);
-    const checkboxes = getCheckboxes(el);
-    const reorderTopButtons = getReorderTopButtons(el);
-    const expandButtons = getChrevronButtons(el);
-
-    expect(reorderHandles[0].getAttribute('aria-label')).toEqual('Reorder');
-    expect(checkboxes[0].getAttribute('aria-label')).toEqual('Select row');
-    expect(reorderTopButtons[0].getAttribute('aria-label')).toEqual(
-      'Move to top'
-    );
-    expect(expandButtons[0].getAttribute('aria-label')).toEqual(
-      'Expand or collapse'
-    );
-  }));
-
-  it('should create aria labels when itemName is defined', fakeAsync(() => {
-    let fixture = TestBed.createComponent(RepeaterTestComponent);
-    fixture.componentInstance.showItemName = true; // Show item name to remove default labels
-    fixture.componentInstance.selectable = true;
-    fixture.componentInstance.reorderable = true;
-    fixture.detectChanges();
-    tick();
-    fixture.detectChanges();
-    tick();
-    const el = fixture.nativeElement;
-
-    const reorderHandles = getReorderHandles(el);
-    const checkboxes = getCheckboxes(el);
-    const reorderTopButtons = getReorderTopButtons(el);
-    const expandButtons = getChrevronButtons(el);
-
-    expect(reorderHandles[0].getAttribute('aria-label')).toEqual(
-      'Reorder Item 1'
-    );
-    expect(checkboxes[0].getAttribute('aria-label')).toEqual('Select Item 1');
-    expect(reorderTopButtons[0].getAttribute('aria-label')).toEqual(
-      'Move Item 1 to top'
-    );
-    expect(expandButtons[0].getAttribute('aria-label')).toEqual(
-      'Expand or collapse Item 1'
-    );
-  }));
-
-  it('should not have aria-selected attribute when item is not selectable', fakeAsync(() => {
-    let fixture = TestBed.createComponent(RepeaterTestComponent);
-    fixture.componentInstance.selectable = undefined;
-    fixture.detectChanges();
-    tick();
-
-    const repeaterEls = getRepeaterItems(fixture.nativeElement);
-
-    expect(repeaterEls[0].getAttribute('aria-selected')).toBeNull();
-    expect(repeaterEls[1].getAttribute('aria-selected')).toBeNull();
-    expect(repeaterEls[2].getAttribute('aria-selected')).toBeNull();
-  }));
-
-  it('should set aria-selected when items are selected', fakeAsync(() => {
-    let fixture = TestBed.createComponent(RepeaterTestComponent);
-    fixture.componentInstance.selectable = true;
-    fixture.componentInstance.lastItemSelected = true;
-
-    fixture.detectChanges();
-    tick();
-
-    const repeaterEls = getRepeaterItems(fixture.nativeElement);
-
-    expect(repeaterEls[0].getAttribute('aria-selected')).toBe('false');
-    expect(repeaterEls[1].getAttribute('aria-selected')).toBe('false');
-    expect(repeaterEls[2].getAttribute('aria-selected')).toBe('true');
   }));
 
   it('should hide the chevron and disable expand/collapse for items with no content', fakeAsync(() => {
@@ -250,7 +149,7 @@ describe('Repeater item component', () => {
 
     const itemWithNoContent =
       fixture.nativeElement.querySelectorAll('sky-repeater-item')[3];
-    expect(getChrevronButtons(itemWithNoContent)[0]).not.toExist();
+    expect(itemWithNoContent.querySelector('sky-chevron')).not.toExist();
   }));
 
   it('should show/hide the chevron for dynamically added and removed content', fakeAsync(() => {
@@ -264,7 +163,7 @@ describe('Repeater item component', () => {
 
     const itemWithNoContent =
       fixture.nativeElement.querySelectorAll('sky-repeater-item')[3];
-    expect(getChrevronButtons(itemWithNoContent)[0]).toExist();
+    expect(itemWithNoContent.querySelector('sky-chevron')).toExist();
 
     fixture.componentInstance.showDynamicContent = false;
 
@@ -272,7 +171,7 @@ describe('Repeater item component', () => {
     tick();
     fixture.detectChanges();
 
-    expect(getChrevronButtons(itemWithNoContent)[0]).not.toExist();
+    expect(itemWithNoContent.querySelector('sky-chevron')).not.toExist();
   }));
 
   it('should be accessible', async () => {
@@ -411,9 +310,10 @@ describe('Repeater item component', () => {
       tick();
 
       let repeaterItems = cmp.repeater.items.toArray();
-      const chevronButton = getChrevronButtons(el)[0];
       expect(repeaterItems[0].isExpanded).toBe(true);
-      expect(chevronButton.getAttribute('aria-expanded')).toBe('true');
+      expect(
+        el.querySelector('sky-chevron').getAttribute('aria-expanded')
+      ).toBe('true');
 
       el.querySelectorAll('.sky-repeater-item-title').item(0).click();
       fixture.detectChanges();
@@ -421,7 +321,9 @@ describe('Repeater item component', () => {
 
       repeaterItems = cmp.repeater.items.toArray();
       expect(repeaterItems[0].isExpanded).toBe(false);
-      expect(chevronButton.getAttribute('aria-expanded')).toBe('false');
+      expect(
+        el.querySelector('sky-chevron').getAttribute('aria-expanded')
+      ).toBe('false');
 
       flushDropdownTimer();
     }));
@@ -441,7 +343,7 @@ describe('Repeater item component', () => {
 
       expect(repeaterItems[0].isExpanded).toBe(true);
 
-      getChrevronButtons(el)[0].click();
+      el.querySelectorAll('.sky-chevron').item(0).click();
 
       fixture.detectChanges();
 
@@ -484,7 +386,6 @@ describe('Repeater item component', () => {
     it('should emit events when item is expanded/collapsed', fakeAsync(() => {
       const fixture = TestBed.createComponent(RepeaterTestComponent);
       const cmp = fixture.componentInstance;
-      const el = fixture.debugElement.nativeElement;
       cmp.expandMode = 'single';
 
       const collapseSpy = spyOn(cmp, 'onCollapse').and.callThrough();
@@ -499,7 +400,7 @@ describe('Repeater item component', () => {
       let repeaterItems = cmp.repeater.items.toArray();
       expect(repeaterItems[0].isExpanded).toBe(true);
 
-      getChrevronButtons(el).item(0).click();
+      fixture.nativeElement.querySelectorAll('.sky-chevron').item(0).click();
       fixture.detectChanges();
       tick();
 
@@ -508,7 +409,7 @@ describe('Repeater item component', () => {
       collapseSpy.calls.reset();
       expandSpy.calls.reset();
 
-      getChrevronButtons(el).item(0).click();
+      fixture.nativeElement.querySelectorAll('.sky-chevron').item(0).click();
       fixture.detectChanges();
       tick();
 
@@ -592,7 +493,7 @@ describe('Repeater item component', () => {
 
       expect(repeaterItems[0].isExpanded).toBe(true);
 
-      getChrevronButtons(el).item(0).click();
+      el.querySelectorAll('.sky-chevron').item(0).click();
 
       fixture.detectChanges();
 
@@ -666,11 +567,11 @@ describe('Repeater item component', () => {
     it("should hide each item's chevron button", fakeAsync(() => {
       let fixture = TestBed.createComponent(RepeaterTestComponent);
       let cmp: RepeaterTestComponent = fixture.componentInstance;
-      let el = fixture.nativeElement;
+      let el = fixture.nativeElement as Element;
 
       fixture.detectChanges();
 
-      let chevronEls = getChrevronButtons(el);
+      let chevronEls = el.querySelectorAll('.sky-repeater-item-chevron');
       expect(chevronEls.length).toBe(3);
 
       cmp.expandMode = 'none';
@@ -678,7 +579,7 @@ describe('Repeater item component', () => {
 
       tick();
 
-      chevronEls = getChrevronButtons(el);
+      chevronEls = el.querySelectorAll('.sky-repeater-item-chevron');
 
       expect(chevronEls.length).toBe(0);
 

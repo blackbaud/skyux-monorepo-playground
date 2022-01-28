@@ -29,11 +29,7 @@
             *ngIf="hasHelp"
             class="sky-btn sky-tile-tools-control sky-tile-help"
             type="button"
-            [attr.aria-label]="
-              tileName
-                ? ('skyux_tile_help' | skyLibResources: tileName)
-                : ('skyux_tile_help_default' | skyLibResources)
-            "
+            [attr.aria-label]="'skyux_tile_help' | skyLibResources"
             [skyThemeClass]="{
               'sky-btn-icon-borderless': 'modern'
             }"
@@ -43,12 +39,6 @@
           </button>
         </ng-container>
         <sky-chevron
-          [ariaControls]="tileContent.id"
-          [ariaLabel]="
-            tileName
-              ? ('skyux_tile_expand' | skyLibResources: tileName)
-              : ('skyux_tile_expand_default' | skyLibResources)
-          "
           [direction]="isCollapsed ? 'down' : 'up'"
           [skyThemeClass]="{
             'sky-tile-tools-control': 'default',
@@ -61,11 +51,7 @@
           *ngIf="hasSettings"
           class="sky-btn sky-tile-settings"
           type="button"
-          [attr.aria-label]="
-            tileName
-              ? ('skyux_tile_settings' | skyLibResources: tileName)
-              : ('skyux_tile_settings_default' | skyLibResources)
-          "
+          [attr.aria-label]="'skyux_tile_settings' | skyLibResources"
           [skyThemeClass]="{
             'sky-tile-tools-control': 'default',
             'sky-btn-icon-borderless sky-margin-inline-default': 'modern'
@@ -82,14 +68,7 @@
         <button
           *ngIf="isInDashboardColumn"
           class="sky-btn sky-tile-grab-handle"
-          [attr.aria-label]="
-            tileName
-              ? ('skyux_tile_move' | skyLibResources: tileName)
-              : ('skyux_tile_move_default' | skyLibResources)
-          "
-          [attr.aria-describedby]="
-            dashboardService?.bagId + '-move-instructions'
-          "
+          [attr.aria-label]="'skyux_tile_grab_handle' | skyLibResources"
           [skyThemeClass]="{
             'sky-tile-tools-control': 'default',
             'sky-btn-icon-borderless': 'modern'
@@ -110,11 +89,7 @@
   </header>
   <div
     class="sky-tile-content"
-    role="region"
-    skyId
-    [attr.aria-label]="tileName"
     [@skyAnimationSlide]="isCollapsed ? 'up' : 'down'"
-    #tileContent="skyId"
   >
     <ng-content select="sky-tile-content"></ng-content>
   </div>

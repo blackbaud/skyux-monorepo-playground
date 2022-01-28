@@ -46,8 +46,6 @@ export class RepeaterTestComponent {
 
   public showContextMenu: boolean;
 
-  public showItemName: boolean = false;
-
   public showDynamicContent: boolean;
 
   public showItemWithNoContent: boolean;
