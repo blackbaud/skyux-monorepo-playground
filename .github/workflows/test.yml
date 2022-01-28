@@ -24,12 +24,16 @@ jobs:
     runs-on: ubuntu-latest
     name: Nx Cloud Agent
     timeout-minutes: 60
-    needs: install-dependencies
     strategy:
       matrix:
         agent: [1, 2, 3]
     steps:
       - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          cache: npm
+          node-version: '14'
+      - run: npm install
       - name: Start Nx Agent ${{ matrix.agent }}
         run: npx nx-cloud start-agent
 
