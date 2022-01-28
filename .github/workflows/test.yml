@@ -72,7 +72,7 @@ jobs:
   stop-agents:
     runs-on: ubuntu-latest
     if: always()
-    needs: [install-dependencies, lint, test]
+    needs: [install-dependencies, build, test]
     steps:
       - name: Stop Nx Cloud agents
         run: npx nx-cloud stop-all-agents
