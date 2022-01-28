@@ -12,6 +12,7 @@ module.exports = () => {
     plugins: [
       require('karma-jasmine'),
       require('karma-chrome-launcher'),
+      require('karma-firefox-launcher'),
       require('karma-coverage'),
       require('@angular-devkit/build-angular/plugins/karma'),
       {

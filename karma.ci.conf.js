@@ -35,9 +35,9 @@ function getBrowserSet(key) {
     speedy: [bsBrowserChrome],
     quirky: [bsBrowserChrome, bsBrowserEdge],
     paranoid: [
-      bsBrowserChrome,
+      // bsBrowserChrome,
       bsBrowserEdge,
-      bsBrowserFirefox,
+      // bsBrowserFirefox,
       bsBrowserSafari,
     ],
   };
@@ -105,7 +105,9 @@ module.exports = function (config) {
 
     config.set({
       customLaunchers,
-      browsers: Object.keys(customLaunchers),
+      browsers: ['ChromeHeadless', 'FirefoxHeadless'].concat(
+        Object.keys(customLaunchers)
+      ),
       browserStack: {
         accessKey: process.env.BROWSER_STACK_ACCESS_KEY,
         username: process.env.BROWSER_STACK_USERNAME,
