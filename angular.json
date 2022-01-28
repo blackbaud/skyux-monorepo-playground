@@ -110,11 +110,11 @@
             "tsConfig": "libs/action-bars/testing/tsconfig.spec.json",
             "karmaConfig": "libs/action-bars/testing/karma.conf.js",
             "codeCoverage": true,
+            "codeCoverageExclude": ["**/fixtures/**"],
             "styles": [
               "libs/theme/src/lib/styles/sky.scss",
               "libs/theme/src/lib/styles/themes/modern/styles.scss"
-            ],
-            "codeCoverageExclude": ["**/fixtures/**"]
+            ]
           }
         }
       }
@@ -164,6 +164,28 @@
               "libs/ag-grid/src/**/*.ts",
               "libs/ag-grid/src/**/*.html"
             ]
+          }
+        }
+      }
+    },
+    "all": {
+      "projectType": "library",
+      "root": "libs",
+      "sourceRoot": "libs",
+      "architect": {
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "test-all.ts",
+            "tsConfig": "tsconfig.test-all.json",
+            "karmaConfig": "karma.all.conf.js",
+            "styles": [
+              "libs/theme/src/lib/styles/sky.scss",
+              "libs/theme/src/lib/styles/themes/modern/styles.scss",
+              "libs/ag-grid/src/lib/styles/ag-grid-styles.scss"
+            ],
+            "codeCoverage": true,
+            "codeCoverageExclude": ["**/fixtures/**"]
           }
         }
       }
@@ -421,11 +443,108 @@
             "tsConfig": "libs/avatar/testing/tsconfig.spec.json",
             "karmaConfig": "libs/avatar/testing/karma.conf.js",
             "codeCoverage": true,
+            "codeCoverageExclude": ["**/fixtures/**"],
             "styles": [
               "libs/theme/src/lib/styles/sky.scss",
               "libs/theme/src/lib/styles/themes/modern/styles.scss"
+            ]
+          }
+        }
+      }
+    },
+    "code-examples": {
+      "projectType": "application",
+      "root": "apps/code-examples",
+      "sourceRoot": "apps/code-examples/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/code-examples",
+            "index": "apps/code-examples/src/index.html",
+            "main": "apps/code-examples/src/main.ts",
+            "polyfills": "apps/code-examples/src/polyfills.ts",
+            "tsConfig": "apps/code-examples/tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "apps/code-examples/src/favicon.ico",
+              "apps/code-examples/src/assets"
             ],
-            "codeCoverageExclude": ["**/fixtures/**"]
+            "styles": ["apps/code-examples/src/styles.scss"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "apps/code-examples/src/environments/environment.ts",
+                  "with": "apps/code-examples/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "code-examples:build:production"
+            },
+            "development": {
+              "browserTarget": "code-examples:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "code-examples:build"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/code-examples/src/**/*.ts",
+              "apps/code-examples/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "apps/code-examples/src/test.ts",
+            "tsConfig": "apps/code-examples/tsconfig.spec.json",
+            "karmaConfig": "apps/code-examples/karma.conf.js",
+            "polyfills": "apps/code-examples/src/polyfills.ts",
+            "styles": [],
+            "scripts": [],
+            "assets": []
           }
         }
       }
@@ -491,11 +610,11 @@
             "tsConfig": "libs/colorpicker/testing/tsconfig.spec.json",
             "karmaConfig": "libs/colorpicker/testing/karma.conf.js",
             "codeCoverage": true,
+            "codeCoverageExclude": ["**/fixtures/**"],
             "styles": [
               "libs/theme/src/lib/styles/sky.scss",
               "libs/theme/src/lib/styles/themes/modern/styles.scss"
-            ],
-            "codeCoverageExclude": ["**/fixtures/**"]
+            ]
           }
         }
       }
@@ -609,11 +728,11 @@
             "tsConfig": "libs/core/testing/tsconfig.spec.json",
             "karmaConfig": "libs/core/testing/karma.conf.js",
             "codeCoverage": true,
+            "codeCoverageExclude": ["**/fixtures/**"],
             "styles": [
               "libs/theme/src/lib/styles/sky.scss",
               "libs/theme/src/lib/styles/themes/modern/styles.scss"
-            ],
-            "codeCoverageExclude": ["**/fixtures/**"]
+            ]
           }
         }
       }
@@ -727,11 +846,11 @@
             "tsConfig": "libs/datetime/testing/tsconfig.spec.json",
             "karmaConfig": "libs/datetime/testing/karma.conf.js",
             "codeCoverage": true,
+            "codeCoverageExclude": ["**/fixtures/**"],
             "styles": [
               "libs/theme/src/lib/styles/sky.scss",
               "libs/theme/src/lib/styles/themes/modern/styles.scss"
-            ],
-            "codeCoverageExclude": ["**/fixtures/**"]
+            ]
           }
         }
       }
@@ -797,11 +916,11 @@
             "tsConfig": "libs/errors/testing/tsconfig.spec.json",
             "karmaConfig": "libs/errors/testing/karma.conf.js",
             "codeCoverage": true,
+            "codeCoverageExclude": ["**/fixtures/**"],
             "styles": [
               "libs/theme/src/lib/styles/sky.scss",
               "libs/theme/src/lib/styles/themes/modern/styles.scss"
-            ],
-            "codeCoverageExclude": ["**/fixtures/**"]
+            ]
           }
         }
       }
@@ -915,11 +1034,11 @@
             "tsConfig": "libs/forms/testing/tsconfig.spec.json",
             "karmaConfig": "libs/forms/testing/karma.conf.js",
             "codeCoverage": true,
+            "codeCoverageExclude": ["**/fixtures/**"],
             "styles": [
               "libs/theme/src/lib/styles/sky.scss",
               "libs/theme/src/lib/styles/themes/modern/styles.scss"
-            ],
-            "codeCoverageExclude": ["**/fixtures/**"]
+            ]
           }
         }
       }
@@ -1033,11 +1152,11 @@
             "tsConfig": "libs/http/testing/tsconfig.spec.json",
             "karmaConfig": "libs/http/testing/karma.conf.js",
             "codeCoverage": true,
+            "codeCoverageExclude": ["**/fixtures/**"],
             "styles": [
               "libs/theme/src/lib/styles/sky.scss",
               "libs/theme/src/lib/styles/themes/modern/styles.scss"
-            ],
-            "codeCoverageExclude": ["**/fixtures/**"]
+            ]
           }
         }
       }
@@ -1151,11 +1270,11 @@
             "tsConfig": "libs/indicators/testing/tsconfig.spec.json",
             "karmaConfig": "libs/indicators/testing/karma.conf.js",
             "codeCoverage": true,
+            "codeCoverageExclude": ["**/fixtures/**"],
             "styles": [
               "libs/theme/src/lib/styles/sky.scss",
               "libs/theme/src/lib/styles/themes/modern/styles.scss"
-            ],
-            "codeCoverageExclude": ["**/fixtures/**"]
+            ]
           }
         }
       }
@@ -1269,11 +1388,11 @@
             "tsConfig": "libs/layout/testing/tsconfig.spec.json",
             "karmaConfig": "libs/layout/testing/karma.conf.js",
             "codeCoverage": true,
+            "codeCoverageExclude": ["**/fixtures/**"],
             "styles": [
               "libs/theme/src/lib/styles/sky.scss",
               "libs/theme/src/lib/styles/themes/modern/styles.scss"
-            ],
-            "codeCoverageExclude": ["**/fixtures/**"]
+            ]
           }
         }
       }
@@ -1435,11 +1554,11 @@
             "tsConfig": "libs/list-builder-view-checklist/testing/tsconfig.spec.json",
             "karmaConfig": "libs/list-builder-view-checklist/testing/karma.conf.js",
             "codeCoverage": true,
+            "codeCoverageExclude": ["**/fixtures/**"],
             "styles": [
               "libs/theme/src/lib/styles/sky.scss",
               "libs/theme/src/lib/styles/themes/modern/styles.scss"
-            ],
-            "codeCoverageExclude": ["**/fixtures/**"]
+            ]
           }
         }
       }
@@ -1505,11 +1624,11 @@
             "tsConfig": "libs/list-builder-view-grids/testing/tsconfig.spec.json",
             "karmaConfig": "libs/list-builder-view-grids/testing/karma.conf.js",
             "codeCoverage": true,
+            "codeCoverageExclude": ["**/fixtures/**"],
             "styles": [
               "libs/theme/src/lib/styles/sky.scss",
               "libs/theme/src/lib/styles/themes/modern/styles.scss"
-            ],
-            "codeCoverageExclude": ["**/fixtures/**"]
+            ]
           }
         }
       }
@@ -1575,11 +1694,11 @@
             "tsConfig": "libs/lists/testing/tsconfig.spec.json",
             "karmaConfig": "libs/lists/testing/karma.conf.js",
             "codeCoverage": true,
+            "codeCoverageExclude": ["**/fixtures/**"],
             "styles": [
               "libs/theme/src/lib/styles/sky.scss",
               "libs/theme/src/lib/styles/themes/modern/styles.scss"
-            ],
-            "codeCoverageExclude": ["**/fixtures/**"]
+            ]
           }
         }
       }
@@ -1645,11 +1764,11 @@
             "tsConfig": "libs/lookup/testing/tsconfig.spec.json",
             "karmaConfig": "libs/lookup/testing/karma.conf.js",
             "codeCoverage": true,
+            "codeCoverageExclude": ["**/fixtures/**"],
             "styles": [
               "libs/theme/src/lib/styles/sky.scss",
               "libs/theme/src/lib/styles/themes/modern/styles.scss"
-            ],
-            "codeCoverageExclude": ["**/fixtures/**"]
+            ]
           }
         }
       }
@@ -1715,11 +1834,11 @@
             "tsConfig": "libs/modals/testing/tsconfig.spec.json",
             "karmaConfig": "libs/modals/testing/karma.conf.js",
             "codeCoverage": true,
+            "codeCoverageExclude": ["**/fixtures/**"],
             "styles": [
               "libs/theme/src/lib/styles/sky.scss",
               "libs/theme/src/lib/styles/themes/modern/styles.scss"
-            ],
-            "codeCoverageExclude": ["**/fixtures/**"]
+            ]
           }
         }
       }
@@ -1929,11 +2048,11 @@
             "tsConfig": "libs/phone-field/testing/tsconfig.spec.json",
             "karmaConfig": "libs/phone-field/testing/karma.conf.js",
             "codeCoverage": true,
+            "codeCoverageExclude": ["**/fixtures/**"],
             "styles": [
               "libs/theme/src/lib/styles/sky.scss",
               "libs/theme/src/lib/styles/themes/modern/styles.scss"
-            ],
-            "codeCoverageExclude": ["**/fixtures/**"]
+            ]
           }
         }
       }
@@ -1999,11 +2118,11 @@
             "tsConfig": "libs/popovers/testing/tsconfig.spec.json",
             "karmaConfig": "libs/popovers/testing/karma.conf.js",
             "codeCoverage": true,
+            "codeCoverageExclude": ["**/fixtures/**"],
             "styles": [
               "libs/theme/src/lib/styles/sky.scss",
               "libs/theme/src/lib/styles/themes/modern/styles.scss"
-            ],
-            "codeCoverageExclude": ["**/fixtures/**"]
+            ]
           }
         }
       }
@@ -2333,11 +2452,11 @@
             "tsConfig": "libs/split-view/testing/tsconfig.spec.json",
             "karmaConfig": "libs/split-view/testing/karma.conf.js",
             "codeCoverage": true,
+            "codeCoverageExclude": ["**/fixtures/**"],
             "styles": [
               "libs/theme/src/lib/styles/sky.scss",
               "libs/theme/src/lib/styles/themes/modern/styles.scss"
-            ],
-            "codeCoverageExclude": ["**/fixtures/**"]
+            ]
           }
         }
       }
@@ -2403,11 +2522,11 @@
             "tsConfig": "libs/tabs/testing/tsconfig.spec.json",
             "karmaConfig": "libs/tabs/testing/karma.conf.js",
             "codeCoverage": true,
+            "codeCoverageExclude": ["**/fixtures/**"],
             "styles": [
               "libs/theme/src/lib/styles/sky.scss",
               "libs/theme/src/lib/styles/themes/modern/styles.scss"
-            ],
-            "codeCoverageExclude": ["**/fixtures/**"]
+            ]
           }
         }
       }
@@ -2617,11 +2736,11 @@
             "tsConfig": "libs/toast/testing/tsconfig.spec.json",
             "karmaConfig": "libs/toast/testing/karma.conf.js",
             "codeCoverage": true,
+            "codeCoverageExclude": ["**/fixtures/**"],
             "styles": [
               "libs/theme/src/lib/styles/sky.scss",
               "libs/theme/src/lib/styles/themes/modern/styles.scss"
-            ],
-            "codeCoverageExclude": ["**/fixtures/**"]
+            ]
           }
         }
       }
@@ -2670,28 +2789,6 @@
               "libs/validation/src/**/*.ts",
               "libs/validation/src/**/*.html"
             ]
-          }
-        }
-      }
-    },
-    "all": {
-      "projectType": "library",
-      "root": "libs",
-      "sourceRoot": "libs",
-      "architect": {
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "test-all.ts",
-            "tsConfig": "tsconfig.test-all.json",
-            "karmaConfig": "karma.all.conf.js",
-            "styles": [
-              "libs/theme/src/lib/styles/sky.scss",
-              "libs/theme/src/lib/styles/themes/modern/styles.scss",
-              "libs/ag-grid/src/lib/styles/ag-grid-styles.scss"
-            ],
-            "codeCoverage": true,
-            "codeCoverageExclude": ["**/fixtures/**"]
           }
         }
       }
