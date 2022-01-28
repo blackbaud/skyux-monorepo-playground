@@ -1,4 +1,5 @@
 const getBaseKarmaConfig = require('./karma.conf');
+const { constants } = require('karma');
 
 module.exports = function (config) {
   const baseConfig = getBaseKarmaConfig();
@@ -12,6 +13,7 @@ module.exports = function (config) {
     browsers: ['ChromeHeadless', 'FirefoxHeadless'],
     reporters: ['dots'],
     autoWatch: false,
+    restartOnFileChange: false,
     logLevel: constants.LOG_DEBUG,
     // browserDisconnectTimeout: 60000,
     // browserNoActivityTimeout: 30000,
