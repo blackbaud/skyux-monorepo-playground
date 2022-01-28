@@ -26,13 +26,14 @@ jobs:
     needs: install-dependencies
     strategy:
       matrix:
-        agent: [1, 2, 3, 4, 5]
+        agent: [1, 2, 3]
     steps:
       - uses: actions/checkout@v2
       - name: Start Nx Agent ${{ matrix.agent }}
         run: npx nx-cloud start-agent
 
   build:
+    runs-on: ubuntu-latest
     needs: install-dependencies
     steps:
       - uses: actions/checkout@v2
@@ -40,7 +41,7 @@ jobs:
           ref: ${{ github.event.pull_request.head.ref }}
           # We need to fetch all branches and commits so that Nx affected has a base to compare against.
           fetch-depth: 0
-      - name: Start Nx Cloud agents
+      - name: Activate Nx Cloud agent
         run: npx nx-cloud start-ci-run
       - name: Check code formatting
         run: npx prettier --check .
@@ -63,7 +64,7 @@ jobs:
           fetch-depth: 0
       - name: Derive appropriate SHAs for base and head for `nx affected` commands
         uses: nrwl/nx-set-shas@v2
-      - name: Start Nx Cloud agents
+      - name: Activate Nx Cloud agent
         run: npx nx-cloud start-ci-run
       - name: Run code coverage
         run: npx nx run all:test --karmaConfig=${{ matrix.karmaConfig }} --skip-nx-cache
