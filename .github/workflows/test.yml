@@ -71,7 +71,7 @@ jobs:
       - name: Activate Nx Cloud agent
         run: npx nx-cloud start-ci-run
       - name: Run code coverage
-        run: npx nx run all:test --karmaConfig=${{ matrix.karmaConfig }} --skip-nx-cache
+        run: export NODE_OPTIONS="--max-old-space-size=8192" && npx nx run all:test --karmaConfig=${{ matrix.karmaConfig }} --skip-nx-cache
 
   stop-agents:
     runs-on: ubuntu-latest
