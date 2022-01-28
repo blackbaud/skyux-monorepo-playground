@@ -11,6 +11,9 @@ module.exports = function (config) {
     },
     browsers: ['ChromeHeadless', 'FirefoxHeadless'],
     reporters: ['dots'],
+    browserDisconnectTimeout: 60000,
+    browserNoActivityTimeout: 30000,
+    captureTimeout: 60000,
   });
 
   config.client.captureConsole = false;
