@@ -34,6 +34,8 @@ jobs:
           ref: ${{ github.event.pull_request.head.ref }}
           # We need to fetch all branches and commits so that Nx affected has a base to compare against.
           fetch-depth: 0
+      - name: Derive appropriate SHAs for base and head for `nx affected` commands
+        uses: nrwl/nx-set-shas@v2
       - uses: actions/setup-node@v2
         with:
           cache: 'npm'
@@ -59,13 +61,13 @@ jobs:
           ref: ${{ github.event.pull_request.head.ref }}
           # We need to fetch all branches and commits so that Nx affected has a base to compare against.
           fetch-depth: 0
+      - name: Derive appropriate SHAs for base and head for `nx affected` commands
+        uses: nrwl/nx-set-shas@v2
       - uses: actions/setup-node@v2
         with:
           cache: 'npm'
           node-version: '14'
       - run: npm install
-      - name: Derive appropriate SHAs for base and head for `nx affected` commands
-        uses: nrwl/nx-set-shas@v2
       - name: Activate Nx Cloud agent
         run: npx nx-cloud start-ci-run
       - name: Run code coverage
