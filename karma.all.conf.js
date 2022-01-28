@@ -1,5 +1,4 @@
 const getBaseKarmaConfig = require('./karma.conf');
-// const { constants } = require('karma');
 
 module.exports = function (config) {
   const baseConfig = getBaseKarmaConfig();
