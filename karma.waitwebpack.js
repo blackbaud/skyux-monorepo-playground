@@ -16,7 +16,7 @@ function waitWebpackFactory(config) {
       new WebpackCompilerEventsPlugin({
         afterDone: () => {
           if (isFirstBuild) {
-            console.log('First webpack build done');
+            console.log('[karma.waitwebpack] Webpack build completed.');
             isFirstBuild = false;
             resolve();
           }

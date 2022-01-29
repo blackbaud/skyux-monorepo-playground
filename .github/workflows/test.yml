@@ -9,24 +9,44 @@ env:
   BROWSER_STACK_ACCESS_KEY: ${{ secrets.BROWSER_STACK_ACCESS_KEY }}
 
 jobs:
+  install-deps:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Cache node modules
+        id: cache
+        uses: actions/cache@v2
+        with:
+          path: node_modules
+          key: cache-node-modules-${{ hashFiles('package-lock.json') }}
+      - uses: actions/setup-node@v2
+        if: steps.cache.outputs.cache-hit != 'true'
+        with:
+          cache: npm
+          node-version: '14'
+      - name: yarn install
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: npm install
+
   agents:
     runs-on: ubuntu-latest
     name: Nx Cloud Agent
+    needs: install-deps
     timeout-minutes: 60
     strategy:
       matrix:
         agent: [1, 2, 3]
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
-        with:
-          cache: 'npm'
-          node-version: '14'
-      - run: npm install
+      - name: Retrieve node_modules cache
+        uses: actions/cache@v2
+          with:
+            path: node_modules
+            key: cache-node-modules-${{ hashFiles('package-lock.json') }}
       - name: Start Nx Agent ${{ matrix.agent }}
         run: npx nx-cloud start-agent
 
   build:
+    needs: install-deps
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -40,7 +60,11 @@ jobs:
         with:
           cache: 'npm'
           node-version: '14'
-      - run: npm install
+      - name: Retrieve node_modules cache
+        uses: actions/cache@v2
+          with:
+            path: node_modules
+            key: cache-node-modules-${{ hashFiles('package-lock.json') }}
       - name: Activate Nx Cloud agent
         run: npx nx-cloud start-ci-run
       - name: Check code formatting
@@ -51,6 +75,7 @@ jobs:
         run: npx nx affected --target=build --parallel --maxParallel=5
 
   test:
+    needs: install-deps
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -67,7 +92,11 @@ jobs:
         with:
           cache: 'npm'
           node-version: '14'
-      - run: npm install
+      - name: Retrieve node_modules cache
+        uses: actions/cache@v2
+          with:
+            path: node_modules
+            key: cache-node-modules-${{ hashFiles('package-lock.json') }}
       - name: Activate Nx Cloud agent
         run: npx nx-cloud start-ci-run
       - name: Run code coverage
@@ -83,6 +112,10 @@ jobs:
         with:
           cache: 'npm'
           node-version: '14'
-      - run: npm install
+      - name: Retrieve node_modules cache
+        uses: actions/cache@v2
+          with:
+            path: node_modules
+            key: cache-node-modules-${{ hashFiles('package-lock.json') }}
       - name: Stop Nx Cloud agents
         run: npx nx-cloud stop-all-agents
