@@ -35,7 +35,7 @@ jobs:
     timeout-minutes: 60
     strategy:
       matrix:
-        agent: [1, 2, 3]
+        agent: [1, 2, 3, 4]
     steps:
       - uses: actions/checkout@v2
       - name: Retrieve node_modules cache
@@ -48,7 +48,7 @@ jobs:
 
   # TODO: add separate job for lint
 
-  build:
+  lint:
     needs: install-deps
     runs-on: ubuntu-latest
     steps:
@@ -74,6 +74,29 @@ jobs:
         run: npx prettier --check .
       - name: Run lint
         run: npx nx affected --target=lint --format=compact --silent --parallel --maxParallel=5
+
+  build:
+    needs: install-deps
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          # We need to fetch all branches and commits so that Nx affected has a base to compare against.
+          fetch-depth: 0
+      - name: Derive appropriate SHAs for base and head for `nx affected` commands
+        uses: nrwl/nx-set-shas@v2
+      - uses: actions/setup-node@v2
+        with:
+          cache: 'npm'
+          node-version: '14'
+      - name: Retrieve node_modules cache
+        uses: actions/cache@v2
+        with:
+          path: node_modules
+          key: cache-node-modules-${{ hashFiles('package-lock.json') }}
+      - name: Activate Nx Cloud agent
+        run: npx nx-cloud start-ci-run
       - name: Build libraries
         run: npx nx affected --target=build --parallel --maxParallel=5
 
@@ -108,7 +131,7 @@ jobs:
   stop-agents:
     runs-on: ubuntu-latest
     if: always()
-    needs: [build, test]
+    needs: [lint, build, test]
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
