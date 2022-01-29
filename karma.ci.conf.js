@@ -18,6 +18,7 @@ function getBrowserSet(key) {
   const bsBrowserFirefox = {
     base: 'BrowserStack',
     browser: 'Firefox',
+    browser_version: '95',
     os: 'OS X',
     os_version: 'Monterey',
   };
@@ -33,10 +34,10 @@ function getBrowserSet(key) {
     speedy: [bsBrowserChrome],
     quirky: [bsBrowserChrome, bsBrowserEdge],
     paranoid: [
-      // bsBrowserChrome,
-      bsBrowserEdge,
+      bsBrowserChrome,
+      // bsBrowserEdge,
       // bsBrowserFirefox,
-      bsBrowserSafari,
+      // bsBrowserSafari,
     ],
   };
 

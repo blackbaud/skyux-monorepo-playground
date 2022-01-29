@@ -46,6 +46,8 @@ jobs:
       - name: Start Nx Agent ${{ matrix.agent }}
         run: npx nx-cloud start-agent
 
+  # TODO: add separate job for lint
+
   build:
     needs: install-deps
     runs-on: ubuntu-latest
