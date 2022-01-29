@@ -39,9 +39,9 @@ jobs:
     steps:
       - name: Retrieve node_modules cache
         uses: actions/cache@v2
-          with:
-            path: node_modules
-            key: cache-node-modules-${{ hashFiles('package-lock.json') }}
+        with:
+          path: node_modules
+          key: cache-node-modules-${{ hashFiles('package-lock.json') }}
       - name: Start Nx Agent ${{ matrix.agent }}
         run: npx nx-cloud start-agent
 
@@ -62,9 +62,9 @@ jobs:
           node-version: '14'
       - name: Retrieve node_modules cache
         uses: actions/cache@v2
-          with:
-            path: node_modules
-            key: cache-node-modules-${{ hashFiles('package-lock.json') }}
+        with:
+          path: node_modules
+          key: cache-node-modules-${{ hashFiles('package-lock.json') }}
       - name: Activate Nx Cloud agent
         run: npx nx-cloud start-ci-run
       - name: Check code formatting
@@ -94,9 +94,9 @@ jobs:
           node-version: '14'
       - name: Retrieve node_modules cache
         uses: actions/cache@v2
-          with:
-            path: node_modules
-            key: cache-node-modules-${{ hashFiles('package-lock.json') }}
+        with:
+          path: node_modules
+          key: cache-node-modules-${{ hashFiles('package-lock.json') }}
       - name: Activate Nx Cloud agent
         run: npx nx-cloud start-ci-run
       - name: Run code coverage
@@ -114,8 +114,8 @@ jobs:
           node-version: '14'
       - name: Retrieve node_modules cache
         uses: actions/cache@v2
-          with:
-            path: node_modules
-            key: cache-node-modules-${{ hashFiles('package-lock.json') }}
+        with:
+          path: node_modules
+          key: cache-node-modules-${{ hashFiles('package-lock.json') }}
       - name: Stop Nx Cloud agents
         run: npx nx-cloud stop-all-agents
