@@ -24,9 +24,9 @@ jobs:
         with:
           cache: npm
           node-version: '14'
-      - name: yarn install
+      - name: npm install
         if: steps.cache.outputs.cache-hit != 'true'
-        run: npm install
+        run: npm ci
 
   agents:
     runs-on: ubuntu-latest
@@ -37,6 +37,7 @@ jobs:
       matrix:
         agent: [1, 2, 3]
     steps:
+      - uses: actions/checkout@v2
       - name: Retrieve node_modules cache
         uses: actions/cache@v2
         with:
