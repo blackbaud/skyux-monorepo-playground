@@ -79,7 +79,6 @@
     "karma-browserstack-launcher": "^1",
     "karma-chrome-launcher": "~3.1.0",
     "karma-coverage": "^2",
-    "karma-firefox-launcher": "2.1.2",
     "karma-jasmine": "~4.0.0",
     "karma-jasmine-html-reporter": "^1.5.0",
     "ng-packagr": "^12.1.1",

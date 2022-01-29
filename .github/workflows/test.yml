@@ -125,8 +125,12 @@ jobs:
           key: cache-node-modules-${{ hashFiles('package-lock.json') }}
       - name: Activate Nx Cloud agent
         run: npx nx-cloud start-ci-run
-      - name: Run code coverage
-        run: export NODE_OPTIONS="--max-old-space-size=8192" NX_CLOUD_DISTRIBUTED_EXECUTION=false && npx nx run all:test --karmaConfig=${{ matrix.karmaConfig }} --skip-nx-cache
+      - name: Cross browser tests
+        if: matrix.karmaConfig == 'karma.ci.conf.js'
+        run: export NODE_OPTIONS="--max-old-space-size=8192" NX_CLOUD_DISTRIBUTED_EXECUTION=false && npx nx run all:test --karmaConfig=${{ matrix.karmaConfig }} --skip-nx-cache --codeCoverage=false
+      - name: Code coverage
+        if: matrix.karmaConfig == 'karma.all.conf.js'
+        run: export NODE_OPTIONS="--max-old-space-size=8192" NX_CLOUD_DISTRIBUTED_EXECUTION=false && npx nx run all:test --karmaConfig=${{ matrix.karmaConfig }} --skip-nx-cache --codeCoverage=true
 
   stop-agents:
     runs-on: ubuntu-latest

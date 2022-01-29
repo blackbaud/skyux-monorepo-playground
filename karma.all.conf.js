@@ -45,6 +45,9 @@ module.exports = function (config) {
     // },
   });
 
+  // Add support for Codecov reports.
+  // config.coverageReporter.reporters.push({ type: 'lcovonly' });
+
   // Tell karma to wait for bundle to be completed before launching browsers.
   // See: https://github.com/karma-runner/karma-chrome-launcher/issues/154#issuecomment-986661937
   config.plugins.unshift(require('./karma.waitwebpack'));

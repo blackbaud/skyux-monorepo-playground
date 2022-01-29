@@ -34,10 +34,10 @@ function getBrowserSet(key) {
     speedy: [bsBrowserChrome],
     quirky: [bsBrowserChrome, bsBrowserEdge],
     paranoid: [
-      bsBrowserChrome,
-      // bsBrowserEdge,
-      // bsBrowserFirefox,
-      // bsBrowserSafari,
+      // bsBrowserChrome,
+      bsBrowserEdge,
+      bsBrowserFirefox,
+      bsBrowserSafari,
     ],
   };
 
@@ -95,7 +95,7 @@ module.exports = function (config) {
   });
 
   // Add support for Codecov reports.
-  config.coverageReporter.reporters.push({ type: 'lcovonly' });
+  // config.coverageReporter.reporters.push({ type: 'lcovonly' });
 
   if (process.env.BROWSER_STACK_ACCESS_KEY) {
     const tunnelIdentifier = `tunnel_${new Date().getTime()}`;
@@ -118,7 +118,7 @@ module.exports = function (config) {
         video: false,
       },
       // Try Websocket for a faster transmission first. Fallback to polling if necessary.
-      // transports: ['websocket', 'polling'],
+      transports: ['websocket', 'polling'],
 
       // browserConsoleLogOptions: { terminal: true, level: 'log' },
     });
@@ -131,18 +131,19 @@ module.exports = function (config) {
     });
 
     config.plugins.push(require('karma-browserstack-launcher'));
+    config.reporters.push('BrowserStack');
 
     // Create a custom plugin to log the BrowserStack session.
-    config.reporters.push('blackbaud-browserstack');
-    config.plugins.push({
-      'reporter:blackbaud-browserstack': [
-        'type',
-        function (/* BrowserStack:sessionMapping */ sessions) {
-          this.onBrowserComplete = (browser) =>
-            logBrowserStackSession(sessions[browser.id]);
-        },
-      ],
-    });
+    // config.reporters.push('blackbaud-browserstack');
+    // config.plugins.push({
+    //   'reporter:blackbaud-browserstack': [
+    //     'type',
+    //     function (/* BrowserStack:sessionMapping */ sessions) {
+    //       this.onBrowserComplete = (browser) =>
+    //         logBrowserStackSession(sessions[browser.id]);
+    //     },
+    //   ],
+    // });
 
     // Tell karma to wait for bundle to be completed before launching browsers.
     // See: https://github.com/karma-runner/karma-chrome-launcher/issues/154#issuecomment-986661937
