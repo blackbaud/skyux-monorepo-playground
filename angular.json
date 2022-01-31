@@ -178,7 +178,7 @@
           "options": {
             "main": "test-all.ts",
             "tsConfig": "tsconfig.test-all.json",
-            "karmaConfig": "karma.all.conf.js",
+            "karmaConfig": "config/karma/karma.all.conf.js",
             "styles": [
               "libs/theme/src/lib/styles/sky.scss",
               "libs/theme/src/lib/styles/themes/modern/styles.scss",
