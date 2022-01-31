@@ -36,7 +36,7 @@ jobs:
     timeout-minutes: 60
     strategy:
       matrix:
-        agent: [1, 2, 3]
+        agent: [1, 2, 3, 4]
     steps:
       - uses: actions/checkout@v2
       - name: Retrieve node_modules cache
@@ -47,8 +47,8 @@ jobs:
       - name: Start Nx Agent ${{ matrix.agent }}
         run: npx nx-cloud start-agent
 
-  build:
-    name: Lint and build libraries
+  lint:
+    name: Lint
     needs: install-deps
     runs-on: ubuntu-latest
     steps:
@@ -74,16 +74,11 @@ jobs:
         run: npx prettier --check .
       - name: Run lint
         run: npx nx affected --target=lint --format=compact --silent --parallel --maxParallel=5
-      - name: Build libraries
-        run: npx nx affected --target=build --parallel --maxParallel=5
 
-  test:
-    name: Cross-browser testing and code coverage
+  build:
+    name: Build
     needs: install-deps
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        karmaConfig: ['karma.all.conf.js', 'karma.ci.conf.js']
     steps:
       - uses: actions/checkout@v2
         with:
@@ -103,18 +98,66 @@ jobs:
           key: cache-node-modules-${{ hashFiles('package-lock.json') }}
       - name: Activate Nx Cloud agent
         run: npx nx-cloud start-ci-run
-      - name: Cross browser tests
-        if: matrix.karmaConfig == 'karma.ci.conf.js'
-        run: export NODE_OPTIONS="--max-old-space-size=8192" NX_CLOUD_DISTRIBUTED_EXECUTION=false && npx nx run all:test --karmaConfig=${{ matrix.karmaConfig }} --skip-nx-cache --codeCoverage=false
+      - name: Build libraries
+        run: npx nx affected --target=build --parallel --maxParallel=5
+
+  coverage:
+    name: Code coverage
+    needs: install-deps
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          # We need to fetch all branches and commits so that Nx affected has a base to compare against.
+          fetch-depth: 0
+      - name: Derive appropriate SHAs for base and head for `nx affected` commands
+        uses: nrwl/nx-set-shas@v2
+      - uses: actions/setup-node@v2
+        with:
+          cache: 'npm'
+          node-version: '14'
+      - name: Retrieve node_modules cache
+        uses: actions/cache@v2
+        with:
+          path: node_modules
+          key: cache-node-modules-${{ hashFiles('package-lock.json') }}
+      - name: Activate Nx Cloud agent
+        run: npx nx-cloud start-ci-run
       - name: Code coverage
-        if: matrix.karmaConfig == 'karma.all.conf.js'
-        run: export NODE_OPTIONS="--max-old-space-size=8192" NX_CLOUD_DISTRIBUTED_EXECUTION=false && npx nx run all:test --karmaConfig=${{ matrix.karmaConfig }} --skip-nx-cache --codeCoverage=true
+        run: export NODE_OPTIONS="--max-old-space-size=8192" NX_CLOUD_DISTRIBUTED_EXECUTION=false && npx nx run all:test --karmaConfig=karma.all.conf.js --skip-nx-cache --codeCoverage=true --watch=false
+
+  browserstack:
+    name: Cross-browser testing
+    needs: install-deps
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          # We need to fetch all branches and commits so that Nx affected has a base to compare against.
+          fetch-depth: 0
+      - name: Derive appropriate SHAs for base and head for `nx affected` commands
+        uses: nrwl/nx-set-shas@v2
+      - uses: actions/setup-node@v2
+        with:
+          cache: 'npm'
+          node-version: '14'
+      - name: Retrieve node_modules cache
+        uses: actions/cache@v2
+        with:
+          path: node_modules
+          key: cache-node-modules-${{ hashFiles('package-lock.json') }}
+      - name: Activate Nx Cloud agent
+        run: npx nx-cloud start-ci-run
+      - name: Cross-browser tests
+        run: export NODE_OPTIONS="--max-old-space-size=8192" NX_CLOUD_DISTRIBUTED_EXECUTION=false && npx nx run all:test --karmaConfig=karma.ci.conf.js --skip-nx-cache --codeCoverage=false --watch=false --sourceMap=false
 
   stop-agents:
     name: Stop Nx Cloud agents
     runs-on: ubuntu-latest
     if: always()
-    needs: [build, test]
+    needs: [lint, build, coverage, browserstack]
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2

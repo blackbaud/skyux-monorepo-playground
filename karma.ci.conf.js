@@ -94,9 +94,6 @@ module.exports = function (config) {
     restartOnFileChange: false,
   });
 
-  // Add support for Codecov reports.
-  // config.coverageReporter.reporters.push({ type: 'lcovonly' });
-
   if (process.env.BROWSER_STACK_ACCESS_KEY) {
     const tunnelIdentifier = `tunnel_${new Date().getTime()}`;
 
