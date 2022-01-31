@@ -125,7 +125,7 @@ jobs:
       - name: Activate Nx Cloud agent
         run: npx nx-cloud start-ci-run
       - name: Code coverage
-        run: export NODE_OPTIONS="--max-old-space-size=8192" NX_CLOUD_DISTRIBUTED_EXECUTION=false && npx nx run all:test --karmaConfig=config/karma/karma.all.conf.js --skip-nx-cache --codeCoverage=true --watch=false
+        run: export NX_CLOUD_DISTRIBUTED_EXECUTION=false && npx nx run all:test --karmaConfig=config/karma/karma.all.conf.js --skip-nx-cache --codeCoverage=true --watch=false
 
   browserstack:
     name: Cross-browser testing
@@ -151,7 +151,7 @@ jobs:
       - name: Activate Nx Cloud agent
         run: npx nx-cloud start-ci-run
       - name: Cross-browser tests
-        run: export NODE_OPTIONS="--max-old-space-size=8192" NX_CLOUD_DISTRIBUTED_EXECUTION=false && npx nx run all:test --karmaConfig=config/karma/karma.ci.conf.js --skip-nx-cache --codeCoverage=false --watch=false --sourceMap=false
+        run: export NX_CLOUD_DISTRIBUTED_EXECUTION=false && npx nx run all:test --karmaConfig=config/karma/karma.ci.conf.js --skip-nx-cache --codeCoverage=false --watch=false --sourceMap=false
 
   stop-agents:
     name: Stop Nx Cloud agents
