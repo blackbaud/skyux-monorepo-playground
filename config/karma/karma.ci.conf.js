@@ -1,13 +1,6 @@
-const getBaseKarmaConfig = require('./karma.conf');
+const getBaseKarmaConfig = require('../../karma.conf');
 
 function getBrowserSet(key) {
-  const bsBrowserChrome = {
-    base: 'BrowserStack',
-    browser: 'Chrome',
-    os: 'Windows',
-    os_version: '10',
-  };
-
   const bsBrowserEdge = {
     base: 'BrowserStack',
     browser: 'Edge',
@@ -33,12 +26,7 @@ function getBrowserSet(key) {
   const browserSets = {
     speedy: [bsBrowserChrome],
     quirky: [bsBrowserChrome, bsBrowserEdge],
-    paranoid: [
-      // bsBrowserChrome,
-      bsBrowserEdge,
-      bsBrowserFirefox,
-      bsBrowserSafari,
-    ],
+    paranoid: [bsBrowserEdge, bsBrowserFirefox, bsBrowserSafari],
   };
 
   return browserSets[key];
@@ -83,25 +71,23 @@ module.exports = function (config) {
       ...baseConfig.client,
       captureConsole: false,
     },
-    coverageReporter: {
-      ...baseConfig.coverageReporter,
-      dir: require('path').join(process.cwd(), './coverage'),
-    },
     reporters: ['dots'],
     autoWatch: false,
-    browsers: ['ChromeHeadless'],
+    browsers: ['ChromeHeadless'], // Fallback browser in case env variables not set.
     singleRun: true,
     restartOnFileChange: false,
   });
 
-  if (process.env.BROWSER_STACK_ACCESS_KEY) {
-    const tunnelIdentifier = `tunnel_${new Date().getTime()}`;
+  delete config.coverageReporter;
 
+  if (process.env.BROWSER_STACK_ACCESS_KEY) {
+    const tunnelIdentifier = `browserstack_tunnel_${new Date().getTime()}`;
     const customLaunchers = getBrowserStackLaunchers('paranoid');
 
     config.set({
       customLaunchers,
       browsers: Object.keys(customLaunchers),
+
       browserStack: {
         accessKey: process.env.BROWSER_STACK_ACCESS_KEY,
         username: process.env.BROWSER_STACK_USERNAME,
@@ -114,37 +100,30 @@ module.exports = function (config) {
         tunnelIdentifier,
         video: false,
       },
+
       // Try Websocket for a faster transmission first. Fallback to polling if necessary.
       transports: ['websocket', 'polling'],
 
-      // browserConsoleLogOptions: { terminal: true, level: 'log' },
-    });
-
-    config.set({
-      // browserDisconnectTimeout: 60000,
       browserDisconnectTolerance: 2,
-      // browserNoActivityTimeout: 30000,
-      // captureTimeout: 60000,
     });
 
     config.plugins.push(require('karma-browserstack-launcher'));
-    config.reporters.push('BrowserStack');
 
     // Create a custom plugin to log the BrowserStack session.
-    // config.reporters.push('blackbaud-browserstack');
-    // config.plugins.push({
-    //   'reporter:blackbaud-browserstack': [
-    //     'type',
-    //     function (/* BrowserStack:sessionMapping */ sessions) {
-    //       this.onBrowserComplete = (browser) =>
-    //         logBrowserStackSession(sessions[browser.id]);
-    //     },
-    //   ],
-    // });
+    config.reporters.push('blackbaud-browserstack');
+    config.plugins.push({
+      'reporter:blackbaud-browserstack': [
+        'type',
+        function (/* BrowserStack:sessionMapping */ sessions) {
+          this.onBrowserComplete = (browser) =>
+            logBrowserStackSession(sessions[browser.id]);
+        },
+      ],
+    });
 
     // Tell karma to wait for bundle to be completed before launching browsers.
     // See: https://github.com/karma-runner/karma-chrome-launcher/issues/154#issuecomment-986661937
-    config.plugins.unshift(require('./karma.waitwebpack'));
+    config.plugins.unshift(require('./plugins/karma.waitwebpack'));
     config.frameworks.unshift('waitwebpack');
   }
 };
