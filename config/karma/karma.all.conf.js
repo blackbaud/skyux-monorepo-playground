@@ -5,7 +5,7 @@ module.exports = function (config) {
 
   config.set({
     coverageReporter: {
-      ...baseConfig.coverageReporter,
+      ...config.coverageReporter,
       dir: require('path').join(process.cwd(), './coverage/all'),
     },
   });
