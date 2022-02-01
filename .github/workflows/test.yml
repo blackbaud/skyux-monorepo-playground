@@ -7,6 +7,7 @@ env:
   NX_CLOUD_DISTRIBUTED_EXECUTION: true
   BROWSER_STACK_USERNAME: ${{ secrets.BROWSER_STACK_USERNAME }}
   BROWSER_STACK_ACCESS_KEY: ${{ secrets.BROWSER_STACK_ACCESS_KEY }}
+  GITHUB_TOKEN: ${{ secrets.GH_PERSONAL_ACCESS_TOKEN }}
 
 jobs:
   check-pr:
@@ -14,8 +15,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: amannn/action-semantic-pull-request@v3
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           validateSingleCommit: true
 
@@ -109,7 +108,7 @@ jobs:
       - name: Activate Nx Cloud agent
         run: npx nx-cloud start-ci-run
       - name: Build libraries
-        run: npx nx affected --target=build --parallel
+        run: npx nx affected:build
 
   coverage:
     name: Code coverage
