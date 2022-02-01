@@ -99,7 +99,7 @@ jobs:
       - name: Activate Nx Cloud agent
         run: npx nx-cloud start-ci-run
       - name: Build libraries
-        run: npx nx affected --target=build --parallel --maxParallel=5
+        run: npx nx affected --target=build --parallel --maxParallel=3
 
   coverage:
     name: Code coverage
