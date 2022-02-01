@@ -20,7 +20,7 @@
       "runner": "@nrwl/nx-cloud",
       "options": {
         "cacheableOperations": ["build", "lint", "test", "e2e"],
-        "accessToken": "MTVmYjA1M2UtZTdjNS00YWE1LWFiZTktZDIyNTZkOTVkNzVjfHJlYWQtd3JpdGU="
+        "accessToken": "ZjIyMjExYzItNWZmMC00ZDcxLWJlOTItOTgwNDNlYTgyYTQxfHJlYWQtd3JpdGU="
       }
     }
   },
@@ -55,6 +55,9 @@
       "tags": []
     },
     "avatar": {
+      "tags": []
+    },
+    "code-examples": {
       "tags": []
     },
     "colorpicker": {
@@ -95,6 +98,13 @@
     },
     "inline-form": {
       "tags": []
+    },
+    "integration": {
+      "tags": []
+    },
+    "integration-e2e": {
+      "tags": [],
+      "implicitDependencies": ["integration"]
     },
     "layout": {
       "tags": []
@@ -143,13 +153,6 @@
     },
     "select-field": {
       "tags": []
-    },
-    "showcase": {
-      "tags": []
-    },
-    "showcase-e2e": {
-      "tags": [],
-      "implicitDependencies": ["showcase"]
     },
     "split-view": {
       "tags": []
