@@ -33,6 +33,10 @@
       "files": ["*.html"],
       "extends": ["plugin:@nrwl/nx/angular-template", "prettier"],
       "rules": {}
+    },
+    {
+      "files": ["*.spec.ts", "**/fixtures/**/*.ts"],
+      "extends": ["../../.eslintrc-overrides.json", "prettier"]
     }
   ]
 }
