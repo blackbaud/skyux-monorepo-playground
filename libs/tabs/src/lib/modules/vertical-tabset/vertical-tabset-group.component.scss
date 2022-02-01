@@ -1,6 +1,6 @@
-@import "libs/theme/src/lib/styles/variables";
-@import "libs/theme/src/lib/styles/mixins";
-@import "libs/theme/src/lib/styles/_compat/mixins";
+@import 'libs/theme/src/lib/styles/variables';
+@import 'libs/theme/src/lib/styles/mixins';
+@import 'libs/theme/src/lib/styles/_compat/mixins';
 
 .sky-vertical-tabset-group {
   @include sky-border(light, bottom);
@@ -49,6 +49,6 @@
   .sky-vertical-tabset-group-header-chevron {
     position: absolute;
     top: 6px;
-    right: 5px
+    right: 5px;
   }
 }

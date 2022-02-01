@@ -439,6 +439,8 @@ export class SkyDropdownComponent implements OnInit, OnDestroy {
     this.createOverlay();
     this.changeDetector.markForCheck();
 
+    // Explicitly declare the `setTimeout` from the `window` object in order to use the DOM typings
+    // during a unit test (instead of confusing this with Node's `setTimeout`).
     this._positionTimeout = window.setTimeout(() => {
       this.affixer.affixTo(this.triggerButton.nativeElement, {
         autoFitContext: SkyAffixAutoFitContext.Viewport,

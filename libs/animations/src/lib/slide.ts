@@ -14,6 +14,7 @@ export const skyAnimationSlide: AnimationTriggerMetadata = trigger(
       'down',
       style({
         overflow: 'visible',
+        visibility: 'visible',
         height: '*',
       })
     ),
@@ -21,6 +22,7 @@ export const skyAnimationSlide: AnimationTriggerMetadata = trigger(
       'up',
       style({
         overflow: 'hidden',
+        visibility: 'hidden',
         height: 0,
       })
     ),

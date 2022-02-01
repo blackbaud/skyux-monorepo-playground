@@ -1,21 +1,26 @@
 {
   "npmScope": "skyux-components",
   "affected": {
-    "defaultBase": "master"
+    "defaultBase": "main"
   },
   "implicitDependencies": {
     "package.json": {
       "dependencies": "*",
       "devDependencies": "*"
     },
-    ".eslintrc.json": "*"
+    ".eslintrc.json": "*",
+    ".github/workflows/build.yml": "*",
+    "karma.all.conf.js": "*",
+    "karma.ci.conf.js": "*",
+    "karma.conf.js": "*",
+    "test-all.ts": "*"
   },
   "tasksRunnerOptions": {
     "default": {
       "runner": "@nrwl/nx-cloud",
       "options": {
         "cacheableOperations": ["build", "lint", "test", "e2e"],
-        "accessToken": "ZTAyYzQ0ZWMtZDI1Ni00ZWE0LTlmZTgtNzQ0YjA3NjFhZThifHJlYWQtd3JpdGU="
+        "accessToken": "ZjIyMjExYzItNWZmMC00ZDcxLWJlOTItOTgwNDNlYTgyYTQxfHJlYWQtd3JpdGU="
       }
     }
   },
@@ -50,6 +55,9 @@
       "tags": []
     },
     "avatar": {
+      "tags": []
+    },
+    "code-examples": {
       "tags": []
     },
     "colorpicker": {
@@ -90,6 +98,13 @@
     },
     "inline-form": {
       "tags": []
+    },
+    "integration": {
+      "tags": []
+    },
+    "integration-e2e": {
+      "tags": [],
+      "implicitDependencies": ["integration"]
     },
     "layout": {
       "tags": []
@@ -138,13 +153,6 @@
     },
     "select-field": {
       "tags": []
-    },
-    "showcase": {
-      "tags": []
-    },
-    "showcase-e2e": {
-      "tags": [],
-      "implicitDependencies": ["showcase"]
     },
     "split-view": {
       "tags": []

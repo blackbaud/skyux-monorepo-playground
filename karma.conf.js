@@ -8,23 +8,51 @@ module.exports = () => {
   return {
     basePath: '',
     frameworks: ['jasmine', '@angular-devkit/build-angular'],
+    middleware: ['fake-url'],
     plugins: [
       require('karma-jasmine'),
       require('karma-chrome-launcher'),
       require('karma-coverage'),
       require('@angular-devkit/build-angular/plugins/karma'),
+      {
+        'middleware:fake-url': [
+          'factory',
+          function () {
+            // Middleware that avoids triggering 404s during tests that need to reference
+            // image paths. Assumes that the image path will start with `/$`.
+            // Credit: https://github.com/angular/components/blob/59002e1649123922df3532f4be78c485a73c5bc1/test/karma.conf.js
+            return function (request, response, next) {
+              if (request.url.indexOf('/$') === 0) {
+                response.writeHead(200);
+                return response.end();
+              }
+
+              next();
+            };
+          },
+        ],
+      },
     ],
     client: {
       jasmine: {
-        random: false
+        random: false,
       },
       clearContext: false, // leave Jasmine Spec Runner output visible in browser
     },
     coverageReporter: {
       dir: join(__dirname, '../../coverage'),
+      subdir: '.',
       reporters: [{ type: 'html' }, { type: 'text-summary' }],
+      check: {
+        global: {
+          statements: 99,
+          branches: 99,
+          functions: 99,
+          lines: 99,
+        },
+      },
     },
-    reporters: ['progress',],
+    reporters: ['progress'],
     port: 9876,
     colors: true,
     logLevel: constants.LOG_INFO,
