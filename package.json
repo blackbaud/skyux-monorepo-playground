@@ -70,10 +70,12 @@
     "@typescript-eslint/eslint-plugin": "~4.31.1",
     "@typescript-eslint/parser": "~4.31.1",
     "browserstack-local": "^1",
+    "cross-spawn": "7.0.3",
     "cypress": "^8.3.0",
     "eslint": "7.22.0",
     "eslint-config-prettier": "8.3.0",
     "eslint-plugin-cypress": "^2.10.3",
+    "fs-extra": "10.0.0",
     "jasmine-core": "~3.6.0",
     "karma": "^6",
     "karma-browserstack-launcher": "^1",
@@ -84,6 +86,7 @@
     "ng-packagr": "^12.1.1",
     "normalize-scss": "^7",
     "prettier": "2.4.1",
+    "standard-version": "9.3.2",
     "typescript": "~4.3.5"
   }
 }
