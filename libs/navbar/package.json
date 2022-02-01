@@ -1,10 +1,10 @@
 {
   "name": "@skyux/navbar",
-  "version": "5.0.1",
+  "version": "0.0.0-PLACEHOLDER",
   "peerDependencies": {
     "@angular/common": "^12.2.13",
     "@angular/core": "^12.2.13",
-    "@skyux/theme": "^5.0.3"
+    "@skyux/theme": "0.0.0-PLACEHOLDER"
   },
   "dependencies": {
     "tslib": "^2.3.1"

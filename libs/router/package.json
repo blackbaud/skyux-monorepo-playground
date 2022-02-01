@@ -1,12 +1,12 @@
 {
   "name": "@skyux/router",
-  "version": "5.0.2",
+  "version": "0.0.0-PLACEHOLDER",
   "peerDependencies": {
     "@angular/common": "^12.2.13",
     "@angular/core": "^12.2.13",
     "@angular/router": "^12.2.13",
-    "@skyux/config": "^5.0.1",
-    "@skyux/core": "^5.1.1"
+    "@skyux/config": "0.0.0-PLACEHOLDER",
+    "@skyux/core": "0.0.0-PLACEHOLDER"
   },
   "dependencies": {
     "tslib": "^2.3.1"
