@@ -44,6 +44,15 @@ function updateProjectFiles(projectRootPath, packageLockJson) {
   fs.writeJsonSync(packageJsonPath, packageJson, { spaces: 2 });
 }
 
+async function createNpmrcFile() {
+  const npmFilePath = path.join(process.cwd(), '.npmrc');
+  await fs.ensureFile(npmFilePath);
+  fs.writeFileSync(
+    npmFilePath,
+    `//registry.npmjs.org/:_authToken=${process.env.NPM_TOKEN}`
+  );
+}
+
 async function release() {
   try {
     fs.removeSync('dist');
@@ -64,6 +73,7 @@ async function release() {
       `--exclude=${excludeProjects.join(',')}`,
       '--parallel',
       '--maxParallel=2',
+      '--skipNxCache',
     ]);
 
     // Bump version and create changelog.
@@ -84,6 +94,21 @@ async function release() {
     for (const projectName of projectNames) {
       updateProjectFiles(path.join(libsDist, projectName), packageLockJson);
     }
+
+    await createNpmrcFile();
+
+    const promises = projectNames.map((projectName) => {
+      return runCommand(
+        'npm',
+        ['publish', '--access=public', '--tag=next', '--dry-run'],
+        {
+          cwd: path.join(process.cwd(), libsDist, projectName),
+          stdio: 'pipe',
+        }
+      );
+    });
+
+    await Promise.all(promises);
   } catch (err) {
     console.error(err.message);
     process.exit(1);
