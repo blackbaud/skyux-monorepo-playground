@@ -119,6 +119,12 @@ async function release() {
       process.exit(0);
     }
 
+    const branch = `release-${nextVersion}`;
+
+    console.log(`Creating new branch "${branch}"...`);
+
+    gitUtils.checkoutNewBranch(branch);
+
     console.log('Generating release artifacts...');
 
     const standardVersionConfig = getStandardVersionConfig(currentVersion, {

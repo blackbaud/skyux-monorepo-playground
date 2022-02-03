@@ -22,7 +22,16 @@ function fetchAll() {
   return spawnToString('git', ['fetch', '--all']);
 }
 
+function checkoutNewBranch(branch) {
+  const result = spawnToString('git', ['branch', '--list', branch]);
+  if (result) {
+    throw new Error(`The branch "${branch}" already exists. Aborting.`);
+  }
+  spawnToString('git', ['checkout', '--branch', branch]);
+}
+
 module.exports = {
+  checkoutNewBranch,
   fetchAll,
   isGitClean,
   getCurrentBranch,
