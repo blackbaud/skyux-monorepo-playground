@@ -1,6 +1,6 @@
 {
   "name": "skyux-components",
-  "version": "0.0.0",
+  "version": "5.0.0",
   "license": "MIT",
   "scripts": {
     "ng": "nx",
@@ -14,6 +14,7 @@
     "test:affected": "nx affected --target=test --parallel --maxParallel=4",
     "watch": "nx run-many --target=test --all --parallel --maxParallel=4 --watch",
     "watch:affected": "nx affected --target=test --parallel --maxParallel=4 --watch",
+    "release": "node ./scripts/create-release.js",
     "skyux:format": "npx prettier --write ."
   },
   "private": true,
@@ -76,6 +77,7 @@
     "eslint-config-prettier": "8.3.0",
     "eslint-plugin-cypress": "^2.10.3",
     "fs-extra": "10.0.0",
+    "inquirer": "8.2.0",
     "jasmine-core": "~3.6.0",
     "karma": "^6",
     "karma-browserstack-launcher": "^1",
@@ -86,6 +88,7 @@
     "ng-packagr": "^12.1.1",
     "normalize-scss": "^7",
     "prettier": "2.4.1",
+    "semver": "7.3.5",
     "standard-version": "9.3.2",
     "typescript": "~4.3.5"
   }
