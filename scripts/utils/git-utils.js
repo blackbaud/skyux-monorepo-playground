@@ -1,9 +1,12 @@
 const spawn = require('cross-spawn');
 
-function spawnToString(command, args) {
+function spawnToString(command, args, spawnOptions = {}) {
   const spawnResult = spawn.sync(command, args, {
-    cwd: process.cwd(),
-    stdio: 'pipe',
+    ...{
+      cwd: process.cwd(),
+      stdio: 'pipe',
+    },
+    ...spawnOptions,
   });
 
   return spawnResult.stdout.toString().trim();
@@ -27,7 +30,7 @@ function checkoutNewBranch(branch) {
   if (result) {
     throw new Error(`The branch "${branch}" already exists. Aborting.`);
   }
-  spawnToString('git', ['checkout', '--branch', branch]);
+  spawnToString('git', ['checkout', '--branch', branch], { stdio: 'inherit' });
 }
 
 module.exports = {
