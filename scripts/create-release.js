@@ -89,9 +89,9 @@ async function release() {
     gitUtils.fetchAll();
 
     // Ensure releases are executed against the main branch.
-    // if (gitUtils.getCurrentBranch() !== 'main') {
-    //   throw new Error('Releases can only be triggered on the "main" branch.');
-    // }
+    if (gitUtils.getCurrentBranch() !== 'main') {
+      throw new Error('Releases can only be triggered on the "main" branch.');
+    }
 
     // Ensure local git is clean.
     if (!gitUtils.isGitClean()) {
