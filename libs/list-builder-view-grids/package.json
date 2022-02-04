@@ -1,16 +1,16 @@
 {
   "name": "@skyux/list-builder-view-grids",
-  "version": "5.0.1",
+  "version": "0.0.0-PLACEHOLDER",
   "peerDependencies": {
     "@angular/common": "^12.2.13",
     "@angular/core": "^12.2.13",
-    "@skyux/grids": "^5.0.0",
-    "@skyux/i18n": "^5.0.1",
-    "@skyux/indicators": "^5.0.2",
-    "@skyux/list-builder": "^5.0.0",
-    "@skyux/list-builder-view-checklist": "^5.0.0",
-    "@skyux/list-builder-common": "^5.0.1",
-    "@skyux/modals": "^5.0.2"
+    "@skyux/grids": "0.0.0-PLACEHOLDER",
+    "@skyux/i18n": "0.0.0-PLACEHOLDER",
+    "@skyux/indicators": "0.0.0-PLACEHOLDER",
+    "@skyux/list-builder": "0.0.0-PLACEHOLDER",
+    "@skyux/list-builder-view-checklist": "0.0.0-PLACEHOLDER",
+    "@skyux/list-builder-common": "0.0.0-PLACEHOLDER",
+    "@skyux/modals": "0.0.0-PLACEHOLDER"
   },
   "dependencies": {
     "tslib": "^2.3.1"
