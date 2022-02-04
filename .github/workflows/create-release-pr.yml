@@ -3,7 +3,7 @@ name: Create pull request for release notes
 on:
   push:
     branches:
-      - 'release-*.*.*'
+      - 'releases/*'
 
 env:
   GITHUB_TOKEN: ${{ secrets.GH_PERSONAL_ACCESS_TOKEN }}

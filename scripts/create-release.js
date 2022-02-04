@@ -79,7 +79,7 @@ async function getNextVersion(currentVersion) {
 }
 
 /**
- * Creates a 'release-x.x.x' branch, tags it, and automatically adds release notes to CHANGELOG.md.
+ * Creates a 'releases/x.x.x' branch, tags it, and automatically adds release notes to CHANGELOG.md.
  */
 async function release() {
   try {
@@ -119,7 +119,7 @@ async function release() {
       process.exit(0);
     }
 
-    const branch = `release-${nextVersion}`;
+    const branch = `releases/${nextVersion}`;
 
     console.log(`Creating new branch "${branch}"...`);
 

@@ -1,6 +1,8 @@
 name: Test
 on:
   pull_request:
+    branches:
+      - main
 
 env:
   BROWSER_STACK_USERNAME: ${{ secrets.BROWSER_STACK_USERNAME }}
