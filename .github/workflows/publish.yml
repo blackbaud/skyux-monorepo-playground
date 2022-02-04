@@ -15,8 +15,8 @@ jobs:
   create-pr:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
       - name: Set output
-        uses: actions/checkout@v2
         id: vars
         run: echo ::set-output name=tag::${GITHUB_REF#refs/*/}
       - uses: actions/checkout@v2
