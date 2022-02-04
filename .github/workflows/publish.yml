@@ -21,10 +21,10 @@ jobs:
         run: echo ::set-output name=tag::${GITHUB_REF#refs/*/}
       - uses: actions/checkout@v2
         with:
-          branch: 'release-${{ steps.vars.outputs.tag }}'
+          ref: 'release-${{ steps.vars.outputs.tag }}'
           fetch-depth: 0
       - name: Create release pull request
-        run: hub pull-request --no-edit --head=release-${{ steps.vars.outputs.tag }}
+        run: hub pull-request --no-edit
 
   release:
     runs-on: ubuntu-latest
