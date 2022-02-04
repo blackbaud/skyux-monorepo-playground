@@ -1,10 +1,26 @@
 const fs = require('fs-extra');
 const inquirer = require('inquirer');
 const path = require('path');
+const prettier = require('prettier');
 const semver = require('semver');
 const standardVersion = require('standard-version');
 const gitUtils = require('./utils/git-utils');
 const npmUtils = require('./utils/npm-utils');
+
+// Run prettier against the updated CHANGELOG entries.
+async function formatChangelog() {
+  const changelogPath = path.join(process.cwd(), 'CHANGELOG.md');
+  const changelogContents = fs
+    .readFileSync(changelogPath, { encoding: 'utf-8' })
+    .toString();
+
+  const prettierConfig = await prettier.resolveConfig('.prettierrc');
+  prettierConfig.parser = 'markdown';
+
+  const formatted = prettier.format(changelogContents, prettierConfig);
+
+  fs.writeFileSync(changelogPath, formatted);
+}
 
 /**
  * Returns the default config to be passed to 'standard-version'.
@@ -131,6 +147,9 @@ async function release() {
 
     // Bump version and create changelog.
     await standardVersion(standardVersionConfig);
+
+    // Run prettier on the changelog.
+    await formatChangelog();
   } catch (err) {
     console.error(err.message);
     process.exit(1);
