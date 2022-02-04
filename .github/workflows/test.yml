@@ -1,14 +1,25 @@
 name: Test
 on:
-  pull_request:
-  workflow_dispatch:
+  pull_request_target:
+    types:
+      - edited
+      - opened
+      - reopened
+      - synchronize
 
 env:
-  NX_CLOUD_DISTRIBUTED_EXECUTION: true
+  GITHUB_TOKEN: ${{ secrets.GH_PERSONAL_ACCESS_TOKEN }}
   BROWSER_STACK_USERNAME: ${{ secrets.BROWSER_STACK_USERNAME }}
   BROWSER_STACK_ACCESS_KEY: ${{ secrets.BROWSER_STACK_ACCESS_KEY }}
+  NX_CLOUD_DISTRIBUTED_EXECUTION: true
 
 jobs:
+  validate-pr-title:
+    name: Validate PR title
+    runs-on: ubuntu-latest
+    steps:
+      - uses: amannn/action-semantic-pull-request@v4
+
   install-deps:
     name: Install and cache dependencies
     runs-on: ubuntu-latest
