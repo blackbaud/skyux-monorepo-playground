@@ -127,9 +127,7 @@ async function release() {
 
     console.log('Generating release artifacts...');
 
-    const standardVersionConfig = getStandardVersionConfig(currentVersion, {
-      dryRun: true,
-    });
+    const standardVersionConfig = getStandardVersionConfig(currentVersion);
 
     // Bump version and create changelog.
     await standardVersion(standardVersionConfig);
