@@ -10,8 +10,11 @@ function spawnToString(command, args) {
 }
 
 function isGitClean() {
-  const result = spawnToString('git', ['status', '--porcelain']);
-  return result.trim().length === 0;
+  const result = spawnToString('git', ['status']);
+  return (
+    result.includes('nothing to commit, working tree clean') &&
+    !result.includes('Your branch is ahead')
+  );
 }
 
 function getCurrentBranch() {
