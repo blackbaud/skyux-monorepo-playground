@@ -1,4 +1,4 @@
-name: Validate title
+name: Validate pull request
 on:
   pull_request:
     types:
@@ -11,7 +11,7 @@ env:
   GITHUB_TOKEN: ${{ secrets.GH_PERSONAL_ACCESS_TOKEN }}
 
 jobs:
-  pull-request:
+  conventional-title:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2

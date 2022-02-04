@@ -1,4 +1,4 @@
-name: Create pull request for release notes
+name: Create release notes pull request
 
 on:
   push:
@@ -9,11 +9,10 @@ env:
   GITHUB_TOKEN: ${{ secrets.GH_PERSONAL_ACCESS_TOKEN }}
 
 jobs:
-  create-pull-request:
+  create-pr:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
-      - name: Create release pull request
-        run: hub pull-request --no-edit --base=main --head=${{ github.ref_name }}
+      - run: hub pull-request --no-edit --base=main --head=${{ github.ref_name }}
