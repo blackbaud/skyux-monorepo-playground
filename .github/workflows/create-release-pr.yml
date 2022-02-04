@@ -5,9 +5,6 @@ on:
     branches:
       - 'release-*.*.*'
 
-env:
-  GITHUB_TOKEN: ${{ secrets.GH_PERSONAL_ACCESS_TOKEN }}
-
 jobs:
   create-pull-request:
     runs-on: ubuntu-latest
@@ -16,4 +13,7 @@ jobs:
         with:
           fetch-depth: 0
       - name: Create release pull request
-        run: hub pull-request --no-edit --base=main --head=${{ github.ref_name }}
+        uses: repo-sync/pull-request@v2
+        with:
+          destination_branch: 'main'
+          github_token: ${{ secrets.GH_PERSONAL_ACCESS_TOKEN }}
