@@ -46,6 +46,8 @@ async function buildAndPublish() {
         'run-many',
         '--target=build',
         '--all',
+        '--parallel',
+        '--maxParallel=2',
         `--exclude=${excludeProjects.join(',')}`,
       ],
       {
