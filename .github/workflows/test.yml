@@ -80,8 +80,6 @@ jobs:
         with:
           path: node_modules
           key: cache-node-modules-${{ hashFiles('package-lock.json') }}
-      # - name: Activate Nx Cloud agent
-      #   run: npx nx-cloud start-ci-run
       - name: Check code formatting
         run: npx prettier --check .
       - name: Run lint
@@ -108,8 +106,6 @@ jobs:
         with:
           path: node_modules
           key: cache-node-modules-${{ hashFiles('package-lock.json') }}
-      # - name: Activate Nx Cloud agent
-      #   run: npx nx-cloud start-ci-run
       - name: Build libraries
         run: npx nx affected --target=build --parallel --max-parallel=3
 
@@ -158,8 +154,6 @@ jobs:
         with:
           path: node_modules
           key: cache-node-modules-${{ hashFiles('package-lock.json') }}
-      # - name: Activate Nx Cloud agent
-      #   run: npx nx-cloud start-ci-run
       - name: Cross-browser tests
         run: export NX_CLOUD_DISTRIBUTED_EXECUTION=false && npx nx run all:test --karmaConfig=config/karma/karma.ci.conf.js --skip-nx-cache --codeCoverage=false --watch=false --sourceMap=false
 
