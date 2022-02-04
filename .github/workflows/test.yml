@@ -35,7 +35,7 @@ jobs:
     needs: install-deps
     strategy:
       matrix:
-        agent: [1, 2, 3, 4, 5]
+        agent: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
     steps:
       - uses: actions/checkout@v2
       - name: Retrieve node_modules cache
@@ -98,7 +98,7 @@ jobs:
       - name: Activate Nx Cloud agent
         run: npx nx-cloud start-ci-run
       - name: Build libraries
-        run: npx nx affected:build --parallel --maxParallel=2 --exclude=code-examples,integration,integration-e2e
+        run: npx nx affected --target=build --parallel --max-parallel=3
 
   coverage:
     name: Code coverage

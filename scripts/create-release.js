@@ -86,19 +86,19 @@ async function release() {
     console.log('Preparing workspace for release...');
 
     // Ensure all remote changes are represented locally.
-    gitUtils.fetchAll();
+    // gitUtils.fetchAll();
 
-    // Ensure releases are executed against the main branch.
-    if (gitUtils.getCurrentBranch() !== 'main') {
-      throw new Error('Releases can only be triggered on the "main" branch.');
-    }
+    // // Ensure releases are executed against the main branch.
+    // if (gitUtils.getCurrentBranch() !== 'main') {
+    //   throw new Error('Releases can only be triggered on the "main" branch.');
+    // }
 
-    // Ensure local git is clean.
-    if (!gitUtils.isGitClean()) {
-      throw new Error(
-        'Changes found on local branch. Please push (or stash) any changes before creating a release.'
-      );
-    }
+    // // Ensure local git is clean.
+    // if (!gitUtils.isGitClean()) {
+    //   throw new Error(
+    //     'Changes found on local branch. Please push (or stash) any changes before creating a release.'
+    //   );
+    // }
 
     const packageJson = fs.readJsonSync('package.json');
 
