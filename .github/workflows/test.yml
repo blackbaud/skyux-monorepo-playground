@@ -18,7 +18,8 @@ jobs:
     name: Validate PR title
     runs-on: ubuntu-latest
     steps:
-      - uses: amannn/action-semantic-pull-request@v4.0.1
+      - uses: actions/checkout@v2
+      - uses: amannn/action-semantic-pull-request@v4
 
   install-deps:
     name: Install and cache dependencies
