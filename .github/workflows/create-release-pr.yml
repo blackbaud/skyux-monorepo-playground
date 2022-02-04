@@ -16,4 +16,4 @@ jobs:
         with:
           fetch-depth: 0
       - name: Create release pull request
-        run: hub pull-request --no-edit --base=main
+        run: hub pull-request --no-edit --base=blackbaud:main --head=blackbaud:${GITHUB_REF##*/}
