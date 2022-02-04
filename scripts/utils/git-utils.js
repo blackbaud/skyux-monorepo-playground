@@ -13,7 +13,7 @@ function isGitClean() {
   const result = spawnToString('git', ['status']);
   return (
     result.includes('nothing to commit, working tree clean') &&
-    !result.includes('Your branch is ahead')
+    result.includes('Your branch is up to date')
   );
 }
 
