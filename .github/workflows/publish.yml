@@ -8,24 +8,9 @@ on:
       - '*.*.*'
 
 env:
-  GITHUB_TOKEN: ${{ secrets.GH_PERSONAL_ACCESS_TOKEN }}
   NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
 jobs:
-  create-pr:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: Set output
-        id: vars
-        run: echo ::set-output name=tag::${GITHUB_REF#refs/*/}
-      - uses: actions/checkout@v2
-        with:
-          ref: 'release-${{ steps.vars.outputs.tag }}'
-          fetch-depth: 0
-      - name: Create release pull request
-        run: hub pull-request --no-edit
-
   release:
     runs-on: ubuntu-latest
     steps:
