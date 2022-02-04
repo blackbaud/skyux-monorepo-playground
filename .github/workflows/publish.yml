@@ -21,7 +21,7 @@ jobs:
         id: vars
         run: echo ::set-output name=tag::${GITHUB_REF#refs/*/}
       - name: Create release pull request
-        run: hub pull-request --no-edit --head=release-${{ steps.vars.outputs.tag }}
+        run: hub pull-request --no-edit --base=main --head=release-${{ steps.vars.outputs.tag }}
       - name: Install dependencies
         run: npm ci
       - name: Build and publish
