@@ -1,6 +1,11 @@
 name: Validate PR title
 on:
   pull_request:
+    types:
+      - edited
+      - opened
+      - reopened
+      - synchronize
 
 env:
   GITHUB_TOKEN: ${{ secrets.GH_PERSONAL_ACCESS_TOKEN }}
