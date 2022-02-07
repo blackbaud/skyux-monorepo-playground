@@ -3,14 +3,13 @@ import {
   UnitTestTree,
 } from '@angular-devkit/schematics/testing';
 
-import mock from 'mock-require';
 import path from 'path';
 
 import { createTestLibrary } from '../testing/scaffold';
 
-const COLLECTION_PATH = path.resolve(__dirname, '../../../../collection.json');
+const COLLECTION_PATH = path.resolve(__dirname, '../../../collection.json');
 
-describe('ng-add.schematic', () => {
+fdescribe('ng-add.schematic', () => {
   const runner = new SchematicTestRunner('schematics', COLLECTION_PATH);
   const defaultProjectName = 'my-lib';
 
@@ -24,16 +23,17 @@ describe('ng-add.schematic', () => {
     });
 
     latestVersionCalls = {};
+    jest.mock('latest-version', () => {
+      return (packageName, args) => {
+        latestVersionCalls[packageName] = args.version;
 
-    mock('latest-version', (packageName, args) => {
-      latestVersionCalls[packageName] = args.version;
+        // Test when layout is already on the latest version.
+        if (packageName === '@skyux/layout') {
+          return args.version.replace(/^(\^|~)/, '');
+        }
 
-      // Test when layout is already on the latest version.
-      if (packageName === '@skyux/layout') {
-        return args.version.replace(/^(\^|~)/, '');
-      }
-
-      return 'LATEST';
+        return 'LATEST';
+      };
     });
   });
 
@@ -73,7 +73,7 @@ describe('ng-add.schematic', () => {
     });
 
     expect(packageJson.devDependencies).toEqual({
-      '@angular-devkit/build-angular': '~12.2.7',
+      '@angular-devkit/build-angular': '~12.2.16',
       '@angular/cli': '~12',
       '@angular/compiler-cli': '~12.2.0',
       '@types/jasmine': '~3.8.0',
@@ -89,7 +89,7 @@ describe('ng-add.schematic', () => {
     });
 
     expect(latestVersionCalls).toEqual(
-      jasmine.objectContaining({
+      expect.objectContaining({
         '@skyux/core': '^5.0.0',
         '@skyux/i18n': '^5.0.0',
       })

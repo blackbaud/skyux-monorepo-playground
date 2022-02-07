@@ -1,1 +1,1 @@
-export * from './lib/schematics/ng-add/ng-add.schematic';
+export * from './schematics/ng-add/ng-add.schematic';

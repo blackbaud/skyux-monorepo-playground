@@ -44,7 +44,7 @@ export default function ngAdd(): Rule {
     const packageJson = JSON.parse(readRequiredFile(tree, packageJsonPath));
 
     const { packageGroup } = fs.readJsonSync(
-      path.resolve(__dirname, '../../../../package.json')
+      path.resolve(__dirname, '../../../package.json')
     )['ng-update'];
 
     await ensureLatestVersions(context, packageJson.dependencies, packageGroup);
