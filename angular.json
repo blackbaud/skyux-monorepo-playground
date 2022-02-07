@@ -2098,6 +2098,12 @@
             "main": "libs/packages/src/index.ts",
             "assets": ["libs/packages/*.md"]
           }
+        },
+        "postbuild": {
+          "builder": "@nrwl/workspace:run-commands",
+          "options": {
+            "command": "node ./scripts/postbuild-packages.js"
+          }
         }
       }
     },
