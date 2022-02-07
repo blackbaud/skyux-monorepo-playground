@@ -55,6 +55,23 @@ async function buildAndPublish() {
       }
     );
 
+    // Run postbuild steps.
+    runCommand(
+      'npx',
+      [
+        'nx',
+        'run-many',
+        '--target=postbuild',
+        '--all',
+        '--parallel',
+        '--maxParallel=2',
+        `--exclude=${excludeProjects.join(',')}`,
+      ],
+      {
+        stdio: 'inherit',
+      }
+    );
+
     // Derive project names from dist directories.
     const libsDist = path.join('dist', 'libs/');
     const projectNames = fs.readdirSync(libsDist);
