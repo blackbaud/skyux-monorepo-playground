@@ -19,6 +19,12 @@ function runCommand(command, args = [], spawnOptions) {
   if (result.stdout) {
     return result.stdout.toString().trim();
   }
+
+  if (result.error) {
+    throw new Error(result.error);
+  }
+
+  return result;
 }
 
 module.exports = runCommand;
