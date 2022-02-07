@@ -142,6 +142,12 @@
           },
           "defaultConfiguration": "production"
         },
+        "postbuild": {
+          "executor": "@nrwl/workspace:run-commands",
+          "options": {
+            "command": "node ./scripts/postbuild-ag-grid.js"
+          }
+        },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
@@ -2616,6 +2622,12 @@
             }
           },
           "defaultConfiguration": "production"
+        },
+        "postbuild": {
+          "executor": "@nrwl/workspace:run-commands",
+          "options": {
+            "command": "node ./scripts/postbuild-theme.js"
+          }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
