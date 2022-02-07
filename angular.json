@@ -143,7 +143,7 @@
           "defaultConfiguration": "production"
         },
         "postbuild": {
-          "executor": "@nrwl/workspace:run-commands",
+          "builder": "@nrwl/workspace:run-commands",
           "options": {
             "command": "node ./scripts/postbuild-ag-grid.js"
           }
@@ -2068,6 +2068,39 @@
         }
       }
     },
+    "packages": {
+      "root": "libs/packages",
+      "sourceRoot": "libs/packages/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["libs/packages/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/packages"],
+          "options": {
+            "jestConfig": "libs/packages/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "build": {
+          "builder": "@nrwl/node:package",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/libs/packages",
+            "tsConfig": "libs/packages/tsconfig.lib.json",
+            "packageJson": "libs/packages/package.json",
+            "main": "libs/packages/src/index.ts",
+            "assets": ["libs/packages/*.md"]
+          }
+        }
+      }
+    },
     "pages": {
       "projectType": "library",
       "root": "libs/pages",
@@ -2612,7 +2645,7 @@
           "defaultConfiguration": "production"
         },
         "postbuild": {
-          "executor": "@nrwl/workspace:run-commands",
+          "builder": "@nrwl/workspace:run-commands",
           "options": {
             "command": "node ./scripts/postbuild-theme.js"
           }

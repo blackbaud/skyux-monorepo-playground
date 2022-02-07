@@ -77,6 +77,7 @@
       "@skyux/modals/testing": ["libs/modals/testing/src/public-api.ts"],
       "@skyux/navbar": ["libs/navbar/src/index.ts"],
       "@skyux/omnibar-interop": ["libs/omnibar-interop/src/index.ts"],
+      "@skyux/packages": ["libs/packages/src/index.ts"],
       "@skyux/pages": ["libs/pages/src/index.ts"],
       "@skyux/phone-field": ["libs/phone-field/src/index.ts"],
       "@skyux/phone-field/testing": [
