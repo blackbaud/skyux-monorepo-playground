@@ -1,7 +1,7 @@
 const fs = require('fs-extra');
-const sass = require('sass');
 const tildeImporter = require('node-sass-tilde-importer');
 const path = require('path');
+const sass = require('sass');
 
 const stylesRoot = path.resolve(__dirname, '../libs/theme/src/lib/styles');
 const destRoot = path.resolve(__dirname, '../dist/libs/theme');
