@@ -51,7 +51,7 @@ getTestBed().initTestEnvironment(
       },
     };
 
-    const excluded = ['affected', 'all'];
+    const excluded = ['affected'];
 
     const affectedStr = await getCommandOutput('npx', [
       'nx',

@@ -195,28 +195,6 @@
         }
       }
     },
-    "all": {
-      "projectType": "library",
-      "root": "libs",
-      "sourceRoot": "libs",
-      "architect": {
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "test-all.ts",
-            "tsConfig": "tsconfig.test-all.json",
-            "karmaConfig": "config/karma/karma.all.conf.js",
-            "styles": [
-              "libs/theme/src/lib/styles/sky.scss",
-              "libs/theme/src/lib/styles/themes/modern/styles.scss",
-              "libs/ag-grid/src/lib/styles/ag-grid-styles.scss"
-            ],
-            "codeCoverage": true,
-            "codeCoverageExclude": ["**/fixtures/**"]
-          }
-        }
-      }
-    },
     "angular-tree-component": {
       "projectType": "library",
       "root": "libs/angular-tree-component",

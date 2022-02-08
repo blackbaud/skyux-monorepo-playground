@@ -10,11 +10,10 @@
     },
     ".eslintrc.json": "*",
     ".github/workflows/build.yml": "*",
-    "karma.all.conf.js": "*",
+    "config/**": "*",
     "karma.ci.conf.js": "*",
     "karma.conf.js": "*",
-    "scripts/**": "*",
-    "test-all.ts": "*"
+    "scripts/**": "*"
   },
   "tasksRunnerOptions": {
     "default": {
