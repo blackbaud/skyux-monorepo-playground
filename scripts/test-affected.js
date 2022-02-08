@@ -1,14 +1,10 @@
 const fs = require('fs-extra');
 const path = require('path');
 
+const getCommandOutput = require('./utils/get-command-output');
 const runCommand = require('./utils/run-command');
-const spawnToString = require('./utils/spawn-to-string');
 
-function toSnakeCase(str) {
-  return str.replace(/-/g, '_');
-}
-
-function testAffected() {
+async function testAffected() {
   try {
     const argv = require('minimist')(process.argv.slice(2));
 
@@ -57,7 +53,7 @@ getTestBed().initTestEnvironment(
 
     const excluded = ['affected', 'all'];
 
-    const affectedStr = spawnToString('npx', [
+    const affectedStr = await getCommandOutput('npx', [
       'nx',
       'print-affected',
       '--target=test',
@@ -108,6 +104,7 @@ context.keys().map(context);
       path.join(process.cwd(), '__test-affected.ts'),
       entryContents
     );
+
     fs.writeJsonSync(
       path.join(process.cwd(), '__tsconfig.test-affected.json'),
       tsconfig,
@@ -128,10 +125,7 @@ context.keys().map(context);
       npxArgs.push(`--karmaConfig=${argv.karmaConfig}`);
     }
 
-    runCommand('npx', npxArgs, {
-      cwd: process.cwd(),
-      stdio: 'inherit',
-    });
+    await runCommand('npx', npxArgs);
   } catch (err) {
     console.error(err);
     process.exit(1);
