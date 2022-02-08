@@ -13,7 +13,8 @@
     "karma.all.conf.js": "*",
     "karma.ci.conf.js": "*",
     "karma.conf.js": "*",
-    "test-all.ts": "*"
+    "test-all.ts": "*",
+    "scripts/**": "*"
   },
   "tasksRunnerOptions": {
     "default": {
