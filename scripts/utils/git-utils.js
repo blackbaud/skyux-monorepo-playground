@@ -1,36 +1,30 @@
-const spawn = require('cross-spawn');
+const getCommandOutput = require('./get-command-output');
+const runCommand = require('./run-command');
 
-function spawnToString(command, args) {
-  const spawnResult = spawn.sync(command, args, {
-    cwd: process.cwd(),
-    stdio: 'pipe',
-  });
-
-  return spawnResult.stdout.toString().trim();
-}
-
-function isGitClean() {
-  const result = spawnToString('git', ['status']);
+async function isGitClean() {
+  const result = await getCommandOutput('git', ['status']);
   return (
     result.includes('nothing to commit, working tree clean') &&
     result.includes('Your branch is up to date')
   );
 }
 
-function getCurrentBranch() {
-  return spawnToString('git', ['branch', '--show-current']);
+async function getCurrentBranch() {
+  return getCommandOutput('git', ['branch', '--show-current']);
 }
 
-function fetchAll() {
-  return spawnToString('git', ['fetch', '--all']);
+async function fetchAll() {
+  return getCommandOutput('git', ['fetch', '--all']);
 }
 
-function checkoutNewBranch(branch) {
-  const result = spawnToString('git', ['branch', '--list', branch]);
+async function checkoutNewBranch(branch) {
+  const result = getCommandOutput('git', ['branch', '--list', branch]);
+
   if (result) {
     throw new Error(`The branch "${branch}" already exists. Aborting.`);
   }
-  spawnToString('git', ['checkout', '-b', branch]);
+
+  await runCommand('git', ['checkout', '-b', branch]);
 }
 
 module.exports = {

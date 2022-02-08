@@ -9,7 +9,7 @@ const npmUtils = require('./utils/npm-utils');
 /**
  * Returns the default config to be passed to 'standard-version'.
  */
-function getStandardVersionConfig(currentVersion, overrides = {}) {
+async function getStandardVersionConfig(currentVersion, overrides = {}) {
   const config = {
     noVerify: true, // skip any precommit hooks
     releaseCommitMessageFormat:
@@ -17,10 +17,11 @@ function getStandardVersionConfig(currentVersion, overrides = {}) {
     tagPrefix: '', // don't prefix tags with 'v'
   };
 
-  const versionExists = npmUtils.checkVersionExists(
+  const versionExists = await npmUtils.checkVersionExists(
     '@skyux/core',
     currentVersion
   );
+
   if (!versionExists) {
     // Don't bump the version if this is the first release.
     config.firstRelease = true;
@@ -55,9 +56,10 @@ async function getNextVersion(currentVersion) {
   );
 
   // Make sure the cached version matches the version in package.json.
+  fs.ensureFileSync(outVersionFile);
   fs.writeFileSync(outVersionFile, currentVersion);
 
-  const standardVersionConfig = getStandardVersionConfig(currentVersion, {
+  const standardVersionConfig = await getStandardVersionConfig(currentVersion, {
     bumpFiles: [
       {
         // For this step, bump the version to our temp file instead of package.json.
@@ -137,7 +139,7 @@ async function release() {
     // Bump version and create changelog.
     await standardVersion(standardVersionConfig);
   } catch (err) {
-    console.error(err.message);
+    console.error(err);
     process.exit(1);
   }
 }
