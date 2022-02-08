@@ -70,7 +70,9 @@ getTestBed().initTestEnvironment(
       process.exit();
     }
 
-    const projects = affectedStr.split(', ');
+    const projects = affectedStr
+      .split(', ')
+      .filter((x) => !x.endsWith('-testing'));
 
     console.log('Running tests for the following projects:', projects);
 
@@ -90,23 +92,17 @@ getTestBed().initTestEnvironment(
     ];
 
     for (const project of projects) {
-      if (project.endsWith('-testing')) {
-        continue;
-      }
-
-      const projectType =
-        angularJson.projects[project].projectType === 'library'
-          ? 'libs'
-          : 'apps';
-
-      const contextVar = `${toSnakeCase(project)}_context`;
-      const contextPath = `./${projectType}/${project}`;
-
-      entryContents += `const ${contextVar} = require.context('${contextPath}', true, /\.spec\.ts$/);\n`;
-      entryContents += `${contextVar}.keys().map(${contextVar});\n`;
-
-      tsconfig.include.push(`${contextPath}/**/*.spec.ts`);
+      tsconfig.include.push(
+        `${angularJson.projects[project].root}/**/*.spec.ts`
+      );
     }
+
+    entryContents += `
+const context = require.context('./', true, /(libs|apps)\\/(${projects.join(
+      '|'
+    )})\\/src\\/.+\\.spec\\.ts$/);
+context.keys().map(context);
+`;
 
     fs.writeFileSync(
       path.join(process.cwd(), '__test-affected.ts'),
@@ -122,6 +118,7 @@ getTestBed().initTestEnvironment(
       'nx',
       'run',
       'affected:test',
+      '--skipNxCache',
       '--sourceMap=false',
       '--codeCoverage',
       `--codeCoverageExclude=${coverageExcludes.join(',')}`,
