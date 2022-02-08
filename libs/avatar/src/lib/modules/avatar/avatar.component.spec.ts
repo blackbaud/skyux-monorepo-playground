@@ -143,7 +143,7 @@ describe('Avatar component', () => {
 
     let el = fixture.nativeElement;
 
-    expect(getPhotoEl(el)).toBeVisible();
+    expect(getPhotoEl(el)).not.toBeVisible();
     expect(getPlaceholderEl(el)).not.toBeVisible();
 
     validateImageUrl(el, imgUrl);
