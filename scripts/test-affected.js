@@ -118,19 +118,20 @@ context.keys().map(context);
   await fs.writeJson(TEST_TSCONFIG_FILE, tsconfig, { spaces: 2 });
 }
 
-async function removeTempTestingFiles() {
+function removeTempTestingFiles() {
+  console.log('Removing temporary files...');
   if (fs.existsSync(TEST_ENTRY_FILE)) {
-    await fs.removeFile(TEST_ENTRY_FILE);
+    fs.removeSync(TEST_ENTRY_FILE);
   }
 
   if (fs.existsSync(TEST_TSCONFIG_FILE)) {
-    await fs.removeFile(TEST_TSCONFIG_FILE);
+    fs.removeSync(TEST_TSCONFIG_FILE);
   }
 }
 
-process.on('exit', async () => {
-  await removeTempTestingFiles();
-});
+process.on('SIGINT', () => process.exit());
+process.on('uncaughtException', () => process.exit());
+process.on('exit', () => removeTempTestingFiles());
 
 async function testAffected() {
   try {
