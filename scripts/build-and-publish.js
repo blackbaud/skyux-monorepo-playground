@@ -32,7 +32,7 @@ async function buildAndPublish() {
     fs.removeSync('dist');
 
     const excludeProjects = [
-      'all',
+      'affected',
       'code-examples',
       'integration',
       'integration-e2e',

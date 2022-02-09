@@ -22,7 +22,7 @@ async function getCommandOutput(command, args = [], spawnOptions = {}) {
     });
 
     child.on('exit', () => {
-      resolve(output);
+      resolve(output.trim());
     });
   });
 }
