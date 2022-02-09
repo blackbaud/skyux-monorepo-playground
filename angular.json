@@ -119,6 +119,27 @@
         }
       }
     },
+    "affected": {
+      "projectType": "library",
+      "root": "/",
+      "sourceRoot": "/",
+      "architect": {
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "__test-affected.ts",
+            "tsConfig": "__tsconfig.test-affected.json",
+            "karmaConfig": "config/karma/karma.affected.conf.js",
+            "styles": [
+              "libs/theme/src/lib/styles/sky.scss",
+              "libs/theme/src/lib/styles/themes/modern/styles.scss",
+              "libs/ag-grid/src/lib/styles/ag-grid-styles.scss"
+            ],
+            "codeCoverage": true
+          }
+        }
+      }
+    },
     "ag-grid": {
       "projectType": "library",
       "root": "libs/ag-grid",
@@ -141,12 +162,6 @@
             }
           },
           "defaultConfiguration": "production"
-        },
-        "postbuild": {
-          "executor": "@nrwl/workspace:run-commands",
-          "options": {
-            "command": "node ./scripts/postbuild-ag-grid.js"
-          }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
@@ -171,26 +186,11 @@
               "libs/ag-grid/src/**/*.html"
             ]
           }
-        }
-      }
-    },
-    "affected": {
-      "projectType": "library",
-      "root": "/",
-      "sourceRoot": "/",
-      "architect": {
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
+        },
+        "postbuild": {
+          "executor": "@nrwl/workspace:run-commands",
           "options": {
-            "main": "__test-affected.ts",
-            "tsConfig": "__tsconfig.test-affected.json",
-            "karmaConfig": "config/karma/karma.affected.conf.js",
-            "styles": [
-              "libs/theme/src/lib/styles/sky.scss",
-              "libs/theme/src/lib/styles/themes/modern/styles.scss",
-              "libs/ag-grid/src/lib/styles/ag-grid-styles.scss"
-            ],
-            "codeCoverage": true
+            "command": "node ./scripts/postbuild-ag-grid.js"
           }
         }
       }
@@ -2610,12 +2610,6 @@
           },
           "defaultConfiguration": "production"
         },
-        "postbuild": {
-          "executor": "@nrwl/workspace:run-commands",
-          "options": {
-            "command": "node ./scripts/postbuild-theme.js"
-          }
-        },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
@@ -2637,6 +2631,12 @@
               "libs/theme/src/**/*.ts",
               "libs/theme/src/**/*.html"
             ]
+          }
+        },
+        "postbuild": {
+          "executor": "@nrwl/workspace:run-commands",
+          "options": {
+            "command": "node ./scripts/postbuild-theme.js"
           }
         }
       }

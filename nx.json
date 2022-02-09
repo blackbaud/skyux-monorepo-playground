@@ -9,11 +9,10 @@
       "devDependencies": "*"
     },
     ".eslintrc.json": "*",
-    ".github/workflows/build.yml": "*",
+    ".github/workflows/**": "*",
     "config/**": "*",
-    "karma.ci.conf.js": "*",
-    "karma.conf.js": "*",
-    "scripts/**": "*"
+    "scripts/**": "*",
+    "karma.conf.js": "*"
   },
   "tasksRunnerOptions": {
     "default": {
