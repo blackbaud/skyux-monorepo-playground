@@ -83,6 +83,16 @@ getTestBed().initTestEnvironment(
 );
 `;
 
+  // Generate a 'require.context' RegExp that includes only the affected projects.
+  entryContents += `
+const context = require.context('./', true, /(libs|apps)\\/(${karmaProjects.join(
+    '|'
+  )})\\/src\\/.+\\.spec\\.ts$/);
+context.keys().map(context);
+`;
+
+  await fs.writeFile(TEST_ENTRY_FILE, entryContents);
+
   let tsconfig = {
     extends: './tsconfig.base.json',
     compilerOptions: {
@@ -106,15 +116,6 @@ getTestBed().initTestEnvironment(
     tsconfig.include.push(`${angularJson.projects[project].root}/**/*.spec.ts`);
   }
 
-  // Generate a 'require.context' RegExp that includes only the affected projects.
-  entryContents += `
-const context = require.context('./', true, /(libs|apps)\\/(${karmaProjects.join(
-    '|'
-  )})\\/src\\/.+\\.spec\\.ts$/);
-context.keys().map(context);
-`;
-
-  await fs.writeFile(TEST_ENTRY_FILE, entryContents);
   await fs.writeJson(TEST_TSCONFIG_FILE, tsconfig, { spaces: 2 });
 }
 
