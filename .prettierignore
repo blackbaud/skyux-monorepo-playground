@@ -1,10 +1,9 @@
 # Ignore artifacts:
-__skyux
 coverage
 dist
 node_modules
 package-lock.json
 
-# Don't format the following since the order of its import statements is deliberate.
+# Don't format the following since the order of their import statements is deliberate.
 test.ts
 test-all.ts
