@@ -9,7 +9,7 @@ import { createTestLibrary } from '../testing/scaffold';
 
 const COLLECTION_PATH = path.resolve(__dirname, '../../../collection.json');
 
-fdescribe('ng-add.schematic', () => {
+describe('ng-add.schematic', () => {
   const runner = new SchematicTestRunner('schematics', COLLECTION_PATH);
   const defaultProjectName = 'my-lib';
 
@@ -23,17 +23,20 @@ fdescribe('ng-add.schematic', () => {
     });
 
     latestVersionCalls = {};
-    jest.mock('latest-version', () => {
-      return (packageName, args) => {
-        latestVersionCalls[packageName] = args.version;
 
-        // Test when layout is already on the latest version.
-        if (packageName === '@skyux/layout') {
-          return args.version.replace(/^(\^|~)/, '');
-        }
+    jest.mock('latest-version', () => (packageName, args) => {
+      if (args.version === '0.0.0-PLACEHOLDER') {
+        args.version = '^5.0.0';
+      }
 
-        return 'LATEST';
-      };
+      latestVersionCalls[packageName] = args.version;
+
+      // Test when layout is already on the latest version.
+      if (packageName === '@skyux/layout') {
+        return args.version.replace(/^(\^|~)/, '');
+      }
+
+      return 'LATEST';
     });
   });
 

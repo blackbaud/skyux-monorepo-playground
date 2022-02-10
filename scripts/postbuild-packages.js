@@ -5,6 +5,7 @@ function copyFilesToDist() {
   const pathsToCopy = [
     ['collection.json'],
     ['/src/schematics/migrations/migration-collection.json'],
+    ['/src/schematics/ng-add/schema.json'],
   ];
 
   pathsToCopy.forEach((pathArr) => {
