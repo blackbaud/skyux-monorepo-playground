@@ -32,14 +32,14 @@ async function buildAndPublish() {
     fs.removeSync('dist');
 
     const excludeProjects = [
-      'all',
+      'affected',
       'code-examples',
       'integration',
       'integration-e2e',
     ];
 
     // Build all libraries.
-    runCommand(
+    await runCommand(
       'npx',
       [
         'nx',
@@ -56,7 +56,7 @@ async function buildAndPublish() {
     );
 
     // Run postbuild steps.
-    runCommand(
+    await runCommand(
       'npx',
       [
         'nx',
@@ -82,7 +82,8 @@ async function buildAndPublish() {
 
     await createNpmrcFile();
 
-    const distTags = npmUtils.getDistTags('@skyux/core');
+    const distTags = await npmUtils.getDistTags('@skyux/core');
+
     const semverData = semver.parse(newVersion);
     const isPrerelease = semverData.prerelease.length > 0;
 
@@ -104,7 +105,7 @@ async function buildAndPublish() {
 
     for (const projectName of projectNames) {
       const projectRoot = path.join(process.cwd(), libsDist, projectName);
-      runCommand('npm', commandArgs, {
+      await runCommand('npm', commandArgs, {
         cwd: projectRoot,
         stdio: 'inherit',
       });
