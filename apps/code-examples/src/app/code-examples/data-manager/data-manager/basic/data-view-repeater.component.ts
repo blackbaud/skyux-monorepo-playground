@@ -78,7 +78,8 @@ export class DataViewRepeaterDemoComponent implements OnInit {
 
   public searchItems(items: any[]): any[] {
     let searchedItems = items;
-    const searchText = this.dataState && this.dataState.searchText?.toUpperCase();
+    const searchText =
+      this.dataState && this.dataState.searchText?.toUpperCase();
 
     if (searchText) {
       searchedItems = items.filter(function (item: any) {
