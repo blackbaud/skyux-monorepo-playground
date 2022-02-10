@@ -40,23 +40,36 @@ async function getAffectedProjects(target) {
     .filter((project) => !project.endsWith('-testing'));
 }
 
-async function getUnaffectedProjects(karmaProjects, angularJson) {
+async function getUnaffectedProjects(affectedProjects, angularJson) {
   return Object.keys(angularJson.projects).filter(
     (project) =>
-      !karmaProjects.includes(project) &&
+      !affectedProjects.includes(project) &&
       !EXCLUDED_PROJECTS.includes(project) &&
       !project.endsWith('-testing')
   );
 }
 
-async function getAffectedKarmaProjects(angularJson) {
-  const projects = (await getAffectedProjects('test')).filter(
-    (project) =>
+async function getAffectedProjectsForTest(angularJson) {
+  const projects = await getAffectedProjects('test');
+
+  const karma = [];
+  const other = [];
+
+  projects.forEach((project) => {
+    if (
       angularJson.projects[project].architect.test.builder ===
       '@angular-devkit/build-angular:karma'
-  );
+    ) {
+      karma.push(project);
+    } else {
+      other.push(project);
+    }
+  });
 
-  return projects;
+  return {
+    karma,
+    other,
+  };
 }
 
 async function createTempTestingFiles(karmaProjects, angularJson) {
@@ -140,15 +153,18 @@ async function testAffected() {
 
     const angularJson = await getAngularJson();
 
-    const karmaProjects = await getAffectedKarmaProjects(angularJson);
+    const affectedProjects = await getAffectedProjectsForTest(angularJson);
     const unaffectedProjects = await getUnaffectedProjects(
-      karmaProjects,
+      affectedProjects.karma,
       angularJson
     );
 
-    console.log('Running tests for the following projects:', karmaProjects);
+    console.log(
+      'Running tests for the following projects:',
+      affectedProjects.karma
+    );
 
-    await createTempTestingFiles(karmaProjects, angularJson);
+    await createTempTestingFiles(affectedProjects.karma, angularJson);
 
     // Exclude all other projects from code coverage.
     const codeCoverageExclude = [
@@ -174,7 +190,25 @@ async function testAffected() {
 
     await runCommand('npx', npxArgs);
 
-    // TODO: Run karma projects first, then run any "leftover" projects normally.
+    // Abort if only running components.
+    if (argv.onlyComponents) {
+      return;
+    }
+
+    if (affectedProjects.other.length > 0) {
+      console.log(
+        'Running tests for the following non-components projects:',
+        affectedProjects.other
+      );
+
+      await runCommand('npx', [
+        'nx',
+        'run-many',
+        '--target=test',
+        `--projects=${affectedProjects.other.join(',')}`,
+        '--codeCoverage',
+      ]);
+    }
   } catch (err) {
     console.error(err);
     process.exit(1);

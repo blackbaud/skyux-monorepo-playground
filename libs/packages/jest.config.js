@@ -12,4 +12,12 @@ module.exports = {
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
   coverageDirectory: '../../coverage/libs/packages',
+  coverageThreshold: {
+    global: {
+      branches: 87.5,
+      functions: 100,
+      lines: 98.16,
+      statements: 98.24,
+    },
+  },
 };

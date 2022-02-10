@@ -2084,7 +2084,9 @@
           "outputs": ["coverage/libs/packages"],
           "options": {
             "jestConfig": "libs/packages/jest.config.js",
-            "passWithNoTests": true
+            "passWithNoTests": true,
+            "codeCoverage": true,
+            "coverageReporters": ["html", "text"]
           }
         },
         "build": {
