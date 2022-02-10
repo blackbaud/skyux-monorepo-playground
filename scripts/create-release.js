@@ -17,6 +17,7 @@ async function getStandardVersionConfig(currentVersion, overrides = {}) {
     tagPrefix: '', // don't prefix tags with 'v'
   };
 
+  // TODO: maybe instead of checking npm registry, save the version in a local VERSION file?
   const versionExists = await npmUtils.checkVersionExists(
     '@skyux/core',
     currentVersion
@@ -58,6 +59,8 @@ async function getNextVersion(currentVersion) {
   // Make sure the cached version matches the version in package.json.
   fs.ensureFileSync(outVersionFile);
   fs.writeFileSync(outVersionFile, currentVersion);
+
+  // TODO: Instead of printing the version to a cache file, just run dryRun and get the console output using `runCommand`?
 
   const standardVersionConfig = await getStandardVersionConfig(currentVersion, {
     bumpFiles: [
