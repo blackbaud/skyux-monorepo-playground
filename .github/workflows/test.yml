@@ -145,7 +145,7 @@ jobs:
           path: node_modules
           key: cache-node-modules-${{ hashFiles('package-lock.json') }}
       - name: Cross-browser tests
-        run: export NX_CLOUD_DISTRIBUTED_EXECUTION=false && node ./scripts/test-affected.js --karmaConfig=config/karma/karma.ci.conf.js
+        run: export NX_CLOUD_DISTRIBUTED_EXECUTION=false && node ./scripts/test-affected.js --karmaConfig=config/karma/karma.ci.conf.js --onlyComponents
 
   stop-agents:
     name: Stop Nx Cloud agents

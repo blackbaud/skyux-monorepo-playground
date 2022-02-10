@@ -5,14 +5,10 @@ const semver = require('semver');
 const npmUtils = require('./utils/npm-utils');
 const runCommand = require('./utils/run-command');
 
-// Replaces '0.0.0-PLACEHOLDER' with the new version in project package.json files.
-function updateProjectPackageJson(projectRootPath, newVersion) {
-  const packageJsonPath = path.join(projectRootPath, 'package.json');
-  const contents = fs.readFileSync(packageJsonPath).toString();
-  fs.writeFileSync(
-    packageJsonPath,
-    contents.replace(/"0\.0\.0-PLACEHOLDER"/g, `"${newVersion}"`)
-  );
+// Replaces any occurrence of '0.0.0-PLACEHOLDER' with a version number.
+function replacePlaceholderTextWithVersion(filePath, version) {
+  const contents = fs.readFileSync(filePath).toString();
+  fs.writeFileSync(filePath, contents.replace(/0\.0\.0-PLACEHOLDER/g, version));
 }
 
 async function createNpmrcFile() {
@@ -77,8 +73,20 @@ async function buildAndPublish() {
     const projectNames = fs.readdirSync(libsDist);
 
     for (const projectName of projectNames) {
-      updateProjectPackageJson(path.join(libsDist, projectName), newVersion);
+      replacePlaceholderTextWithVersion(
+        path.join(libsDist, projectName, 'package.json'),
+        newVersion
+      );
     }
+
+    replacePlaceholderTextWithVersion(
+      path.join(
+        libsDist,
+        'packages',
+        'src/schematics/migrations/migration-collection.json'
+      ),
+      newVersion
+    );
 
     await createNpmrcFile();
 
