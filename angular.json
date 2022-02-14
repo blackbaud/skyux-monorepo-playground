@@ -1212,7 +1212,7 @@
         "posttest": {
           "executor": "@nrwl/workspace:run-commands",
           "options": {
-            "command": "node ./scripts/posttest-i18n.js"
+            "command": "ts-node --project ./scripts/tsconfig.json ./scripts/posttest-i18n.ts"
           }
         },
         "lint": {

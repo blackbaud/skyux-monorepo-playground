@@ -20,10 +20,14 @@ function copyScss() {
 
 function postBuildAgGrid() {
   console.log('Running @skyux/ag-grid postbuild step...');
+  try {
+    copyScss();
 
-  copyScss();
-
-  console.log('Done running @skyux/ag-grid postbuild.');
+    console.log('Done running @skyux/ag-grid postbuild.');
+  } catch (err) {
+    console.error('[postbuild-ag-grid error]', err);
+    process.exit(1);
+  }
 }
 
 postBuildAgGrid();

@@ -41,7 +41,12 @@ async function buildSchematics() {
 }
 
 async function postbuildI18n() {
-  await buildSchematics();
+  try {
+    await buildSchematics();
+  } catch (err) {
+    console.error('[postbuild-i18n error]', err);
+    process.exit(1);
+  }
 }
 
 postbuildI18n();

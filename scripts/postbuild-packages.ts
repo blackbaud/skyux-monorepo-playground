@@ -15,7 +15,7 @@ function copyFilesToDist() {
       fs.copySync(sourcePath, distPath);
       console.log(`Successfully copied ${sourcePath} to ${distPath}`);
     } else {
-      throw `File not found: ${sourcePath}`;
+      throw new Error(`File not found: ${sourcePath}`);
     }
   });
 }

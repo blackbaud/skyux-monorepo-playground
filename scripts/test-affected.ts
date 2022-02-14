@@ -183,7 +183,6 @@ async function testAffected() {
       'nx',
       'run',
       'affected:test',
-      '--skipNxCache',
       '--sourceMap=false',
       '--codeCoverage',
       `--codeCoverageExclude=${codeCoverageExclude.join(',')}`,
@@ -194,6 +193,13 @@ async function testAffected() {
     }
 
     await runCommand('npx', npxArgs);
+
+    await runCommand('npx', [
+      'nx',
+      'affected',
+      '--target=posttest',
+      `--exclude=${affectedProjects.other.join(',')}`,
+    ]);
 
     // Abort if only running components.
     if (argv.onlyComponents) {
