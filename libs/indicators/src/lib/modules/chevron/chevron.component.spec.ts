@@ -22,9 +22,13 @@ describe('Chevron component', () => {
     fixture = TestBed.createComponent(SkyChevronComponent);
   });
 
+  function getChevronEl(): HTMLElement {
+    return fixture.nativeElement.querySelector('.sky-chevron');
+  }
+
   function validateDirection(expectedDirection: string): void {
     const el = fixture.nativeElement;
-    const chevronEl = el.querySelector('.sky-chevron');
+    const chevronEl = getChevronEl();
 
     fixture.detectChanges();
 
@@ -35,7 +39,7 @@ describe('Chevron component', () => {
   }
 
   function clickChevron(el: any): void {
-    el.querySelector('.sky-chevron').click();
+    getChevronEl().click();
   }
 
   it('should change direction when the user clicks the chevron', () => {
@@ -70,7 +74,30 @@ describe('Chevron component', () => {
     validateDirection('up');
   });
 
+  it('should set aria attributes', () => {
+    const el = fixture.nativeElement;
+    fixture.componentInstance.ariaControls = 'foo';
+    fixture.componentInstance.ariaLabel = 'Users';
+    fixture.componentInstance.direction = 'up';
+    fixture.detectChanges();
+
+    const buttonEl = el.querySelector('button');
+    expect(buttonEl.getAttribute('aria-controls')).toBe('foo');
+    expect(buttonEl.getAttribute('aria-expanded')).toBe('true');
+    expect(buttonEl.getAttribute('aria-label')).toBe('Users');
+  });
+
+  it('should set aria-expanded based on direction', () => {
+    const el = fixture.nativeElement;
+    fixture.componentInstance.direction = 'down';
+    fixture.detectChanges();
+
+    const buttonEl = el.querySelector('button');
+    expect(buttonEl.getAttribute('aria-expanded')).toBe('false');
+  });
+
   it('should pass accessibility', async () => {
+    fixture.componentInstance.ariaLabel = 'Users';
     fixture.detectChanges();
     await fixture.whenStable();
     await expectAsync(fixture.nativeElement).toBeAccessible();

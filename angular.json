@@ -119,6 +119,27 @@
         }
       }
     },
+    "affected": {
+      "projectType": "library",
+      "root": "/",
+      "sourceRoot": "/",
+      "architect": {
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "__test-affected.ts",
+            "tsConfig": "__tsconfig.test-affected.json",
+            "karmaConfig": "config/karma/karma.affected.conf.js",
+            "styles": [
+              "libs/theme/src/lib/styles/sky.scss",
+              "libs/theme/src/lib/styles/themes/modern/styles.scss",
+              "libs/ag-grid/src/lib/styles/ag-grid-styles.scss"
+            ],
+            "codeCoverage": true
+          }
+        }
+      }
+    },
     "ag-grid": {
       "projectType": "library",
       "root": "libs/ag-grid",
@@ -141,12 +162,6 @@
             }
           },
           "defaultConfiguration": "production"
-        },
-        "postbuild": {
-          "executor": "@nrwl/workspace:run-commands",
-          "options": {
-            "command": "node ./scripts/postbuild-ag-grid.js"
-          }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
@@ -171,27 +186,11 @@
               "libs/ag-grid/src/**/*.html"
             ]
           }
-        }
-      }
-    },
-    "all": {
-      "projectType": "library",
-      "root": "libs",
-      "sourceRoot": "libs",
-      "architect": {
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
+        },
+        "postbuild": {
+          "executor": "@nrwl/workspace:run-commands",
           "options": {
-            "main": "test-all.ts",
-            "tsConfig": "tsconfig.test-all.json",
-            "karmaConfig": "config/karma/karma.all.conf.js",
-            "styles": [
-              "libs/theme/src/lib/styles/sky.scss",
-              "libs/theme/src/lib/styles/themes/modern/styles.scss",
-              "libs/ag-grid/src/lib/styles/ag-grid-styles.scss"
-            ],
-            "codeCoverage": true,
-            "codeCoverageExclude": ["**/fixtures/**"]
+            "command": "node ./scripts/postbuild-ag-grid.js"
           }
         }
       }
@@ -2080,6 +2079,48 @@
         }
       }
     },
+    "packages": {
+      "root": "libs/packages",
+      "sourceRoot": "libs/packages/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["libs/packages/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/packages"],
+          "options": {
+            "jestConfig": "libs/packages/jest.config.js",
+            "passWithNoTests": true,
+            "codeCoverage": true,
+            "coverageReporters": ["html", "text"]
+          }
+        },
+        "build": {
+          "builder": "@nrwl/node:package",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/libs/packages",
+            "tsConfig": "libs/packages/tsconfig.lib.json",
+            "packageJson": "libs/packages/package.json",
+            "main": "libs/packages/src/index.ts",
+            "assets": ["libs/packages/*.md"],
+            "updateBuildableProjectDepsInPackageJson": false
+          }
+        },
+        "postbuild": {
+          "builder": "@nrwl/workspace:run-commands",
+          "options": {
+            "command": "node ./scripts/postbuild-packages.js"
+          }
+        }
+      }
+    },
     "pages": {
       "projectType": "library",
       "root": "libs/pages",
@@ -2623,12 +2664,6 @@
           },
           "defaultConfiguration": "production"
         },
-        "postbuild": {
-          "executor": "@nrwl/workspace:run-commands",
-          "options": {
-            "command": "node ./scripts/postbuild-theme.js"
-          }
-        },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
@@ -2650,6 +2685,12 @@
               "libs/theme/src/**/*.ts",
               "libs/theme/src/**/*.html"
             ]
+          }
+        },
+        "postbuild": {
+          "executor": "@nrwl/workspace:run-commands",
+          "options": {
+            "command": "node ./scripts/postbuild-theme.js"
           }
         }
       }

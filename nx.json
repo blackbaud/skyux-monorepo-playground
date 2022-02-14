@@ -9,11 +9,10 @@
       "devDependencies": "*"
     },
     ".eslintrc.json": "*",
-    ".github/workflows/build.yml": "*",
-    "karma.all.conf.js": "*",
-    "karma.ci.conf.js": "*",
-    "karma.conf.js": "*",
-    "test-all.ts": "*"
+    ".github/workflows/**": "*",
+    "config/**": "*",
+    "scripts/**": "*",
+    "karma.conf.js": "*"
   },
   "tasksRunnerOptions": {
     "default": {
@@ -134,6 +133,9 @@
       "tags": []
     },
     "omnibar-interop": {
+      "tags": []
+    },
+    "packages": {
       "tags": []
     },
     "pages": {

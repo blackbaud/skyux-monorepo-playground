@@ -20,8 +20,7 @@ const RESOURCES: { [locale: string]: SkyLibResources } = {
     skyux_summary_action_bar_open_secondary: {
       message: 'Show secondary actions',
     },
-    skyux_summary_action_bar_show_summary: { message: 'Show summary' },
-    skyux_summary_action_bar_hide_summary: { message: 'Hide summary' },
+    skyux_summary_action_bar_expand: { message: 'Expand or collapse summary' },
   },
 };
 
