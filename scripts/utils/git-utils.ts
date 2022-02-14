@@ -17,9 +17,8 @@ export async function fetchAll() {
   return getCommandOutput('git', ['fetch', '--all']);
 }
 
-export async function checkoutNewBranch(branch): Promise<void> {
-  const result = getCommandOutput('git', ['branch', '--list', branch]);
-
+export async function checkoutNewBranch(branch: string): Promise<void> {
+  const result = await getCommandOutput('git', ['branch', '--list', branch]);
   if (result) {
     throw new Error(`The branch "${branch}" already exists. Aborting.`);
   }
