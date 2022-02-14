@@ -114,7 +114,7 @@ async function release() {
     console.log('Preparing workspace for release...');
 
     // Ensure all remote changes are represented locally.
-    fetchAll();
+    await fetchAll();
 
     // Ensure releases are executed against the main branch.
     if ((await getCurrentBranch()) !== 'main') {
@@ -122,7 +122,7 @@ async function release() {
     }
 
     // Ensure local git is clean.
-    if (!isGitClean()) {
+    if (!(await isGitClean())) {
       throw new Error(
         'Changes found on the local branch. Please push (or stash) any changes before creating a release.'
       );
@@ -167,7 +167,7 @@ async function release() {
 
     console.log(`Creating new branch named '${branch}'...`);
 
-    checkoutNewBranch(branch);
+    await checkoutNewBranch(branch);
 
     console.log('Generating release artifacts...');
 
