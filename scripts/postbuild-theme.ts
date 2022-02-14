@@ -1,12 +1,12 @@
-const fs = require('fs-extra');
-const tildeImporter = require('node-sass-tilde-importer');
-const path = require('path');
-const sass = require('sass');
+import fs from 'fs-extra';
+import path from 'path';
+import sass from 'sass';
+import tildeImporter from 'node-sass-tilde-importer';
 
-const stylesRoot = path.resolve(__dirname, '../libs/theme/src/lib/styles');
-const destRoot = path.resolve(__dirname, '../dist/libs/theme');
+const STYLES_ROOT = path.resolve(__dirname, '../libs/theme/src/lib/styles');
+const DEST_ROOT = path.resolve(__dirname, '../dist/libs/theme');
 
-const skyScssPath = path.join(stylesRoot, 'sky.scss');
+const skyScssPath = path.join(STYLES_ROOT, 'sky.scss');
 
 function validateSkyuxIconVersionMatch() {
   console.log('Validating SKY UX icon font version...');
@@ -48,7 +48,7 @@ function validateSkyuxIconVersionMatch() {
   console.log('Done.');
 }
 
-function renderScss(file, target) {
+function renderScss(file: string, target: string) {
   const result = sass.renderSync({
     file: file,
     importer: tildeImporter,
@@ -62,11 +62,11 @@ function renderScss(file, target) {
 function copyScss() {
   console.log('Preparing SCSS and CSS files...');
 
-  renderScss(skyScssPath, path.join(destRoot, 'css/sky.css'));
+  renderScss(skyScssPath, path.join(DEST_ROOT, 'css/sky.css'));
 
   renderScss(
-    path.join(stylesRoot, 'themes/modern/styles.scss'),
-    path.join(destRoot, 'css/themes/modern/styles.css')
+    path.join(STYLES_ROOT, 'themes/modern/styles.scss'),
+    path.join(DEST_ROOT, 'css/themes/modern/styles.css')
   );
 
   console.log('Done.');
@@ -76,13 +76,13 @@ function copyDesignTokens() {
   console.log('Copying design tokens...');
 
   fs.copySync(
-    path.join(stylesRoot, '_mixins-public.scss'),
-    path.join(destRoot, 'scss/mixins.scss')
+    path.join(STYLES_ROOT, '_mixins-public.scss'),
+    path.join(DEST_ROOT, 'scss/mixins.scss')
   );
 
   fs.copySync(
-    path.join(stylesRoot, '_variables-public.scss'),
-    path.join(destRoot, 'scss/variables.scss')
+    path.join(STYLES_ROOT, '_variables-public.scss'),
+    path.join(DEST_ROOT, 'scss/variables.scss')
   );
 
   console.log('Done.');
@@ -92,13 +92,13 @@ function copyCompatMixins() {
   console.log('Copying compatibility mixins...');
 
   fs.copySync(
-    path.join(stylesRoot, '_compat'),
-    path.join(destRoot, 'scss/_compat')
+    path.join(STYLES_ROOT, '_compat'),
+    path.join(DEST_ROOT, 'scss/_compat')
   );
 
   fs.copySync(
-    path.join(stylesRoot, 'themes/modern/_compat'),
-    path.join(destRoot, 'scss/themes/modern/_compat')
+    path.join(STYLES_ROOT, 'themes/modern/_compat'),
+    path.join(DEST_ROOT, 'scss/themes/modern/_compat')
   );
 
   console.log('Done.');
