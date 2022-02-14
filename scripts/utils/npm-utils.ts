@@ -1,6 +1,6 @@
-const getCommandOutput = require('./get-command-output');
+import { getCommandOutput } from './get-command-output';
 
-async function getVersions(packageName) {
+async function getVersions(packageName: string) {
   const versions = await getCommandOutput('npm', [
     'view',
     packageName,
@@ -14,12 +14,12 @@ async function getVersions(packageName) {
 /**
  * Checks if a given version exists for an NPM package.
  */
-async function checkVersionExists(packageName, version) {
+export async function checkVersionExists(packageName: string, version: string) {
   const versions = await getVersions(packageName);
   return versions.includes(version);
 }
 
-async function getDistTags(packageName) {
+export async function getDistTags(packageName: string) {
   const distTags = await getCommandOutput('npm', [
     'view',
     packageName,
@@ -29,8 +29,3 @@ async function getDistTags(packageName) {
 
   return JSON.parse(distTags);
 }
-
-module.exports = {
-  checkVersionExists,
-  getDistTags,
-};

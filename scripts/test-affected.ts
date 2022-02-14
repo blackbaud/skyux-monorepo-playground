@@ -1,8 +1,7 @@
-const fs = require('fs-extra');
-const path = require('path');
-
-const getCommandOutput = require('./utils/get-command-output');
-const runCommand = require('./utils/run-command');
+import fs from 'fs-extra';
+import path from 'path';
+import { getCommandOutput } from './utils/get-command-output';
+import { runCommand } from './utils/run-command';
 
 // These projects' tests should never be executed.
 const EXCLUDED_PROJECTS = ['affected'];
@@ -22,7 +21,7 @@ async function getAngularJson() {
  * @param {string} target One of build, test, lint, etc.
  * @returns An array of project names.
  */
-async function getAffectedProjects(target) {
+async function getAffectedProjects(target: string) {
   const affectedStr = await getCommandOutput('npx', [
     'nx',
     'print-affected',
@@ -40,7 +39,10 @@ async function getAffectedProjects(target) {
     .filter((project) => !project.endsWith('-testing'));
 }
 
-async function getUnaffectedProjects(affectedProjects, angularJson) {
+async function getUnaffectedProjects(
+  affectedProjects: string[],
+  angularJson: any
+) {
   return Object.keys(angularJson.projects).filter(
     (project) =>
       !affectedProjects.includes(project) &&
@@ -49,11 +51,11 @@ async function getUnaffectedProjects(affectedProjects, angularJson) {
   );
 }
 
-async function getAffectedProjectsForTest(angularJson) {
+async function getAffectedProjectsForTest(angularJson: any) {
   const projects = await getAffectedProjects('test');
 
-  const karma = [];
-  const other = [];
+  const karma: string[] = [];
+  const other: string[] = [];
 
   projects.forEach((project) => {
     if (
@@ -72,7 +74,10 @@ async function getAffectedProjectsForTest(angularJson) {
   };
 }
 
-async function createTempTestingFiles(karmaProjects, angularJson) {
+async function createTempTestingFiles(
+  karmaProjects: string[],
+  angularJson: any
+) {
   let entryContents = `import 'zone.js';
 import 'zone.js/testing';
 import { getTestBed } from '@angular/core/testing';

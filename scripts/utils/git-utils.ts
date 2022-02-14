@@ -1,7 +1,7 @@
-const getCommandOutput = require('./get-command-output');
-const runCommand = require('./run-command');
+import { getCommandOutput } from './get-command-output';
+import { runCommand } from './run-command';
 
-async function isGitClean() {
+export async function isGitClean() {
   const result = await getCommandOutput('git', ['status']);
   return (
     result.includes('nothing to commit, working tree clean') &&
@@ -9,15 +9,15 @@ async function isGitClean() {
   );
 }
 
-async function getCurrentBranch() {
+export async function getCurrentBranch() {
   return getCommandOutput('git', ['branch', '--show-current']);
 }
 
-async function fetchAll() {
+export async function fetchAll() {
   return getCommandOutput('git', ['fetch', '--all']);
 }
 
-async function checkoutNewBranch(branch) {
+export async function checkoutNewBranch(branch): Promise<void> {
   const result = getCommandOutput('git', ['branch', '--list', branch]);
 
   if (result) {
@@ -26,10 +26,3 @@ async function checkoutNewBranch(branch) {
 
   await runCommand('git', ['checkout', '-b', branch]);
 }
-
-module.exports = {
-  checkoutNewBranch,
-  fetchAll,
-  isGitClean,
-  getCurrentBranch,
-};
