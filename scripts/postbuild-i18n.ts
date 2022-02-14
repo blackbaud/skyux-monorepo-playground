@@ -1,14 +1,13 @@
-const fs = require('fs-extra');
-const path = require('path');
-
-const runCommand = require('./utils/run-command');
+import fs from 'fs-extra';
+import path from 'path';
+import { runCommand } from 'utils/run-command';
 
 const LIB_PATH = path.resolve(__dirname, '../libs/i18n');
 
-function buildSchematics() {
+async function buildSchematics() {
   console.log('Building @skyux/i18n schematics...');
 
-  runCommand(path.resolve(__dirname, '../node_modules/.bin/tsc'), [
+  await runCommand(path.resolve(__dirname, '../node_modules/.bin/tsc'), [
     '--project',
     'libs/i18n/tsconfig.schematics.json',
   ]);
@@ -41,8 +40,8 @@ function buildSchematics() {
   console.log('Done.');
 }
 
-function postbuildI18n() {
-  buildSchematics();
+async function postbuildI18n() {
+  await buildSchematics();
 }
 
 postbuildI18n();

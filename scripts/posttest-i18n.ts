@@ -1,11 +1,10 @@
-const path = require('path');
+import path from 'path';
+import { runCommand } from 'utils/run-command';
 
-const runCommand = require('./utils/run-command');
-
-function posttestI18n() {
+async function posttestI18n() {
   console.log('Testing library schematics...');
 
-  runCommand(
+  await runCommand(
     'nyc',
     [
       'ts-node',
