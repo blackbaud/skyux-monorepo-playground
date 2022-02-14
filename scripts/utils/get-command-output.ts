@@ -1,6 +1,11 @@
-const crossSpawn = require('cross-spawn');
+import { SpawnOptions } from 'child_process';
+import crossSpawn from 'cross-spawn';
 
-async function getCommandOutput(command, args = [], spawnOptions = {}) {
+export async function getCommandOutput(
+  command: string,
+  args: string[] = [],
+  spawnOptions: SpawnOptions = {}
+): Promise<string> {
   spawnOptions = {
     ...spawnOptions,
     ...{
@@ -14,7 +19,9 @@ async function getCommandOutput(command, args = [], spawnOptions = {}) {
     const child = crossSpawn(command, args, spawnOptions);
 
     let output = '';
-    child.stdout.on('data', (x) => (output += x));
+    if (child.stdout) {
+      child.stdout.on('data', (x) => (output += x));
+    }
 
     child.on('error', (error) => {
       console.error(`[getCommandOutput] error: ${error.message}`);
@@ -26,5 +33,3 @@ async function getCommandOutput(command, args = [], spawnOptions = {}) {
     });
   });
 }
-
-module.exports = getCommandOutput;

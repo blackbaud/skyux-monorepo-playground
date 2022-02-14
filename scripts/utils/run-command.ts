@@ -1,7 +1,13 @@
-const crossSpawn = require('cross-spawn');
-const path = require('path');
+import { SpawnOptions } from 'child_process';
 
-async function runCommand(command, args = [], spawnOptions) {
+import crossSpawn from 'cross-spawn';
+import path from 'path';
+
+export async function runCommand(
+  command: string,
+  args: string[] = [],
+  spawnOptions: SpawnOptions = {}
+): Promise<void> {
   spawnOptions = {
     ...{
       stdio: 'inherit',
@@ -36,5 +42,3 @@ async function runCommand(command, args = [], spawnOptions) {
     });
   });
 }
-
-module.exports = runCommand;

@@ -190,7 +190,7 @@
         "postbuild": {
           "executor": "@nrwl/workspace:run-commands",
           "options": {
-            "command": "node ./scripts/postbuild-ag-grid.js"
+            "command": "ts-node --project ./scripts/tsconfig.json ./scripts/postbuild-ag-grid.ts"
           }
         }
       }
@@ -2116,7 +2116,7 @@
         "postbuild": {
           "builder": "@nrwl/workspace:run-commands",
           "options": {
-            "command": "node ./scripts/postbuild-packages.js"
+            "command": "ts-node --project ./scripts/tsconfig.json ./scripts/postbuild-packages.ts"
           }
         }
       }
@@ -2690,7 +2690,7 @@
         "postbuild": {
           "executor": "@nrwl/workspace:run-commands",
           "options": {
-            "command": "node ./scripts/postbuild-theme.js"
+            "command": "ts-node --project ./scripts/tsconfig.json  ./scripts/postbuild-theme.ts"
           }
         }
       }
