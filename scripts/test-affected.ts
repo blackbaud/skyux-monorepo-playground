@@ -194,13 +194,6 @@ async function testAffected() {
 
     await runCommand('npx', npxArgs);
 
-    await runCommand('npx', [
-      'nx',
-      'affected',
-      '--target=posttest',
-      `--exclude=${affectedProjects.other.join(',')}`,
-    ]);
-
     // Abort if only running components.
     if (argv.onlyComponents) {
       return;
@@ -220,6 +213,9 @@ async function testAffected() {
         '--codeCoverage',
       ]);
     }
+
+    // Run posttest steps.
+    await runCommand('npx', ['nx', 'affected', '--target=posttest']);
   } catch (err) {
     console.error(err);
     process.exit(1);
