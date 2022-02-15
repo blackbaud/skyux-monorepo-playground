@@ -84,7 +84,9 @@ async function getCodeExamples(
   for (const filePath of examples) {
     console.log(`Processing code example: ${filePath}`);
 
-    const rawContents = (await fs.readFile(filePath, { encoding: 'utf-8' }))
+    const rawContents = (
+      await fs.readFile(path.resolve(filePath), { encoding: 'utf-8' })
+    )
       .toString()
       .replace(
         new RegExp(
@@ -99,9 +101,16 @@ async function getCodeExamples(
     // Remove the trailing `.template` extension, if it exists.
     const fileName = path.basename(filePath);
 
+    // @skyux/docs-tools expects to see the old repo paths when doing code example lookups.
+    // Replace the new path with the old path until we can figure out a better way to handle this.
+    const fixedFilePath = filePath.replace(
+      `apps/code-examples/src/app/code-examples/${projectName}/`,
+      `/projects/${projectName}/documentation/code-examples/`
+    );
+
     codeExamples.push({
       fileName,
-      filePath,
+      filePath: fixedFilePath,
       rawContents,
     });
   }
