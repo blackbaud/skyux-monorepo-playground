@@ -188,7 +188,7 @@
           }
         },
         "postbuild": {
-          "executor": "@nrwl/workspace:run-commands",
+          "builder": "@nrwl/workspace:run-commands",
           "options": {
             "command": "ts-node --project ./scripts/tsconfig.json ./scripts/postbuild-ag-grid.ts"
           }
@@ -1189,12 +1189,6 @@
           },
           "defaultConfiguration": "production"
         },
-        "postbuild": {
-          "executor": "@nrwl/workspace:run-commands",
-          "options": {
-            "command": "node ./scripts/postbuild-i18n.js"
-          }
-        },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
@@ -1209,12 +1203,6 @@
             "codeCoverageExclude": ["**/fixtures/**"]
           }
         },
-        "posttest": {
-          "executor": "@nrwl/workspace:run-commands",
-          "options": {
-            "command": "ts-node --project ./scripts/tsconfig.json ./scripts/posttest-i18n.ts"
-          }
-        },
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
@@ -1222,6 +1210,18 @@
               "libs/i18n/src/**/*.ts",
               "libs/i18n/src/**/*.html"
             ]
+          }
+        },
+        "postbuild": {
+          "builder": "@nrwl/workspace:run-commands",
+          "options": {
+            "command": "ts-node --project ./scripts/tsconfig.json ./scripts/postbuild-i18n.ts"
+          }
+        },
+        "posttest": {
+          "builder": "@nrwl/workspace:run-commands",
+          "options": {
+            "command": "ts-node --project ./scripts/tsconfig.json ./scripts/posttest-i18n.ts"
           }
         }
       }
@@ -2688,9 +2688,9 @@
           }
         },
         "postbuild": {
-          "executor": "@nrwl/workspace:run-commands",
+          "builder": "@nrwl/workspace:run-commands",
           "options": {
-            "command": "ts-node --project ./scripts/tsconfig.json  ./scripts/postbuild-theme.ts"
+            "command": "ts-node --project ./scripts/tsconfig.json ./scripts/postbuild-theme.ts"
           }
         }
       }
@@ -2871,7 +2871,8 @@
       "style": "scss",
       "linter": "eslint",
       "unitTestRunner": "karma",
-      "e2eTestRunner": "cypress"
+      "e2eTestRunner": "cypress",
+      "strict": false
     },
     "@nrwl/angular:library": {
       "style": "scss",

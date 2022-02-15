@@ -12,10 +12,5 @@
     {
       "path": "./tsconfig.editor.json"
     }
-  ],
-  "compilerOptions": {
-    "forceConsistentCasingInFileNames": true,
-    "noImplicitReturns": true,
-    "noFallthroughCasesInSwitch": true
-  }
+  ]
 }
