@@ -38,7 +38,11 @@ export async function runCommand(
 
     child.on('exit', (code) => {
       console.log(`[runCommand] Child process exited with code ${code}.`);
-      resolve();
+      if (code === 0) {
+        resolve();
+      } else {
+        reject();
+      }
     });
   });
 }

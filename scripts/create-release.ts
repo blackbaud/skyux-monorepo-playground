@@ -109,7 +109,7 @@ async function validateVersion(version: string) {
 /**
  * Creates a 'releases/x.x.x' branch, tags it, and automatically adds release notes to CHANGELOG.md.
  */
-async function release() {
+async function createRelease() {
   try {
     console.log('Preparing workspace for release...');
 
@@ -187,4 +187,4 @@ async function release() {
   }
 }
 
-release();
+createRelease();

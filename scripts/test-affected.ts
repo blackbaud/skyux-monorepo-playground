@@ -183,7 +183,6 @@ async function testAffected() {
       'nx',
       'run',
       'affected:test',
-      '--skipNxCache',
       '--sourceMap=false',
       '--codeCoverage',
       `--codeCoverageExclude=${codeCoverageExclude.join(',')}`,
@@ -214,6 +213,9 @@ async function testAffected() {
         '--codeCoverage',
       ]);
     }
+
+    // Run posttest steps.
+    await runCommand('npx', ['nx', 'affected', '--target=posttest']);
   } catch (err) {
     console.error(err);
     process.exit(1);

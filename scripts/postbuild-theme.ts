@@ -106,13 +106,17 @@ function copyCompatMixins() {
 
 function postBuildTheme() {
   console.log('Running @skyux/theme postbuild step...');
+  try {
+    validateSkyuxIconVersionMatch();
+    copyScss();
+    copyDesignTokens();
+    copyCompatMixins();
 
-  validateSkyuxIconVersionMatch();
-  copyScss();
-  copyDesignTokens();
-  copyCompatMixins();
-
-  console.log('Done running @skyux/theme postbuild.');
+    console.log('Done running @skyux/theme postbuild.');
+  } catch (err) {
+    console.error('[postbuild-theme error]', err);
+    process.exit(1);
+  }
 }
 
 postBuildTheme();

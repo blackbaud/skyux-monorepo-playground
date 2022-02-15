@@ -2,6 +2,18 @@
 
 ---
 
+# 5.141.0 (2022-02-15)
+
+- `@skyux/modals@5.0.5` [Release notes](https://github.com/blackbaud/skyux-modals/blob/5.0.5/CHANGELOG.md)
+
+# 5.140.0 (2022-02-14)
+
+- `@skyux/docs-tools@5.0.0-beta.11` [Release notes](https://github.com/blackbaud/skyux-docs-tools/blob/5.0.0-beta.11/CHANGELOG.md)
+
+# 5.139.0 (2022-02-14)
+
+- `@skyux/datetime@5.1.3` [Release notes](https://github.com/blackbaud/skyux-datetime/blob/5.1.3/CHANGELOG.md)
+
 # 5.138.0 (2022-02-09)
 
 - `@skyux/indicators@5.3.0` [Release notes](https://github.com/blackbaud/skyux-indicators/blob/5.3.0/CHANGELOG.md)

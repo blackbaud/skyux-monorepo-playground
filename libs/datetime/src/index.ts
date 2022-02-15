@@ -4,6 +4,7 @@ export * from './lib/modules/date-pipe/date-pipe.module';
 export * from './lib/modules/date-pipe/fuzzy-date.pipe';
 
 export * from './lib/modules/date-range-picker/types/date-range-calculation';
+export * from './lib/modules/date-range-picker/types/date-range-calculator';
 export * from './lib/modules/date-range-picker/types/date-range-calculator-config';
 export * from './lib/modules/date-range-picker/types/date-range-calculator-id';
 export * from './lib/modules/date-range-picker/types/date-range-calculator-type';

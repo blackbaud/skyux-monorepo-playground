@@ -2,9 +2,9 @@
   "name": "@skyux/lists",
   "version": "0.0.0-PLACEHOLDER",
   "peerDependencies": {
-    "@angular/common": "^12.2.15",
-    "@angular/core": "^12.2.15",
-    "@angular/platform-browser": "^12.2.15",
+    "@angular/common": "0.0.0-NG_PLACEHOLDER",
+    "@angular/core": "0.0.0-NG_PLACEHOLDER",
+    "@angular/platform-browser": "0.0.0-NG_PLACEHOLDER",
     "@skyux/animations": "0.0.0-PLACEHOLDER",
     "@skyux/core": "0.0.0-PLACEHOLDER",
     "@skyux/forms": "0.0.0-PLACEHOLDER",
