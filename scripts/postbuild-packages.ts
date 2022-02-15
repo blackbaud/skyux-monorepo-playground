@@ -9,8 +9,11 @@ function copyFilesToDist() {
   ];
 
   pathsToCopy.forEach((pathArr) => {
-    const sourcePath = path.join('libs/packages', ...pathArr);
-    const distPath = path.join('dist/libs/packages', ...pathArr);
+    const sourcePath = path.join(process.cwd(), 'libs/packages', ...pathArr);
+    const distPath = path.join(process.cwd(), 'dist/libs/packages', ...pathArr);
+
+    console.log(`Copying '${sourcePath.replace(process.cwd(), '')}'...`);
+
     if (fs.existsSync(sourcePath)) {
       fs.copySync(sourcePath, distPath);
       console.log(`Successfully copied ${sourcePath} to ${distPath}`);
@@ -20,4 +23,14 @@ function copyFilesToDist() {
   });
 }
 
-copyFilesToDist();
+function postbuildPackages() {
+  console.log('Running @skyux/packages postbuild step...');
+  try {
+    copyFilesToDist();
+  } catch (err) {
+    console.error('[postbuild-packages error]', err);
+    process.exit(1);
+  }
+}
+
+postbuildPackages();
