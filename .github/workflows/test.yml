@@ -97,7 +97,7 @@ jobs:
           path: node_modules
           key: cache-node-modules-${{ hashFiles('package-lock.json') }}
       - name: Build and verify libraries dist
-        run: ./node_modules/.bin/ts-node --project ./scripts/tsconfig.json ./scripts/create-packages-dist.ts
+        run: export NX_CLOUD_DISTRIBUTED_EXECUTION=false && ./node_modules/.bin/ts-node --project ./scripts/tsconfig.json ./scripts/create-packages-dist.ts
 
   coverage:
     name: Code coverage
