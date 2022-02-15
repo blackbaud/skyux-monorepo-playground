@@ -1,6 +1,6 @@
 import fs from 'fs-extra';
 import path from 'path';
-import { runCommand } from 'utils/run-command';
+import { runCommand } from './utils/run-command';
 
 const LIB_PATH = path.resolve(__dirname, '../libs/i18n');
 

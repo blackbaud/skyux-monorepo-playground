@@ -96,8 +96,8 @@ jobs:
         with:
           path: node_modules
           key: cache-node-modules-${{ hashFiles('package-lock.json') }}
-      - name: Build libraries
-        run: npx nx affected --target=build --parallel --max-parallel=3
+      - name: Build and verify libraries dist
+        run: ./node_modules/.bin/ts-node --project ./scripts/tsconfig.json ./scripts/create-packages-dist.ts
 
   coverage:
     name: Code coverage
