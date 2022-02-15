@@ -2,9 +2,9 @@
   "name": "@skyux/tabs",
   "version": "0.0.0-PLACEHOLDER",
   "peerDependencies": {
-    "@angular/common": "^12.2.16",
-    "@angular/core": "^12.2.16",
-    "@angular/router": "^12.2.16",
+    "@angular/common": "0.0.0-NG_PLACEHOLDER",
+    "@angular/core": "0.0.0-NG_PLACEHOLDER",
+    "@angular/router": "0.0.0-NG_PLACEHOLDER",
     "@skyux/core": "0.0.0-PLACEHOLDER",
     "@skyux/i18n": "0.0.0-PLACEHOLDER",
     "@skyux/forms": "0.0.0-PLACEHOLDER",
