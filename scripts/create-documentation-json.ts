@@ -66,6 +66,32 @@ function getAnchorIds(json: Partial<JSONOutput.ProjectReflection>): AnchorIds {
   return anchorIdMap;
 }
 
+/**
+ * @skyux/docs-tools expects to see paths pointing to the old repo structure when doing component demo page lookups.
+ * Replace the new path with the old path until we can figure out a better way to handle this.
+ */
+function fixSourcesPaths(
+  json: Partial<JSONOutput.ProjectReflection>,
+  projectName: string
+) {
+  if (json.children) {
+    for (const child of json.children) {
+      if (child.sources) {
+        for (const source of child.sources) {
+          source.fileName = source.fileName.replace(
+            /^lib\//, // e.g. 'lib/modules/core/foobar.service.ts'
+            `projects/${projectName}/src/` // becomes: 'projects/core/src/modules/core/foobar.service.ts'
+          );
+        }
+      }
+
+      if (child.children) {
+        fixSourcesPaths(child, projectName);
+      }
+    }
+  }
+}
+
 async function getCodeExamples(
   projectName: string,
   packageName: string
@@ -182,6 +208,8 @@ async function createDocumentationJson() {
     const typedocOutput = await fs.readJson(
       path.resolve(process.cwd(), documentationJsonPath)
     );
+
+    fixSourcesPaths(typedocOutput, projectName);
 
     const typedocJson = remapComponentExports(typedocOutput);
     const anchorIds = getAnchorIds(typedocJson);
