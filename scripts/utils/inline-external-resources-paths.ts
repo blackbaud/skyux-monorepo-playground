@@ -68,6 +68,8 @@ function inlineStyleUrls(contents: string): string {
  * Note: this currently only affects the UMD module since that's what StackBlitz imports.
  */
 export function inlineExternalResourcesPaths(projectName: string): void {
+  console.log(`Inlining external resource paths for ${projectName}...`);
+
   const bundlePattern = path.join(
     process.cwd(),
     `dist/libs/${projectName}/bundles/*.umd.js`
@@ -77,7 +79,7 @@ export function inlineExternalResourcesPaths(projectName: string): void {
   if (bundlePaths.length > 0) {
     bundlePaths.forEach((bundlePath) => {
       console.log(
-        `Inlining external resource paths for file '${bundlePath}'...`
+        `- inlining external resource paths for file '${bundlePath}'`
       );
 
       let contents = fs.readFileSync(bundlePath).toString();
@@ -92,7 +94,7 @@ export function inlineExternalResourcesPaths(projectName: string): void {
       }
     });
 
-    console.log('Done inlining external resources.');
+    console.log(` ✔ Done inlining external resources for ${projectName}.`);
   } else {
     console.warn(`The UMD bundle was not found. (wanted '${bundlePattern}')`);
   }
