@@ -4,7 +4,7 @@
   "peerDependencies": {
     "@angular/common": "0.0.0-NG_PLACEHOLDER",
     "@angular/core": "0.0.0-NG_PLACEHOLDER",
-    "@blackbaud/auth-client": "^2.54.0",
+    "@blackbaud/auth-client": "^2.50.0",
     "@skyux/config": "0.0.0-PLACEHOLDER"
   },
   "dependencies": {
