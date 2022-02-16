@@ -15,6 +15,7 @@
     "coverage:affected": "ts-node --project ./scripts/tsconfig.json ./scripts/test-affected.ts",
     "watch": "nx run-many --target=test --all --parallel --maxParallel=4 --watch",
     "watch:affected": "nx affected --target=test --parallel --maxParallel=4 --watch",
+    "create-documentation-json": "ts-node --project ./scripts/tsconfig.json ./scripts/create-documentation-json.ts",
     "create-packages-dist": "ts-node --project ./scripts/tsconfig.json ./scripts/create-packages-dist.ts",
     "create-release": "ts-node --project ./scripts/tsconfig.json ./scripts/create-release.ts",
     "skyux:format": "npx prettier --write ."
@@ -29,7 +30,7 @@
     "@angular/platform-browser": "12.2.16",
     "@angular/platform-browser-dynamic": "12.2.16",
     "@angular/router": "12.2.16",
-    "@blackbaud/auth-client": "2.54.0",
+    "@blackbaud/auth-client": "2.50.0",
     "@blackbaud/skyux-design-tokens": "0.0.24",
     "@circlon/angular-tree-component": "11.0.0",
     "@nrwl/angular": "12.10.1",
@@ -108,6 +109,7 @@
     "semver": "7.3.5",
     "standard-version": "9.3.2",
     "ts-jest": "27.0.5",
+    "typedoc": "0.22.11",
     "typescript": "4.3.5"
   }
 }
