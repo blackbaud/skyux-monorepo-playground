@@ -1,3 +1,15 @@
 {
-  "allowedSemverRange": ">6.0.0-alpha <6.0.0-beta"
+  "allowedSemverRange": ">6.0.0-alpha <6.0.0-beta",
+  "documentation": {
+    "excludeProjects": [
+      "animations",
+      "assets",
+      "config",
+      "http",
+      "omnibar-interop",
+      "navbar",
+      "packages",
+      "router"
+    ]
+  }
 }

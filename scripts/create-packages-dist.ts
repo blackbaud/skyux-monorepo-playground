@@ -1,6 +1,7 @@
 import fs from 'fs-extra';
 import path from 'path';
 
+import { createDocumentationJson } from './utils/create-documentation-json';
 import { inlineExternalResourcesPaths } from './utils/inline-external-resources-paths';
 import { runCommand } from './utils/run-command';
 import { verifyPackagesDist } from './utils/verify-packages-dist';
@@ -22,11 +23,15 @@ function replacePlaceholderTextWithVersion(
 
 async function createPackagesDist(): Promise<void> {
   try {
-    const packageJson = fs.readJsonSync('package.json');
+    const cwd = process.cwd();
+
+    const skyuxDevJson = await fs.readJson(path.join(cwd, 'skyux-dev.json'));
+    const packageJson = await fs.readJson(path.join(cwd, 'package.json'));
+
     const skyuxVersion = packageJson.version;
-    const angularVersion =
-      fs.readJsonSync('package-lock.json').dependencies['@angular/core']
-        .version;
+    const angularVersion = (
+      await fs.readJson(path.join(cwd, 'package-lock.json'))
+    ).dependencies['@angular/core'].version;
 
     fs.removeSync('dist');
 
@@ -73,7 +78,7 @@ async function createPackagesDist(): Promise<void> {
 
     // Derive project names from dist directories.
     // (Trailing slash is necessary to return only directories.)
-    const libsDist = path.join(process.cwd(), 'dist', 'libs/');
+    const libsDist = path.join(cwd, 'dist', 'libs/');
     const projectNames = fs.readdirSync(libsDist);
 
     for (const projectName of projectNames) {
@@ -84,6 +89,10 @@ async function createPackagesDist(): Promise<void> {
       );
 
       inlineExternalResourcesPaths(projectName);
+
+      if (!skyuxDevJson.documentation.excludeProjects.includes(projectName)) {
+        await createDocumentationJson(projectName);
+      }
     }
 
     replacePlaceholderTextWithVersion(

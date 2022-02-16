@@ -3,7 +3,7 @@ import { glob } from 'glob';
 import path from 'path';
 import { JSONOutput } from 'typedoc';
 
-import { runCommand } from './utils/run-command';
+import { runCommand } from './run-command';
 
 interface AnchorIds {
   [typeName: string]: string;
@@ -108,7 +108,7 @@ async function getCodeExamples(
   );
 
   for (const filePath of examples) {
-    console.log(`Processing code example: ${filePath}`);
+    console.log(`- processing code example: ${filePath}`);
 
     const rawContents = (
       await fs.readFile(path.resolve(filePath), { encoding: 'utf-8' })
@@ -178,55 +178,57 @@ function remapComponentExports(
   return json;
 }
 
-async function createDocumentationJson() {
-  try {
-    const projectName = 'core';
-    const packageName = '@skyux/core';
+export async function createDocumentationJson(projectName: string) {
+  console.log(`Creating documentation.json file for ${projectName}...`);
 
-    const documentationJsonPath = `dist/libs/${projectName}/documentation.json`;
+  const projectRoot = `libs/${projectName}`;
 
-    await runCommand('./node_modules/.bin/typedoc', [
-      `libs/${projectName}/src/index.ts`,
-      ...['--tsconfig', `libs/${projectName}/tsconfig.lib.prod.json`],
-      ...['--json', documentationJsonPath, '--pretty'],
-      ...['--emit', 'docs'],
-      ...[
-        '--exclude',
-        `"!**/libs/${projectName}/**"`,
-        '--exclude',
-        '"**/(fixtures|node_modules)/**"',
-        '--exclude',
-        '"**/*+(.fixture|.spec).ts"',
-      ],
-      ...['--externalPattern', `"!**/libs/${projectName}/**"`],
-      '--excludeExternals',
-      '--excludeInternal',
-      '--excludePrivate',
-      '--excludeProtected',
-    ]);
+  const packageJson = await fs.readJson(
+    path.join(process.cwd(), projectRoot, 'package.json')
+  );
 
-    const typedocOutput = await fs.readJson(
-      path.resolve(process.cwd(), documentationJsonPath)
-    );
+  const packageName = packageJson.name;
 
-    fixSourcesPaths(typedocOutput, projectName);
+  const documentationJsonPath = `dist/${projectRoot}/documentation.json`;
 
-    const typedocJson = remapComponentExports(typedocOutput);
-    const anchorIds = getAnchorIds(typedocJson);
+  await runCommand('./node_modules/.bin/typedoc', [
+    `${projectRoot}/src/index.ts`,
+    ...['--tsconfig', `${projectRoot}/tsconfig.lib.prod.json`],
+    ...['--json', documentationJsonPath, '--pretty'],
+    ...['--emit', 'docs'],
+    ...[
+      '--exclude',
+      `"!**/${projectRoot}/**"`,
+      '--exclude',
+      '"**/(fixtures|node_modules)/**"',
+      '--exclude',
+      '"**/*+(.fixture|.spec).ts"',
+    ],
+    ...['--externalPattern', `"!**/${projectRoot}/**"`],
+    '--excludeExternals',
+    '--excludeInternal',
+    '--excludePrivate',
+    '--excludeProtected',
+  ]);
 
-    const documentationJson: DocumentationJson = {};
-    documentationJson.anchorIds = anchorIds;
-    documentationJson.typedoc = typedocJson;
-    documentationJson.codeExamples = await getCodeExamples(
-      projectName,
-      packageName
-    );
+  const typedocOutput = await fs.readJson(
+    path.resolve(process.cwd(), documentationJsonPath)
+  );
 
-    await fs.writeJson(documentationJsonPath, documentationJson, { spaces: 2 });
-  } catch (err) {
-    console.log(err);
-    process.exit(1);
-  }
+  fixSourcesPaths(typedocOutput, projectName);
+
+  const typedocJson = remapComponentExports(typedocOutput);
+  const anchorIds = getAnchorIds(typedocJson);
+
+  const documentationJson: DocumentationJson = {};
+  documentationJson.anchorIds = anchorIds;
+  documentationJson.typedoc = typedocJson;
+  documentationJson.codeExamples = await getCodeExamples(
+    projectName,
+    packageName
+  );
+
+  await fs.writeJson(documentationJsonPath, documentationJson, { spaces: 2 });
+
+  console.log(` ✔ Done creating documentation.json for ${projectName}.`);
 }
-
-createDocumentationJson();
