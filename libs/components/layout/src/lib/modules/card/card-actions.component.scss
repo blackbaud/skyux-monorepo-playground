@@ -1,0 +1,8 @@
+@import 'libs/components/theme/src/lib/styles/mixins';
+@import 'libs/components/theme/src/lib/styles/_compat/mixins';
+
+:host {
+  display: block;
+  @include sky-border(light, top);
+  padding: $sky-padding-3_4 0;
+}

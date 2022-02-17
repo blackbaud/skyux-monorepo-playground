@@ -8,6 +8,7 @@
       "http",
       "omnibar-interop",
       "packages",
+      "prettier-schematics",
       "router"
     ]
   }

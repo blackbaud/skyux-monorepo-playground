@@ -1,0 +1,17 @@
+@import 'libs/components/theme/src/lib/styles/mixins';
+@import 'libs/components/theme/src/lib/styles/_compat/mixins';
+@import 'libs/components/theme/src/lib/styles/variables';
+
+$gutter-sizes: (
+  small: $sky-padding-half,
+  medium: $sky-padding,
+  large: $sky-padding-plus-half,
+);
+
+$gutter-sizes-modern: (
+  small: $sky-theme-modern-space-sm,
+  medium: $sky-theme-modern-space-md,
+  large: $sky-theme-modern-space-xl,
+);
+
+$sky-fluid-grid-columns: 12 !default;

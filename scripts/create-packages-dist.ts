@@ -1,6 +1,10 @@
 import fs from 'fs-extra';
 import path from 'path';
 
+import { DistPackages } from './shared/dist-packages';
+import { PackageJson } from './shared/package-json';
+import { SkyuxDevJson } from './shared/skyux-dev-json';
+
 import { createDocumentationJson } from './utils/create-documentation-json';
 import { inlineExternalResourcesPaths } from './utils/inline-external-resources-paths';
 import { runCommand } from './utils/run-command';
@@ -25,8 +29,13 @@ async function createPackagesDist(): Promise<void> {
   try {
     const cwd = process.cwd();
 
-    const skyuxDevJson = await fs.readJson(path.join(cwd, 'skyux-dev.json'));
-    const packageJson = await fs.readJson(path.join(cwd, 'package.json'));
+    const skyuxDevJson: SkyuxDevJson = await fs.readJson(
+      path.join(cwd, 'skyux-dev.json')
+    );
+    const angularJson = await fs.readJson(path.join(cwd, 'angular.json'));
+    const packageJson: PackageJson = await fs.readJson(
+      path.join(cwd, 'package.json')
+    );
 
     const skyuxVersion = packageJson.version;
     const angularVersion = (
@@ -35,12 +44,28 @@ async function createPackagesDist(): Promise<void> {
 
     fs.removeSync('dist');
 
-    const excludeProjects = [
-      'affected',
-      'code-examples',
-      'integration',
-      'integration-e2e',
-    ];
+    const distPackages: DistPackages = {};
+    for (const projectName in angularJson.projects) {
+      const projectConfig = angularJson.projects[projectName];
+      if (
+        projectConfig.projectType === 'library' &&
+        projectConfig.architect.build
+      ) {
+        distPackages[projectName] = {
+          distRoot:
+            projectConfig.architect.build.options.outputPath ||
+            projectConfig.architect.build.outputs[0],
+          root: projectConfig.root,
+        };
+      }
+    }
+
+    const projectNames = Object.keys(distPackages);
+
+    console.log(
+      'Creating distribution bundles for the following libraries:',
+      projectNames
+    );
 
     // Build all libraries.
     await runCommand(
@@ -49,10 +74,9 @@ async function createPackagesDist(): Promise<void> {
         'nx',
         'run-many',
         '--target=build',
-        '--all',
+        `--projects=${projectNames.join(',')}`,
         '--parallel',
         '--maxParallel=2',
-        `--exclude=${excludeProjects.join(',')}`,
       ],
       {
         stdio: 'inherit',
@@ -66,46 +90,44 @@ async function createPackagesDist(): Promise<void> {
         'nx',
         'run-many',
         '--target=postbuild',
-        '--all',
+        `--projects=${projectNames.join(',')}`,
         '--parallel',
         '--maxParallel=2',
-        `--exclude=${excludeProjects.join(',')}`,
       ],
       {
         stdio: 'inherit',
       }
     );
 
-    // Derive project names from dist directories.
-    // (Trailing slash is necessary to return only directories.)
-    const libsDist = path.join(cwd, 'dist', 'libs/');
-    const projectNames = fs.readdirSync(libsDist);
+    for (const projectName in distPackages) {
+      const distPackage = distPackages[projectName];
 
-    for (const projectName of projectNames) {
       replacePlaceholderTextWithVersion(
-        path.join(libsDist, projectName, 'package.json'),
+        path.join(distPackage.distRoot, 'package.json'),
         skyuxVersion,
         angularVersion
       );
 
-      inlineExternalResourcesPaths(projectName);
+      inlineExternalResourcesPaths(distPackage.distRoot);
 
       if (!skyuxDevJson.documentation.excludeProjects.includes(projectName)) {
-        await createDocumentationJson(projectName);
+        await createDocumentationJson(projectName, distPackage);
+      }
+
+      const migrationCollectionJsonPath = path.join(
+        distPackage.distRoot,
+        'src/schematics/migrations/migration-collection.json'
+      );
+      if (fs.existsSync(migrationCollectionJsonPath)) {
+        replacePlaceholderTextWithVersion(
+          migrationCollectionJsonPath,
+          skyuxVersion,
+          angularVersion
+        );
       }
     }
 
-    replacePlaceholderTextWithVersion(
-      path.join(
-        libsDist,
-        'packages',
-        'src/schematics/migrations/migration-collection.json'
-      ),
-      skyuxVersion,
-      angularVersion
-    );
-
-    await verifyPackagesDist(libsDist, projectNames);
+    await verifyPackagesDist(distPackages, packageJson);
   } catch (err) {
     console.error(err);
     process.exit(1);

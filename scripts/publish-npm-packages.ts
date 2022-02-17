@@ -45,7 +45,7 @@ async function publishNpmPackages(): Promise<void> {
       commandArgs.push(npmPublishTag);
     }
 
-    const libsDist = path.join(process.cwd(), 'dist', 'libs/');
+    const libsDist = path.join(process.cwd(), 'dist/libs/components/');
     const projectNames = fs.readdirSync(libsDist);
 
     for (const projectName of projectNames) {

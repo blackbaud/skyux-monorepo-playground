@@ -1,0 +1,8 @@
+@import 'libs/components/theme/src/lib/styles/mixins';
+@import 'libs/components/theme/src/lib/styles/_compat/mixins';
+
+::ng-deep .sky-alert {
+  margin-top: 0;
+  margin-bottom: $sky-margin-double;
+  line-height: initial;
+}

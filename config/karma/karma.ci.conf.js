@@ -18,7 +18,7 @@ module.exports = function (config) {
       browserStack: {
         accessKey: process.env.BROWSER_STACK_ACCESS_KEY,
         username: process.env.BROWSER_STACK_USERNAME,
-        name: 'nx run affected:test',
+        name: 'nx run affected:coverage',
         project: 'affected',
         enableLoggingForApi: true,
         startTunnel: true,

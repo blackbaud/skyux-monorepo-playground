@@ -3,6 +3,9 @@ import { glob } from 'glob';
 import path from 'path';
 import { JSONOutput } from 'typedoc';
 
+import { DistPackage } from '../shared/dist-packages';
+import { PackageJson } from '../shared/package-json';
+
 import { runCommand } from './run-command';
 
 interface AnchorIds {
@@ -94,11 +97,12 @@ function fixSourcesPaths(
 
 async function getCodeExamples(
   projectName: string,
+  distPackage: DistPackage,
   packageName: string
 ): Promise<CodeExample[]> {
   const codeExamples: CodeExample[] = [];
 
-  const publicApiPathNoExtension = `libs/${projectName}/index`;
+  const publicApiPathNoExtension = `${distPackage.root}/index`;
 
   const examples = glob.sync(
     `apps/code-examples/src/app/code-examples/${projectName}/**/*`,
@@ -178,33 +182,34 @@ function remapComponentExports(
   return json;
 }
 
-export async function createDocumentationJson(projectName: string) {
+export async function createDocumentationJson(
+  projectName: string,
+  distPackage: DistPackage
+) {
   console.log(`Creating documentation.json file for ${projectName}...`);
 
-  const projectRoot = `libs/${projectName}`;
+  const packageName = (
+    (await fs.readJson(
+      path.join(process.cwd(), distPackage.distRoot, 'package.json')
+    )) as PackageJson
+  ).name;
 
-  const packageJson = await fs.readJson(
-    path.join(process.cwd(), projectRoot, 'package.json')
-  );
-
-  const packageName = packageJson.name;
-
-  const documentationJsonPath = `dist/${projectRoot}/documentation.json`;
+  const documentationJsonPath = `${distPackage.distRoot}/documentation.json`;
 
   await runCommand('./node_modules/.bin/typedoc', [
-    `${projectRoot}/src/index.ts`,
-    ...['--tsconfig', `${projectRoot}/tsconfig.lib.prod.json`],
+    `${distPackage.root}/src/index.ts`,
+    ...['--tsconfig', `${distPackage.root}/tsconfig.lib.prod.json`],
     ...['--json', documentationJsonPath, '--pretty'],
     ...['--emit', 'docs'],
     ...[
       '--exclude',
-      `"!**/${projectRoot}/**"`,
+      `"!**/${distPackage.root}/**"`,
       '--exclude',
       '"**/(fixtures|node_modules)/**"',
       '--exclude',
       '"**/*+(.fixture|.spec).ts"',
     ],
-    ...['--externalPattern', `"!**/${projectRoot}/**"`],
+    ...['--externalPattern', `"!**/${distPackage.root}/**"`],
     '--excludeExternals',
     '--excludeInternal',
     '--excludePrivate',
@@ -225,6 +230,7 @@ export async function createDocumentationJson(projectName: string) {
   documentationJson.typedoc = typedocJson;
   documentationJson.codeExamples = await getCodeExamples(
     projectName,
+    distPackage,
     packageName
   );
 

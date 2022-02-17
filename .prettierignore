@@ -1,7 +1,8 @@
 # Ignore artifacts:
-/coverage
-/dist
-/node_modules
+__skyux
+coverage
+dist
+node_modules
 package-lock.json
 
 # Don't format the following since the order of its import statements is deliberate.
