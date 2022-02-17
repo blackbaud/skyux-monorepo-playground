@@ -20,4 +20,8 @@ module.exports = {
       statements: 100,
     },
   },
+  coveragePathIgnorePatterns: [
+    '<rootDir>/src/schematics/testing',
+    '<rootDir>/src/schematics/utility',
+  ],
 };
