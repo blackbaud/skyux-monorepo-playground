@@ -32,6 +32,9 @@
     ]
   },
   "projects": {
+    "code-examples": {
+      "tags": []
+    },
     "a11y": {
       "tags": ["component"]
     },
@@ -55,9 +58,6 @@
     },
     "avatar": {
       "tags": ["component"]
-    },
-    "code-examples": {
-      "tags": []
     },
     "colorpicker": {
       "tags": ["component"]
@@ -98,13 +98,6 @@
     "inline-form": {
       "tags": ["component"]
     },
-    "integration": {
-      "tags": []
-    },
-    "integration-e2e": {
-      "tags": [],
-      "implicitDependencies": ["integration"]
-    },
     "layout": {
       "tags": ["component"]
     },
@@ -135,6 +128,9 @@
     "omnibar-interop": {
       "tags": ["component"]
     },
+    "packages": {
+      "tags": ["component"]
+    },
     "pages": {
       "tags": ["component"]
     },
@@ -149,12 +145,6 @@
     },
     "router": {
       "tags": ["component"]
-    },
-    "packages": {
-      "tags": ["sdk"]
-    },
-    "prettier-schematics": {
-      "tags": ["sdk"]
     },
     "select-field": {
       "tags": ["component"]
@@ -179,6 +169,19 @@
     },
     "validation": {
       "tags": ["component"]
+    },
+    "integration": {
+      "tags": []
+    },
+    "integration-e2e": {
+      "tags": [],
+      "implicitDependencies": ["integration"]
+    },
+    "prettier-schematics": {
+      "tags": ["sdk"]
+    },
+    "testing": {
+      "tags": ["sdk"]
     }
   }
 }

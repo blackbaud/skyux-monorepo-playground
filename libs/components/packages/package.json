@@ -17,7 +17,7 @@
       "@skyux-sdk/prettier-schematics": "0.0.0-PLACEHOLDER",
       "@skyux-sdk/angular-builders": "^5.0.0-beta.0",
       "@skyux-sdk/e2e": "^5.0.0",
-      "@skyux-sdk/testing": "^5.0.0",
+      "@skyux-sdk/testing": "0.0.0-PLACEHOLDER",
       "@skyux/a11y": "0.0.0-PLACEHOLDER",
       "@skyux/action-bars": "0.0.0-PLACEHOLDER",
       "@skyux/ag-grid": "0.0.0-PLACEHOLDER",

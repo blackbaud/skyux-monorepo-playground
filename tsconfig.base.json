@@ -18,6 +18,7 @@
       "@skyux-sdk/prettier-schematics": [
         "libs/sdk/prettier-schematics/src/index.ts"
       ],
+      "@skyux-sdk/testing": ["libs/sdk/testing/src/index.ts"],
       "@skyux/a11y": ["libs/components/a11y/src/index.ts"],
       "@skyux/action-bars": ["libs/components/action-bars/src/index.ts"],
       "@skyux/action-bars/testing": [
@@ -100,7 +101,7 @@
       "@skyux/omnibar-interop": [
         "libs/components/omnibar-interop/src/index.ts"
       ],
-      "@skyux/packages": ["libs/sdk/packages/src/index.ts"],
+      "@skyux/packages": ["libs/components/packages/src/index.ts"],
       "@skyux/pages": ["libs/components/pages/src/index.ts"],
       "@skyux/phone-field": ["libs/components/phone-field/src/index.ts"],
       "@skyux/phone-field/testing": [

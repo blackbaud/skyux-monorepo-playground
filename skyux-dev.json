@@ -9,7 +9,8 @@
       "omnibar-interop",
       "packages",
       "prettier-schematics",
-      "router"
+      "router",
+      "testing"
     ]
   }
 }

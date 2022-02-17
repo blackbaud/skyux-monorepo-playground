@@ -2080,22 +2080,22 @@
       }
     },
     "packages": {
-      "root": "libs/sdk/packages",
-      "sourceRoot": "libs/sdk/packages/src",
+      "root": "libs/components/packages",
+      "sourceRoot": "libs/components/packages/src",
       "projectType": "library",
       "architect": {
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "outputs": ["{options.outputFile}"],
           "options": {
-            "lintFilePatterns": ["libs/sdk/packages/**/*.ts"]
+            "lintFilePatterns": ["libs/components/packages/**/*.ts"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/sdk/packages"],
+          "outputs": ["coverage/libs/components/packages"],
           "options": {
-            "jestConfig": "libs/sdk/packages/jest.config.js",
+            "jestConfig": "libs/components/packages/jest.config.js",
             "passWithNoTests": true,
             "codeCoverage": true,
             "coverageReporters": ["html", "text"]
@@ -2105,11 +2105,11 @@
           "builder": "@nrwl/node:package",
           "outputs": ["{options.outputPath}"],
           "options": {
-            "outputPath": "dist/libs/sdk/packages",
-            "tsConfig": "libs/sdk/packages/tsconfig.lib.json",
-            "packageJson": "libs/sdk/packages/package.json",
-            "main": "libs/sdk/packages/src/index.ts",
-            "assets": ["libs/sdk/packages/*.md"],
+            "outputPath": "dist/libs/components/packages",
+            "tsConfig": "libs/components/packages/tsconfig.lib.json",
+            "packageJson": "libs/components/packages/package.json",
+            "main": "libs/components/packages/src/index.ts",
+            "assets": ["libs/components/packages/*.md"],
             "updateBuildableProjectDepsInPackageJson": false
           }
         },
@@ -2622,6 +2622,54 @@
             "styles": [
               "libs/components/theme/src/lib/styles/sky.scss",
               "libs/components/theme/src/lib/styles/themes/modern/styles.scss"
+            ]
+          }
+        }
+      }
+    },
+    "testing": {
+      "projectType": "library",
+      "root": "libs/sdk/testing",
+      "sourceRoot": "libs/sdk/testing/src",
+      "prefix": "sky",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "outputs": ["dist/libs/sdk/testing"],
+          "options": {
+            "project": "libs/sdk/testing/ng-package.json",
+            "updateBuildableProjectDepsInPackageJson": false
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/sdk/testing/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "libs/sdk/testing/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "libs/sdk/testing/src/test.ts",
+            "tsConfig": "libs/sdk/testing/tsconfig.spec.json",
+            "karmaConfig": "libs/sdk/testing/karma.conf.js",
+            "styles": [
+              "libs/components/theme/src/lib/styles/sky.scss",
+              "libs/components/theme/src/lib/styles/themes/modern/styles.scss"
+            ],
+            "codeCoverage": true,
+            "codeCoverageExclude": ["**/fixtures/**"]
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/sdk/testing/src/**/*.ts",
+              "libs/sdk/testing/src/**/*.html"
             ]
           }
         }

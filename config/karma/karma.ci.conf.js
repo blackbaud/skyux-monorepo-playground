@@ -5,6 +5,7 @@ const applySharedKarmaConfig = require('./karma.shared.conf');
 module.exports = function (config) {
   applySharedKarmaConfig(config);
 
+  // Don't run coverage for BrowserStack tests.
   delete config.coverageReporter;
 
   if (process.env.BROWSER_STACK_ACCESS_KEY) {

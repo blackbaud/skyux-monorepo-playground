@@ -14,10 +14,10 @@ module.exports = {
   coverageDirectory: '../../../coverage/libs/sdk/prettier-schematics',
   coverageThreshold: {
     global: {
-      branches: 87.5,
-      functions: 96.29,
-      lines: 98.16,
-      statements: 98.24,
+      branches: 100,
+      functions: 100,
+      lines: 100,
+      statements: 100,
     },
   },
 };

@@ -1,5 +1,5 @@
 module.exports = {
-  displayName: 'sdk-packages',
+  displayName: 'components-packages',
   preset: '../../../jest.preset.js',
   globals: {
     'ts-jest': {
@@ -11,13 +11,13 @@ module.exports = {
     '^.+\\.[tj]sx?$': 'ts-jest',
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
-  coverageDirectory: '../../../coverage/libs/sdk/packages',
+  coverageDirectory: '../../../coverage/libs/components/packages',
   coverageThreshold: {
     global: {
-      branches: 87.5,
+      branches: 100,
       functions: 100,
-      lines: 98.16,
-      statements: 98.24,
+      lines: 100,
+      statements: 100,
     },
   },
 };
