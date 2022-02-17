@@ -11,12 +11,12 @@ function copyFilesToDist() {
   pathsToCopy.forEach((pathArr) => {
     const sourcePath = path.join(
       process.cwd(),
-      'libs/sdk/packages',
+      'libs/components/packages',
       ...pathArr
     );
     const distPath = path.join(
       process.cwd(),
-      'dist/libs/sdk/packages',
+      'dist/libs/components/packages',
       ...pathArr
     );
 
