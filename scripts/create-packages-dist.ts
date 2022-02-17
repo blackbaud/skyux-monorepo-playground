@@ -1,11 +1,11 @@
 import fs from 'fs-extra';
 import path from 'path';
 
-import { DistPackages } from './shared/dist-packages';
 import { PackageJson } from './shared/package-json';
 import { SkyuxDevJson } from './shared/skyux-dev-json';
 
 import { createDocumentationJson } from './utils/create-documentation-json';
+import { getPublishableProjects } from './utils/get-publishable-projects';
 import { inlineExternalResourcesPaths } from './utils/inline-external-resources-paths';
 import { runCommand } from './utils/run-command';
 import { verifyPackagesDist } from './utils/verify-packages-dist';
@@ -32,7 +32,7 @@ async function createPackagesDist(): Promise<void> {
     const skyuxDevJson: SkyuxDevJson = await fs.readJson(
       path.join(cwd, 'skyux-dev.json')
     );
-    const angularJson = await fs.readJson(path.join(cwd, 'angular.json'));
+
     const packageJson: PackageJson = await fs.readJson(
       path.join(cwd, 'package.json')
     );
@@ -44,22 +44,7 @@ async function createPackagesDist(): Promise<void> {
 
     fs.removeSync('dist');
 
-    const distPackages: DistPackages = {};
-    for (const projectName in angularJson.projects) {
-      const projectConfig = angularJson.projects[projectName];
-      if (
-        projectConfig.projectType === 'library' &&
-        projectConfig.architect.build
-      ) {
-        distPackages[projectName] = {
-          distRoot:
-            projectConfig.architect.build.options.outputPath ||
-            projectConfig.architect.build.outputs[0],
-          root: projectConfig.root,
-        };
-      }
-    }
-
+    const distPackages = await getPublishableProjects();
     const projectNames = Object.keys(distPackages);
 
     console.log(
