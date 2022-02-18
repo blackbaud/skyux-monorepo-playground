@@ -113,6 +113,8 @@ import { SkyPhoneFieldNumberReturnFormat } from './types/number-return-format';
   ],
 })
 export class SkyPhoneFieldComponent implements OnDestroy, OnInit {
+  public foo: string;
+
   /**
    * Indicates whether or not phone number extensions are allowed.
    * @default true
