@@ -119,27 +119,6 @@
         }
       }
     },
-    "affected": {
-      "projectType": "library",
-      "root": "/",
-      "sourceRoot": "/",
-      "architect": {
-        "coverage": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "__test-affected.ts",
-            "tsConfig": "__tsconfig.test-affected.json",
-            "karmaConfig": "config/karma/karma.affected.conf.js",
-            "styles": [
-              "libs/components/theme/src/lib/styles/sky.scss",
-              "libs/components/theme/src/lib/styles/themes/modern/styles.scss",
-              "libs/components/ag-grid/src/lib/styles/ag-grid-styles.scss"
-            ],
-            "codeCoverage": true
-          }
-        }
-      }
-    },
     "ag-grid": {
       "projectType": "library",
       "root": "libs/components/ag-grid",
@@ -453,6 +432,27 @@
               "libs/components/theme/src/lib/styles/sky.scss",
               "libs/components/theme/src/lib/styles/themes/modern/styles.scss"
             ]
+          }
+        }
+      }
+    },
+    "ci": {
+      "projectType": "library",
+      "root": "libs/components",
+      "sourceRoot": "libs/components",
+      "architect": {
+        "create-coverage-report": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "__create-coverage-report.ts",
+            "tsConfig": "__tsconfig.create-coverage-report.json",
+            "karmaConfig": "config/karma/karma.create-coverage-report.conf.js",
+            "styles": [
+              "libs/components/theme/src/lib/styles/sky.scss",
+              "libs/components/theme/src/lib/styles/themes/modern/styles.scss",
+              "libs/components/ag-grid/src/lib/styles/ag-grid-styles.scss"
+            ],
+            "codeCoverage": true
           }
         }
       }

@@ -4,12 +4,12 @@ import path from 'path';
 import { getCommandOutput, runCommand } from './utils/spawn';
 
 // These projects' tests should never be executed.
-const EXCLUDED_PROJECTS = ['affected'];
+const EXCLUDED_PROJECTS = ['ci'];
 
-const TEST_ENTRY_FILE = path.join(process.cwd(), '__test-affected.ts');
+const TEST_ENTRY_FILE = path.join(process.cwd(), '__create-coverage-report.ts');
 const TEST_TSCONFIG_FILE = path.join(
   process.cwd(),
-  '__tsconfig.test-affected.json'
+  '__tsconfig.create-coverage-report.json'
 );
 
 async function getAngularJson() {
@@ -122,7 +122,7 @@ context.keys().map(context);
       types: ['jasmine', 'node'],
       lib: ['dom', 'es2018'],
     },
-    files: ['./__test-affected.ts'],
+    files: ['./__create-coverage-report.ts'],
     include: ['**/*.d.ts'],
     angularCompilerOptions: {
       compilationMode: 'partial',
@@ -183,7 +183,7 @@ async function testAffected() {
     const npxArgs = [
       'nx',
       'run',
-      'affected:coverage',
+      'ci:create-coverage-report',
       '--sourceMap=false',
       '--codeCoverage',
       `--codeCoverageExclude=${codeCoverageExclude.join(',')}`,
