@@ -160,14 +160,23 @@ async function testAffected() {
     const angularJson = await getAngularJson();
 
     const affectedProjects = await getAffectedProjectsForTest(angularJson);
+
+    if (
+      affectedProjects.karma.length === 0 &&
+      affectedProjects.other.length === 0
+    ) {
+      console.log('No affected projects. Aborting tests.');
+      process.exit(0);
+    }
+
     const unaffectedProjects = await getUnaffectedProjects(
       affectedProjects.karma,
       angularJson
     );
 
     console.log(
-      'Running tests for the following projects:',
-      affectedProjects.karma
+      `Running tests for the following projects:
+ - ${affectedProjects.karma.join('\n - ')}`
     );
 
     await createTempTestingFiles(affectedProjects.karma, angularJson);
@@ -175,6 +184,9 @@ async function testAffected() {
     // Exclude all other projects from code coverage.
     const codeCoverageExclude = [
       '**/fixtures/**',
+      '**/node_modules/**',
+      '*.spec.ts',
+      '*.fixture.ts',
       ...unaffectedProjects.map(
         (project) => `./${angularJson.projects[project].root}/**`
       ),
