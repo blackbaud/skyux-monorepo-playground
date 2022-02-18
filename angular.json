@@ -1,6 +1,32 @@
 {
   "version": 1,
   "projects": {
+    "components-testing": {
+      "projectType": "library",
+      "root": "libs/components",
+      "sourceRoot": "libs/components",
+      "architect": {
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "test-components.ts",
+            "tsConfig": "tsconfig.test-components.json",
+            "karmaConfig": "karma.test-components.conf.js",
+            "codeCoverage": true,
+            "codeCoverageExclude": [
+              "**/fixtures/**",
+              "*.spec.ts",
+              "*.fixture.ts"
+            ],
+            "styles": [
+              "libs/components/theme/src/lib/styles/sky.scss",
+              "libs/components/theme/src/lib/styles/themes/modern/styles.scss",
+              "libs/components/ag-grid/src/lib/styles/ag-grid-styles.scss"
+            ]
+          }
+        }
+      }
+    },
     "a11y": {
       "projectType": "library",
       "root": "libs/components/a11y",
@@ -438,8 +464,8 @@
     },
     "ci": {
       "projectType": "library",
-      "root": "libs/components",
-      "sourceRoot": "libs/components",
+      "root": "/",
+      "sourceRoot": "/",
       "architect": {
         "create-coverage-report": {
           "builder": "@angular-devkit/build-angular:karma",
