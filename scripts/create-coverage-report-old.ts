@@ -1,20 +1,19 @@
-/**
- * This file is responsible for generating a code coverage report for all library projects.
- * Application unit tests are handled in another step.
- */
+import fs from 'fs-extra';
+import path from 'path';
 
-import { readJson, writeFile, writeJson } from 'fs-extra';
-import { join } from 'path';
 import { getCommandOutput, runCommand } from './utils/spawn';
 
-const TEST_ENTRY_FILE = join(process.cwd(), '__create-coverage-report.ts');
-const TEST_TSCONFIG_FILE = join(
+// These projects' tests should never be executed.
+const EXCLUDED_PROJECTS = ['ci'];
+
+const TEST_ENTRY_FILE = path.join(process.cwd(), '__create-coverage-report.ts');
+const TEST_TSCONFIG_FILE = path.join(
   process.cwd(),
   '__tsconfig.create-coverage-report.json'
 );
 
 async function getAngularJson() {
-  return readJson(join(process.cwd(), 'angular.json'));
+  return fs.readJson(path.join(process.cwd(), 'angular.json'));
 }
 
 /**
@@ -28,6 +27,7 @@ async function getAffectedProjects(target: string) {
     'print-affected',
     `--target=${target}`,
     '--select=tasks.target.project',
+    `--exclude=${EXCLUDED_PROJECTS.join(',')}`,
   ]);
 
   if (!affectedStr) {
@@ -45,26 +45,26 @@ async function getUnaffectedProjects(
 ) {
   return Object.keys(angularJson.projects).filter(
     (project) =>
-      !affectedProjects.includes(project) && !project.endsWith('-testing')
+      !affectedProjects.includes(project) &&
+      !EXCLUDED_PROJECTS.includes(project) &&
+      !project.endsWith('-testing')
   );
 }
 
-async function getAffectedLibrariesForTest(angularJson: any) {
+async function getAffectedProjectsForTest(angularJson: any) {
   const projects = await getAffectedProjects('test');
 
   const karma: string[] = [];
   const other: string[] = [];
 
   projects.forEach((project) => {
-    if (angularJson.projects[project].projectType === 'library') {
-      if (
-        angularJson.projects[project].architect.test.builder ===
-        '@angular-devkit/build-angular:karma'
-      ) {
-        karma.push(project);
-      } else {
-        other.push(project);
-      }
+    if (
+      angularJson.projects[project].architect.test.builder ===
+      '@angular-devkit/build-angular:karma'
+    ) {
+      karma.push(project);
+    } else {
+      other.push(project);
     }
   });
 
@@ -103,13 +103,13 @@ getTestBed().initTestEnvironment(
 
   // Generate a 'require.context' RegExp that includes only the affected projects.
   entryContents += `
-const context = require.context('./', true, /libs\\/(.+\\/)?(${karmaProjects.join(
+const context = require.context('./', true, /(libs|apps)\\/(.+\\/)?(${karmaProjects.join(
     '|'
   )})\\/src\\/.+\\.spec\\.ts$/);
 context.keys().map(context);
 `;
 
-  await writeFile(TEST_ENTRY_FILE, entryContents);
+  await fs.writeFile(TEST_ENTRY_FILE, entryContents);
 
   let tsconfig = {
     extends: './tsconfig.base.json',
@@ -123,7 +123,7 @@ context.keys().map(context);
       lib: ['dom', 'es2018'],
     },
     files: ['./__create-coverage-report.ts'],
-    include: ['libs/**/*.d.ts'],
+    include: ['**/*.d.ts'],
     angularCompilerOptions: {
       compilationMode: 'partial',
     },
@@ -134,18 +134,32 @@ context.keys().map(context);
     tsconfig.include.push(`${angularJson.projects[project].root}/**/*.spec.ts`);
   }
 
-  await writeJson(TEST_TSCONFIG_FILE, tsconfig, { spaces: 2 });
+  await fs.writeJson(TEST_TSCONFIG_FILE, tsconfig, { spaces: 2 });
 }
+
+function removeTempTestingFiles() {
+  console.log('Removing temporary test files...');
+  if (fs.existsSync(TEST_ENTRY_FILE)) {
+    fs.removeSync(TEST_ENTRY_FILE);
+  }
+
+  if (fs.existsSync(TEST_TSCONFIG_FILE)) {
+    fs.removeSync(TEST_TSCONFIG_FILE);
+  }
+  console.log('Done removing temp test files.');
+}
+
+process.on('SIGINT', () => process.exit());
+process.on('uncaughtException', () => process.exit());
+process.on('exit', () => removeTempTestingFiles());
 
 async function testAffected() {
   try {
     const argv = require('minimist')(process.argv.slice(2));
+
     const angularJson = await getAngularJson();
-    const affectedProjects = await getAffectedLibrariesForTest(angularJson);
-    // const affectedProjects = {
-    //   karma: ['core'],
-    //   other: [],
-    // };
+
+    const affectedProjects = await getAffectedProjectsForTest(angularJson);
 
     if (
       affectedProjects.karma.length === 0 &&
@@ -156,24 +170,13 @@ async function testAffected() {
     }
 
     const unaffectedProjects = await getUnaffectedProjects(
-      affectedProjects.karma.concat(affectedProjects.other),
+      affectedProjects.karma,
       angularJson
     );
 
     console.log(
-      `Running karma tests for the following projects:
+      `Running tests for the following projects:
  - ${affectedProjects.karma.join('\n - ')}`
-    );
-
-    console.log(
-      `Running jest tests for the following projects:
- - ${affectedProjects.other.join('\n - ')}`
-    );
-
-    console.log(
-      `The following projects will be ignored for code coverage: ${unaffectedProjects.join(
-        ', '
-      )}`
     );
 
     await createTempTestingFiles(affectedProjects.karma, angularJson);
@@ -181,9 +184,12 @@ async function testAffected() {
     // Exclude all other projects from code coverage.
     const codeCoverageExclude = [
       '**/fixtures/**',
-      // ...unaffectedProjects
-      //   .concat(affectedProjects.other)
-      //   .map((project) => `./${angularJson.projects[project].root}/**`),
+      '**/node_modules/**',
+      '*.spec.ts',
+      '*.fixture.ts',
+      ...unaffectedProjects.map(
+        (project) => `./${angularJson.projects[project].root}/**`
+      ),
     ];
 
     const npxArgs = [
@@ -200,28 +206,28 @@ async function testAffected() {
 
     await runCommand('npx', npxArgs);
 
-    // // Abort if only running components.
-    // if (argv.onlyComponents) {
-    //   return;
-    // }
+    // Abort if only running components.
+    if (argv.onlyComponents) {
+      return;
+    }
 
-    // if (affectedProjects.other.length > 0) {
-    //   console.log(
-    //     'Running tests for the following non-components projects:',
-    //     affectedProjects.other
-    //   );
+    if (affectedProjects.other.length > 0) {
+      console.log(
+        'Running tests for the following non-components projects:',
+        affectedProjects.other
+      );
 
-    //   await runCommand('npx', [
-    //     'nx',
-    //     'run-many',
-    //     '--target=test',
-    //     `--projects=${affectedProjects.other.join(',')}`,
-    //     '--codeCoverage',
-    //   ]);
-    // }
+      await runCommand('npx', [
+        'nx',
+        'run-many',
+        '--target=test',
+        `--projects=${affectedProjects.other.join(',')}`,
+        '--codeCoverage',
+      ]);
+    }
 
-    // // Run posttest steps.
-    // await runCommand('npx', ['nx', 'affected', '--target=posttest']);
+    // Run posttest steps.
+    await runCommand('npx', ['nx', 'affected', '--target=posttest']);
   } catch (err) {
     console.error(err);
     process.exit(1);
