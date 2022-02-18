@@ -126,7 +126,8 @@ async function createRelease() {
     // Ensure local git is clean.
     if (!(await isGitClean())) {
       throw new Error(
-        'Changes found on the local branch. Please push (or stash) any changes before creating a release.'
+        'Your local branch does not match the remote. ' +
+          'Please pull any changes from the remote (or stash any local changes) before creating a release.'
       );
     }
 

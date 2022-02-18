@@ -96,10 +96,8 @@ jobs:
         with:
           path: node_modules
           key: cache-node-modules-${{ hashFiles('package-lock.json') }}
-      - name: Build and verify libraries dist
-        run: |
-          export NX_CLOUD_DISTRIBUTED_EXECUTION=false
-          npm run ci:create-packages-dist
+      - name: Build
+        run: npx nx affected --target=build --parallel --maxParallel=5
 
   coverage:
     name: Code coverage
