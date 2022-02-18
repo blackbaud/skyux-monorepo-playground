@@ -13,10 +13,13 @@ import {
 import { join } from 'path';
 import { getCommandOutput, runCommand } from './utils/spawn';
 
-const TEST_ENTRY_FILE = join(process.cwd(), '__create-coverage-report.ts');
+const TEST_ENTRY_FILE = join(
+  process.cwd(),
+  '__create-affected-coverage-report.ts'
+);
 const TEST_TSCONFIG_FILE = join(
   process.cwd(),
-  '__tsconfig.create-coverage-report.json'
+  '__tsconfig.create-affected-coverage-report.json'
 );
 
 async function getAngularJson() {
@@ -128,7 +131,7 @@ context.keys().map(context);
       types: ['jasmine', 'node'],
       lib: ['dom', 'es2018'],
     },
-    files: ['./__create-coverage-report.ts'],
+    files: ['./__create-affected-coverage-report.ts'],
     include: ['libs/**/*.d.ts'],
     angularCompilerOptions: {
       compilationMode: 'partial',
@@ -209,7 +212,7 @@ async function testAffected() {
     const npxArgs = [
       'nx',
       'run',
-      'ci:create-coverage-report',
+      'ci:create-affected-coverage-report',
       '--codeCoverage',
       `--codeCoverageExclude=${codeCoverageExclude.join(',')}`,
     ];
