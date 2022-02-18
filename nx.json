@@ -8,7 +8,6 @@
       "dependencies": "*",
       "devDependencies": "*"
     },
-    ".eslintrc-overrides.json": "*",
     ".eslintrc.json": "*",
     ".eslintrc-overrides.json": "*",
     ".github/workflows/**": "*",
