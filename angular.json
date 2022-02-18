@@ -438,8 +438,8 @@
     },
     "ci": {
       "projectType": "library",
-      "root": "libs/components",
-      "sourceRoot": "libs/components",
+      "root": "/",
+      "sourceRoot": "/",
       "architect": {
         "create-coverage-report": {
           "builder": "@angular-devkit/build-angular:karma",
