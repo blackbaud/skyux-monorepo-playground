@@ -162,7 +162,9 @@ process.on('exit', () => removeTempTestingFiles());
 async function testAffected() {
   try {
     const argv = require('minimist')(process.argv.slice(2));
+
     const angularJson = await getAngularJson();
+
     const affectedProjects = await getAffectedLibrariesForTest(angularJson);
 
     if (
@@ -202,13 +204,7 @@ async function testAffected() {
 
     await createTempTestingFiles(affectedProjects.karma, angularJson);
 
-    // Exclude all other projects from code coverage.
-    const codeCoverageExclude = [
-      '**/fixtures/**',
-      // ...unaffectedProjects
-      //   .concat(affectedProjects.other)
-      //   .map((project) => `./${angularJson.projects[project].root}/**`),
-    ];
+    const codeCoverageExclude = ['**/fixtures/**', '*.fixture.ts'];
 
     const npxArgs = [
       'nx',
