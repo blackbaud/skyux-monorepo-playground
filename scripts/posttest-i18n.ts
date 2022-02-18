@@ -1,5 +1,6 @@
 import path from 'path';
-import { runCommand } from './utils/run-command';
+
+import { runCommand } from './utils/spawn';
 
 async function posttestI18n() {
   console.log('Testing library schematics...');

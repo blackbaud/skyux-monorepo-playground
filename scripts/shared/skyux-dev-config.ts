@@ -1,4 +1,4 @@
-export interface SkyuxDevJson {
+export interface SkyuxDevConfig {
   allowedSemverRange: string;
   documentation: {
     excludeProjects: string[];

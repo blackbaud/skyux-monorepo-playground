@@ -9,10 +9,13 @@
       "devDependencies": "*"
     },
     ".eslintrc.json": "*",
+    ".eslintrc-overrides.json": "*",
     ".github/workflows/**": "*",
     "config/**": "*",
     "scripts/**": "*",
-    "karma.conf.js": "*"
+    "jest.config.json": "*",
+    "karma.conf.js": "*",
+    "tsconfig.base.json": "*"
   },
   "tasksRunnerOptions": {
     "default": {
@@ -176,6 +179,9 @@
     "integration-e2e": {
       "tags": [],
       "implicitDependencies": ["integration"]
+    },
+    "playground": {
+      "tags": []
     },
     "prettier-schematics": {
       "tags": ["sdk"]

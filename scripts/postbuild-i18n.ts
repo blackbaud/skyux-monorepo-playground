@@ -1,6 +1,7 @@
 import fs from 'fs-extra';
 import path from 'path';
-import { runCommand } from './utils/run-command';
+
+import { runCommand } from './utils/spawn';
 
 const CWD = process.cwd();
 const LIB_PATH = path.resolve(CWD, 'libs/components/i18n');

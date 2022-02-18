@@ -1,5 +1,4 @@
-import { getCommandOutput } from './get-command-output';
-import { runCommand } from './run-command';
+import { getCommandOutput, runCommand } from './spawn';
 
 export async function isGitClean() {
   const result = await getCommandOutput('git', ['status']);

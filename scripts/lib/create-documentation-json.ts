@@ -5,8 +5,7 @@ import { JSONOutput } from 'typedoc';
 
 import { DistPackage } from '../shared/dist-packages';
 import { PackageJson } from '../shared/package-json';
-
-import { runCommand } from './run-command';
+import { runCommand } from '../utils/spawn';
 
 interface AnchorIds {
   [typeName: string]: string;

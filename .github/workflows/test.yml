@@ -97,7 +97,9 @@ jobs:
           path: node_modules
           key: cache-node-modules-${{ hashFiles('package-lock.json') }}
       - name: Build and verify libraries dist
-        run: export NX_CLOUD_DISTRIBUTED_EXECUTION=false && ./node_modules/.bin/ts-node --project ./scripts/tsconfig.json ./scripts/create-packages-dist.ts
+        run: |
+          export NX_CLOUD_DISTRIBUTED_EXECUTION=false
+          npm run ci:create-packages-dist
 
   coverage:
     name: Code coverage
@@ -121,7 +123,9 @@ jobs:
           path: node_modules
           key: cache-node-modules-${{ hashFiles('package-lock.json') }}
       - name: Code coverage
-        run: export NX_CLOUD_DISTRIBUTED_EXECUTION=false && ./node_modules/.bin/ts-node --project ./scripts/tsconfig.json ./scripts/test-affected.ts
+        run: |
+          export NX_CLOUD_DISTRIBUTED_EXECUTION=false
+          npm run ci:create-coverage-report
 
   browserstack:
     name: Cross-browser testing
@@ -145,7 +149,9 @@ jobs:
           path: node_modules
           key: cache-node-modules-${{ hashFiles('package-lock.json') }}
       - name: Cross-browser tests
-        run: export NX_CLOUD_DISTRIBUTED_EXECUTION=false && ./node_modules/.bin/ts-node --project ./scripts/tsconfig.json ./scripts/test-affected.ts --karmaConfig=config/karma/karma.ci.conf.js --onlyComponents
+        run: |
+          export NX_CLOUD_DISTRIBUTED_EXECUTION=false
+          npm run ci:create-coverage-report -- --karmaConfig=config/karma/karma.ci.conf.js --onlyComponents
 
   stop-agents:
     name: Stop Nx Cloud agents

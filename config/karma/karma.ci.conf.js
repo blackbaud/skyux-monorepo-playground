@@ -19,8 +19,8 @@ module.exports = function (config) {
       browserStack: {
         accessKey: process.env.BROWSER_STACK_ACCESS_KEY,
         username: process.env.BROWSER_STACK_USERNAME,
-        name: 'nx run affected:coverage',
-        project: 'affected',
+        name: 'create-coverage-report',
+        project: 'ci',
         enableLoggingForApi: true,
         startTunnel: true,
         forceLocal: true,
@@ -55,5 +55,16 @@ module.exports = function (config) {
         },
       ],
     });
+  } else {
+    console.warn(
+      `
+
+********************************************************************************
+ [!] A BrowserStack access key was not defined in the environment.
+     --> Tests will still be run in ChromeHeadless but this could be a problem.
+********************************************************************************
+
+`
+    );
   }
 };

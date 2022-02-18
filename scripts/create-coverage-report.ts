@@ -1,15 +1,15 @@
 import fs from 'fs-extra';
 import path from 'path';
-import { getCommandOutput } from './utils/get-command-output';
-import { runCommand } from './utils/run-command';
+
+import { getCommandOutput, runCommand } from './utils/spawn';
 
 // These projects' tests should never be executed.
-const EXCLUDED_PROJECTS = ['affected'];
+const EXCLUDED_PROJECTS = ['ci'];
 
-const TEST_ENTRY_FILE = path.join(process.cwd(), '__test-affected.ts');
+const TEST_ENTRY_FILE = path.join(process.cwd(), '__create-coverage-report.ts');
 const TEST_TSCONFIG_FILE = path.join(
   process.cwd(),
-  '__tsconfig.test-affected.json'
+  '__tsconfig.create-coverage-report.json'
 );
 
 async function getAngularJson() {
@@ -122,7 +122,7 @@ context.keys().map(context);
       types: ['jasmine', 'node'],
       lib: ['dom', 'es2018'],
     },
-    files: ['./__test-affected.ts'],
+    files: ['./__create-coverage-report.ts'],
     include: ['**/*.d.ts'],
     angularCompilerOptions: {
       compilationMode: 'partial',
@@ -160,14 +160,23 @@ async function testAffected() {
     const angularJson = await getAngularJson();
 
     const affectedProjects = await getAffectedProjectsForTest(angularJson);
+
+    if (
+      affectedProjects.karma.length === 0 &&
+      affectedProjects.other.length === 0
+    ) {
+      console.log('No affected projects. Aborting tests.');
+      process.exit(0);
+    }
+
     const unaffectedProjects = await getUnaffectedProjects(
       affectedProjects.karma,
       angularJson
     );
 
     console.log(
-      'Running tests for the following projects:',
-      affectedProjects.karma
+      `Running tests for the following projects:
+ - ${affectedProjects.karma.join('\n - ')}`
     );
 
     await createTempTestingFiles(affectedProjects.karma, angularJson);
@@ -175,6 +184,9 @@ async function testAffected() {
     // Exclude all other projects from code coverage.
     const codeCoverageExclude = [
       '**/fixtures/**',
+      '**/node_modules/**',
+      '*.spec.ts',
+      '*.fixture.ts',
       ...unaffectedProjects.map(
         (project) => `./${angularJson.projects[project].root}/**`
       ),
@@ -183,7 +195,7 @@ async function testAffected() {
     const npxArgs = [
       'nx',
       'run',
-      'affected:coverage',
+      'ci:create-coverage-report',
       '--sourceMap=false',
       '--codeCoverage',
       `--codeCoverageExclude=${codeCoverageExclude.join(',')}`,
