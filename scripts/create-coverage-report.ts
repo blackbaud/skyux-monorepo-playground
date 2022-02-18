@@ -3,7 +3,13 @@
  * Application unit tests are handled in another step.
  */
 
-import { readJson, writeFile, writeJson } from 'fs-extra';
+import {
+  existsSync,
+  readJson,
+  removeSync,
+  writeFile,
+  writeJson,
+} from 'fs-extra';
 import { join } from 'path';
 import { getCommandOutput, runCommand } from './utils/spawn';
 
@@ -137,15 +143,27 @@ context.keys().map(context);
   await writeJson(TEST_TSCONFIG_FILE, tsconfig, { spaces: 2 });
 }
 
+function removeTempTestingFiles() {
+  console.log('Removing temporary test files...');
+  if (existsSync(TEST_ENTRY_FILE)) {
+    removeSync(TEST_ENTRY_FILE);
+  }
+
+  if (existsSync(TEST_TSCONFIG_FILE)) {
+    removeSync(TEST_TSCONFIG_FILE);
+  }
+  console.log('Done removing temp test files.');
+}
+
+process.on('SIGINT', () => process.exit());
+process.on('uncaughtException', () => process.exit());
+process.on('exit', () => removeTempTestingFiles());
+
 async function testAffected() {
   try {
     const argv = require('minimist')(process.argv.slice(2));
     const angularJson = await getAngularJson();
     const affectedProjects = await getAffectedLibrariesForTest(angularJson);
-    // const affectedProjects = {
-    //   karma: ['core'],
-    //   other: [],
-    // };
 
     if (
       affectedProjects.karma.length === 0 &&
@@ -160,15 +178,21 @@ async function testAffected() {
       angularJson
     );
 
-    console.log(
-      `Running karma tests for the following projects:
- - ${affectedProjects.karma.join('\n - ')}`
-    );
+    if (affectedProjects.karma.length > 0) {
+      console.log(
+        `Running karma tests for the following projects:
+ - ${affectedProjects.karma.join('\n - ')}
+ `
+      );
+    }
 
-    console.log(
-      `Running jest tests for the following projects:
- - ${affectedProjects.other.join('\n - ')}`
-    );
+    if (affectedProjects.other.length > 0) {
+      console.log(
+        `Running jest tests for the following projects:
+ - ${affectedProjects.other.join('\n - ')}
+`
+      );
+    }
 
     console.log(
       `The following projects will be ignored for code coverage: ${unaffectedProjects.join(
@@ -200,28 +224,28 @@ async function testAffected() {
 
     await runCommand('npx', npxArgs);
 
-    // // Abort if only running components.
-    // if (argv.onlyComponents) {
-    //   return;
-    // }
+    // Abort if only running components.
+    if (argv.onlyComponents) {
+      return;
+    }
 
-    // if (affectedProjects.other.length > 0) {
-    //   console.log(
-    //     'Running tests for the following non-components projects:',
-    //     affectedProjects.other
-    //   );
+    if (affectedProjects.other.length > 0) {
+      console.log(
+        'Running tests for the following non-components projects:',
+        affectedProjects.other
+      );
 
-    //   await runCommand('npx', [
-    //     'nx',
-    //     'run-many',
-    //     '--target=test',
-    //     `--projects=${affectedProjects.other.join(',')}`,
-    //     '--codeCoverage',
-    //   ]);
-    // }
+      await runCommand('npx', [
+        'nx',
+        'run-many',
+        '--target=test',
+        `--projects=${affectedProjects.other.join(',')}`,
+        '--codeCoverage',
+      ]);
+    }
 
-    // // Run posttest steps.
-    // await runCommand('npx', ['nx', 'affected', '--target=posttest']);
+    // Run posttest steps.
+    await runCommand('npx', ['nx', 'affected', '--target=posttest']);
   } catch (err) {
     console.error(err);
     process.exit(1);
