@@ -10,7 +10,7 @@ import {
 } from './utils/git-utils';
 import { checkVersionExists } from './utils/npm-utils';
 import { getCommandOutput } from './utils/spawn';
-import { getSkyuxDevConfig } from 'lib/get-skyux-dev-config';
+import { getSkyuxDevConfig } from './lib/get-skyux-dev-config';
 
 /**
  * Determines if a version is a prerelease.
