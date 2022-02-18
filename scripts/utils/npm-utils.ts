@@ -1,4 +1,4 @@
-import { getCommandOutput } from './get-command-output';
+import { getCommandOutput } from './spawn';
 
 async function getVersions(packageName: string) {
   const versions = await getCommandOutput('npm', [

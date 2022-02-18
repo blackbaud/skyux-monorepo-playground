@@ -1,7 +1,7 @@
 import fs from 'fs-extra';
 import path from 'path';
-import { getCommandOutput } from './utils/get-command-output';
-import { runCommand } from './utils/run-command';
+
+import { getCommandOutput, runCommand } from './utils/spawn';
 
 // These projects' tests should never be executed.
 const EXCLUDED_PROJECTS = ['affected'];

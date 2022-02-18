@@ -55,5 +55,16 @@ module.exports = function (config) {
         },
       ],
     });
+  } else {
+    console.warn(
+      `
+
+********************************************************************************
+ [!] A BrowserStack access key was not defined in the environment.
+     --> Tests will still be run in ChromeHeadless but this could be a problem.
+********************************************************************************
+
+`
+    );
   }
 };

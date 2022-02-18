@@ -2,9 +2,9 @@ import fs from 'fs-extra';
 import path from 'path';
 import semver from 'semver';
 
-import { getPublishableProjects } from './utils/get-publishable-projects';
+import { getPublishableProjects } from './lib/get-publishable-projects';
 import { getDistTags } from './utils/npm-utils';
-import { runCommand } from './utils/run-command';
+import { runCommand } from './utils/spawn';
 
 async function createNpmrcFile(): Promise<void> {
   const npmFilePath = path.join(process.cwd(), '.npmrc');

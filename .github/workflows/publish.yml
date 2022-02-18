@@ -21,5 +21,6 @@ jobs:
         run: npm ci
       - name: Build and publish
         run: |
-          export NX_CLOUD_DISTRIBUTED_EXECUTION=false && ./node_modules/.bin/ts-node --project ./scripts/tsconfig.json ./scripts/create-packages-dist.ts
-          export NX_CLOUD_DISTRIBUTED_EXECUTION=false && ./node_modules/.bin/ts-node --project ./scripts/tsconfig.json ./scripts/publish-npm-packages.ts
+          export NX_CLOUD_DISTRIBUTED_EXECUTION=false
+          npm run ci:create-packages-dist
+          npm run ci:publish-packages-dist

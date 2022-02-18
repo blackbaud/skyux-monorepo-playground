@@ -9,7 +9,8 @@ import {
   isGitClean,
 } from './utils/git-utils';
 import { checkVersionExists } from './utils/npm-utils';
-import { getCommandOutput } from './utils/get-command-output';
+import { getCommandOutput } from './utils/spawn';
+import { getSkyuxDevConfig } from 'lib/get-skyux-dev-config';
 
 /**
  * Determines if a version is a prerelease.
@@ -89,14 +90,15 @@ async function getNextVersion(currentVersion: string) {
  * @param {string} version
  */
 async function validateVersion(version: string) {
-  const skyDev = await fs.readJson('skyux-dev.json');
+  const skyDev = await getSkyuxDevConfig();
   const allowedSemverRange = skyDev.allowedSemverRange;
+
   if (
     semverOutside(version, allowedSemverRange, '<') ||
     semverOutside(version, allowedSemverRange, '>')
   ) {
     throw new Error(
-      ` ✘ The version (${version}) does not satisfy the allowed semver range (${allowedSemverRange}) provided in skyux-dev.json.\n` +
+      ` ✘ The version (${version}) does not satisfy the allowed semver range (${allowedSemverRange}) provided in .skyuxdev.json.\n` +
         "To proceed, create a pull request that adjusts the 'allowedSemverRange' to accept the new version."
     );
   }

@@ -8,11 +8,14 @@
       "dependencies": "*",
       "devDependencies": "*"
     },
+    ".eslintrc-overrides.json": "*",
     ".eslintrc.json": "*",
     ".github/workflows/**": "*",
     "config/**": "*",
     "scripts/**": "*",
-    "karma.conf.js": "*"
+    "jest.config.json": "*",
+    "karma.conf.js": "*",
+    "tsconfig.base.json": "*"
   },
   "tasksRunnerOptions": {
     "default": {

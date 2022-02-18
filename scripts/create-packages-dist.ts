@@ -2,13 +2,14 @@ import fs from 'fs-extra';
 import path from 'path';
 
 import { PackageJson } from './shared/package-json';
-import { SkyuxDevJson } from './shared/skyux-dev-json';
 
-import { createDocumentationJson } from './utils/create-documentation-json';
-import { getPublishableProjects } from './utils/get-publishable-projects';
-import { inlineExternalResourcesPaths } from './utils/inline-external-resources-paths';
-import { runCommand } from './utils/run-command';
-import { verifyPackagesDist } from './utils/verify-packages-dist';
+import { createDocumentationJson } from './lib/create-documentation-json';
+import { getPublishableProjects } from './lib/get-publishable-projects';
+import { inlineExternalResourcesPaths } from './lib/inline-external-resources-paths';
+import { verifyPackagesDist } from './lib/verify-packages-dist';
+import { getSkyuxDevConfig } from './lib/get-skyux-dev-config';
+
+import { runCommand } from './utils/spawn';
 
 // Replaces any occurrence of '0.0.0-PLACEHOLDER' with a version number.
 function replacePlaceholderTextWithVersion(
@@ -29,9 +30,7 @@ async function createPackagesDist(): Promise<void> {
   try {
     const cwd = process.cwd();
 
-    const skyuxDevJson: SkyuxDevJson = await fs.readJson(
-      path.join(cwd, 'skyux-dev.json')
-    );
+    const skyuxDevConfig = await getSkyuxDevConfig();
 
     const packageJson: PackageJson = await fs.readJson(
       path.join(cwd, 'package.json')
@@ -95,7 +94,7 @@ async function createPackagesDist(): Promise<void> {
 
       inlineExternalResourcesPaths(distPackage.distRoot);
 
-      if (!skyuxDevJson.documentation.excludeProjects.includes(projectName)) {
+      if (!skyuxDevConfig.documentation.excludeProjects.includes(projectName)) {
         await createDocumentationJson(projectName, distPackage);
       }
 
