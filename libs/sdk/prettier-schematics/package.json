@@ -1,0 +1,15 @@
+{
+  "name": "@skyux-sdk/prettier-schematics",
+  "version": "0.0.0-PLACEHOLDER",
+  "description": "Prettier schematics for Angular CLI projects",
+  "schematics": "./collection.json",
+  "ng-add": {
+    "save": "devDependencies"
+  },
+  "peerDependencies": {
+    "@angular-devkit/build-angular": "^12.2.16"
+  },
+  "dependencies": {
+    "comment-json": "4.1.1"
+  }
+}

@@ -1,0 +1,9 @@
+@import 'libs/components/theme/src/lib/styles/mixins';
+
+.sky-select-field-picker-btn-new-text {
+  display: none;
+
+  @media (min-width: $sky-screen-sm-min) {
+    display: inline;
+  }
+}

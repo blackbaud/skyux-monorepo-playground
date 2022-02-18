@@ -67,17 +67,14 @@ function inlineStyleUrls(contents: string): string {
  * Replaces any references to `templateUrl` and `styleUrls` with `template` and `styles`, respectively.
  * Note: this currently only affects the UMD module since that's what StackBlitz imports.
  */
-export function inlineExternalResourcesPaths(projectName: string): void {
-  console.log(`Inlining external resource paths for ${projectName}...`);
+export function inlineExternalResourcesPaths(distPath: string): void {
+  console.log(`Inlining external resources for ${distPath}...`);
 
-  const bundlePattern = path.join(
-    process.cwd(),
-    `dist/libs/${projectName}/bundles/*.umd.js`
-  );
+  const bundlePattern = path.join(distPath, '/bundles/*.umd.js');
 
   const bundlePaths = glob.sync(bundlePattern);
   if (bundlePaths.length > 0) {
-    bundlePaths.forEach((bundlePath) => {
+    bundlePaths.forEach((bundlePath: string) => {
       console.log(
         `- inlining external resource paths for file '${bundlePath}'`
       );
@@ -94,7 +91,7 @@ export function inlineExternalResourcesPaths(projectName: string): void {
       }
     });
 
-    console.log(` ✔ Done inlining external resources for ${projectName}.`);
+    console.log(` ✔ Done inlining external resources for ${distPath}.`);
   } else {
     console.warn(`The UMD bundle was not found. (wanted '${bundlePattern}')`);
   }

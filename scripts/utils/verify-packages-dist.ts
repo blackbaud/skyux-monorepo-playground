@@ -2,6 +2,8 @@ import fs from 'fs-extra';
 import path from 'path';
 import semver from 'semver';
 
+import { DistPackages } from '../shared/dist-packages';
+
 interface PackageJson {
   dependencies?: { [packageName: string]: string };
   devDependencies?: { [packageName: string]: string };
@@ -10,14 +12,14 @@ interface PackageJson {
 
 function verifyDependencySection(
   section: 'dependencies' | 'peerDependencies',
-  projectName: string,
+  projectRoot: string,
   projectPackageJson: PackageJson,
   workspacePackageJson: PackageJson
 ): string[] {
   const errors: string[] = [];
 
   for (const packageName in projectPackageJson[section]) {
-    // Skip @skyux packages, except for @skyux/icons.
+    // Skip @skyux libraries, except for @skyux/icons.
     if (/^@skyux\/((?!icons).)*$/.test(packageName)) {
       continue;
     }
@@ -31,7 +33,7 @@ function verifyDependencySection(
 
     if (!workspaceVersion) {
       errors.push(
-        `The package "${packageName}" listed in the \`${section}\` section of 'libs/${projectName}/package.json' ` +
+        `The package "${packageName}" listed in the \`${section}\` section of '${projectRoot}/package.json' ` +
           `was not found in the root 'package.json' \`dependencies\` section. Install the package at the root level and try again.`
       );
       continue;
@@ -43,15 +45,15 @@ function verifyDependencySection(
       errors.push(
         `The version listed in the workspace 'package.json' for "${packageName}@${workspaceVersion}" must be set to a specific version ` +
           `(without a semver range character), and set to the minimum version satisfied by the range defined in the \`${section}\` ` +
-          `section of 'libs/${projectName}/package.json' (wanted "${packageName}@${targetVersion}"). To address this problem, set ` +
+          `section of '${projectRoot}/package.json' (wanted "${packageName}@${targetVersion}"). To address this problem, set ` +
           `"${packageName}" to (${minTargetVersion}) in the workspace 'package.json'.`
       );
     } else if (workspaceVersion !== minTargetVersion) {
       errors.push(
         `The version (${workspaceVersion}) of the package "${packageName}" in the \`dependencies\` section of 'package.json' ` +
           `does not meet the minimum version requirements of the range defined in the \`${section}\` section of ` +
-          `'libs/${projectName}/package.json' (wanted "${packageName}@${targetVersion}"). Either increase the minimum ` +
-          `supported version in 'libs/${projectName}/package.json' to (^${minWorkspaceVersion}), or downgrade the ` +
+          `'${projectRoot}/package.json' (wanted "${packageName}@${targetVersion}"). Either increase the minimum ` +
+          `supported version in '${projectRoot}/package.json' to (^${minWorkspaceVersion}), or downgrade the ` +
           `version installed in the root 'package.json' to (${minTargetVersion}).`
       );
     }
@@ -61,20 +63,18 @@ function verifyDependencySection(
 }
 
 export async function verifyPackagesDist(
-  libsDist: string,
-  projectNames: string[]
+  projects: DistPackages,
+  workspacePackageJson: PackageJson
 ) {
   console.log('Validating library dependencies...');
 
   const errors: string[] = [];
 
-  const workspacePackageJson = fs.readJsonSync(
-    path.join(process.cwd(), 'package.json')
-  );
+  for (const projectName in projects) {
+    const projectConfig = projects[projectName];
 
-  for (const projectName of projectNames) {
-    const projectPackageJson = fs.readJsonSync(
-      path.join(libsDist, projectName, 'package.json')
+    const projectPackageJson: PackageJson = await fs.readJson(
+      path.join(projectConfig.distRoot, 'package.json')
     );
 
     // Validate peer dependencies.
@@ -82,7 +82,7 @@ export async function verifyPackagesDist(
       errors.push(
         ...verifyDependencySection(
           'peerDependencies',
-          projectName,
+          projectConfig.root,
           projectPackageJson,
           workspacePackageJson
         )
@@ -94,7 +94,7 @@ export async function verifyPackagesDist(
       errors.push(
         ...verifyDependencySection(
           'dependencies',
-          projectName,
+          projectConfig.root,
           projectPackageJson,
           workspacePackageJson
         )

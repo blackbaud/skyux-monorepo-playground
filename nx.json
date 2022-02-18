@@ -19,7 +19,7 @@
       "runner": "@nrwl/nx-cloud",
       "options": {
         "cacheableOperations": ["build", "lint", "test", "e2e"],
-        "accessToken": "ZjIyMjExYzItNWZmMC00ZDcxLWJlOTItOTgwNDNlYTgyYTQxfHJlYWQtd3JpdGU="
+        "accessToken": "ZTFjYWYyZGMtYjg4Zi00ZTg1LTljNzItMzRiZjkwZjk2YTZlfHJlYWQtd3JpdGU="
       }
     }
   },
@@ -32,71 +32,143 @@
     ]
   },
   "projects": {
-    "a11y": {
-      "tags": []
-    },
-    "action-bars": {
-      "tags": []
-    },
-    "ag-grid": {
-      "tags": []
-    },
-    "angular-tree-component": {
-      "tags": []
-    },
-    "animations": {
-      "tags": []
-    },
-    "assets": {
-      "tags": []
-    },
-    "autonumeric": {
-      "tags": []
-    },
-    "avatar": {
-      "tags": []
-    },
     "code-examples": {
       "tags": []
     },
+    "a11y": {
+      "tags": ["component"]
+    },
+    "action-bars": {
+      "tags": ["component"]
+    },
+    "ag-grid": {
+      "tags": ["component"]
+    },
+    "angular-tree-component": {
+      "tags": ["component"]
+    },
+    "animations": {
+      "tags": ["component"]
+    },
+    "assets": {
+      "tags": ["component"]
+    },
+    "autonumeric": {
+      "tags": ["component"]
+    },
+    "avatar": {
+      "tags": ["component"]
+    },
     "colorpicker": {
-      "tags": []
+      "tags": ["component"]
     },
     "config": {
-      "tags": []
+      "tags": ["component"]
     },
     "core": {
-      "tags": []
+      "tags": ["component"]
     },
     "data-manager": {
-      "tags": []
+      "tags": ["component"]
     },
     "datetime": {
-      "tags": []
+      "tags": ["component"]
     },
     "errors": {
-      "tags": []
+      "tags": ["component"]
     },
     "flyout": {
-      "tags": []
+      "tags": ["component"]
     },
     "forms": {
-      "tags": []
+      "tags": ["component"]
     },
     "grids": {
-      "tags": []
+      "tags": ["component"]
     },
     "http": {
-      "tags": []
+      "tags": ["component"]
     },
     "i18n": {
-      "tags": []
+      "tags": ["component"]
     },
     "indicators": {
-      "tags": []
+      "tags": ["component"]
     },
     "inline-form": {
-      "tags": []
+      "tags": ["component"]
+    },
+    "layout": {
+      "tags": ["component"]
+    },
+    "list-builder": {
+      "tags": ["component"]
+    },
+    "list-builder-common": {
+      "tags": ["component"]
+    },
+    "list-builder-view-checklist": {
+      "tags": ["component"]
+    },
+    "list-builder-view-grids": {
+      "tags": ["component"]
+    },
+    "lists": {
+      "tags": ["component"]
+    },
+    "lookup": {
+      "tags": ["component"]
+    },
+    "modals": {
+      "tags": ["component"]
+    },
+    "navbar": {
+      "tags": ["component"]
+    },
+    "omnibar-interop": {
+      "tags": ["component"]
+    },
+    "packages": {
+      "tags": ["component"]
+    },
+    "pages": {
+      "tags": ["component"]
+    },
+    "phone-field": {
+      "tags": ["component"]
+    },
+    "popovers": {
+      "tags": ["component"]
+    },
+    "progress-indicator": {
+      "tags": ["component"]
+    },
+    "router": {
+      "tags": ["component"]
+    },
+    "select-field": {
+      "tags": ["component"]
+    },
+    "split-view": {
+      "tags": ["component"]
+    },
+    "tabs": {
+      "tags": ["component"]
+    },
+    "text-editor": {
+      "tags": ["component"]
+    },
+    "theme": {
+      "tags": ["component"]
+    },
+    "tiles": {
+      "tags": ["component"]
+    },
+    "toast": {
+      "tags": ["component"]
+    },
+    "validation": {
+      "tags": ["component"]
     },
     "integration": {
       "tags": []
@@ -105,77 +177,11 @@
       "tags": [],
       "implicitDependencies": ["integration"]
     },
-    "layout": {
-      "tags": []
+    "prettier-schematics": {
+      "tags": ["sdk"]
     },
-    "list-builder": {
-      "tags": []
-    },
-    "list-builder-common": {
-      "tags": []
-    },
-    "list-builder-view-checklist": {
-      "tags": []
-    },
-    "list-builder-view-grids": {
-      "tags": []
-    },
-    "lists": {
-      "tags": []
-    },
-    "lookup": {
-      "tags": []
-    },
-    "modals": {
-      "tags": []
-    },
-    "navbar": {
-      "tags": []
-    },
-    "omnibar-interop": {
-      "tags": []
-    },
-    "packages": {
-      "tags": []
-    },
-    "pages": {
-      "tags": []
-    },
-    "phone-field": {
-      "tags": []
-    },
-    "popovers": {
-      "tags": []
-    },
-    "progress-indicator": {
-      "tags": []
-    },
-    "router": {
-      "tags": []
-    },
-    "select-field": {
-      "tags": []
-    },
-    "split-view": {
-      "tags": []
-    },
-    "tabs": {
-      "tags": []
-    },
-    "text-editor": {
-      "tags": []
-    },
-    "theme": {
-      "tags": []
-    },
-    "tiles": {
-      "tags": []
-    },
-    "toast": {
-      "tags": []
-    },
-    "validation": {
-      "tags": []
+    "testing": {
+      "tags": ["sdk"]
     }
   }
 }

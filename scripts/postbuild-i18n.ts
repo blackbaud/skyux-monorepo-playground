@@ -2,20 +2,21 @@ import fs from 'fs-extra';
 import path from 'path';
 import { runCommand } from './utils/run-command';
 
-const LIB_PATH = path.resolve(__dirname, '../libs/i18n');
+const CWD = process.cwd();
+const LIB_PATH = path.resolve(CWD, 'libs/components/i18n');
 
 async function buildSchematics() {
   console.log('Building @skyux/i18n schematics...');
 
-  await runCommand(path.resolve(__dirname, '../node_modules/.bin/tsc'), [
+  await runCommand(path.resolve(CWD, 'node_modules/.bin/tsc'), [
     '--project',
-    'libs/i18n/tsconfig.schematics.json',
+    'libs/components/i18n/tsconfig.schematics.json',
   ]);
 
   // Copy collection.json.
   fs.copySync(
     path.join(LIB_PATH, 'schematics/collection.json'),
-    path.join('dist/libs/i18n/schematics/collection.json')
+    path.join(CWD, 'dist/libs/components/i18n/schematics/collection.json')
   );
 
   // Copy schemas.
@@ -25,7 +26,8 @@ async function buildSchematics() {
       'schematics/ng-generate/lib-resources-module/schema.json'
     ),
     path.join(
-      'dist/libs/i18n/schematics/ng-generate/lib-resources-module/schema.json'
+      CWD,
+      'dist/libs/components/i18n/schematics/ng-generate/lib-resources-module/schema.json'
     )
   );
 
@@ -33,7 +35,8 @@ async function buildSchematics() {
   fs.copySync(
     path.join(LIB_PATH, 'schematics/ng-generate/lib-resources-module/files'),
     path.join(
-      'dist/libs/i18n/schematics/ng-generate/lib-resources-module/files'
+      CWD,
+      'dist/libs/components/i18n/schematics/ng-generate/lib-resources-module/files'
     )
   );
 

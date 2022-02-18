@@ -9,8 +9,16 @@ function copyFilesToDist() {
   ];
 
   pathsToCopy.forEach((pathArr) => {
-    const sourcePath = path.join(process.cwd(), 'libs/packages', ...pathArr);
-    const distPath = path.join(process.cwd(), 'dist/libs/packages', ...pathArr);
+    const sourcePath = path.join(
+      process.cwd(),
+      'libs/components/packages',
+      ...pathArr
+    );
+    const distPath = path.join(
+      process.cwd(),
+      'dist/libs/components/packages',
+      ...pathArr
+    );
 
     console.log(`Copying '${sourcePath.replace(process.cwd(), '')}'...`);
 

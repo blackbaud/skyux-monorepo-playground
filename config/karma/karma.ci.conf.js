@@ -5,6 +5,7 @@ const applySharedKarmaConfig = require('./karma.shared.conf');
 module.exports = function (config) {
   applySharedKarmaConfig(config);
 
+  // Don't run coverage for BrowserStack tests.
   delete config.coverageReporter;
 
   if (process.env.BROWSER_STACK_ACCESS_KEY) {
@@ -18,7 +19,7 @@ module.exports = function (config) {
       browserStack: {
         accessKey: process.env.BROWSER_STACK_ACCESS_KEY,
         username: process.env.BROWSER_STACK_USERNAME,
-        name: 'nx run affected:test',
+        name: 'nx run affected:coverage',
         project: 'affected',
         enableLoggingForApi: true,
         startTunnel: true,

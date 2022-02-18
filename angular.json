@@ -3,23 +3,23 @@
   "projects": {
     "a11y": {
       "projectType": "library",
-      "root": "libs/a11y",
-      "sourceRoot": "libs/a11y/src",
+      "root": "libs/components/a11y",
+      "sourceRoot": "libs/components/a11y/src",
       "prefix": "sky",
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
-          "outputs": ["dist/libs/a11y"],
+          "outputs": ["dist/libs/components/a11y"],
           "options": {
-            "project": "libs/a11y/ng-package.json",
+            "project": "libs/components/a11y/ng-package.json",
             "updateBuildableProjectDepsInPackageJson": false
           },
           "configurations": {
             "production": {
-              "tsConfig": "libs/a11y/tsconfig.lib.prod.json"
+              "tsConfig": "libs/components/a11y/tsconfig.lib.prod.json"
             },
             "development": {
-              "tsConfig": "libs/a11y/tsconfig.lib.json"
+              "tsConfig": "libs/components/a11y/tsconfig.lib.json"
             }
           },
           "defaultConfiguration": "production"
@@ -27,12 +27,12 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "libs/a11y/src/test.ts",
-            "tsConfig": "libs/a11y/tsconfig.spec.json",
-            "karmaConfig": "libs/a11y/karma.conf.js",
+            "main": "libs/components/a11y/src/test.ts",
+            "tsConfig": "libs/components/a11y/tsconfig.spec.json",
+            "karmaConfig": "libs/components/a11y/karma.conf.js",
             "styles": [
-              "libs/theme/src/lib/styles/sky.scss",
-              "libs/theme/src/lib/styles/themes/modern/styles.scss"
+              "libs/components/theme/src/lib/styles/sky.scss",
+              "libs/components/theme/src/lib/styles/themes/modern/styles.scss"
             ],
             "codeCoverage": true,
             "codeCoverageExclude": ["**/fixtures/**"]
@@ -42,8 +42,8 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/a11y/src/**/*.ts",
-              "libs/a11y/src/**/*.html"
+              "libs/components/a11y/src/**/*.ts",
+              "libs/components/a11y/src/**/*.html"
             ]
           }
         }
@@ -51,23 +51,23 @@
     },
     "action-bars": {
       "projectType": "library",
-      "root": "libs/action-bars",
-      "sourceRoot": "libs/action-bars/src",
+      "root": "libs/components/action-bars",
+      "sourceRoot": "libs/components/action-bars/src",
       "prefix": "sky",
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
-          "outputs": ["dist/libs/action-bars"],
+          "outputs": ["dist/libs/components/action-bars"],
           "options": {
-            "project": "libs/action-bars/ng-package.json",
+            "project": "libs/components/action-bars/ng-package.json",
             "updateBuildableProjectDepsInPackageJson": false
           },
           "configurations": {
             "production": {
-              "tsConfig": "libs/action-bars/tsconfig.lib.prod.json"
+              "tsConfig": "libs/components/action-bars/tsconfig.lib.prod.json"
             },
             "development": {
-              "tsConfig": "libs/action-bars/tsconfig.lib.json"
+              "tsConfig": "libs/components/action-bars/tsconfig.lib.json"
             }
           },
           "defaultConfiguration": "production"
@@ -75,12 +75,12 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "libs/action-bars/src/test.ts",
-            "tsConfig": "libs/action-bars/tsconfig.spec.json",
-            "karmaConfig": "libs/action-bars/karma.conf.js",
+            "main": "libs/components/action-bars/src/test.ts",
+            "tsConfig": "libs/components/action-bars/tsconfig.spec.json",
+            "karmaConfig": "libs/components/action-bars/karma.conf.js",
             "styles": [
-              "libs/theme/src/lib/styles/sky.scss",
-              "libs/theme/src/lib/styles/themes/modern/styles.scss"
+              "libs/components/theme/src/lib/styles/sky.scss",
+              "libs/components/theme/src/lib/styles/themes/modern/styles.scss"
             ],
             "codeCoverage": true,
             "codeCoverageExclude": ["**/fixtures/**"]
@@ -90,8 +90,8 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/action-bars/src/**/*.ts",
-              "libs/action-bars/src/**/*.html"
+              "libs/components/action-bars/src/**/*.ts",
+              "libs/components/action-bars/src/**/*.html"
             ]
           }
         }
@@ -99,21 +99,21 @@
     },
     "action-bars-testing": {
       "projectType": "library",
-      "root": "libs/action-bars/testing",
-      "sourceRoot": "libs/action-bars/testing/src",
+      "root": "libs/components/action-bars/testing",
+      "sourceRoot": "libs/components/action-bars/testing/src",
       "prefix": "sky",
       "architect": {
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "libs/action-bars/testing/src/test.ts",
-            "tsConfig": "libs/action-bars/testing/tsconfig.spec.json",
-            "karmaConfig": "libs/action-bars/testing/karma.conf.js",
+            "main": "libs/components/action-bars/testing/src/test.ts",
+            "tsConfig": "libs/components/action-bars/testing/tsconfig.spec.json",
+            "karmaConfig": "libs/components/action-bars/testing/karma.conf.js",
             "codeCoverage": true,
             "codeCoverageExclude": ["**/fixtures/**"],
             "styles": [
-              "libs/theme/src/lib/styles/sky.scss",
-              "libs/theme/src/lib/styles/themes/modern/styles.scss"
+              "libs/components/theme/src/lib/styles/sky.scss",
+              "libs/components/theme/src/lib/styles/themes/modern/styles.scss"
             ]
           }
         }
@@ -124,16 +124,16 @@
       "root": "/",
       "sourceRoot": "/",
       "architect": {
-        "test": {
+        "coverage": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
             "main": "__test-affected.ts",
             "tsConfig": "__tsconfig.test-affected.json",
             "karmaConfig": "config/karma/karma.affected.conf.js",
             "styles": [
-              "libs/theme/src/lib/styles/sky.scss",
-              "libs/theme/src/lib/styles/themes/modern/styles.scss",
-              "libs/ag-grid/src/lib/styles/ag-grid-styles.scss"
+              "libs/components/theme/src/lib/styles/sky.scss",
+              "libs/components/theme/src/lib/styles/themes/modern/styles.scss",
+              "libs/components/ag-grid/src/lib/styles/ag-grid-styles.scss"
             ],
             "codeCoverage": true
           }
@@ -142,23 +142,23 @@
     },
     "ag-grid": {
       "projectType": "library",
-      "root": "libs/ag-grid",
-      "sourceRoot": "libs/ag-grid/src",
+      "root": "libs/components/ag-grid",
+      "sourceRoot": "libs/components/ag-grid/src",
       "prefix": "sky",
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
-          "outputs": ["dist/libs/ag-grid"],
+          "outputs": ["dist/libs/components/ag-grid"],
           "options": {
-            "project": "libs/ag-grid/ng-package.json",
+            "project": "libs/components/ag-grid/ng-package.json",
             "updateBuildableProjectDepsInPackageJson": false
           },
           "configurations": {
             "production": {
-              "tsConfig": "libs/ag-grid/tsconfig.lib.prod.json"
+              "tsConfig": "libs/components/ag-grid/tsconfig.lib.prod.json"
             },
             "development": {
-              "tsConfig": "libs/ag-grid/tsconfig.lib.json"
+              "tsConfig": "libs/components/ag-grid/tsconfig.lib.json"
             }
           },
           "defaultConfiguration": "production"
@@ -166,13 +166,13 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "libs/ag-grid/src/test.ts",
-            "tsConfig": "libs/ag-grid/tsconfig.spec.json",
-            "karmaConfig": "libs/ag-grid/karma.conf.js",
+            "main": "libs/components/ag-grid/src/test.ts",
+            "tsConfig": "libs/components/ag-grid/tsconfig.spec.json",
+            "karmaConfig": "libs/components/ag-grid/karma.conf.js",
             "styles": [
-              "libs/theme/src/lib/styles/sky.scss",
-              "libs/theme/src/lib/styles/themes/modern/styles.scss",
-              "libs/ag-grid/src/lib/styles/ag-grid-styles.scss"
+              "libs/components/theme/src/lib/styles/sky.scss",
+              "libs/components/theme/src/lib/styles/themes/modern/styles.scss",
+              "libs/components/ag-grid/src/lib/styles/ag-grid-styles.scss"
             ],
             "codeCoverage": true,
             "codeCoverageExclude": ["**/fixtures/**"]
@@ -182,8 +182,8 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/ag-grid/src/**/*.ts",
-              "libs/ag-grid/src/**/*.html"
+              "libs/components/ag-grid/src/**/*.ts",
+              "libs/components/ag-grid/src/**/*.html"
             ]
           }
         },
@@ -197,23 +197,23 @@
     },
     "angular-tree-component": {
       "projectType": "library",
-      "root": "libs/angular-tree-component",
-      "sourceRoot": "libs/angular-tree-component/src",
+      "root": "libs/components/angular-tree-component",
+      "sourceRoot": "libs/components/angular-tree-component/src",
       "prefix": "sky",
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
-          "outputs": ["dist/libs/angular-tree-component"],
+          "outputs": ["dist/libs/components/angular-tree-component"],
           "options": {
-            "project": "libs/angular-tree-component/ng-package.json",
+            "project": "libs/components/angular-tree-component/ng-package.json",
             "updateBuildableProjectDepsInPackageJson": false
           },
           "configurations": {
             "production": {
-              "tsConfig": "libs/angular-tree-component/tsconfig.lib.prod.json"
+              "tsConfig": "libs/components/angular-tree-component/tsconfig.lib.prod.json"
             },
             "development": {
-              "tsConfig": "libs/angular-tree-component/tsconfig.lib.json"
+              "tsConfig": "libs/components/angular-tree-component/tsconfig.lib.json"
             }
           },
           "defaultConfiguration": "production"
@@ -221,12 +221,12 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "libs/angular-tree-component/src/test.ts",
-            "tsConfig": "libs/angular-tree-component/tsconfig.spec.json",
-            "karmaConfig": "libs/angular-tree-component/karma.conf.js",
+            "main": "libs/components/angular-tree-component/src/test.ts",
+            "tsConfig": "libs/components/angular-tree-component/tsconfig.spec.json",
+            "karmaConfig": "libs/components/angular-tree-component/karma.conf.js",
             "styles": [
-              "libs/theme/src/lib/styles/sky.scss",
-              "libs/theme/src/lib/styles/themes/modern/styles.scss"
+              "libs/components/theme/src/lib/styles/sky.scss",
+              "libs/components/theme/src/lib/styles/themes/modern/styles.scss"
             ],
             "codeCoverage": true,
             "codeCoverageExclude": ["**/fixtures/**"]
@@ -236,8 +236,8 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/angular-tree-component/src/**/*.ts",
-              "libs/angular-tree-component/src/**/*.html"
+              "libs/components/angular-tree-component/src/**/*.ts",
+              "libs/components/angular-tree-component/src/**/*.html"
             ]
           }
         }
@@ -245,23 +245,23 @@
     },
     "animations": {
       "projectType": "library",
-      "root": "libs/animations",
-      "sourceRoot": "libs/animations/src",
+      "root": "libs/components/animations",
+      "sourceRoot": "libs/components/animations/src",
       "prefix": "sky",
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
-          "outputs": ["dist/libs/animations"],
+          "outputs": ["dist/libs/components/animations"],
           "options": {
-            "project": "libs/animations/ng-package.json",
+            "project": "libs/components/animations/ng-package.json",
             "updateBuildableProjectDepsInPackageJson": false
           },
           "configurations": {
             "production": {
-              "tsConfig": "libs/animations/tsconfig.lib.prod.json"
+              "tsConfig": "libs/components/animations/tsconfig.lib.prod.json"
             },
             "development": {
-              "tsConfig": "libs/animations/tsconfig.lib.json"
+              "tsConfig": "libs/components/animations/tsconfig.lib.json"
             }
           },
           "defaultConfiguration": "production"
@@ -269,12 +269,12 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "libs/animations/src/test.ts",
-            "tsConfig": "libs/animations/tsconfig.spec.json",
-            "karmaConfig": "libs/animations/karma.conf.js",
+            "main": "libs/components/animations/src/test.ts",
+            "tsConfig": "libs/components/animations/tsconfig.spec.json",
+            "karmaConfig": "libs/components/animations/karma.conf.js",
             "styles": [
-              "libs/theme/src/lib/styles/sky.scss",
-              "libs/theme/src/lib/styles/themes/modern/styles.scss"
+              "libs/components/theme/src/lib/styles/sky.scss",
+              "libs/components/theme/src/lib/styles/themes/modern/styles.scss"
             ],
             "codeCoverage": true,
             "codeCoverageExclude": ["**/fixtures/**"]
@@ -284,8 +284,8 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/animations/src/**/*.ts",
-              "libs/animations/src/**/*.html"
+              "libs/components/animations/src/**/*.ts",
+              "libs/components/animations/src/**/*.html"
             ]
           }
         }
@@ -293,23 +293,23 @@
     },
     "assets": {
       "projectType": "library",
-      "root": "libs/assets",
-      "sourceRoot": "libs/assets/src",
+      "root": "libs/components/assets",
+      "sourceRoot": "libs/components/assets/src",
       "prefix": "sky",
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
-          "outputs": ["dist/libs/assets"],
+          "outputs": ["dist/libs/components/assets"],
           "options": {
-            "project": "libs/assets/ng-package.json",
+            "project": "libs/components/assets/ng-package.json",
             "updateBuildableProjectDepsInPackageJson": false
           },
           "configurations": {
             "production": {
-              "tsConfig": "libs/assets/tsconfig.lib.prod.json"
+              "tsConfig": "libs/components/assets/tsconfig.lib.prod.json"
             },
             "development": {
-              "tsConfig": "libs/assets/tsconfig.lib.json"
+              "tsConfig": "libs/components/assets/tsconfig.lib.json"
             }
           },
           "defaultConfiguration": "production"
@@ -317,12 +317,12 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "libs/assets/src/test.ts",
-            "tsConfig": "libs/assets/tsconfig.spec.json",
-            "karmaConfig": "libs/assets/karma.conf.js",
+            "main": "libs/components/assets/src/test.ts",
+            "tsConfig": "libs/components/assets/tsconfig.spec.json",
+            "karmaConfig": "libs/components/assets/karma.conf.js",
             "styles": [
-              "libs/theme/src/lib/styles/sky.scss",
-              "libs/theme/src/lib/styles/themes/modern/styles.scss"
+              "libs/components/theme/src/lib/styles/sky.scss",
+              "libs/components/theme/src/lib/styles/themes/modern/styles.scss"
             ],
             "codeCoverage": true,
             "codeCoverageExclude": ["**/fixtures/**"]
@@ -332,8 +332,8 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/assets/src/**/*.ts",
-              "libs/assets/src/**/*.html"
+              "libs/components/assets/src/**/*.ts",
+              "libs/components/assets/src/**/*.html"
             ]
           }
         }
@@ -341,23 +341,23 @@
     },
     "autonumeric": {
       "projectType": "library",
-      "root": "libs/autonumeric",
-      "sourceRoot": "libs/autonumeric/src",
+      "root": "libs/components/autonumeric",
+      "sourceRoot": "libs/components/autonumeric/src",
       "prefix": "sky",
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
-          "outputs": ["dist/libs/autonumeric"],
+          "outputs": ["dist/libs/components/autonumeric"],
           "options": {
-            "project": "libs/autonumeric/ng-package.json",
+            "project": "libs/components/autonumeric/ng-package.json",
             "updateBuildableProjectDepsInPackageJson": false
           },
           "configurations": {
             "production": {
-              "tsConfig": "libs/autonumeric/tsconfig.lib.prod.json"
+              "tsConfig": "libs/components/autonumeric/tsconfig.lib.prod.json"
             },
             "development": {
-              "tsConfig": "libs/autonumeric/tsconfig.lib.json"
+              "tsConfig": "libs/components/autonumeric/tsconfig.lib.json"
             }
           },
           "defaultConfiguration": "production"
@@ -365,12 +365,12 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "libs/autonumeric/src/test.ts",
-            "tsConfig": "libs/autonumeric/tsconfig.spec.json",
-            "karmaConfig": "libs/autonumeric/karma.conf.js",
+            "main": "libs/components/autonumeric/src/test.ts",
+            "tsConfig": "libs/components/autonumeric/tsconfig.spec.json",
+            "karmaConfig": "libs/components/autonumeric/karma.conf.js",
             "styles": [
-              "libs/theme/src/lib/styles/sky.scss",
-              "libs/theme/src/lib/styles/themes/modern/styles.scss"
+              "libs/components/theme/src/lib/styles/sky.scss",
+              "libs/components/theme/src/lib/styles/themes/modern/styles.scss"
             ],
             "codeCoverage": true,
             "codeCoverageExclude": ["**/fixtures/**"]
@@ -380,8 +380,8 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/autonumeric/src/**/*.ts",
-              "libs/autonumeric/src/**/*.html"
+              "libs/components/autonumeric/src/**/*.ts",
+              "libs/components/autonumeric/src/**/*.html"
             ]
           }
         }
@@ -389,23 +389,23 @@
     },
     "avatar": {
       "projectType": "library",
-      "root": "libs/avatar",
-      "sourceRoot": "libs/avatar/src",
+      "root": "libs/components/avatar",
+      "sourceRoot": "libs/components/avatar/src",
       "prefix": "sky",
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
-          "outputs": ["dist/libs/avatar"],
+          "outputs": ["dist/libs/components/avatar"],
           "options": {
-            "project": "libs/avatar/ng-package.json",
+            "project": "libs/components/avatar/ng-package.json",
             "updateBuildableProjectDepsInPackageJson": false
           },
           "configurations": {
             "production": {
-              "tsConfig": "libs/avatar/tsconfig.lib.prod.json"
+              "tsConfig": "libs/components/avatar/tsconfig.lib.prod.json"
             },
             "development": {
-              "tsConfig": "libs/avatar/tsconfig.lib.json"
+              "tsConfig": "libs/components/avatar/tsconfig.lib.json"
             }
           },
           "defaultConfiguration": "production"
@@ -413,12 +413,12 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "libs/avatar/src/test.ts",
-            "tsConfig": "libs/avatar/tsconfig.spec.json",
-            "karmaConfig": "libs/avatar/karma.conf.js",
+            "main": "libs/components/avatar/src/test.ts",
+            "tsConfig": "libs/components/avatar/tsconfig.spec.json",
+            "karmaConfig": "libs/components/avatar/karma.conf.js",
             "styles": [
-              "libs/theme/src/lib/styles/sky.scss",
-              "libs/theme/src/lib/styles/themes/modern/styles.scss"
+              "libs/components/theme/src/lib/styles/sky.scss",
+              "libs/components/theme/src/lib/styles/themes/modern/styles.scss"
             ],
             "codeCoverage": true,
             "codeCoverageExclude": ["**/fixtures/**"]
@@ -428,8 +428,8 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/avatar/src/**/*.ts",
-              "libs/avatar/src/**/*.html"
+              "libs/components/avatar/src/**/*.ts",
+              "libs/components/avatar/src/**/*.html"
             ]
           }
         }
@@ -437,21 +437,21 @@
     },
     "avatar-testing": {
       "projectType": "library",
-      "root": "libs/avatar/testing",
-      "sourceRoot": "libs/avatar/testing/src",
+      "root": "libs/components/avatar/testing",
+      "sourceRoot": "libs/components/avatar/testing/src",
       "prefix": "sky",
       "architect": {
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "libs/avatar/testing/src/test.ts",
-            "tsConfig": "libs/avatar/testing/tsconfig.spec.json",
-            "karmaConfig": "libs/avatar/testing/karma.conf.js",
+            "main": "libs/components/avatar/testing/src/test.ts",
+            "tsConfig": "libs/components/avatar/testing/tsconfig.spec.json",
+            "karmaConfig": "libs/components/avatar/testing/karma.conf.js",
             "codeCoverage": true,
             "codeCoverageExclude": ["**/fixtures/**"],
             "styles": [
-              "libs/theme/src/lib/styles/sky.scss",
-              "libs/theme/src/lib/styles/themes/modern/styles.scss"
+              "libs/components/theme/src/lib/styles/sky.scss",
+              "libs/components/theme/src/lib/styles/themes/modern/styles.scss"
             ]
           }
         }
@@ -556,23 +556,23 @@
     },
     "colorpicker": {
       "projectType": "library",
-      "root": "libs/colorpicker",
-      "sourceRoot": "libs/colorpicker/src",
+      "root": "libs/components/colorpicker",
+      "sourceRoot": "libs/components/colorpicker/src",
       "prefix": "sky",
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
-          "outputs": ["dist/libs/colorpicker"],
+          "outputs": ["dist/libs/components/colorpicker"],
           "options": {
-            "project": "libs/colorpicker/ng-package.json",
+            "project": "libs/components/colorpicker/ng-package.json",
             "updateBuildableProjectDepsInPackageJson": false
           },
           "configurations": {
             "production": {
-              "tsConfig": "libs/colorpicker/tsconfig.lib.prod.json"
+              "tsConfig": "libs/components/colorpicker/tsconfig.lib.prod.json"
             },
             "development": {
-              "tsConfig": "libs/colorpicker/tsconfig.lib.json"
+              "tsConfig": "libs/components/colorpicker/tsconfig.lib.json"
             }
           },
           "defaultConfiguration": "production"
@@ -580,12 +580,12 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "libs/colorpicker/src/test.ts",
-            "tsConfig": "libs/colorpicker/tsconfig.spec.json",
-            "karmaConfig": "libs/colorpicker/karma.conf.js",
+            "main": "libs/components/colorpicker/src/test.ts",
+            "tsConfig": "libs/components/colorpicker/tsconfig.spec.json",
+            "karmaConfig": "libs/components/colorpicker/karma.conf.js",
             "styles": [
-              "libs/theme/src/lib/styles/sky.scss",
-              "libs/theme/src/lib/styles/themes/modern/styles.scss"
+              "libs/components/theme/src/lib/styles/sky.scss",
+              "libs/components/theme/src/lib/styles/themes/modern/styles.scss"
             ],
             "codeCoverage": true,
             "codeCoverageExclude": ["**/fixtures/**"]
@@ -595,8 +595,8 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/colorpicker/src/**/*.ts",
-              "libs/colorpicker/src/**/*.html"
+              "libs/components/colorpicker/src/**/*.ts",
+              "libs/components/colorpicker/src/**/*.html"
             ]
           }
         }
@@ -604,21 +604,21 @@
     },
     "colorpicker-testing": {
       "projectType": "library",
-      "root": "libs/colorpicker/testing",
-      "sourceRoot": "libs/colorpicker/testing/src",
+      "root": "libs/components/colorpicker/testing",
+      "sourceRoot": "libs/components/colorpicker/testing/src",
       "prefix": "sky",
       "architect": {
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "libs/colorpicker/testing/src/test.ts",
-            "tsConfig": "libs/colorpicker/testing/tsconfig.spec.json",
-            "karmaConfig": "libs/colorpicker/testing/karma.conf.js",
+            "main": "libs/components/colorpicker/testing/src/test.ts",
+            "tsConfig": "libs/components/colorpicker/testing/tsconfig.spec.json",
+            "karmaConfig": "libs/components/colorpicker/testing/karma.conf.js",
             "codeCoverage": true,
             "codeCoverageExclude": ["**/fixtures/**"],
             "styles": [
-              "libs/theme/src/lib/styles/sky.scss",
-              "libs/theme/src/lib/styles/themes/modern/styles.scss"
+              "libs/components/theme/src/lib/styles/sky.scss",
+              "libs/components/theme/src/lib/styles/themes/modern/styles.scss"
             ]
           }
         }
@@ -626,23 +626,23 @@
     },
     "config": {
       "projectType": "library",
-      "root": "libs/config",
-      "sourceRoot": "libs/config/src",
+      "root": "libs/components/config",
+      "sourceRoot": "libs/components/config/src",
       "prefix": "sky",
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
-          "outputs": ["dist/libs/config"],
+          "outputs": ["dist/libs/components/config"],
           "options": {
-            "project": "libs/config/ng-package.json",
+            "project": "libs/components/config/ng-package.json",
             "updateBuildableProjectDepsInPackageJson": false
           },
           "configurations": {
             "production": {
-              "tsConfig": "libs/config/tsconfig.lib.prod.json"
+              "tsConfig": "libs/components/config/tsconfig.lib.prod.json"
             },
             "development": {
-              "tsConfig": "libs/config/tsconfig.lib.json"
+              "tsConfig": "libs/components/config/tsconfig.lib.json"
             }
           },
           "defaultConfiguration": "production"
@@ -650,12 +650,12 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "libs/config/src/test.ts",
-            "tsConfig": "libs/config/tsconfig.spec.json",
-            "karmaConfig": "libs/config/karma.conf.js",
+            "main": "libs/components/config/src/test.ts",
+            "tsConfig": "libs/components/config/tsconfig.spec.json",
+            "karmaConfig": "libs/components/config/karma.conf.js",
             "styles": [
-              "libs/theme/src/lib/styles/sky.scss",
-              "libs/theme/src/lib/styles/themes/modern/styles.scss"
+              "libs/components/theme/src/lib/styles/sky.scss",
+              "libs/components/theme/src/lib/styles/themes/modern/styles.scss"
             ],
             "codeCoverage": true,
             "codeCoverageExclude": ["**/fixtures/**"]
@@ -665,8 +665,8 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/config/src/**/*.ts",
-              "libs/config/src/**/*.html"
+              "libs/components/config/src/**/*.ts",
+              "libs/components/config/src/**/*.html"
             ]
           }
         }
@@ -674,23 +674,23 @@
     },
     "core": {
       "projectType": "library",
-      "root": "libs/core",
-      "sourceRoot": "libs/core/src",
+      "root": "libs/components/core",
+      "sourceRoot": "libs/components/core/src",
       "prefix": "sky",
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
-          "outputs": ["dist/libs/core"],
+          "outputs": ["dist/libs/components/core"],
           "options": {
-            "project": "libs/core/ng-package.json",
+            "project": "libs/components/core/ng-package.json",
             "updateBuildableProjectDepsInPackageJson": false
           },
           "configurations": {
             "production": {
-              "tsConfig": "libs/core/tsconfig.lib.prod.json"
+              "tsConfig": "libs/components/core/tsconfig.lib.prod.json"
             },
             "development": {
-              "tsConfig": "libs/core/tsconfig.lib.json"
+              "tsConfig": "libs/components/core/tsconfig.lib.json"
             }
           },
           "defaultConfiguration": "production"
@@ -698,12 +698,12 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "libs/core/src/test.ts",
-            "tsConfig": "libs/core/tsconfig.spec.json",
-            "karmaConfig": "libs/core/karma.conf.js",
+            "main": "libs/components/core/src/test.ts",
+            "tsConfig": "libs/components/core/tsconfig.spec.json",
+            "karmaConfig": "libs/components/core/karma.conf.js",
             "styles": [
-              "libs/theme/src/lib/styles/sky.scss",
-              "libs/theme/src/lib/styles/themes/modern/styles.scss"
+              "libs/components/theme/src/lib/styles/sky.scss",
+              "libs/components/theme/src/lib/styles/themes/modern/styles.scss"
             ],
             "codeCoverage": true,
             "codeCoverageExclude": ["**/fixtures/**"]
@@ -713,8 +713,8 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/core/src/**/*.ts",
-              "libs/core/src/**/*.html"
+              "libs/components/core/src/**/*.ts",
+              "libs/components/core/src/**/*.html"
             ]
           }
         }
@@ -722,21 +722,21 @@
     },
     "core-testing": {
       "projectType": "library",
-      "root": "libs/core/testing",
-      "sourceRoot": "libs/core/testing/src",
+      "root": "libs/components/core/testing",
+      "sourceRoot": "libs/components/core/testing/src",
       "prefix": "sky",
       "architect": {
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "libs/core/testing/src/test.ts",
-            "tsConfig": "libs/core/testing/tsconfig.spec.json",
-            "karmaConfig": "libs/core/testing/karma.conf.js",
+            "main": "libs/components/core/testing/src/test.ts",
+            "tsConfig": "libs/components/core/testing/tsconfig.spec.json",
+            "karmaConfig": "libs/components/core/testing/karma.conf.js",
             "codeCoverage": true,
             "codeCoverageExclude": ["**/fixtures/**"],
             "styles": [
-              "libs/theme/src/lib/styles/sky.scss",
-              "libs/theme/src/lib/styles/themes/modern/styles.scss"
+              "libs/components/theme/src/lib/styles/sky.scss",
+              "libs/components/theme/src/lib/styles/themes/modern/styles.scss"
             ]
           }
         }
@@ -744,23 +744,23 @@
     },
     "data-manager": {
       "projectType": "library",
-      "root": "libs/data-manager",
-      "sourceRoot": "libs/data-manager/src",
+      "root": "libs/components/data-manager",
+      "sourceRoot": "libs/components/data-manager/src",
       "prefix": "sky",
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
-          "outputs": ["dist/libs/data-manager"],
+          "outputs": ["dist/libs/components/data-manager"],
           "options": {
-            "project": "libs/data-manager/ng-package.json",
+            "project": "libs/components/data-manager/ng-package.json",
             "updateBuildableProjectDepsInPackageJson": false
           },
           "configurations": {
             "production": {
-              "tsConfig": "libs/data-manager/tsconfig.lib.prod.json"
+              "tsConfig": "libs/components/data-manager/tsconfig.lib.prod.json"
             },
             "development": {
-              "tsConfig": "libs/data-manager/tsconfig.lib.json"
+              "tsConfig": "libs/components/data-manager/tsconfig.lib.json"
             }
           },
           "defaultConfiguration": "production"
@@ -768,12 +768,12 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "libs/data-manager/src/test.ts",
-            "tsConfig": "libs/data-manager/tsconfig.spec.json",
-            "karmaConfig": "libs/data-manager/karma.conf.js",
+            "main": "libs/components/data-manager/src/test.ts",
+            "tsConfig": "libs/components/data-manager/tsconfig.spec.json",
+            "karmaConfig": "libs/components/data-manager/karma.conf.js",
             "styles": [
-              "libs/theme/src/lib/styles/sky.scss",
-              "libs/theme/src/lib/styles/themes/modern/styles.scss"
+              "libs/components/theme/src/lib/styles/sky.scss",
+              "libs/components/theme/src/lib/styles/themes/modern/styles.scss"
             ],
             "codeCoverage": true,
             "codeCoverageExclude": ["**/fixtures/**"]
@@ -783,8 +783,8 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/data-manager/src/**/*.ts",
-              "libs/data-manager/src/**/*.html"
+              "libs/components/data-manager/src/**/*.ts",
+              "libs/components/data-manager/src/**/*.html"
             ]
           }
         }
@@ -792,23 +792,23 @@
     },
     "datetime": {
       "projectType": "library",
-      "root": "libs/datetime",
-      "sourceRoot": "libs/datetime/src",
+      "root": "libs/components/datetime",
+      "sourceRoot": "libs/components/datetime/src",
       "prefix": "sky",
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
-          "outputs": ["dist/libs/datetime"],
+          "outputs": ["dist/libs/components/datetime"],
           "options": {
-            "project": "libs/datetime/ng-package.json",
+            "project": "libs/components/datetime/ng-package.json",
             "updateBuildableProjectDepsInPackageJson": false
           },
           "configurations": {
             "production": {
-              "tsConfig": "libs/datetime/tsconfig.lib.prod.json"
+              "tsConfig": "libs/components/datetime/tsconfig.lib.prod.json"
             },
             "development": {
-              "tsConfig": "libs/datetime/tsconfig.lib.json"
+              "tsConfig": "libs/components/datetime/tsconfig.lib.json"
             }
           },
           "defaultConfiguration": "production"
@@ -816,12 +816,12 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "libs/datetime/src/test.ts",
-            "tsConfig": "libs/datetime/tsconfig.spec.json",
-            "karmaConfig": "libs/datetime/karma.conf.js",
+            "main": "libs/components/datetime/src/test.ts",
+            "tsConfig": "libs/components/datetime/tsconfig.spec.json",
+            "karmaConfig": "libs/components/datetime/karma.conf.js",
             "styles": [
-              "libs/theme/src/lib/styles/sky.scss",
-              "libs/theme/src/lib/styles/themes/modern/styles.scss"
+              "libs/components/theme/src/lib/styles/sky.scss",
+              "libs/components/theme/src/lib/styles/themes/modern/styles.scss"
             ],
             "codeCoverage": true,
             "codeCoverageExclude": ["**/fixtures/**"]
@@ -831,8 +831,8 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/datetime/src/**/*.ts",
-              "libs/datetime/src/**/*.html"
+              "libs/components/datetime/src/**/*.ts",
+              "libs/components/datetime/src/**/*.html"
             ]
           }
         }
@@ -840,21 +840,21 @@
     },
     "datetime-testing": {
       "projectType": "library",
-      "root": "libs/datetime/testing",
-      "sourceRoot": "libs/datetime/testing/src",
+      "root": "libs/components/datetime/testing",
+      "sourceRoot": "libs/components/datetime/testing/src",
       "prefix": "sky",
       "architect": {
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "libs/datetime/testing/src/test.ts",
-            "tsConfig": "libs/datetime/testing/tsconfig.spec.json",
-            "karmaConfig": "libs/datetime/testing/karma.conf.js",
+            "main": "libs/components/datetime/testing/src/test.ts",
+            "tsConfig": "libs/components/datetime/testing/tsconfig.spec.json",
+            "karmaConfig": "libs/components/datetime/testing/karma.conf.js",
             "codeCoverage": true,
             "codeCoverageExclude": ["**/fixtures/**"],
             "styles": [
-              "libs/theme/src/lib/styles/sky.scss",
-              "libs/theme/src/lib/styles/themes/modern/styles.scss"
+              "libs/components/theme/src/lib/styles/sky.scss",
+              "libs/components/theme/src/lib/styles/themes/modern/styles.scss"
             ]
           }
         }
@@ -862,23 +862,23 @@
     },
     "errors": {
       "projectType": "library",
-      "root": "libs/errors",
-      "sourceRoot": "libs/errors/src",
+      "root": "libs/components/errors",
+      "sourceRoot": "libs/components/errors/src",
       "prefix": "sky",
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
-          "outputs": ["dist/libs/errors"],
+          "outputs": ["dist/libs/components/errors"],
           "options": {
-            "project": "libs/errors/ng-package.json",
+            "project": "libs/components/errors/ng-package.json",
             "updateBuildableProjectDepsInPackageJson": false
           },
           "configurations": {
             "production": {
-              "tsConfig": "libs/errors/tsconfig.lib.prod.json"
+              "tsConfig": "libs/components/errors/tsconfig.lib.prod.json"
             },
             "development": {
-              "tsConfig": "libs/errors/tsconfig.lib.json"
+              "tsConfig": "libs/components/errors/tsconfig.lib.json"
             }
           },
           "defaultConfiguration": "production"
@@ -886,12 +886,12 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "libs/errors/src/test.ts",
-            "tsConfig": "libs/errors/tsconfig.spec.json",
-            "karmaConfig": "libs/errors/karma.conf.js",
+            "main": "libs/components/errors/src/test.ts",
+            "tsConfig": "libs/components/errors/tsconfig.spec.json",
+            "karmaConfig": "libs/components/errors/karma.conf.js",
             "styles": [
-              "libs/theme/src/lib/styles/sky.scss",
-              "libs/theme/src/lib/styles/themes/modern/styles.scss"
+              "libs/components/theme/src/lib/styles/sky.scss",
+              "libs/components/theme/src/lib/styles/themes/modern/styles.scss"
             ],
             "codeCoverage": true,
             "codeCoverageExclude": ["**/fixtures/**"]
@@ -901,8 +901,8 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/errors/src/**/*.ts",
-              "libs/errors/src/**/*.html"
+              "libs/components/errors/src/**/*.ts",
+              "libs/components/errors/src/**/*.html"
             ]
           }
         }
@@ -910,21 +910,21 @@
     },
     "errors-testing": {
       "projectType": "library",
-      "root": "libs/errors/testing",
-      "sourceRoot": "libs/errors/testing/src",
+      "root": "libs/components/errors/testing",
+      "sourceRoot": "libs/components/errors/testing/src",
       "prefix": "sky",
       "architect": {
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "libs/errors/testing/src/test.ts",
-            "tsConfig": "libs/errors/testing/tsconfig.spec.json",
-            "karmaConfig": "libs/errors/testing/karma.conf.js",
+            "main": "libs/components/errors/testing/src/test.ts",
+            "tsConfig": "libs/components/errors/testing/tsconfig.spec.json",
+            "karmaConfig": "libs/components/errors/testing/karma.conf.js",
             "codeCoverage": true,
             "codeCoverageExclude": ["**/fixtures/**"],
             "styles": [
-              "libs/theme/src/lib/styles/sky.scss",
-              "libs/theme/src/lib/styles/themes/modern/styles.scss"
+              "libs/components/theme/src/lib/styles/sky.scss",
+              "libs/components/theme/src/lib/styles/themes/modern/styles.scss"
             ]
           }
         }
@@ -932,23 +932,23 @@
     },
     "flyout": {
       "projectType": "library",
-      "root": "libs/flyout",
-      "sourceRoot": "libs/flyout/src",
+      "root": "libs/components/flyout",
+      "sourceRoot": "libs/components/flyout/src",
       "prefix": "sky",
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
-          "outputs": ["dist/libs/flyout"],
+          "outputs": ["dist/libs/components/flyout"],
           "options": {
-            "project": "libs/flyout/ng-package.json",
+            "project": "libs/components/flyout/ng-package.json",
             "updateBuildableProjectDepsInPackageJson": false
           },
           "configurations": {
             "production": {
-              "tsConfig": "libs/flyout/tsconfig.lib.prod.json"
+              "tsConfig": "libs/components/flyout/tsconfig.lib.prod.json"
             },
             "development": {
-              "tsConfig": "libs/flyout/tsconfig.lib.json"
+              "tsConfig": "libs/components/flyout/tsconfig.lib.json"
             }
           },
           "defaultConfiguration": "production"
@@ -956,12 +956,12 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "libs/flyout/src/test.ts",
-            "tsConfig": "libs/flyout/tsconfig.spec.json",
-            "karmaConfig": "libs/flyout/karma.conf.js",
+            "main": "libs/components/flyout/src/test.ts",
+            "tsConfig": "libs/components/flyout/tsconfig.spec.json",
+            "karmaConfig": "libs/components/flyout/karma.conf.js",
             "styles": [
-              "libs/theme/src/lib/styles/sky.scss",
-              "libs/theme/src/lib/styles/themes/modern/styles.scss"
+              "libs/components/theme/src/lib/styles/sky.scss",
+              "libs/components/theme/src/lib/styles/themes/modern/styles.scss"
             ],
             "codeCoverage": true,
             "codeCoverageExclude": ["**/fixtures/**"]
@@ -971,8 +971,8 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/flyout/src/**/*.ts",
-              "libs/flyout/src/**/*.html"
+              "libs/components/flyout/src/**/*.ts",
+              "libs/components/flyout/src/**/*.html"
             ]
           }
         }
@@ -980,23 +980,23 @@
     },
     "forms": {
       "projectType": "library",
-      "root": "libs/forms",
-      "sourceRoot": "libs/forms/src",
+      "root": "libs/components/forms",
+      "sourceRoot": "libs/components/forms/src",
       "prefix": "sky",
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
-          "outputs": ["dist/libs/forms"],
+          "outputs": ["dist/libs/components/forms"],
           "options": {
-            "project": "libs/forms/ng-package.json",
+            "project": "libs/components/forms/ng-package.json",
             "updateBuildableProjectDepsInPackageJson": false
           },
           "configurations": {
             "production": {
-              "tsConfig": "libs/forms/tsconfig.lib.prod.json"
+              "tsConfig": "libs/components/forms/tsconfig.lib.prod.json"
             },
             "development": {
-              "tsConfig": "libs/forms/tsconfig.lib.json"
+              "tsConfig": "libs/components/forms/tsconfig.lib.json"
             }
           },
           "defaultConfiguration": "production"
@@ -1004,12 +1004,12 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "libs/forms/src/test.ts",
-            "tsConfig": "libs/forms/tsconfig.spec.json",
-            "karmaConfig": "libs/forms/karma.conf.js",
+            "main": "libs/components/forms/src/test.ts",
+            "tsConfig": "libs/components/forms/tsconfig.spec.json",
+            "karmaConfig": "libs/components/forms/karma.conf.js",
             "styles": [
-              "libs/theme/src/lib/styles/sky.scss",
-              "libs/theme/src/lib/styles/themes/modern/styles.scss"
+              "libs/components/theme/src/lib/styles/sky.scss",
+              "libs/components/theme/src/lib/styles/themes/modern/styles.scss"
             ],
             "codeCoverage": true,
             "codeCoverageExclude": ["**/fixtures/**"]
@@ -1019,8 +1019,8 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/forms/src/**/*.ts",
-              "libs/forms/src/**/*.html"
+              "libs/components/forms/src/**/*.ts",
+              "libs/components/forms/src/**/*.html"
             ]
           }
         }
@@ -1028,21 +1028,21 @@
     },
     "forms-testing": {
       "projectType": "library",
-      "root": "libs/forms/testing",
-      "sourceRoot": "libs/forms/testing/src",
+      "root": "libs/components/forms/testing",
+      "sourceRoot": "libs/components/forms/testing/src",
       "prefix": "sky",
       "architect": {
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "libs/forms/testing/src/test.ts",
-            "tsConfig": "libs/forms/testing/tsconfig.spec.json",
-            "karmaConfig": "libs/forms/testing/karma.conf.js",
+            "main": "libs/components/forms/testing/src/test.ts",
+            "tsConfig": "libs/components/forms/testing/tsconfig.spec.json",
+            "karmaConfig": "libs/components/forms/testing/karma.conf.js",
             "codeCoverage": true,
             "codeCoverageExclude": ["**/fixtures/**"],
             "styles": [
-              "libs/theme/src/lib/styles/sky.scss",
-              "libs/theme/src/lib/styles/themes/modern/styles.scss"
+              "libs/components/theme/src/lib/styles/sky.scss",
+              "libs/components/theme/src/lib/styles/themes/modern/styles.scss"
             ]
           }
         }
@@ -1050,23 +1050,23 @@
     },
     "grids": {
       "projectType": "library",
-      "root": "libs/grids",
-      "sourceRoot": "libs/grids/src",
+      "root": "libs/components/grids",
+      "sourceRoot": "libs/components/grids/src",
       "prefix": "sky",
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
-          "outputs": ["dist/libs/grids"],
+          "outputs": ["dist/libs/components/grids"],
           "options": {
-            "project": "libs/grids/ng-package.json",
+            "project": "libs/components/grids/ng-package.json",
             "updateBuildableProjectDepsInPackageJson": false
           },
           "configurations": {
             "production": {
-              "tsConfig": "libs/grids/tsconfig.lib.prod.json"
+              "tsConfig": "libs/components/grids/tsconfig.lib.prod.json"
             },
             "development": {
-              "tsConfig": "libs/grids/tsconfig.lib.json"
+              "tsConfig": "libs/components/grids/tsconfig.lib.json"
             }
           },
           "defaultConfiguration": "production"
@@ -1074,12 +1074,12 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "libs/grids/src/test.ts",
-            "tsConfig": "libs/grids/tsconfig.spec.json",
-            "karmaConfig": "libs/grids/karma.conf.js",
+            "main": "libs/components/grids/src/test.ts",
+            "tsConfig": "libs/components/grids/tsconfig.spec.json",
+            "karmaConfig": "libs/components/grids/karma.conf.js",
             "styles": [
-              "libs/theme/src/lib/styles/sky.scss",
-              "libs/theme/src/lib/styles/themes/modern/styles.scss"
+              "libs/components/theme/src/lib/styles/sky.scss",
+              "libs/components/theme/src/lib/styles/themes/modern/styles.scss"
             ],
             "codeCoverage": true,
             "codeCoverageExclude": ["**/fixtures/**"]
@@ -1089,8 +1089,8 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/grids/src/**/*.ts",
-              "libs/grids/src/**/*.html"
+              "libs/components/grids/src/**/*.ts",
+              "libs/components/grids/src/**/*.html"
             ]
           }
         }
@@ -1098,23 +1098,23 @@
     },
     "http": {
       "projectType": "library",
-      "root": "libs/http",
-      "sourceRoot": "libs/http/src",
+      "root": "libs/components/http",
+      "sourceRoot": "libs/components/http/src",
       "prefix": "sky",
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
-          "outputs": ["dist/libs/http"],
+          "outputs": ["dist/libs/components/http"],
           "options": {
-            "project": "libs/http/ng-package.json",
+            "project": "libs/components/http/ng-package.json",
             "updateBuildableProjectDepsInPackageJson": false
           },
           "configurations": {
             "production": {
-              "tsConfig": "libs/http/tsconfig.lib.prod.json"
+              "tsConfig": "libs/components/http/tsconfig.lib.prod.json"
             },
             "development": {
-              "tsConfig": "libs/http/tsconfig.lib.json"
+              "tsConfig": "libs/components/http/tsconfig.lib.json"
             }
           },
           "defaultConfiguration": "production"
@@ -1122,12 +1122,12 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "libs/http/src/test.ts",
-            "tsConfig": "libs/http/tsconfig.spec.json",
-            "karmaConfig": "libs/http/karma.conf.js",
+            "main": "libs/components/http/src/test.ts",
+            "tsConfig": "libs/components/http/tsconfig.spec.json",
+            "karmaConfig": "libs/components/http/karma.conf.js",
             "styles": [
-              "libs/theme/src/lib/styles/sky.scss",
-              "libs/theme/src/lib/styles/themes/modern/styles.scss"
+              "libs/components/theme/src/lib/styles/sky.scss",
+              "libs/components/theme/src/lib/styles/themes/modern/styles.scss"
             ],
             "codeCoverage": true,
             "codeCoverageExclude": ["**/fixtures/**"]
@@ -1137,8 +1137,8 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/http/src/**/*.ts",
-              "libs/http/src/**/*.html"
+              "libs/components/http/src/**/*.ts",
+              "libs/components/http/src/**/*.html"
             ]
           }
         }
@@ -1146,21 +1146,21 @@
     },
     "http-testing": {
       "projectType": "library",
-      "root": "libs/http/testing",
-      "sourceRoot": "libs/http/testing/src",
+      "root": "libs/components/http/testing",
+      "sourceRoot": "libs/components/http/testing/src",
       "prefix": "sky",
       "architect": {
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "libs/http/testing/src/test.ts",
-            "tsConfig": "libs/http/testing/tsconfig.spec.json",
-            "karmaConfig": "libs/http/testing/karma.conf.js",
+            "main": "libs/components/http/testing/src/test.ts",
+            "tsConfig": "libs/components/http/testing/tsconfig.spec.json",
+            "karmaConfig": "libs/components/http/testing/karma.conf.js",
             "codeCoverage": true,
             "codeCoverageExclude": ["**/fixtures/**"],
             "styles": [
-              "libs/theme/src/lib/styles/sky.scss",
-              "libs/theme/src/lib/styles/themes/modern/styles.scss"
+              "libs/components/theme/src/lib/styles/sky.scss",
+              "libs/components/theme/src/lib/styles/themes/modern/styles.scss"
             ]
           }
         }
@@ -1168,23 +1168,23 @@
     },
     "i18n": {
       "projectType": "library",
-      "root": "libs/i18n",
-      "sourceRoot": "libs/i18n/src",
+      "root": "libs/components/i18n",
+      "sourceRoot": "libs/components/i18n/src",
       "prefix": "sky",
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
-          "outputs": ["dist/libs/i18n"],
+          "outputs": ["dist/libs/components/i18n"],
           "options": {
-            "project": "libs/i18n/ng-package.json",
+            "project": "libs/components/i18n/ng-package.json",
             "updateBuildableProjectDepsInPackageJson": false
           },
           "configurations": {
             "production": {
-              "tsConfig": "libs/i18n/tsconfig.lib.prod.json"
+              "tsConfig": "libs/components/i18n/tsconfig.lib.prod.json"
             },
             "development": {
-              "tsConfig": "libs/i18n/tsconfig.lib.json"
+              "tsConfig": "libs/components/i18n/tsconfig.lib.json"
             }
           },
           "defaultConfiguration": "production"
@@ -1192,12 +1192,12 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "libs/i18n/src/test.ts",
-            "tsConfig": "libs/i18n/tsconfig.spec.json",
-            "karmaConfig": "libs/i18n/karma.conf.js",
+            "main": "libs/components/i18n/src/test.ts",
+            "tsConfig": "libs/components/i18n/tsconfig.spec.json",
+            "karmaConfig": "libs/components/i18n/karma.conf.js",
             "styles": [
-              "libs/theme/src/lib/styles/sky.scss",
-              "libs/theme/src/lib/styles/themes/modern/styles.scss"
+              "libs/components/theme/src/lib/styles/sky.scss",
+              "libs/components/theme/src/lib/styles/themes/modern/styles.scss"
             ],
             "codeCoverage": true,
             "codeCoverageExclude": ["**/fixtures/**"]
@@ -1207,8 +1207,8 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/i18n/src/**/*.ts",
-              "libs/i18n/src/**/*.html"
+              "libs/components/i18n/src/**/*.ts",
+              "libs/components/i18n/src/**/*.html"
             ]
           }
         },
@@ -1228,23 +1228,23 @@
     },
     "indicators": {
       "projectType": "library",
-      "root": "libs/indicators",
-      "sourceRoot": "libs/indicators/src",
+      "root": "libs/components/indicators",
+      "sourceRoot": "libs/components/indicators/src",
       "prefix": "sky",
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
-          "outputs": ["dist/libs/indicators"],
+          "outputs": ["dist/libs/components/indicators"],
           "options": {
-            "project": "libs/indicators/ng-package.json",
+            "project": "libs/components/indicators/ng-package.json",
             "updateBuildableProjectDepsInPackageJson": false
           },
           "configurations": {
             "production": {
-              "tsConfig": "libs/indicators/tsconfig.lib.prod.json"
+              "tsConfig": "libs/components/indicators/tsconfig.lib.prod.json"
             },
             "development": {
-              "tsConfig": "libs/indicators/tsconfig.lib.json"
+              "tsConfig": "libs/components/indicators/tsconfig.lib.json"
             }
           },
           "defaultConfiguration": "production"
@@ -1252,12 +1252,12 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "libs/indicators/src/test.ts",
-            "tsConfig": "libs/indicators/tsconfig.spec.json",
-            "karmaConfig": "libs/indicators/karma.conf.js",
+            "main": "libs/components/indicators/src/test.ts",
+            "tsConfig": "libs/components/indicators/tsconfig.spec.json",
+            "karmaConfig": "libs/components/indicators/karma.conf.js",
             "styles": [
-              "libs/theme/src/lib/styles/sky.scss",
-              "libs/theme/src/lib/styles/themes/modern/styles.scss"
+              "libs/components/theme/src/lib/styles/sky.scss",
+              "libs/components/theme/src/lib/styles/themes/modern/styles.scss"
             ],
             "codeCoverage": true,
             "codeCoverageExclude": ["**/fixtures/**"]
@@ -1267,8 +1267,8 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/indicators/src/**/*.ts",
-              "libs/indicators/src/**/*.html"
+              "libs/components/indicators/src/**/*.ts",
+              "libs/components/indicators/src/**/*.html"
             ]
           }
         }
@@ -1276,21 +1276,21 @@
     },
     "indicators-testing": {
       "projectType": "library",
-      "root": "libs/indicators/testing",
-      "sourceRoot": "libs/indicators/testing/src",
+      "root": "libs/components/indicators/testing",
+      "sourceRoot": "libs/components/indicators/testing/src",
       "prefix": "sky",
       "architect": {
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "libs/indicators/testing/src/test.ts",
-            "tsConfig": "libs/indicators/testing/tsconfig.spec.json",
-            "karmaConfig": "libs/indicators/testing/karma.conf.js",
+            "main": "libs/components/indicators/testing/src/test.ts",
+            "tsConfig": "libs/components/indicators/testing/tsconfig.spec.json",
+            "karmaConfig": "libs/components/indicators/testing/karma.conf.js",
             "codeCoverage": true,
             "codeCoverageExclude": ["**/fixtures/**"],
             "styles": [
-              "libs/theme/src/lib/styles/sky.scss",
-              "libs/theme/src/lib/styles/themes/modern/styles.scss"
+              "libs/components/theme/src/lib/styles/sky.scss",
+              "libs/components/theme/src/lib/styles/themes/modern/styles.scss"
             ]
           }
         }
@@ -1298,23 +1298,23 @@
     },
     "inline-form": {
       "projectType": "library",
-      "root": "libs/inline-form",
-      "sourceRoot": "libs/inline-form/src",
+      "root": "libs/components/inline-form",
+      "sourceRoot": "libs/components/inline-form/src",
       "prefix": "sky",
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
-          "outputs": ["dist/libs/inline-form"],
+          "outputs": ["dist/libs/components/inline-form"],
           "options": {
-            "project": "libs/inline-form/ng-package.json",
+            "project": "libs/components/inline-form/ng-package.json",
             "updateBuildableProjectDepsInPackageJson": false
           },
           "configurations": {
             "production": {
-              "tsConfig": "libs/inline-form/tsconfig.lib.prod.json"
+              "tsConfig": "libs/components/inline-form/tsconfig.lib.prod.json"
             },
             "development": {
-              "tsConfig": "libs/inline-form/tsconfig.lib.json"
+              "tsConfig": "libs/components/inline-form/tsconfig.lib.json"
             }
           },
           "defaultConfiguration": "production"
@@ -1322,12 +1322,12 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "libs/inline-form/src/test.ts",
-            "tsConfig": "libs/inline-form/tsconfig.spec.json",
-            "karmaConfig": "libs/inline-form/karma.conf.js",
+            "main": "libs/components/inline-form/src/test.ts",
+            "tsConfig": "libs/components/inline-form/tsconfig.spec.json",
+            "karmaConfig": "libs/components/inline-form/karma.conf.js",
             "styles": [
-              "libs/theme/src/lib/styles/sky.scss",
-              "libs/theme/src/lib/styles/themes/modern/styles.scss"
+              "libs/components/theme/src/lib/styles/sky.scss",
+              "libs/components/theme/src/lib/styles/themes/modern/styles.scss"
             ],
             "codeCoverage": true,
             "codeCoverageExclude": ["**/fixtures/**"]
@@ -1337,8 +1337,8 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/inline-form/src/**/*.ts",
-              "libs/inline-form/src/**/*.html"
+              "libs/components/inline-form/src/**/*.ts",
+              "libs/components/inline-form/src/**/*.html"
             ]
           }
         }
@@ -1469,23 +1469,23 @@
     },
     "layout": {
       "projectType": "library",
-      "root": "libs/layout",
-      "sourceRoot": "libs/layout/src",
+      "root": "libs/components/layout",
+      "sourceRoot": "libs/components/layout/src",
       "prefix": "sky",
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
-          "outputs": ["dist/libs/layout"],
+          "outputs": ["dist/libs/components/layout"],
           "options": {
-            "project": "libs/layout/ng-package.json",
+            "project": "libs/components/layout/ng-package.json",
             "updateBuildableProjectDepsInPackageJson": false
           },
           "configurations": {
             "production": {
-              "tsConfig": "libs/layout/tsconfig.lib.prod.json"
+              "tsConfig": "libs/components/layout/tsconfig.lib.prod.json"
             },
             "development": {
-              "tsConfig": "libs/layout/tsconfig.lib.json"
+              "tsConfig": "libs/components/layout/tsconfig.lib.json"
             }
           },
           "defaultConfiguration": "production"
@@ -1493,12 +1493,12 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "libs/layout/src/test.ts",
-            "tsConfig": "libs/layout/tsconfig.spec.json",
-            "karmaConfig": "libs/layout/karma.conf.js",
+            "main": "libs/components/layout/src/test.ts",
+            "tsConfig": "libs/components/layout/tsconfig.spec.json",
+            "karmaConfig": "libs/components/layout/karma.conf.js",
             "styles": [
-              "libs/theme/src/lib/styles/sky.scss",
-              "libs/theme/src/lib/styles/themes/modern/styles.scss"
+              "libs/components/theme/src/lib/styles/sky.scss",
+              "libs/components/theme/src/lib/styles/themes/modern/styles.scss"
             ],
             "codeCoverage": true,
             "codeCoverageExclude": ["**/fixtures/**"]
@@ -1508,8 +1508,8 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/layout/src/**/*.ts",
-              "libs/layout/src/**/*.html"
+              "libs/components/layout/src/**/*.ts",
+              "libs/components/layout/src/**/*.html"
             ]
           }
         }
@@ -1517,21 +1517,21 @@
     },
     "layout-testing": {
       "projectType": "library",
-      "root": "libs/layout/testing",
-      "sourceRoot": "libs/layout/testing/src",
+      "root": "libs/components/layout/testing",
+      "sourceRoot": "libs/components/layout/testing/src",
       "prefix": "sky",
       "architect": {
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "libs/layout/testing/src/test.ts",
-            "tsConfig": "libs/layout/testing/tsconfig.spec.json",
-            "karmaConfig": "libs/layout/testing/karma.conf.js",
+            "main": "libs/components/layout/testing/src/test.ts",
+            "tsConfig": "libs/components/layout/testing/tsconfig.spec.json",
+            "karmaConfig": "libs/components/layout/testing/karma.conf.js",
             "codeCoverage": true,
             "codeCoverageExclude": ["**/fixtures/**"],
             "styles": [
-              "libs/theme/src/lib/styles/sky.scss",
-              "libs/theme/src/lib/styles/themes/modern/styles.scss"
+              "libs/components/theme/src/lib/styles/sky.scss",
+              "libs/components/theme/src/lib/styles/themes/modern/styles.scss"
             ]
           }
         }
@@ -1539,23 +1539,23 @@
     },
     "list-builder": {
       "projectType": "library",
-      "root": "libs/list-builder",
-      "sourceRoot": "libs/list-builder/src",
+      "root": "libs/components/list-builder",
+      "sourceRoot": "libs/components/list-builder/src",
       "prefix": "sky",
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
-          "outputs": ["dist/libs/list-builder"],
+          "outputs": ["dist/libs/components/list-builder"],
           "options": {
-            "project": "libs/list-builder/ng-package.json",
+            "project": "libs/components/list-builder/ng-package.json",
             "updateBuildableProjectDepsInPackageJson": false
           },
           "configurations": {
             "production": {
-              "tsConfig": "libs/list-builder/tsconfig.lib.prod.json"
+              "tsConfig": "libs/components/list-builder/tsconfig.lib.prod.json"
             },
             "development": {
-              "tsConfig": "libs/list-builder/tsconfig.lib.json"
+              "tsConfig": "libs/components/list-builder/tsconfig.lib.json"
             }
           },
           "defaultConfiguration": "production"
@@ -1563,12 +1563,12 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "libs/list-builder/src/test.ts",
-            "tsConfig": "libs/list-builder/tsconfig.spec.json",
-            "karmaConfig": "libs/list-builder/karma.conf.js",
+            "main": "libs/components/list-builder/src/test.ts",
+            "tsConfig": "libs/components/list-builder/tsconfig.spec.json",
+            "karmaConfig": "libs/components/list-builder/karma.conf.js",
             "styles": [
-              "libs/theme/src/lib/styles/sky.scss",
-              "libs/theme/src/lib/styles/themes/modern/styles.scss"
+              "libs/components/theme/src/lib/styles/sky.scss",
+              "libs/components/theme/src/lib/styles/themes/modern/styles.scss"
             ],
             "codeCoverage": true,
             "codeCoverageExclude": ["**/fixtures/**"]
@@ -1578,8 +1578,8 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/list-builder/src/**/*.ts",
-              "libs/list-builder/src/**/*.html"
+              "libs/components/list-builder/src/**/*.ts",
+              "libs/components/list-builder/src/**/*.html"
             ]
           }
         }
@@ -1587,23 +1587,23 @@
     },
     "list-builder-common": {
       "projectType": "library",
-      "root": "libs/list-builder-common",
-      "sourceRoot": "libs/list-builder-common/src",
+      "root": "libs/components/list-builder-common",
+      "sourceRoot": "libs/components/list-builder-common/src",
       "prefix": "sky",
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
-          "outputs": ["dist/libs/list-builder-common"],
+          "outputs": ["dist/libs/components/list-builder-common"],
           "options": {
-            "project": "libs/list-builder-common/ng-package.json",
+            "project": "libs/components/list-builder-common/ng-package.json",
             "updateBuildableProjectDepsInPackageJson": false
           },
           "configurations": {
             "production": {
-              "tsConfig": "libs/list-builder-common/tsconfig.lib.prod.json"
+              "tsConfig": "libs/components/list-builder-common/tsconfig.lib.prod.json"
             },
             "development": {
-              "tsConfig": "libs/list-builder-common/tsconfig.lib.json"
+              "tsConfig": "libs/components/list-builder-common/tsconfig.lib.json"
             }
           },
           "defaultConfiguration": "production"
@@ -1611,12 +1611,12 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "libs/list-builder-common/src/test.ts",
-            "tsConfig": "libs/list-builder-common/tsconfig.spec.json",
-            "karmaConfig": "libs/list-builder-common/karma.conf.js",
+            "main": "libs/components/list-builder-common/src/test.ts",
+            "tsConfig": "libs/components/list-builder-common/tsconfig.spec.json",
+            "karmaConfig": "libs/components/list-builder-common/karma.conf.js",
             "styles": [
-              "libs/theme/src/lib/styles/sky.scss",
-              "libs/theme/src/lib/styles/themes/modern/styles.scss"
+              "libs/components/theme/src/lib/styles/sky.scss",
+              "libs/components/theme/src/lib/styles/themes/modern/styles.scss"
             ],
             "codeCoverage": true,
             "codeCoverageExclude": ["**/fixtures/**"]
@@ -1626,8 +1626,8 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/list-builder-common/src/**/*.ts",
-              "libs/list-builder-common/src/**/*.html"
+              "libs/components/list-builder-common/src/**/*.ts",
+              "libs/components/list-builder-common/src/**/*.html"
             ]
           }
         }
@@ -1635,23 +1635,23 @@
     },
     "list-builder-view-checklist": {
       "projectType": "library",
-      "root": "libs/list-builder-view-checklist",
-      "sourceRoot": "libs/list-builder-view-checklist/src",
+      "root": "libs/components/list-builder-view-checklist",
+      "sourceRoot": "libs/components/list-builder-view-checklist/src",
       "prefix": "sky",
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
-          "outputs": ["dist/libs/list-builder-view-checklist"],
+          "outputs": ["dist/libs/components/list-builder-view-checklist"],
           "options": {
-            "project": "libs/list-builder-view-checklist/ng-package.json",
+            "project": "libs/components/list-builder-view-checklist/ng-package.json",
             "updateBuildableProjectDepsInPackageJson": false
           },
           "configurations": {
             "production": {
-              "tsConfig": "libs/list-builder-view-checklist/tsconfig.lib.prod.json"
+              "tsConfig": "libs/components/list-builder-view-checklist/tsconfig.lib.prod.json"
             },
             "development": {
-              "tsConfig": "libs/list-builder-view-checklist/tsconfig.lib.json"
+              "tsConfig": "libs/components/list-builder-view-checklist/tsconfig.lib.json"
             }
           },
           "defaultConfiguration": "production"
@@ -1659,12 +1659,12 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "libs/list-builder-view-checklist/src/test.ts",
-            "tsConfig": "libs/list-builder-view-checklist/tsconfig.spec.json",
-            "karmaConfig": "libs/list-builder-view-checklist/karma.conf.js",
+            "main": "libs/components/list-builder-view-checklist/src/test.ts",
+            "tsConfig": "libs/components/list-builder-view-checklist/tsconfig.spec.json",
+            "karmaConfig": "libs/components/list-builder-view-checklist/karma.conf.js",
             "styles": [
-              "libs/theme/src/lib/styles/sky.scss",
-              "libs/theme/src/lib/styles/themes/modern/styles.scss"
+              "libs/components/theme/src/lib/styles/sky.scss",
+              "libs/components/theme/src/lib/styles/themes/modern/styles.scss"
             ],
             "codeCoverage": true,
             "codeCoverageExclude": ["**/fixtures/**"]
@@ -1674,8 +1674,8 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/list-builder-view-checklist/src/**/*.ts",
-              "libs/list-builder-view-checklist/src/**/*.html"
+              "libs/components/list-builder-view-checklist/src/**/*.ts",
+              "libs/components/list-builder-view-checklist/src/**/*.html"
             ]
           }
         }
@@ -1683,21 +1683,21 @@
     },
     "list-builder-view-checklist-testing": {
       "projectType": "library",
-      "root": "libs/list-builder-view-checklist/testing",
-      "sourceRoot": "libs/list-builder-view-checklist/testing/src",
+      "root": "libs/components/list-builder-view-checklist/testing",
+      "sourceRoot": "libs/components/list-builder-view-checklist/testing/src",
       "prefix": "sky",
       "architect": {
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "libs/list-builder-view-checklist/testing/src/test.ts",
-            "tsConfig": "libs/list-builder-view-checklist/testing/tsconfig.spec.json",
-            "karmaConfig": "libs/list-builder-view-checklist/testing/karma.conf.js",
+            "main": "libs/components/list-builder-view-checklist/testing/src/test.ts",
+            "tsConfig": "libs/components/list-builder-view-checklist/testing/tsconfig.spec.json",
+            "karmaConfig": "libs/components/list-builder-view-checklist/testing/karma.conf.js",
             "codeCoverage": true,
             "codeCoverageExclude": ["**/fixtures/**"],
             "styles": [
-              "libs/theme/src/lib/styles/sky.scss",
-              "libs/theme/src/lib/styles/themes/modern/styles.scss"
+              "libs/components/theme/src/lib/styles/sky.scss",
+              "libs/components/theme/src/lib/styles/themes/modern/styles.scss"
             ]
           }
         }
@@ -1705,23 +1705,23 @@
     },
     "list-builder-view-grids": {
       "projectType": "library",
-      "root": "libs/list-builder-view-grids",
-      "sourceRoot": "libs/list-builder-view-grids/src",
+      "root": "libs/components/list-builder-view-grids",
+      "sourceRoot": "libs/components/list-builder-view-grids/src",
       "prefix": "sky",
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
-          "outputs": ["dist/libs/list-builder-view-grids"],
+          "outputs": ["dist/libs/components/list-builder-view-grids"],
           "options": {
-            "project": "libs/list-builder-view-grids/ng-package.json",
+            "project": "libs/components/list-builder-view-grids/ng-package.json",
             "updateBuildableProjectDepsInPackageJson": false
           },
           "configurations": {
             "production": {
-              "tsConfig": "libs/list-builder-view-grids/tsconfig.lib.prod.json"
+              "tsConfig": "libs/components/list-builder-view-grids/tsconfig.lib.prod.json"
             },
             "development": {
-              "tsConfig": "libs/list-builder-view-grids/tsconfig.lib.json"
+              "tsConfig": "libs/components/list-builder-view-grids/tsconfig.lib.json"
             }
           },
           "defaultConfiguration": "production"
@@ -1729,12 +1729,12 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "libs/list-builder-view-grids/src/test.ts",
-            "tsConfig": "libs/list-builder-view-grids/tsconfig.spec.json",
-            "karmaConfig": "libs/list-builder-view-grids/karma.conf.js",
+            "main": "libs/components/list-builder-view-grids/src/test.ts",
+            "tsConfig": "libs/components/list-builder-view-grids/tsconfig.spec.json",
+            "karmaConfig": "libs/components/list-builder-view-grids/karma.conf.js",
             "styles": [
-              "libs/theme/src/lib/styles/sky.scss",
-              "libs/theme/src/lib/styles/themes/modern/styles.scss"
+              "libs/components/theme/src/lib/styles/sky.scss",
+              "libs/components/theme/src/lib/styles/themes/modern/styles.scss"
             ],
             "codeCoverage": true,
             "codeCoverageExclude": ["**/fixtures/**"]
@@ -1744,8 +1744,8 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/list-builder-view-grids/src/**/*.ts",
-              "libs/list-builder-view-grids/src/**/*.html"
+              "libs/components/list-builder-view-grids/src/**/*.ts",
+              "libs/components/list-builder-view-grids/src/**/*.html"
             ]
           }
         }
@@ -1753,21 +1753,21 @@
     },
     "list-builder-view-grids-testing": {
       "projectType": "library",
-      "root": "libs/list-builder-view-grids/testing",
-      "sourceRoot": "libs/list-builder-view-grids/testing/src",
+      "root": "libs/components/list-builder-view-grids/testing",
+      "sourceRoot": "libs/components/list-builder-view-grids/testing/src",
       "prefix": "sky",
       "architect": {
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "libs/list-builder-view-grids/testing/src/test.ts",
-            "tsConfig": "libs/list-builder-view-grids/testing/tsconfig.spec.json",
-            "karmaConfig": "libs/list-builder-view-grids/testing/karma.conf.js",
+            "main": "libs/components/list-builder-view-grids/testing/src/test.ts",
+            "tsConfig": "libs/components/list-builder-view-grids/testing/tsconfig.spec.json",
+            "karmaConfig": "libs/components/list-builder-view-grids/testing/karma.conf.js",
             "codeCoverage": true,
             "codeCoverageExclude": ["**/fixtures/**"],
             "styles": [
-              "libs/theme/src/lib/styles/sky.scss",
-              "libs/theme/src/lib/styles/themes/modern/styles.scss"
+              "libs/components/theme/src/lib/styles/sky.scss",
+              "libs/components/theme/src/lib/styles/themes/modern/styles.scss"
             ]
           }
         }
@@ -1775,23 +1775,23 @@
     },
     "lists": {
       "projectType": "library",
-      "root": "libs/lists",
-      "sourceRoot": "libs/lists/src",
+      "root": "libs/components/lists",
+      "sourceRoot": "libs/components/lists/src",
       "prefix": "sky",
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
-          "outputs": ["dist/libs/lists"],
+          "outputs": ["dist/libs/components/lists"],
           "options": {
-            "project": "libs/lists/ng-package.json",
+            "project": "libs/components/lists/ng-package.json",
             "updateBuildableProjectDepsInPackageJson": false
           },
           "configurations": {
             "production": {
-              "tsConfig": "libs/lists/tsconfig.lib.prod.json"
+              "tsConfig": "libs/components/lists/tsconfig.lib.prod.json"
             },
             "development": {
-              "tsConfig": "libs/lists/tsconfig.lib.json"
+              "tsConfig": "libs/components/lists/tsconfig.lib.json"
             }
           },
           "defaultConfiguration": "production"
@@ -1799,12 +1799,12 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "libs/lists/src/test.ts",
-            "tsConfig": "libs/lists/tsconfig.spec.json",
-            "karmaConfig": "libs/lists/karma.conf.js",
+            "main": "libs/components/lists/src/test.ts",
+            "tsConfig": "libs/components/lists/tsconfig.spec.json",
+            "karmaConfig": "libs/components/lists/karma.conf.js",
             "styles": [
-              "libs/theme/src/lib/styles/sky.scss",
-              "libs/theme/src/lib/styles/themes/modern/styles.scss"
+              "libs/components/theme/src/lib/styles/sky.scss",
+              "libs/components/theme/src/lib/styles/themes/modern/styles.scss"
             ],
             "codeCoverage": true,
             "codeCoverageExclude": ["**/fixtures/**"]
@@ -1814,8 +1814,8 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/lists/src/**/*.ts",
-              "libs/lists/src/**/*.html"
+              "libs/components/lists/src/**/*.ts",
+              "libs/components/lists/src/**/*.html"
             ]
           }
         }
@@ -1823,21 +1823,21 @@
     },
     "lists-testing": {
       "projectType": "library",
-      "root": "libs/lists/testing",
-      "sourceRoot": "libs/lists/testing/src",
+      "root": "libs/components/lists/testing",
+      "sourceRoot": "libs/components/lists/testing/src",
       "prefix": "sky",
       "architect": {
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "libs/lists/testing/src/test.ts",
-            "tsConfig": "libs/lists/testing/tsconfig.spec.json",
-            "karmaConfig": "libs/lists/testing/karma.conf.js",
+            "main": "libs/components/lists/testing/src/test.ts",
+            "tsConfig": "libs/components/lists/testing/tsconfig.spec.json",
+            "karmaConfig": "libs/components/lists/testing/karma.conf.js",
             "codeCoverage": true,
             "codeCoverageExclude": ["**/fixtures/**"],
             "styles": [
-              "libs/theme/src/lib/styles/sky.scss",
-              "libs/theme/src/lib/styles/themes/modern/styles.scss"
+              "libs/components/theme/src/lib/styles/sky.scss",
+              "libs/components/theme/src/lib/styles/themes/modern/styles.scss"
             ]
           }
         }
@@ -1845,23 +1845,23 @@
     },
     "lookup": {
       "projectType": "library",
-      "root": "libs/lookup",
-      "sourceRoot": "libs/lookup/src",
+      "root": "libs/components/lookup",
+      "sourceRoot": "libs/components/lookup/src",
       "prefix": "sky",
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
-          "outputs": ["dist/libs/lookup"],
+          "outputs": ["dist/libs/components/lookup"],
           "options": {
-            "project": "libs/lookup/ng-package.json",
+            "project": "libs/components/lookup/ng-package.json",
             "updateBuildableProjectDepsInPackageJson": false
           },
           "configurations": {
             "production": {
-              "tsConfig": "libs/lookup/tsconfig.lib.prod.json"
+              "tsConfig": "libs/components/lookup/tsconfig.lib.prod.json"
             },
             "development": {
-              "tsConfig": "libs/lookup/tsconfig.lib.json"
+              "tsConfig": "libs/components/lookup/tsconfig.lib.json"
             }
           },
           "defaultConfiguration": "production"
@@ -1869,12 +1869,12 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "libs/lookup/src/test.ts",
-            "tsConfig": "libs/lookup/tsconfig.spec.json",
-            "karmaConfig": "libs/lookup/karma.conf.js",
+            "main": "libs/components/lookup/src/test.ts",
+            "tsConfig": "libs/components/lookup/tsconfig.spec.json",
+            "karmaConfig": "libs/components/lookup/karma.conf.js",
             "styles": [
-              "libs/theme/src/lib/styles/sky.scss",
-              "libs/theme/src/lib/styles/themes/modern/styles.scss"
+              "libs/components/theme/src/lib/styles/sky.scss",
+              "libs/components/theme/src/lib/styles/themes/modern/styles.scss"
             ],
             "codeCoverage": true,
             "codeCoverageExclude": ["**/fixtures/**"]
@@ -1884,8 +1884,8 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/lookup/src/**/*.ts",
-              "libs/lookup/src/**/*.html"
+              "libs/components/lookup/src/**/*.ts",
+              "libs/components/lookup/src/**/*.html"
             ]
           }
         }
@@ -1893,21 +1893,21 @@
     },
     "lookup-testing": {
       "projectType": "library",
-      "root": "libs/lookup/testing",
-      "sourceRoot": "libs/lookup/testing/src",
+      "root": "libs/components/lookup/testing",
+      "sourceRoot": "libs/components/lookup/testing/src",
       "prefix": "sky",
       "architect": {
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "libs/lookup/testing/src/test.ts",
-            "tsConfig": "libs/lookup/testing/tsconfig.spec.json",
-            "karmaConfig": "libs/lookup/testing/karma.conf.js",
+            "main": "libs/components/lookup/testing/src/test.ts",
+            "tsConfig": "libs/components/lookup/testing/tsconfig.spec.json",
+            "karmaConfig": "libs/components/lookup/testing/karma.conf.js",
             "codeCoverage": true,
             "codeCoverageExclude": ["**/fixtures/**"],
             "styles": [
-              "libs/theme/src/lib/styles/sky.scss",
-              "libs/theme/src/lib/styles/themes/modern/styles.scss"
+              "libs/components/theme/src/lib/styles/sky.scss",
+              "libs/components/theme/src/lib/styles/themes/modern/styles.scss"
             ]
           }
         }
@@ -1915,23 +1915,23 @@
     },
     "modals": {
       "projectType": "library",
-      "root": "libs/modals",
-      "sourceRoot": "libs/modals/src",
+      "root": "libs/components/modals",
+      "sourceRoot": "libs/components/modals/src",
       "prefix": "sky",
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
-          "outputs": ["dist/libs/modals"],
+          "outputs": ["dist/libs/components/modals"],
           "options": {
-            "project": "libs/modals/ng-package.json",
+            "project": "libs/components/modals/ng-package.json",
             "updateBuildableProjectDepsInPackageJson": false
           },
           "configurations": {
             "production": {
-              "tsConfig": "libs/modals/tsconfig.lib.prod.json"
+              "tsConfig": "libs/components/modals/tsconfig.lib.prod.json"
             },
             "development": {
-              "tsConfig": "libs/modals/tsconfig.lib.json"
+              "tsConfig": "libs/components/modals/tsconfig.lib.json"
             }
           },
           "defaultConfiguration": "production"
@@ -1939,12 +1939,12 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "libs/modals/src/test.ts",
-            "tsConfig": "libs/modals/tsconfig.spec.json",
-            "karmaConfig": "libs/modals/karma.conf.js",
+            "main": "libs/components/modals/src/test.ts",
+            "tsConfig": "libs/components/modals/tsconfig.spec.json",
+            "karmaConfig": "libs/components/modals/karma.conf.js",
             "styles": [
-              "libs/theme/src/lib/styles/sky.scss",
-              "libs/theme/src/lib/styles/themes/modern/styles.scss"
+              "libs/components/theme/src/lib/styles/sky.scss",
+              "libs/components/theme/src/lib/styles/themes/modern/styles.scss"
             ],
             "codeCoverage": true,
             "codeCoverageExclude": ["**/fixtures/**"]
@@ -1954,8 +1954,8 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/modals/src/**/*.ts",
-              "libs/modals/src/**/*.html"
+              "libs/components/modals/src/**/*.ts",
+              "libs/components/modals/src/**/*.html"
             ]
           }
         }
@@ -1963,21 +1963,21 @@
     },
     "modals-testing": {
       "projectType": "library",
-      "root": "libs/modals/testing",
-      "sourceRoot": "libs/modals/testing/src",
+      "root": "libs/components/modals/testing",
+      "sourceRoot": "libs/components/modals/testing/src",
       "prefix": "sky",
       "architect": {
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "libs/modals/testing/src/test.ts",
-            "tsConfig": "libs/modals/testing/tsconfig.spec.json",
-            "karmaConfig": "libs/modals/testing/karma.conf.js",
+            "main": "libs/components/modals/testing/src/test.ts",
+            "tsConfig": "libs/components/modals/testing/tsconfig.spec.json",
+            "karmaConfig": "libs/components/modals/testing/karma.conf.js",
             "codeCoverage": true,
             "codeCoverageExclude": ["**/fixtures/**"],
             "styles": [
-              "libs/theme/src/lib/styles/sky.scss",
-              "libs/theme/src/lib/styles/themes/modern/styles.scss"
+              "libs/components/theme/src/lib/styles/sky.scss",
+              "libs/components/theme/src/lib/styles/themes/modern/styles.scss"
             ]
           }
         }
@@ -1985,23 +1985,23 @@
     },
     "navbar": {
       "projectType": "library",
-      "root": "libs/navbar",
-      "sourceRoot": "libs/navbar/src",
+      "root": "libs/components/navbar",
+      "sourceRoot": "libs/components/navbar/src",
       "prefix": "sky",
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
-          "outputs": ["dist/libs/navbar"],
+          "outputs": ["dist/libs/components/navbar"],
           "options": {
-            "project": "libs/navbar/ng-package.json",
+            "project": "libs/components/navbar/ng-package.json",
             "updateBuildableProjectDepsInPackageJson": false
           },
           "configurations": {
             "production": {
-              "tsConfig": "libs/navbar/tsconfig.lib.prod.json"
+              "tsConfig": "libs/components/navbar/tsconfig.lib.prod.json"
             },
             "development": {
-              "tsConfig": "libs/navbar/tsconfig.lib.json"
+              "tsConfig": "libs/components/navbar/tsconfig.lib.json"
             }
           },
           "defaultConfiguration": "production"
@@ -2009,12 +2009,12 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "libs/navbar/src/test.ts",
-            "tsConfig": "libs/navbar/tsconfig.spec.json",
-            "karmaConfig": "libs/navbar/karma.conf.js",
+            "main": "libs/components/navbar/src/test.ts",
+            "tsConfig": "libs/components/navbar/tsconfig.spec.json",
+            "karmaConfig": "libs/components/navbar/karma.conf.js",
             "styles": [
-              "libs/theme/src/lib/styles/sky.scss",
-              "libs/theme/src/lib/styles/themes/modern/styles.scss"
+              "libs/components/theme/src/lib/styles/sky.scss",
+              "libs/components/theme/src/lib/styles/themes/modern/styles.scss"
             ],
             "codeCoverage": true,
             "codeCoverageExclude": ["**/fixtures/**"]
@@ -2024,8 +2024,8 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/navbar/src/**/*.ts",
-              "libs/navbar/src/**/*.html"
+              "libs/components/navbar/src/**/*.ts",
+              "libs/components/navbar/src/**/*.html"
             ]
           }
         }
@@ -2033,23 +2033,23 @@
     },
     "omnibar-interop": {
       "projectType": "library",
-      "root": "libs/omnibar-interop",
-      "sourceRoot": "libs/omnibar-interop/src",
+      "root": "libs/components/omnibar-interop",
+      "sourceRoot": "libs/components/omnibar-interop/src",
       "prefix": "sky",
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
-          "outputs": ["dist/libs/omnibar-interop"],
+          "outputs": ["dist/libs/components/omnibar-interop"],
           "options": {
-            "project": "libs/omnibar-interop/ng-package.json",
+            "project": "libs/components/omnibar-interop/ng-package.json",
             "updateBuildableProjectDepsInPackageJson": false
           },
           "configurations": {
             "production": {
-              "tsConfig": "libs/omnibar-interop/tsconfig.lib.prod.json"
+              "tsConfig": "libs/components/omnibar-interop/tsconfig.lib.prod.json"
             },
             "development": {
-              "tsConfig": "libs/omnibar-interop/tsconfig.lib.json"
+              "tsConfig": "libs/components/omnibar-interop/tsconfig.lib.json"
             }
           },
           "defaultConfiguration": "production"
@@ -2057,12 +2057,12 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "libs/omnibar-interop/src/test.ts",
-            "tsConfig": "libs/omnibar-interop/tsconfig.spec.json",
-            "karmaConfig": "libs/omnibar-interop/karma.conf.js",
+            "main": "libs/components/omnibar-interop/src/test.ts",
+            "tsConfig": "libs/components/omnibar-interop/tsconfig.spec.json",
+            "karmaConfig": "libs/components/omnibar-interop/karma.conf.js",
             "styles": [
-              "libs/theme/src/lib/styles/sky.scss",
-              "libs/theme/src/lib/styles/themes/modern/styles.scss"
+              "libs/components/theme/src/lib/styles/sky.scss",
+              "libs/components/theme/src/lib/styles/themes/modern/styles.scss"
             ],
             "codeCoverage": true,
             "codeCoverageExclude": ["**/fixtures/**"]
@@ -2072,30 +2072,30 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/omnibar-interop/src/**/*.ts",
-              "libs/omnibar-interop/src/**/*.html"
+              "libs/components/omnibar-interop/src/**/*.ts",
+              "libs/components/omnibar-interop/src/**/*.html"
             ]
           }
         }
       }
     },
     "packages": {
-      "root": "libs/packages",
-      "sourceRoot": "libs/packages/src",
+      "root": "libs/components/packages",
+      "sourceRoot": "libs/components/packages/src",
       "projectType": "library",
       "architect": {
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "outputs": ["{options.outputFile}"],
           "options": {
-            "lintFilePatterns": ["libs/packages/**/*.ts"]
+            "lintFilePatterns": ["libs/components/packages/**/*.ts"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/packages"],
+          "outputs": ["coverage/libs/components/packages"],
           "options": {
-            "jestConfig": "libs/packages/jest.config.js",
+            "jestConfig": "libs/components/packages/jest.config.js",
             "passWithNoTests": true,
             "codeCoverage": true,
             "coverageReporters": ["html", "text"]
@@ -2105,11 +2105,11 @@
           "builder": "@nrwl/node:package",
           "outputs": ["{options.outputPath}"],
           "options": {
-            "outputPath": "dist/libs/packages",
-            "tsConfig": "libs/packages/tsconfig.lib.json",
-            "packageJson": "libs/packages/package.json",
-            "main": "libs/packages/src/index.ts",
-            "assets": ["libs/packages/*.md"],
+            "outputPath": "dist/libs/components/packages",
+            "tsConfig": "libs/components/packages/tsconfig.lib.json",
+            "packageJson": "libs/components/packages/package.json",
+            "main": "libs/components/packages/src/index.ts",
+            "assets": ["libs/components/packages/*.md"],
             "updateBuildableProjectDepsInPackageJson": false
           }
         },
@@ -2123,23 +2123,23 @@
     },
     "pages": {
       "projectType": "library",
-      "root": "libs/pages",
-      "sourceRoot": "libs/pages/src",
+      "root": "libs/components/pages",
+      "sourceRoot": "libs/components/pages/src",
       "prefix": "sky",
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
-          "outputs": ["dist/libs/pages"],
+          "outputs": ["dist/libs/components/pages"],
           "options": {
-            "project": "libs/pages/ng-package.json",
+            "project": "libs/components/pages/ng-package.json",
             "updateBuildableProjectDepsInPackageJson": false
           },
           "configurations": {
             "production": {
-              "tsConfig": "libs/pages/tsconfig.lib.prod.json"
+              "tsConfig": "libs/components/pages/tsconfig.lib.prod.json"
             },
             "development": {
-              "tsConfig": "libs/pages/tsconfig.lib.json"
+              "tsConfig": "libs/components/pages/tsconfig.lib.json"
             }
           },
           "defaultConfiguration": "production"
@@ -2147,12 +2147,12 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "libs/pages/src/test.ts",
-            "tsConfig": "libs/pages/tsconfig.spec.json",
-            "karmaConfig": "libs/pages/karma.conf.js",
+            "main": "libs/components/pages/src/test.ts",
+            "tsConfig": "libs/components/pages/tsconfig.spec.json",
+            "karmaConfig": "libs/components/pages/karma.conf.js",
             "styles": [
-              "libs/theme/src/lib/styles/sky.scss",
-              "libs/theme/src/lib/styles/themes/modern/styles.scss"
+              "libs/components/theme/src/lib/styles/sky.scss",
+              "libs/components/theme/src/lib/styles/themes/modern/styles.scss"
             ],
             "codeCoverage": true,
             "codeCoverageExclude": ["**/fixtures/**"]
@@ -2162,8 +2162,8 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/pages/src/**/*.ts",
-              "libs/pages/src/**/*.html"
+              "libs/components/pages/src/**/*.ts",
+              "libs/components/pages/src/**/*.html"
             ]
           }
         }
@@ -2171,23 +2171,23 @@
     },
     "phone-field": {
       "projectType": "library",
-      "root": "libs/phone-field",
-      "sourceRoot": "libs/phone-field/src",
+      "root": "libs/components/phone-field",
+      "sourceRoot": "libs/components/phone-field/src",
       "prefix": "sky",
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
-          "outputs": ["dist/libs/phone-field"],
+          "outputs": ["dist/libs/components/phone-field"],
           "options": {
-            "project": "libs/phone-field/ng-package.json",
+            "project": "libs/components/phone-field/ng-package.json",
             "updateBuildableProjectDepsInPackageJson": false
           },
           "configurations": {
             "production": {
-              "tsConfig": "libs/phone-field/tsconfig.lib.prod.json"
+              "tsConfig": "libs/components/phone-field/tsconfig.lib.prod.json"
             },
             "development": {
-              "tsConfig": "libs/phone-field/tsconfig.lib.json"
+              "tsConfig": "libs/components/phone-field/tsconfig.lib.json"
             }
           },
           "defaultConfiguration": "production"
@@ -2195,12 +2195,12 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "libs/phone-field/src/test.ts",
-            "tsConfig": "libs/phone-field/tsconfig.spec.json",
-            "karmaConfig": "libs/phone-field/karma.conf.js",
+            "main": "libs/components/phone-field/src/test.ts",
+            "tsConfig": "libs/components/phone-field/tsconfig.spec.json",
+            "karmaConfig": "libs/components/phone-field/karma.conf.js",
             "styles": [
-              "libs/theme/src/lib/styles/sky.scss",
-              "libs/theme/src/lib/styles/themes/modern/styles.scss"
+              "libs/components/theme/src/lib/styles/sky.scss",
+              "libs/components/theme/src/lib/styles/themes/modern/styles.scss"
             ],
             "codeCoverage": true,
             "codeCoverageExclude": ["**/fixtures/**"]
@@ -2210,8 +2210,8 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/phone-field/src/**/*.ts",
-              "libs/phone-field/src/**/*.html"
+              "libs/components/phone-field/src/**/*.ts",
+              "libs/components/phone-field/src/**/*.html"
             ]
           }
         }
@@ -2219,21 +2219,21 @@
     },
     "phone-field-testing": {
       "projectType": "library",
-      "root": "libs/phone-field/testing",
-      "sourceRoot": "libs/phone-field/testing/src",
+      "root": "libs/components/phone-field/testing",
+      "sourceRoot": "libs/components/phone-field/testing/src",
       "prefix": "sky",
       "architect": {
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "libs/phone-field/testing/src/test.ts",
-            "tsConfig": "libs/phone-field/testing/tsconfig.spec.json",
-            "karmaConfig": "libs/phone-field/testing/karma.conf.js",
+            "main": "libs/components/phone-field/testing/src/test.ts",
+            "tsConfig": "libs/components/phone-field/testing/tsconfig.spec.json",
+            "karmaConfig": "libs/components/phone-field/testing/karma.conf.js",
             "codeCoverage": true,
             "codeCoverageExclude": ["**/fixtures/**"],
             "styles": [
-              "libs/theme/src/lib/styles/sky.scss",
-              "libs/theme/src/lib/styles/themes/modern/styles.scss"
+              "libs/components/theme/src/lib/styles/sky.scss",
+              "libs/components/theme/src/lib/styles/themes/modern/styles.scss"
             ]
           }
         }
@@ -2241,23 +2241,23 @@
     },
     "popovers": {
       "projectType": "library",
-      "root": "libs/popovers",
-      "sourceRoot": "libs/popovers/src",
+      "root": "libs/components/popovers",
+      "sourceRoot": "libs/components/popovers/src",
       "prefix": "sky",
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
-          "outputs": ["dist/libs/popovers"],
+          "outputs": ["dist/libs/components/popovers"],
           "options": {
-            "project": "libs/popovers/ng-package.json",
+            "project": "libs/components/popovers/ng-package.json",
             "updateBuildableProjectDepsInPackageJson": false
           },
           "configurations": {
             "production": {
-              "tsConfig": "libs/popovers/tsconfig.lib.prod.json"
+              "tsConfig": "libs/components/popovers/tsconfig.lib.prod.json"
             },
             "development": {
-              "tsConfig": "libs/popovers/tsconfig.lib.json"
+              "tsConfig": "libs/components/popovers/tsconfig.lib.json"
             }
           },
           "defaultConfiguration": "production"
@@ -2265,12 +2265,12 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "libs/popovers/src/test.ts",
-            "tsConfig": "libs/popovers/tsconfig.spec.json",
-            "karmaConfig": "libs/popovers/karma.conf.js",
+            "main": "libs/components/popovers/src/test.ts",
+            "tsConfig": "libs/components/popovers/tsconfig.spec.json",
+            "karmaConfig": "libs/components/popovers/karma.conf.js",
             "styles": [
-              "libs/theme/src/lib/styles/sky.scss",
-              "libs/theme/src/lib/styles/themes/modern/styles.scss"
+              "libs/components/theme/src/lib/styles/sky.scss",
+              "libs/components/theme/src/lib/styles/themes/modern/styles.scss"
             ],
             "codeCoverage": true,
             "codeCoverageExclude": ["**/fixtures/**"]
@@ -2280,8 +2280,8 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/popovers/src/**/*.ts",
-              "libs/popovers/src/**/*.html"
+              "libs/components/popovers/src/**/*.ts",
+              "libs/components/popovers/src/**/*.html"
             ]
           }
         }
@@ -2289,45 +2289,79 @@
     },
     "popovers-testing": {
       "projectType": "library",
-      "root": "libs/popovers/testing",
-      "sourceRoot": "libs/popovers/testing/src",
+      "root": "libs/components/popovers/testing",
+      "sourceRoot": "libs/components/popovers/testing/src",
       "prefix": "sky",
       "architect": {
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "libs/popovers/testing/src/test.ts",
-            "tsConfig": "libs/popovers/testing/tsconfig.spec.json",
-            "karmaConfig": "libs/popovers/testing/karma.conf.js",
+            "main": "libs/components/popovers/testing/src/test.ts",
+            "tsConfig": "libs/components/popovers/testing/tsconfig.spec.json",
+            "karmaConfig": "libs/components/popovers/testing/karma.conf.js",
             "codeCoverage": true,
             "codeCoverageExclude": ["**/fixtures/**"],
             "styles": [
-              "libs/theme/src/lib/styles/sky.scss",
-              "libs/theme/src/lib/styles/themes/modern/styles.scss"
+              "libs/components/theme/src/lib/styles/sky.scss",
+              "libs/components/theme/src/lib/styles/themes/modern/styles.scss"
             ]
+          }
+        }
+      }
+    },
+    "prettier-schematics": {
+      "root": "libs/sdk/prettier-schematics",
+      "sourceRoot": "libs/sdk/prettier-schematics/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["libs/sdk/prettier-schematics/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/sdk/prettier-schematics"],
+          "options": {
+            "jestConfig": "libs/sdk/prettier-schematics/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "build": {
+          "builder": "@nrwl/node:package",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/libs/sdk/prettier-schematics",
+            "tsConfig": "libs/sdk/prettier-schematics/tsconfig.lib.json",
+            "packageJson": "libs/sdk/prettier-schematics/package.json",
+            "main": "libs/sdk/prettier-schematics/src/index.ts",
+            "assets": ["libs/sdk/prettier-schematics/*.md"],
+            "updateBuildableProjectDepsInPackageJson": false
           }
         }
       }
     },
     "progress-indicator": {
       "projectType": "library",
-      "root": "libs/progress-indicator",
-      "sourceRoot": "libs/progress-indicator/src",
+      "root": "libs/components/progress-indicator",
+      "sourceRoot": "libs/components/progress-indicator/src",
       "prefix": "sky",
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
-          "outputs": ["dist/libs/progress-indicator"],
+          "outputs": ["dist/libs/components/progress-indicator"],
           "options": {
-            "project": "libs/progress-indicator/ng-package.json",
+            "project": "libs/components/progress-indicator/ng-package.json",
             "updateBuildableProjectDepsInPackageJson": false
           },
           "configurations": {
             "production": {
-              "tsConfig": "libs/progress-indicator/tsconfig.lib.prod.json"
+              "tsConfig": "libs/components/progress-indicator/tsconfig.lib.prod.json"
             },
             "development": {
-              "tsConfig": "libs/progress-indicator/tsconfig.lib.json"
+              "tsConfig": "libs/components/progress-indicator/tsconfig.lib.json"
             }
           },
           "defaultConfiguration": "production"
@@ -2335,12 +2369,12 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "libs/progress-indicator/src/test.ts",
-            "tsConfig": "libs/progress-indicator/tsconfig.spec.json",
-            "karmaConfig": "libs/progress-indicator/karma.conf.js",
+            "main": "libs/components/progress-indicator/src/test.ts",
+            "tsConfig": "libs/components/progress-indicator/tsconfig.spec.json",
+            "karmaConfig": "libs/components/progress-indicator/karma.conf.js",
             "styles": [
-              "libs/theme/src/lib/styles/sky.scss",
-              "libs/theme/src/lib/styles/themes/modern/styles.scss"
+              "libs/components/theme/src/lib/styles/sky.scss",
+              "libs/components/theme/src/lib/styles/themes/modern/styles.scss"
             ],
             "codeCoverage": true,
             "codeCoverageExclude": ["**/fixtures/**"]
@@ -2350,8 +2384,8 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/progress-indicator/src/**/*.ts",
-              "libs/progress-indicator/src/**/*.html"
+              "libs/components/progress-indicator/src/**/*.ts",
+              "libs/components/progress-indicator/src/**/*.html"
             ]
           }
         }
@@ -2359,23 +2393,23 @@
     },
     "router": {
       "projectType": "library",
-      "root": "libs/router",
-      "sourceRoot": "libs/router/src",
+      "root": "libs/components/router",
+      "sourceRoot": "libs/components/router/src",
       "prefix": "sky",
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
-          "outputs": ["dist/libs/router"],
+          "outputs": ["dist/libs/components/router"],
           "options": {
-            "project": "libs/router/ng-package.json",
+            "project": "libs/components/router/ng-package.json",
             "updateBuildableProjectDepsInPackageJson": false
           },
           "configurations": {
             "production": {
-              "tsConfig": "libs/router/tsconfig.lib.prod.json"
+              "tsConfig": "libs/components/router/tsconfig.lib.prod.json"
             },
             "development": {
-              "tsConfig": "libs/router/tsconfig.lib.json"
+              "tsConfig": "libs/components/router/tsconfig.lib.json"
             }
           },
           "defaultConfiguration": "production"
@@ -2383,12 +2417,12 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "libs/router/src/test.ts",
-            "tsConfig": "libs/router/tsconfig.spec.json",
-            "karmaConfig": "libs/router/karma.conf.js",
+            "main": "libs/components/router/src/test.ts",
+            "tsConfig": "libs/components/router/tsconfig.spec.json",
+            "karmaConfig": "libs/components/router/karma.conf.js",
             "styles": [
-              "libs/theme/src/lib/styles/sky.scss",
-              "libs/theme/src/lib/styles/themes/modern/styles.scss"
+              "libs/components/theme/src/lib/styles/sky.scss",
+              "libs/components/theme/src/lib/styles/themes/modern/styles.scss"
             ],
             "codeCoverage": true,
             "codeCoverageExclude": ["**/fixtures/**"]
@@ -2398,8 +2432,8 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/router/src/**/*.ts",
-              "libs/router/src/**/*.html"
+              "libs/components/router/src/**/*.ts",
+              "libs/components/router/src/**/*.html"
             ]
           }
         }
@@ -2407,23 +2441,23 @@
     },
     "select-field": {
       "projectType": "library",
-      "root": "libs/select-field",
-      "sourceRoot": "libs/select-field/src",
+      "root": "libs/components/select-field",
+      "sourceRoot": "libs/components/select-field/src",
       "prefix": "sky",
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
-          "outputs": ["dist/libs/select-field"],
+          "outputs": ["dist/libs/components/select-field"],
           "options": {
-            "project": "libs/select-field/ng-package.json",
+            "project": "libs/components/select-field/ng-package.json",
             "updateBuildableProjectDepsInPackageJson": false
           },
           "configurations": {
             "production": {
-              "tsConfig": "libs/select-field/tsconfig.lib.prod.json"
+              "tsConfig": "libs/components/select-field/tsconfig.lib.prod.json"
             },
             "development": {
-              "tsConfig": "libs/select-field/tsconfig.lib.json"
+              "tsConfig": "libs/components/select-field/tsconfig.lib.json"
             }
           },
           "defaultConfiguration": "production"
@@ -2431,12 +2465,12 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "libs/select-field/src/test.ts",
-            "tsConfig": "libs/select-field/tsconfig.spec.json",
-            "karmaConfig": "libs/select-field/karma.conf.js",
+            "main": "libs/components/select-field/src/test.ts",
+            "tsConfig": "libs/components/select-field/tsconfig.spec.json",
+            "karmaConfig": "libs/components/select-field/karma.conf.js",
             "styles": [
-              "libs/theme/src/lib/styles/sky.scss",
-              "libs/theme/src/lib/styles/themes/modern/styles.scss"
+              "libs/components/theme/src/lib/styles/sky.scss",
+              "libs/components/theme/src/lib/styles/themes/modern/styles.scss"
             ],
             "codeCoverage": true,
             "codeCoverageExclude": ["**/fixtures/**"]
@@ -2446,8 +2480,8 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/select-field/src/**/*.ts",
-              "libs/select-field/src/**/*.html"
+              "libs/components/select-field/src/**/*.ts",
+              "libs/components/select-field/src/**/*.html"
             ]
           }
         }
@@ -2455,23 +2489,23 @@
     },
     "split-view": {
       "projectType": "library",
-      "root": "libs/split-view",
-      "sourceRoot": "libs/split-view/src",
+      "root": "libs/components/split-view",
+      "sourceRoot": "libs/components/split-view/src",
       "prefix": "sky",
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
-          "outputs": ["dist/libs/split-view"],
+          "outputs": ["dist/libs/components/split-view"],
           "options": {
-            "project": "libs/split-view/ng-package.json",
+            "project": "libs/components/split-view/ng-package.json",
             "updateBuildableProjectDepsInPackageJson": false
           },
           "configurations": {
             "production": {
-              "tsConfig": "libs/split-view/tsconfig.lib.prod.json"
+              "tsConfig": "libs/components/split-view/tsconfig.lib.prod.json"
             },
             "development": {
-              "tsConfig": "libs/split-view/tsconfig.lib.json"
+              "tsConfig": "libs/components/split-view/tsconfig.lib.json"
             }
           },
           "defaultConfiguration": "production"
@@ -2479,12 +2513,12 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "libs/split-view/src/test.ts",
-            "tsConfig": "libs/split-view/tsconfig.spec.json",
-            "karmaConfig": "libs/split-view/karma.conf.js",
+            "main": "libs/components/split-view/src/test.ts",
+            "tsConfig": "libs/components/split-view/tsconfig.spec.json",
+            "karmaConfig": "libs/components/split-view/karma.conf.js",
             "styles": [
-              "libs/theme/src/lib/styles/sky.scss",
-              "libs/theme/src/lib/styles/themes/modern/styles.scss"
+              "libs/components/theme/src/lib/styles/sky.scss",
+              "libs/components/theme/src/lib/styles/themes/modern/styles.scss"
             ],
             "codeCoverage": true,
             "codeCoverageExclude": ["**/fixtures/**"]
@@ -2494,8 +2528,8 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/split-view/src/**/*.ts",
-              "libs/split-view/src/**/*.html"
+              "libs/components/split-view/src/**/*.ts",
+              "libs/components/split-view/src/**/*.html"
             ]
           }
         }
@@ -2503,21 +2537,21 @@
     },
     "split-view-testing": {
       "projectType": "library",
-      "root": "libs/split-view/testing",
-      "sourceRoot": "libs/split-view/testing/src",
+      "root": "libs/components/split-view/testing",
+      "sourceRoot": "libs/components/split-view/testing/src",
       "prefix": "sky",
       "architect": {
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "libs/split-view/testing/src/test.ts",
-            "tsConfig": "libs/split-view/testing/tsconfig.spec.json",
-            "karmaConfig": "libs/split-view/testing/karma.conf.js",
+            "main": "libs/components/split-view/testing/src/test.ts",
+            "tsConfig": "libs/components/split-view/testing/tsconfig.spec.json",
+            "karmaConfig": "libs/components/split-view/testing/karma.conf.js",
             "codeCoverage": true,
             "codeCoverageExclude": ["**/fixtures/**"],
             "styles": [
-              "libs/theme/src/lib/styles/sky.scss",
-              "libs/theme/src/lib/styles/themes/modern/styles.scss"
+              "libs/components/theme/src/lib/styles/sky.scss",
+              "libs/components/theme/src/lib/styles/themes/modern/styles.scss"
             ]
           }
         }
@@ -2525,23 +2559,23 @@
     },
     "tabs": {
       "projectType": "library",
-      "root": "libs/tabs",
-      "sourceRoot": "libs/tabs/src",
+      "root": "libs/components/tabs",
+      "sourceRoot": "libs/components/tabs/src",
       "prefix": "sky",
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
-          "outputs": ["dist/libs/tabs"],
+          "outputs": ["dist/libs/components/tabs"],
           "options": {
-            "project": "libs/tabs/ng-package.json",
+            "project": "libs/components/tabs/ng-package.json",
             "updateBuildableProjectDepsInPackageJson": false
           },
           "configurations": {
             "production": {
-              "tsConfig": "libs/tabs/tsconfig.lib.prod.json"
+              "tsConfig": "libs/components/tabs/tsconfig.lib.prod.json"
             },
             "development": {
-              "tsConfig": "libs/tabs/tsconfig.lib.json"
+              "tsConfig": "libs/components/tabs/tsconfig.lib.json"
             }
           },
           "defaultConfiguration": "production"
@@ -2549,12 +2583,12 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "libs/tabs/src/test.ts",
-            "tsConfig": "libs/tabs/tsconfig.spec.json",
-            "karmaConfig": "libs/tabs/karma.conf.js",
+            "main": "libs/components/tabs/src/test.ts",
+            "tsConfig": "libs/components/tabs/tsconfig.spec.json",
+            "karmaConfig": "libs/components/tabs/karma.conf.js",
             "styles": [
-              "libs/theme/src/lib/styles/sky.scss",
-              "libs/theme/src/lib/styles/themes/modern/styles.scss"
+              "libs/components/theme/src/lib/styles/sky.scss",
+              "libs/components/theme/src/lib/styles/themes/modern/styles.scss"
             ],
             "codeCoverage": true,
             "codeCoverageExclude": ["**/fixtures/**"]
@@ -2564,8 +2598,8 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/tabs/src/**/*.ts",
-              "libs/tabs/src/**/*.html"
+              "libs/components/tabs/src/**/*.ts",
+              "libs/components/tabs/src/**/*.html"
             ]
           }
         }
@@ -2573,21 +2607,69 @@
     },
     "tabs-testing": {
       "projectType": "library",
-      "root": "libs/tabs/testing",
-      "sourceRoot": "libs/tabs/testing/src",
+      "root": "libs/components/tabs/testing",
+      "sourceRoot": "libs/components/tabs/testing/src",
       "prefix": "sky",
       "architect": {
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "libs/tabs/testing/src/test.ts",
-            "tsConfig": "libs/tabs/testing/tsconfig.spec.json",
-            "karmaConfig": "libs/tabs/testing/karma.conf.js",
+            "main": "libs/components/tabs/testing/src/test.ts",
+            "tsConfig": "libs/components/tabs/testing/tsconfig.spec.json",
+            "karmaConfig": "libs/components/tabs/testing/karma.conf.js",
             "codeCoverage": true,
             "codeCoverageExclude": ["**/fixtures/**"],
             "styles": [
-              "libs/theme/src/lib/styles/sky.scss",
-              "libs/theme/src/lib/styles/themes/modern/styles.scss"
+              "libs/components/theme/src/lib/styles/sky.scss",
+              "libs/components/theme/src/lib/styles/themes/modern/styles.scss"
+            ]
+          }
+        }
+      }
+    },
+    "testing": {
+      "projectType": "library",
+      "root": "libs/sdk/testing",
+      "sourceRoot": "libs/sdk/testing/src",
+      "prefix": "sky",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "outputs": ["dist/libs/sdk/testing"],
+          "options": {
+            "project": "libs/sdk/testing/ng-package.json",
+            "updateBuildableProjectDepsInPackageJson": false
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/sdk/testing/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "libs/sdk/testing/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "libs/sdk/testing/src/test.ts",
+            "tsConfig": "libs/sdk/testing/tsconfig.spec.json",
+            "karmaConfig": "libs/sdk/testing/karma.conf.js",
+            "styles": [
+              "libs/components/theme/src/lib/styles/sky.scss",
+              "libs/components/theme/src/lib/styles/themes/modern/styles.scss"
+            ],
+            "codeCoverage": true,
+            "codeCoverageExclude": ["**/fixtures/**"]
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/sdk/testing/src/**/*.ts",
+              "libs/sdk/testing/src/**/*.html"
             ]
           }
         }
@@ -2595,23 +2677,23 @@
     },
     "text-editor": {
       "projectType": "library",
-      "root": "libs/text-editor",
-      "sourceRoot": "libs/text-editor/src",
+      "root": "libs/components/text-editor",
+      "sourceRoot": "libs/components/text-editor/src",
       "prefix": "sky",
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
-          "outputs": ["dist/libs/text-editor"],
+          "outputs": ["dist/libs/components/text-editor"],
           "options": {
-            "project": "libs/text-editor/ng-package.json",
+            "project": "libs/components/text-editor/ng-package.json",
             "updateBuildableProjectDepsInPackageJson": false
           },
           "configurations": {
             "production": {
-              "tsConfig": "libs/text-editor/tsconfig.lib.prod.json"
+              "tsConfig": "libs/components/text-editor/tsconfig.lib.prod.json"
             },
             "development": {
-              "tsConfig": "libs/text-editor/tsconfig.lib.json"
+              "tsConfig": "libs/components/text-editor/tsconfig.lib.json"
             }
           },
           "defaultConfiguration": "production"
@@ -2619,12 +2701,12 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "libs/text-editor/src/test.ts",
-            "tsConfig": "libs/text-editor/tsconfig.spec.json",
-            "karmaConfig": "libs/text-editor/karma.conf.js",
+            "main": "libs/components/text-editor/src/test.ts",
+            "tsConfig": "libs/components/text-editor/tsconfig.spec.json",
+            "karmaConfig": "libs/components/text-editor/karma.conf.js",
             "styles": [
-              "libs/theme/src/lib/styles/sky.scss",
-              "libs/theme/src/lib/styles/themes/modern/styles.scss"
+              "libs/components/theme/src/lib/styles/sky.scss",
+              "libs/components/theme/src/lib/styles/themes/modern/styles.scss"
             ],
             "codeCoverage": true,
             "codeCoverageExclude": ["**/fixtures/**"]
@@ -2634,8 +2716,8 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/text-editor/src/**/*.ts",
-              "libs/text-editor/src/**/*.html"
+              "libs/components/text-editor/src/**/*.ts",
+              "libs/components/text-editor/src/**/*.html"
             ]
           }
         }
@@ -2643,23 +2725,23 @@
     },
     "theme": {
       "projectType": "library",
-      "root": "libs/theme",
-      "sourceRoot": "libs/theme/src",
+      "root": "libs/components/theme",
+      "sourceRoot": "libs/components/theme/src",
       "prefix": "sky",
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
-          "outputs": ["dist/libs/theme"],
+          "outputs": ["dist/libs/components/theme"],
           "options": {
-            "project": "libs/theme/ng-package.json",
+            "project": "libs/components/theme/ng-package.json",
             "updateBuildableProjectDepsInPackageJson": false
           },
           "configurations": {
             "production": {
-              "tsConfig": "libs/theme/tsconfig.lib.prod.json"
+              "tsConfig": "libs/components/theme/tsconfig.lib.prod.json"
             },
             "development": {
-              "tsConfig": "libs/theme/tsconfig.lib.json"
+              "tsConfig": "libs/components/theme/tsconfig.lib.json"
             }
           },
           "defaultConfiguration": "production"
@@ -2667,12 +2749,12 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "libs/theme/src/test.ts",
-            "tsConfig": "libs/theme/tsconfig.spec.json",
-            "karmaConfig": "libs/theme/karma.conf.js",
+            "main": "libs/components/theme/src/test.ts",
+            "tsConfig": "libs/components/theme/tsconfig.spec.json",
+            "karmaConfig": "libs/components/theme/karma.conf.js",
             "styles": [
-              "libs/theme/src/lib/styles/sky.scss",
-              "libs/theme/src/lib/styles/themes/modern/styles.scss"
+              "libs/components/theme/src/lib/styles/sky.scss",
+              "libs/components/theme/src/lib/styles/themes/modern/styles.scss"
             ],
             "codeCoverage": true,
             "codeCoverageExclude": ["**/fixtures/**"]
@@ -2682,8 +2764,8 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/theme/src/**/*.ts",
-              "libs/theme/src/**/*.html"
+              "libs/components/theme/src/**/*.ts",
+              "libs/components/theme/src/**/*.html"
             ]
           }
         },
@@ -2697,23 +2779,23 @@
     },
     "tiles": {
       "projectType": "library",
-      "root": "libs/tiles",
-      "sourceRoot": "libs/tiles/src",
+      "root": "libs/components/tiles",
+      "sourceRoot": "libs/components/tiles/src",
       "prefix": "sky",
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
-          "outputs": ["dist/libs/tiles"],
+          "outputs": ["dist/libs/components/tiles"],
           "options": {
-            "project": "libs/tiles/ng-package.json",
+            "project": "libs/components/tiles/ng-package.json",
             "updateBuildableProjectDepsInPackageJson": false
           },
           "configurations": {
             "production": {
-              "tsConfig": "libs/tiles/tsconfig.lib.prod.json"
+              "tsConfig": "libs/components/tiles/tsconfig.lib.prod.json"
             },
             "development": {
-              "tsConfig": "libs/tiles/tsconfig.lib.json"
+              "tsConfig": "libs/components/tiles/tsconfig.lib.json"
             }
           },
           "defaultConfiguration": "production"
@@ -2721,12 +2803,12 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "libs/tiles/src/test.ts",
-            "tsConfig": "libs/tiles/tsconfig.spec.json",
-            "karmaConfig": "libs/tiles/karma.conf.js",
+            "main": "libs/components/tiles/src/test.ts",
+            "tsConfig": "libs/components/tiles/tsconfig.spec.json",
+            "karmaConfig": "libs/components/tiles/karma.conf.js",
             "styles": [
-              "libs/theme/src/lib/styles/sky.scss",
-              "libs/theme/src/lib/styles/themes/modern/styles.scss"
+              "libs/components/theme/src/lib/styles/sky.scss",
+              "libs/components/theme/src/lib/styles/themes/modern/styles.scss"
             ],
             "codeCoverage": true,
             "codeCoverageExclude": ["**/fixtures/**"]
@@ -2736,8 +2818,8 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/tiles/src/**/*.ts",
-              "libs/tiles/src/**/*.html"
+              "libs/components/tiles/src/**/*.ts",
+              "libs/components/tiles/src/**/*.html"
             ]
           }
         }
@@ -2745,23 +2827,23 @@
     },
     "toast": {
       "projectType": "library",
-      "root": "libs/toast",
-      "sourceRoot": "libs/toast/src",
+      "root": "libs/components/toast",
+      "sourceRoot": "libs/components/toast/src",
       "prefix": "sky",
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
-          "outputs": ["dist/libs/toast"],
+          "outputs": ["dist/libs/components/toast"],
           "options": {
-            "project": "libs/toast/ng-package.json",
+            "project": "libs/components/toast/ng-package.json",
             "updateBuildableProjectDepsInPackageJson": false
           },
           "configurations": {
             "production": {
-              "tsConfig": "libs/toast/tsconfig.lib.prod.json"
+              "tsConfig": "libs/components/toast/tsconfig.lib.prod.json"
             },
             "development": {
-              "tsConfig": "libs/toast/tsconfig.lib.json"
+              "tsConfig": "libs/components/toast/tsconfig.lib.json"
             }
           },
           "defaultConfiguration": "production"
@@ -2769,12 +2851,12 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "libs/toast/src/test.ts",
-            "tsConfig": "libs/toast/tsconfig.spec.json",
-            "karmaConfig": "libs/toast/karma.conf.js",
+            "main": "libs/components/toast/src/test.ts",
+            "tsConfig": "libs/components/toast/tsconfig.spec.json",
+            "karmaConfig": "libs/components/toast/karma.conf.js",
             "styles": [
-              "libs/theme/src/lib/styles/sky.scss",
-              "libs/theme/src/lib/styles/themes/modern/styles.scss"
+              "libs/components/theme/src/lib/styles/sky.scss",
+              "libs/components/theme/src/lib/styles/themes/modern/styles.scss"
             ],
             "codeCoverage": true,
             "codeCoverageExclude": ["**/fixtures/**"]
@@ -2784,8 +2866,8 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/toast/src/**/*.ts",
-              "libs/toast/src/**/*.html"
+              "libs/components/toast/src/**/*.ts",
+              "libs/components/toast/src/**/*.html"
             ]
           }
         }
@@ -2793,21 +2875,21 @@
     },
     "toast-testing": {
       "projectType": "library",
-      "root": "libs/toast/testing",
-      "sourceRoot": "libs/toast/testing/src",
+      "root": "libs/components/toast/testing",
+      "sourceRoot": "libs/components/toast/testing/src",
       "prefix": "sky",
       "architect": {
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "libs/toast/testing/src/test.ts",
-            "tsConfig": "libs/toast/testing/tsconfig.spec.json",
-            "karmaConfig": "libs/toast/testing/karma.conf.js",
+            "main": "libs/components/toast/testing/src/test.ts",
+            "tsConfig": "libs/components/toast/testing/tsconfig.spec.json",
+            "karmaConfig": "libs/components/toast/testing/karma.conf.js",
             "codeCoverage": true,
             "codeCoverageExclude": ["**/fixtures/**"],
             "styles": [
-              "libs/theme/src/lib/styles/sky.scss",
-              "libs/theme/src/lib/styles/themes/modern/styles.scss"
+              "libs/components/theme/src/lib/styles/sky.scss",
+              "libs/components/theme/src/lib/styles/themes/modern/styles.scss"
             ]
           }
         }
@@ -2815,23 +2897,23 @@
     },
     "validation": {
       "projectType": "library",
-      "root": "libs/validation",
-      "sourceRoot": "libs/validation/src",
+      "root": "libs/components/validation",
+      "sourceRoot": "libs/components/validation/src",
       "prefix": "sky",
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
-          "outputs": ["dist/libs/validation"],
+          "outputs": ["dist/libs/components/validation"],
           "options": {
-            "project": "libs/validation/ng-package.json",
+            "project": "libs/components/validation/ng-package.json",
             "updateBuildableProjectDepsInPackageJson": false
           },
           "configurations": {
             "production": {
-              "tsConfig": "libs/validation/tsconfig.lib.prod.json"
+              "tsConfig": "libs/components/validation/tsconfig.lib.prod.json"
             },
             "development": {
-              "tsConfig": "libs/validation/tsconfig.lib.json"
+              "tsConfig": "libs/components/validation/tsconfig.lib.json"
             }
           },
           "defaultConfiguration": "production"
@@ -2839,12 +2921,12 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "libs/validation/src/test.ts",
-            "tsConfig": "libs/validation/tsconfig.spec.json",
-            "karmaConfig": "libs/validation/karma.conf.js",
+            "main": "libs/components/validation/src/test.ts",
+            "tsConfig": "libs/components/validation/tsconfig.spec.json",
+            "karmaConfig": "libs/components/validation/karma.conf.js",
             "styles": [
-              "libs/theme/src/lib/styles/sky.scss",
-              "libs/theme/src/lib/styles/themes/modern/styles.scss"
+              "libs/components/theme/src/lib/styles/sky.scss",
+              "libs/components/theme/src/lib/styles/themes/modern/styles.scss"
             ],
             "codeCoverage": true,
             "codeCoverageExclude": ["**/fixtures/**"]
@@ -2854,8 +2936,8 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/validation/src/**/*.ts",
-              "libs/validation/src/**/*.html"
+              "libs/components/validation/src/**/*.ts",
+              "libs/components/validation/src/**/*.html"
             ]
           }
         }

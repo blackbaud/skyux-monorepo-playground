@@ -2,6 +2,7 @@ import fs from 'fs-extra';
 import path from 'path';
 import semver from 'semver';
 
+import { getPublishableProjects } from './utils/get-publishable-projects';
 import { getDistTags } from './utils/npm-utils';
 import { runCommand } from './utils/run-command';
 
@@ -45,13 +46,16 @@ async function publishNpmPackages(): Promise<void> {
       commandArgs.push(npmPublishTag);
     }
 
-    const libsDist = path.join(process.cwd(), 'dist', 'libs/');
-    const projectNames = fs.readdirSync(libsDist);
+    const distPackages = await getPublishableProjects();
 
-    for (const projectName of projectNames) {
-      const projectRoot = path.join(libsDist, projectName);
+    for (const projectName in distPackages) {
+      const distRoot = path.join(
+        process.cwd(),
+        distPackages[projectName].distRoot
+      );
+
       await runCommand('npm', commandArgs, {
-        cwd: projectRoot,
+        cwd: distRoot,
         stdio: 'inherit',
       });
     }

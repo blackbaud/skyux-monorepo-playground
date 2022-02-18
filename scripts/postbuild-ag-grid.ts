@@ -3,8 +3,11 @@ import fs from 'fs-extra';
 import path from 'path';
 import sass from 'sass';
 
-const STYLES_ROOT = path.resolve(__dirname, '../libs/ag-grid/src/lib/styles');
-const DEST_ROOT = path.resolve(__dirname, '../dist/libs/ag-grid');
+const STYLES_ROOT = path.resolve(
+  __dirname,
+  '../libs/components/ag-grid/src/lib/styles'
+);
+const DEST_ROOT = path.resolve(__dirname, '../dist/libs/components/ag-grid');
 
 function copyScss() {
   const result = sass.renderSync({

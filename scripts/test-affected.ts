@@ -103,7 +103,7 @@ getTestBed().initTestEnvironment(
 
   // Generate a 'require.context' RegExp that includes only the affected projects.
   entryContents += `
-const context = require.context('./', true, /(libs|apps)\\/(${karmaProjects.join(
+const context = require.context('./', true, /(libs|apps)\\/(.+\\/)?(${karmaProjects.join(
     '|'
   )})\\/src\\/.+\\.spec\\.ts$/);
 context.keys().map(context);
@@ -138,7 +138,7 @@ context.keys().map(context);
 }
 
 function removeTempTestingFiles() {
-  console.log('Removing temporary files...');
+  console.log('Removing temporary test files...');
   if (fs.existsSync(TEST_ENTRY_FILE)) {
     fs.removeSync(TEST_ENTRY_FILE);
   }
@@ -146,6 +146,7 @@ function removeTempTestingFiles() {
   if (fs.existsSync(TEST_TSCONFIG_FILE)) {
     fs.removeSync(TEST_TSCONFIG_FILE);
   }
+  console.log('Done removing temp test files.');
 }
 
 process.on('SIGINT', () => process.exit());
@@ -182,7 +183,7 @@ async function testAffected() {
     const npxArgs = [
       'nx',
       'run',
-      'affected:test',
+      'affected:coverage',
       '--sourceMap=false',
       '--codeCoverage',
       `--codeCoverageExclude=${codeCoverageExclude.join(',')}`,

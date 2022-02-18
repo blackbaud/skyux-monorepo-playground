@@ -45,10 +45,10 @@ module.exports = () => {
       reporters: [{ type: 'html' }, { type: 'text-summary' }],
       check: {
         global: {
-          statements: 99.55,
-          branches: 99.58,
-          functions: 99.25,
-          lines: 99.61,
+          statements: 100,
+          branches: 100,
+          functions: 100,
+          lines: 100,
         },
       },
     },

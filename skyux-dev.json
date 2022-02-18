@@ -8,7 +8,9 @@
       "http",
       "omnibar-interop",
       "packages",
-      "router"
+      "prettier-schematics",
+      "router",
+      "testing"
     ]
   }
 }

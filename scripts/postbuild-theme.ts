@@ -3,8 +3,11 @@ import path from 'path';
 import sass from 'sass';
 import tildeImporter from 'node-sass-tilde-importer';
 
-const STYLES_ROOT = path.resolve(__dirname, '../libs/theme/src/lib/styles');
-const DEST_ROOT = path.resolve(__dirname, '../dist/libs/theme');
+const STYLES_ROOT = path.resolve(
+  __dirname,
+  '../libs/components/theme/src/lib/styles'
+);
+const DEST_ROOT = path.resolve(__dirname, '../dist/libs/components/theme');
 
 const skyScssPath = path.join(STYLES_ROOT, 'sky.scss');
 
@@ -14,7 +17,7 @@ function validateSkyuxIconVersionMatch() {
   const scssContents = fs.readFileSync(skyScssPath, 'utf8').toString();
 
   const packageJson = fs.readJsonSync(
-    path.resolve(__dirname, '../libs/theme/package.json')
+    path.resolve(__dirname, '../libs/components/theme/package.json')
   );
 
   const scssVersionMatches = scssContents.match(
