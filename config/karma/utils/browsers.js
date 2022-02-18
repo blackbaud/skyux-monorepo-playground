@@ -6,15 +6,12 @@ function getBrowserStackLaunchers() {
       os: 'Windows',
       os_version: '10',
     },
-
     {
       base: 'BrowserStack',
       browser: 'Firefox',
-      browser_version: '95',
       os: 'OS X',
       os_version: 'Monterey',
     },
-
     {
       base: 'BrowserStack',
       browser: 'Safari',
