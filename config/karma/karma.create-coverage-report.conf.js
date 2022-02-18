@@ -9,9 +9,9 @@ module.exports = function (config) {
       dir: require('path').join(process.cwd(), './coverage'),
       check: {
         global: {
-          statements: 99.62,
-          branches: 99.06,
-          functions: 99.56,
+          statements: 99.61,
+          branches: 99.05,
+          functions: 99.55,
           lines: 99.66,
         },
       },
