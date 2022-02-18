@@ -10,6 +10,7 @@
     },
     ".eslintrc-overrides.json": "*",
     ".eslintrc.json": "*",
+    ".eslintrc-overrides.json": "*",
     ".github/workflows/**": "*",
     "config/**": "*",
     "scripts/**": "*",
@@ -179,6 +180,9 @@
     "integration-e2e": {
       "tags": [],
       "implicitDependencies": ["integration"]
+    },
+    "playground": {
+      "tags": []
     },
     "prettier-schematics": {
       "tags": ["sdk"]
