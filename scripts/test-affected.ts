@@ -1,8 +1,7 @@
 /**
- * - Runs all Karma unit tests (from all libraries) in a single browser instance.
+ * - Runs all Karma unit tests for affected projects in a single browser instance.
  * - BrowserStack also executes this file to run all Karma tests in various browsers.
  * - Non-Karma tests are executed normally using `nx affected:test`.
- * - Application unit tests are handled in another step.
  */
 
 import {
@@ -18,11 +17,8 @@ import { getCommandOutput, runCommand } from './utils/spawn';
 // Always ignore these projects for test.
 const IGNORE_PROJECTS = ['ci'];
 
-const TEST_ENTRY_FILE = join(process.cwd(), '__test-affected-libraries.ts');
-const TEST_TSCONFIG_FILE = join(
-  process.cwd(),
-  '__tsconfig.test-affected-libraries.json'
-);
+const TEST_ENTRY_FILE = join(process.cwd(), '__test-affected.ts');
+const TEST_TSCONFIG_FILE = join(process.cwd(), '__tsconfig.test-affected.json');
 
 async function getAngularJson() {
   return readJson(join(process.cwd(), 'angular.json'));
@@ -70,15 +66,13 @@ async function getAffectedLibrariesForTest(angularJson: any) {
   const other: string[] = [];
 
   projects.forEach((project) => {
-    if (angularJson.projects[project].projectType === 'library') {
-      if (
-        angularJson.projects[project].architect.test.builder ===
-        '@angular-devkit/build-angular:karma'
-      ) {
-        karma.push(project);
-      } else {
-        other.push(project);
-      }
+    if (
+      angularJson.projects[project].architect.test.builder ===
+      '@angular-devkit/build-angular:karma'
+    ) {
+      karma.push(project);
+    } else {
+      other.push(project);
     }
   });
 
@@ -117,7 +111,7 @@ getTestBed().initTestEnvironment(
 
   // Generate a 'require.context' RegExp that includes only the affected projects.
   entryContents += `
-const context = require.context('./', true, /libs\\/(.+\\/)?(${karmaProjects.join(
+const context = require.context('./', true, /(apps|libs)\\/(.+\\/)?(${karmaProjects.join(
     '|'
   )})\\/src\\/.+\\.spec\\.ts$/);
 context.keys().map(context);
@@ -136,7 +130,7 @@ context.keys().map(context);
       types: ['jasmine', 'node'],
       lib: ['dom', 'es2018'],
     },
-    files: ['./__test-affected-libraries.ts'],
+    files: ['./__test-affected.ts'],
     include: ['**/*.d.ts'],
     angularCompilerOptions: {
       compilationMode: 'partial',
@@ -184,7 +178,7 @@ async function runKarmaTests(
   const npxArgs = [
     'nx',
     'run',
-    'ci:test-affected-libraries',
+    'ci:test-affected',
     `--codeCoverage=${config.codeCoverage}`,
   ];
 

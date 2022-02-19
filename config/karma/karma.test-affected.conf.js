@@ -6,10 +6,7 @@ module.exports = function (config) {
   config.set({
     coverageReporter: {
       ...config.coverageReporter,
-      dir: require('path').join(
-        process.cwd(),
-        './coverage/__test-affected-libraries'
-      ),
+      dir: require('path').join(process.cwd(), './coverage/__test-affected'),
       check: {
         global: {
           statements: 99.62,

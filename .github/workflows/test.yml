@@ -123,7 +123,7 @@ jobs:
       - name: Code coverage
         run: |
           export NX_CLOUD_DISTRIBUTED_EXECUTION=false
-          npm run ci:test-affected-libraries --codeCoverage=false
+          npm run ci:test-affected --codeCoverage=false
 
   browserstack:
     name: Cross-browser testing
@@ -149,7 +149,7 @@ jobs:
       - name: Cross-browser tests
         run: |
           export NX_CLOUD_DISTRIBUTED_EXECUTION=false
-          npm run ci:test-affected-libraries -- --codeCoverage=false --karmaConfig=config/karma/karma.ci.conf.js --onlyComponents
+          npm run ci:test-affected -- --codeCoverage=false --karmaConfig=config/karma/karma.ci.conf.js --onlyComponents
 
   stop-agents:
     name: Stop Nx Cloud agents
