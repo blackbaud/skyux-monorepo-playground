@@ -73,7 +73,7 @@ jobs:
       - name: Check code formatting
         run: npx prettier --check .
       - name: Run lint
-        run: npx nx affected --target=lint --format=compact --silent --parallel --maxParallel=5
+        run: npx nx affected:lint --quiet --silent --parallel --maxParallel=5
 
   build:
     name: Build
