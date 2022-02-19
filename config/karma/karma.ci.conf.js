@@ -19,7 +19,7 @@ module.exports = function (config) {
       browserStack: {
         accessKey: process.env.BROWSER_STACK_ACCESS_KEY,
         username: process.env.BROWSER_STACK_USERNAME,
-        name: 'create-affected-coverage-report',
+        name: 'test-affected-libraries',
         project: 'ci',
         enableLoggingForApi: true,
         startTunnel: true,

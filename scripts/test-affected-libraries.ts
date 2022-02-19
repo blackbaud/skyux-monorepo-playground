@@ -1,5 +1,6 @@
 /**
- * This file is responsible for generating a code coverage report for all library projects.
+ * This file is responsible for running unit tests for all library projects within a single browser instance.
+ * BrowserStack also executes against this file to run all tests in various browsers.
  * Application unit tests are handled in another step.
  */
 
@@ -13,13 +14,10 @@ import {
 import { join } from 'path';
 import { getCommandOutput, runCommand } from './utils/spawn';
 
-const TEST_ENTRY_FILE = join(
-  process.cwd(),
-  '__create-affected-coverage-report.ts'
-);
+const TEST_ENTRY_FILE = join(process.cwd(), '__test-affected-libraries.ts');
 const TEST_TSCONFIG_FILE = join(
   process.cwd(),
-  '__tsconfig.create-affected-coverage-report.json'
+  '__tsconfig.test-affected-libraries.json'
 );
 
 async function getAngularJson() {
@@ -131,7 +129,7 @@ context.keys().map(context);
       types: ['jasmine', 'node'],
       lib: ['dom', 'es2018'],
     },
-    files: ['./__create-affected-coverage-report.ts'],
+    files: ['./__test-affected-libraries.ts'],
     include: ['libs/**/*.d.ts'],
     angularCompilerOptions: {
       compilationMode: 'partial',
@@ -212,7 +210,7 @@ async function testAffected() {
     const npxArgs = [
       'nx',
       'run',
-      'ci:create-affected-coverage-report',
+      'ci:test-affected-libraries',
       '--codeCoverage',
       `--codeCoverageExclude=${codeCoverageExclude.join(',')}`,
     ];

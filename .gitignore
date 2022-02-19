@@ -42,5 +42,5 @@ Thumbs.db
 .nyc_output
 
 # Temporary Files
-__create-affected-coverage-report.ts
-__tsconfig.create-affected-coverage-report.json
+__test-affected-libraries.ts
+__tsconfig.test-affected-libraries.json
