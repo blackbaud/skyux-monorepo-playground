@@ -198,22 +198,20 @@ async function testAffected() {
     }
 
     console.log(
-      `The following projects will be ignored for code coverage: ${unaffectedProjects.join(
-        ', '
-      )}`
+      `The following projects will be ignored: ${unaffectedProjects.join(', ')}`
     );
 
     await createTempTestingFiles(affectedProjects.karma, angularJson);
 
-    const codeCoverageExclude = ['**/fixtures/**', '*.fixture.ts'];
+    const npxArgs = ['nx', 'run', 'ci:test-affected-libraries'];
 
-    const npxArgs = [
-      'nx',
-      'run',
-      'ci:test-affected-libraries',
-      '--codeCoverage',
-      `--codeCoverageExclude=${codeCoverageExclude.join(',')}`,
-    ];
+    if (argv.codeCoverage !== 'false') {
+      const codeCoverageExclude = ['**/fixtures/**', '*.fixture.ts'];
+      npxArgs.push(
+        '--codeCoverage',
+        `--codeCoverageExclude=${codeCoverageExclude.join(',')}`
+      );
+    }
 
     if (argv.karmaConfig) {
       npxArgs.push(`--karmaConfig=${argv.karmaConfig}`);
@@ -232,13 +230,18 @@ async function testAffected() {
         affectedProjects.other
       );
 
-      await runCommand('npx', [
+      const npxTestArgs = [
         'nx',
         'run-many',
         '--target=test',
         `--projects=${affectedProjects.other.join(',')}`,
-        '--codeCoverage',
-      ]);
+      ];
+
+      if (argv.codeCoverage !== 'false') {
+        npxTestArgs.push('--codeCoverage');
+      }
+
+      await runCommand('npx', npxTestArgs);
     }
 
     // Run posttest steps.
