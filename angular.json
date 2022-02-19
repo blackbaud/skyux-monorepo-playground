@@ -437,16 +437,16 @@
       }
     },
     "ci": {
-      "projectType": "library",
+      "projectType": "ci",
       "root": "/",
       "sourceRoot": "/",
       "architect": {
-        "create-coverage-report": {
+        "test-affected-libraries": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "__create-coverage-report.ts",
-            "tsConfig": "__tsconfig.create-coverage-report.json",
-            "karmaConfig": "config/karma/karma.create-coverage-report.conf.js",
+            "main": "__test-affected-libraries.ts",
+            "tsConfig": "__tsconfig.test-affected-libraries.json",
+            "karmaConfig": "config/karma/karma.test-affected-libraries.conf.js",
             "styles": [
               "libs/components/theme/src/lib/styles/sky.scss",
               "libs/components/theme/src/lib/styles/themes/modern/styles.scss",

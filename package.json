@@ -11,10 +11,9 @@
     "test": "nx run-many --target=test --all --browsers=ChromeHeadless --parallel --maxParallel=5",
     "posttest": "nx run-many --target=posttest --all --parallel --maxParallel=5",
     "test:affected": "nx affected:test --browsers=ChromeHeadless --parallel --maxParallel=5 && nx affected --target=posttest --parallel --maxParallel=5",
-    "ci:create-coverage-report": "ts-node --project ./scripts/tsconfig.json ./scripts/create-coverage-report.ts",
+    "ci:test-affected-libraries": "ts-node --project ./scripts/tsconfig.json ./scripts/test-affected-libraries.ts",
     "ci:create-packages-dist": "ts-node --project ./scripts/tsconfig.json ./scripts/create-packages-dist.ts",
     "ci:publish-packages-dist": "ts-node --project ./scripts/tsconfig.json ./scripts/publish-packages-dist.ts",
-    "dev:create-coverage-report:components": "ts-node --project ./scripts/tsconfig.json ./scripts/create-coverage-report.ts --onlyComponents",
     "dev:create-release": "ts-node --project ./scripts/tsconfig.json ./scripts/create-release.ts",
     "dev:format": "npx prettier --write ."
   },
