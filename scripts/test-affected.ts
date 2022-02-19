@@ -63,7 +63,7 @@ async function getAffectedLibrariesForTest(angularJson: any) {
   const projects = await getAffectedProjects('test');
 
   const karma: string[] = [];
-  const other: string[] = [];
+  const jest: string[] = [];
 
   projects.forEach((project) => {
     if (
@@ -72,13 +72,13 @@ async function getAffectedLibrariesForTest(angularJson: any) {
     ) {
       karma.push(project);
     } else {
-      other.push(project);
+      jest.push(project);
     }
   });
 
   return {
     karma,
-    other,
+    jest,
   };
 }
 
@@ -227,14 +227,14 @@ async function testAffected() {
 
     if (
       affectedProjects.karma.length === 0 &&
-      affectedProjects.other.length === 0
+      affectedProjects.jest.length === 0
     ) {
       console.log('No affected projects. Aborting tests.');
       process.exit(0);
     }
 
     const unaffectedProjects = await getUnaffectedProjects(
-      affectedProjects.karma.concat(affectedProjects.other),
+      affectedProjects.karma.concat(affectedProjects.jest),
       angularJson
     );
 
@@ -252,18 +252,20 @@ async function testAffected() {
     });
 
     // Run non-Karma tests normally, using Nx CLI.
-    if (!onlyComponents && affectedProjects.other.length > 0) {
+    if (!onlyComponents && affectedProjects.jest.length > 0) {
       logProjectsArray(
         'Running non-Karma tests for the following projects:',
-        affectedProjects.other
+        affectedProjects.jest
       );
 
       await runCommand('npx', [
         'nx',
         'run-many',
         '--target=test',
-        `--projects=${affectedProjects.other.join(',')}`,
+        `--projects=${affectedProjects.jest.join(',')}`,
         `--codeCoverage=${codeCoverage}`,
+        '--silent',
+        '--runInBand',
       ]);
     }
 
