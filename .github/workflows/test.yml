@@ -73,7 +73,7 @@ jobs:
       - name: Check code formatting
         run: npx prettier --check .
       - name: Run lint
-        run: npx nx affected --target=lint --format=compact --silent --parallel --maxParallel=5
+        run: npx nx affected:lint --quiet --silent --parallel --maxParallel=5
 
   build:
     name: Build
@@ -123,7 +123,7 @@ jobs:
       - name: Code coverage
         run: |
           export NX_CLOUD_DISTRIBUTED_EXECUTION=false
-          npm run ci:create-coverage-report
+          npm run ci:test-affected --codeCoverage=false
 
   browserstack:
     name: Cross-browser testing
@@ -149,7 +149,7 @@ jobs:
       - name: Cross-browser tests
         run: |
           export NX_CLOUD_DISTRIBUTED_EXECUTION=false
-          npm run ci:create-coverage-report -- --karmaConfig=config/karma/karma.ci.conf.js --onlyComponents
+          npm run ci:test-affected -- --codeCoverage=false --karmaConfig=config/karma/karma.ci.conf.js --onlyComponents
 
   stop-agents:
     name: Stop Nx Cloud agents
