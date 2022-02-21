@@ -68,7 +68,6 @@ export async function runCommand(
     });
 
     child.on('exit', (code) => {
-      console.log(`[skyux:runCommand] Child process exited with code ${code}.`);
       if (code === 0) {
         resolve();
       } else {
