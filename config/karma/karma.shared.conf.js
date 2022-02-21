@@ -11,10 +11,12 @@ module.exports = function (config) {
     },
     reporters: ['dots'],
     autoWatch: false,
-    browsers: ['ChromeHeadless'], // Fallback browser in case env variables not set.
+    browsers: ['ChromeHeadless', 'FirefoxHeadless'], // Fallback browser in case env variables not set.
     singleRun: true,
     restartOnFileChange: false,
   });
+
+  config.plugins.push(require('karma-firefox-launcher'));
 
   // Tell karma to wait for bundle to be completed before launching browsers.
   // See: https://github.com/karma-runner/karma-chrome-launcher/issues/154#issuecomment-986661937
