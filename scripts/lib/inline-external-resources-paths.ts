@@ -75,10 +75,6 @@ export function inlineExternalResourcesPaths(distPath: string): void {
   const bundlePaths = glob.sync(bundlePattern);
   if (bundlePaths.length > 0) {
     bundlePaths.forEach((bundlePath: string) => {
-      console.log(
-        `- inlining external resource paths for file '${bundlePath}'`
-      );
-
       let contents = fs.readFileSync(bundlePath).toString();
       contents = inlineTemplateUrls(contents);
       contents = inlineStyleUrls(contents);
@@ -93,6 +89,8 @@ export function inlineExternalResourcesPaths(distPath: string): void {
 
     console.log(` ✔ Done inlining external resources for ${distPath}.`);
   } else {
-    console.warn(`The UMD bundle was not found. (wanted '${bundlePattern}')`);
+    console.warn(
+      `Skipping resource inlining. The UMD bundle was not found. (wanted '${bundlePattern}')`
+    );
   }
 }

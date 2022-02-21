@@ -3,7 +3,7 @@ import { glob } from 'glob';
 import path from 'path';
 import { JSONOutput } from 'typedoc';
 
-import { DistPackage } from '../shared/dist-packages';
+import { PackageConfig } from '../shared/package-config';
 import { PackageJson } from '../shared/package-json';
 import { runCommand } from '../utils/spawn';
 
@@ -96,7 +96,7 @@ function fixSourcesPaths(
 
 async function getCodeExamples(
   projectName: string,
-  distPackage: DistPackage,
+  distPackage: PackageConfig,
   packageName: string
 ): Promise<CodeExample[]> {
   const codeExamples: CodeExample[] = [];
@@ -111,8 +111,6 @@ async function getCodeExamples(
   );
 
   for (const filePath of examples) {
-    console.log(`- processing code example: ${filePath}`);
-
     const rawContents = (
       await fs.readFile(path.resolve(filePath), { encoding: 'utf-8' })
     )
@@ -183,23 +181,24 @@ function remapComponentExports(
 
 export async function createDocumentationJson(
   projectName: string,
-  distPackage: DistPackage
+  distPackage: PackageConfig
 ) {
   console.log(`Creating documentation.json file for ${projectName}...`);
 
   const packageName = (
     (await fs.readJson(
-      path.join(process.cwd(), distPackage.distRoot, 'package.json')
+      path.join(process.cwd(), distPackage.distRoot!, 'package.json')
     )) as PackageJson
   ).name;
 
-  const documentationJsonPath = `${distPackage.distRoot}/documentation.json`;
+  const documentationJsonPath = `${distPackage.distRoot!}/documentation.json`;
 
   await runCommand('./node_modules/.bin/typedoc', [
     `${distPackage.root}/src/index.ts`,
     ...['--tsconfig', `${distPackage.root}/tsconfig.lib.prod.json`],
     ...['--json', documentationJsonPath, '--pretty'],
     ...['--emit', 'docs'],
+    ...['--logLevel', 'Error'],
     ...[
       '--exclude',
       `"!**/${distPackage.root}/**"`,
