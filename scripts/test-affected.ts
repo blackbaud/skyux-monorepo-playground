@@ -59,7 +59,10 @@ async function getUnaffectedProjects(
   );
 }
 
-async function getAffectedLibrariesForTest(angularJson: any) {
+async function getAffectedProjectsForTest(
+  angularJson: any,
+  onlyComponents: boolean
+) {
   const projects = await getAffectedProjects('test');
 
   const karma: string[] = [];
@@ -67,12 +70,18 @@ async function getAffectedLibrariesForTest(angularJson: any) {
 
   projects.forEach((project) => {
     if (
-      angularJson.projects[project].architect.test.builder ===
-      '@angular-devkit/build-angular:karma'
+      !onlyComponents ||
+      (onlyComponents &&
+        angularJson.projects[project].projectType === 'library')
     ) {
-      karma.push(project);
-    } else {
-      jest.push(project);
+      if (
+        angularJson.projects[project].architect.test.builder ===
+        '@angular-devkit/build-angular:karma'
+      ) {
+        karma.push(project);
+      } else {
+        jest.push(project);
+      }
     }
   });
 
@@ -217,13 +226,18 @@ async function testAffected() {
     const argv = require('minimist')(process.argv.slice(2));
     const codeCoverage: boolean = !!(argv.codeCoverage !== 'false');
     const karmaConfig: string | undefined = argv.karmaConfig;
+
+    // Only run tests against component libraries?
     const onlyComponents: boolean = !!(
       argv.onlyComponents && argv.onlyComponents !== 'false'
     );
 
     const angularJson = await getAngularJson();
 
-    const affectedProjects = await getAffectedLibrariesForTest(angularJson);
+    const affectedProjects = await getAffectedProjectsForTest(
+      angularJson,
+      onlyComponents
+    );
 
     if (
       affectedProjects.karma.length === 0 &&
