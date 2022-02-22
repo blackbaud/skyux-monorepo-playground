@@ -14,6 +14,7 @@
     "ci:check-library-dependencies": "ts-node --project ./scripts/tsconfig.json ./scripts/check-library-dependencies.ts",
     "ci:create-packages-dist": "ts-node --project ./scripts/tsconfig.json ./scripts/create-packages-dist.ts",
     "ci:publish-packages-dist": "ts-node --project ./scripts/tsconfig.json ./scripts/publish-packages-dist.ts",
+    "ci:rebase-pr-branch": "ts-node --project ./scripts/tsconfig.json ./scripts/rebase-pr-branch.ts",
     "ci:test-affected": "ts-node --project ./scripts/tsconfig.json ./scripts/test-affected.ts",
     "dev:create-release": "ts-node --project ./scripts/tsconfig.json ./scripts/create-release.ts",
     "dev:format": "npx prettier --write ."

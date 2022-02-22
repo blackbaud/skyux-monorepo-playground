@@ -1,8 +1,10 @@
-name: Test
+name: CI
+
 on:
-  pull_request:
+  push:
     branches:
       - main
+  pull_request:
 
 env:
   BROWSER_STACK_USERNAME: ${{ secrets.BROWSER_STACK_USERNAME }}
@@ -26,6 +28,9 @@ jobs:
         with:
           cache: npm
           node-version: '14'
+      - name: Rebase PR branch
+        if: github.event_name == 'pull_request'
+        run: npm run ci:rebase-pr-branch
       - name: npm install
         if: steps.cache.outputs.cache-hit != 'true'
         run: npm ci
@@ -56,7 +61,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
-          ref: ${{ github.event.pull_request.head.ref }}
+          ref: ${{ (github.event_name == 'pull_request') ? github.event.pull_request.head.ref : github.ref }}
           # We need to fetch all branches and commits so that Nx affected has a base to compare against.
           fetch-depth: 0
       - name: Derive appropriate SHAs for base and head for `nx affected` commands
@@ -70,6 +75,9 @@ jobs:
         with:
           path: node_modules
           key: cache-node-modules-${{ hashFiles('package-lock.json') }}
+      - name: Rebase PR branch
+        if: github.event_name == 'pull_request'
+        run: npm run ci:rebase-pr-branch
       - name: Check library dependencies
         run: npm run ci:check-library-dependencies
       - name: Check code formatting
@@ -84,7 +92,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
-          ref: ${{ github.event.pull_request.head.ref }}
+          ref: ${{ (github.event_name == 'pull_request') ? github.event.pull_request.head.ref : github.ref }}
           # We need to fetch all branches and commits so that Nx affected has a base to compare against.
           fetch-depth: 0
       - name: Derive appropriate SHAs for base and head for `nx affected` commands
@@ -98,6 +106,9 @@ jobs:
         with:
           path: node_modules
           key: cache-node-modules-${{ hashFiles('package-lock.json') }}
+      - name: Rebase PR branch
+        if: github.event_name == 'pull_request'
+        run: npm run ci:rebase-pr-branch
       - name: Build
         run: npx nx affected --target=build --parallel --maxParallel=5
 
@@ -108,7 +119,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
-          ref: ${{ github.event.pull_request.head.ref }}
+          ref: ${{ (github.event_name == 'pull_request') ? github.event.pull_request.head.ref : github.ref }}
           # We need to fetch all branches and commits so that Nx affected has a base to compare against.
           fetch-depth: 0
       - name: Derive appropriate SHAs for base and head for `nx affected` commands
@@ -122,10 +133,11 @@ jobs:
         with:
           path: node_modules
           key: cache-node-modules-${{ hashFiles('package-lock.json') }}
+      - name: Rebase PR branch
+        if: github.event_name == 'pull_request'
+        run: npm run ci:rebase-pr-branch
       - name: Code coverage
-        run: |
-          export NX_CLOUD_DISTRIBUTED_EXECUTION=false
-          npm run ci:test-affected
+        run: export NX_CLOUD_DISTRIBUTED_EXECUTION=false && npm run ci:test-affected
 
   browserstack:
     name: Cross-browser testing
@@ -134,7 +146,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
-          ref: ${{ github.event.pull_request.head.ref }}
+          ref: ${{ (github.event_name == 'pull_request') ? github.event.pull_request.head.ref : github.ref }}
           # We need to fetch all branches and commits so that Nx affected has a base to compare against.
           fetch-depth: 0
       - name: Derive appropriate SHAs for base and head for `nx affected` commands
@@ -148,6 +160,9 @@ jobs:
         with:
           path: node_modules
           key: cache-node-modules-${{ hashFiles('package-lock.json') }}
+      - name: Rebase PR branch
+        if: github.event_name == 'pull_request'
+        run: npm run ci:rebase-pr-branch
       - name: Cross-browser tests
         run: |
           export NX_CLOUD_DISTRIBUTED_EXECUTION=false
