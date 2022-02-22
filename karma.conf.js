@@ -12,6 +12,7 @@ module.exports = () => {
     plugins: [
       require('karma-jasmine'),
       require('karma-chrome-launcher'),
+      require('karma-firefox-launcher'),
       require('karma-coverage'),
       require('@angular-devkit/build-angular/plugins/karma'),
       {
@@ -40,7 +41,7 @@ module.exports = () => {
       clearContext: false, // leave Jasmine Spec Runner output visible in browser
     },
     coverageReporter: {
-      dir: join(__dirname, '../../coverage'),
+      dir: join(__dirname, './coverage'),
       subdir: '.',
       reporters: [{ type: 'html' }, { type: 'text-summary' }],
       check: {
