@@ -18,6 +18,12 @@ function getBrowserStackLaunchers() {
       os: 'OS X',
       os_version: 'Monterey',
     },
+    {
+      base: 'BrowserStack',
+      browser: 'Chrome',
+      os: 'OS X',
+      os_version: 'Monterey',
+    },
   ];
 
   const launchers = {};

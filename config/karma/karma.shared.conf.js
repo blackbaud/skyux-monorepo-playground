@@ -11,7 +11,7 @@ module.exports = function (config) {
     },
     reporters: ['dots'],
     autoWatch: false,
-    browsers: ['ChromeHeadless', 'FirefoxHeadless'],
+    browsers: ['FirefoxHeadless'],
     singleRun: true,
     restartOnFileChange: false,
   });
