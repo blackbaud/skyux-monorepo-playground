@@ -8,7 +8,7 @@ module.exports = function (config) {
       ...config.coverageReporter,
       dir: require('path').join(process.cwd(), './coverage/__test-affected'),
       check: {
-        // TODO: Update these for 100% code coverage!
+        // TODO: remove these threshold overrides to meet 100% coverage!
         global: {
           statements: 50,
           branches: 50,

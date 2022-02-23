@@ -6,10 +6,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { SkyIdModule } from '@skyux/core';
 
-import {
-  SkyCharacterCounterModule,
-  SkyInputBoxModule,
-} from 'projects/forms/src/public-api';
+import { SkyCharacterCounterModule, SkyInputBoxModule } from '@skyux/forms';
 
 import { CharacterCountDemoComponent } from './character-count-demo.component';
 
