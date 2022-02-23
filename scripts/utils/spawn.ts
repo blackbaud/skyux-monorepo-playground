@@ -15,8 +15,6 @@ export async function getCommandOutput(
     },
   };
 
-  console.log(`Running child process: ${command} ${args.join(' ')}`);
-
   return new Promise((resolve, reject) => {
     const child = crossSpawn(command, args, spawnOptions);
 
@@ -49,10 +47,6 @@ export async function runCommand(
     ...spawnOptions,
   };
 
-  console.log(
-    `[skyux:runCommand] Running child process: ${command} ${args.join(' ')}`
-  );
-
   return new Promise((resolve, reject) => {
     const child = crossSpawn(command, args, spawnOptions);
 
@@ -74,7 +68,6 @@ export async function runCommand(
     });
 
     child.on('exit', (code) => {
-      console.log(`[skyux:runCommand] Child process exited with code ${code}.`);
       if (code === 0) {
         resolve();
       } else {

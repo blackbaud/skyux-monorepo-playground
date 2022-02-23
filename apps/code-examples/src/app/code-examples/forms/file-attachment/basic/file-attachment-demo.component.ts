@@ -1,10 +1,6 @@
 import { Component } from '@angular/core';
 
-import {
-  SkyFileDropChange,
-  SkyFileItem,
-  SkyFileLink,
-} from 'projects/forms/src/public-api';
+import { SkyFileDropChange, SkyFileItem, SkyFileLink } from '@skyux/forms';
 
 @Component({
   selector: 'app-file-attachment-demo',

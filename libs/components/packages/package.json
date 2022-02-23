@@ -1,6 +1,6 @@
 {
   "name": "@skyux/packages",
-  "version": "0.0.0-PLACEHOLDER",
+  "version": "0.0.0-PACKAGES_PLACEHOLDER",
   "description": "Handles the `ng update` command for SKY UX component libraries.",
   "schematics": "./collection.json",
   "ng-add": {

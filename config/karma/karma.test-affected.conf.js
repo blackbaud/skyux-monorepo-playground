@@ -6,13 +6,14 @@ module.exports = function (config) {
   config.set({
     coverageReporter: {
       ...config.coverageReporter,
-      dir: require('path').join(process.cwd(), './coverage'),
+      dir: require('path').join(process.cwd(), './coverage/__test-affected'),
       check: {
+        // TODO: remove these threshold overrides to meet 100% coverage!
         global: {
-          statements: 99.62,
-          branches: 99.06,
-          functions: 99.56,
-          lines: 99.66,
+          statements: 50,
+          branches: 50,
+          functions: 50,
+          lines: 50,
         },
       },
     },

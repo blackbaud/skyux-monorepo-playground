@@ -40,9 +40,13 @@ module.exports = () => {
       clearContext: false, // leave Jasmine Spec Runner output visible in browser
     },
     coverageReporter: {
-      dir: join(__dirname, '../../coverage'),
+      dir: join(__dirname, './coverage'),
       subdir: '.',
-      reporters: [{ type: 'html' }, { type: 'text-summary' }],
+      reporters: [
+        { type: 'html' },
+        { type: 'json-summary' },
+        { type: 'text-summary' },
+      ],
       check: {
         global: {
           statements: 100,

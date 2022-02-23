@@ -1,6 +1,6 @@
 {
   "name": "skyux-components",
-  "version": "6.0.0-alpha.0",
+  "version": "5.5.0-alpha.0",
   "license": "MIT",
   "scripts": {
     "ng": "nx",
@@ -11,16 +11,17 @@
     "test": "nx run-many --target=test --all --browsers=ChromeHeadless --parallel --maxParallel=5",
     "posttest": "nx run-many --target=posttest --all --parallel --maxParallel=5",
     "test:affected": "nx affected:test --browsers=ChromeHeadless --parallel --maxParallel=5 && nx affected --target=posttest --parallel --maxParallel=5",
-    "ci:create-coverage-report": "ts-node --project ./scripts/tsconfig.json ./scripts/create-coverage-report.ts",
+    "ci:check-library-dependencies": "ts-node --project ./scripts/tsconfig.json ./scripts/check-library-dependencies.ts",
     "ci:create-packages-dist": "ts-node --project ./scripts/tsconfig.json ./scripts/create-packages-dist.ts",
     "ci:publish-packages-dist": "ts-node --project ./scripts/tsconfig.json ./scripts/publish-packages-dist.ts",
-    "dev:create-coverage-report:components": "ts-node --project ./scripts/tsconfig.json ./scripts/create-coverage-report.ts --onlyComponents",
+    "ci:test-affected": "ts-node --project ./scripts/tsconfig.json ./scripts/test-affected.ts",
     "dev:create-release": "ts-node --project ./scripts/tsconfig.json ./scripts/create-release.ts",
     "dev:format": "npx prettier --write ."
   },
   "private": true,
   "dependencies": {
     "@angular/animations": "12.2.16",
+    "@angular/cdk": "12.2.13",
     "@angular/common": "12.2.16",
     "@angular/compiler": "12.2.16",
     "@angular/core": "12.2.16",
@@ -68,7 +69,7 @@
     "@nrwl/jest": "12.10.1",
     "@nrwl/linter": "12.10.1",
     "@nrwl/node": "12.10.1",
-    "@nrwl/nx-cloud": "13.1.4",
+    "@nrwl/nx-cloud": "13.1.5",
     "@nrwl/tao": "12.10.1",
     "@nrwl/workspace": "12.10.1",
     "@types/cross-spawn": "6.0.2",
