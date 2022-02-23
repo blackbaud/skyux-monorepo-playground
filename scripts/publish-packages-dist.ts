@@ -49,7 +49,8 @@ async function publishNpmPackages(): Promise<void> {
       }
     }
 
-    const commandArgs = ['publish', '--access', 'public', '--dry-run'];
+    const commandArgs = ['publish', '--access', 'public'];
+
     if (npmPublishTag) {
       commandArgs.push(npmPublishTag);
     }
