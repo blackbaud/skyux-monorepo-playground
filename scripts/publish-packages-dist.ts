@@ -6,20 +6,25 @@ import { getPublishableProjects } from './lib/get-publishable-projects';
 import { getDistTags } from './utils/npm-utils';
 import { runCommand } from './utils/spawn';
 
-async function createNpmrcFile(): Promise<void> {
+async function createNpmrcFile(npmToken: string): Promise<void> {
   const npmFilePath = path.join(process.cwd(), '.npmrc');
 
   await fs.ensureFile(npmFilePath);
 
-  fs.writeFileSync(
-    npmFilePath,
-    `//registry.npmjs.org/:_authToken=${process.env.NPM_TOKEN}`
-  );
+  fs.writeFileSync(npmFilePath, `//registry.npmjs.org/:_authToken=${npmToken}`);
 }
 
 async function publishNpmPackages(): Promise<void> {
   try {
-    await createNpmrcFile();
+    if (!process.env.NPM_TOKEN) {
+      throw new Error(
+        'Environment variable "NPM_TOKEN" not set! Abort publishing to NPM.'
+      );
+    }
+
+    const npmToken: string = process.env.NPM_TOKEN!;
+
+    await createNpmrcFile(npmToken);
 
     const version = (
       await fs.readJson(path.join(process.cwd(), 'package.json'))
@@ -45,6 +50,14 @@ async function publishNpmPackages(): Promise<void> {
     if (npmPublishTag) {
       commandArgs.push(npmPublishTag);
     }
+
+    console.log(`
+
+==============================================================
+ > Run: npm ${commandArgs.join(' ')}
+==============================================================
+
+`);
 
     const distPackages = await getPublishableProjects();
 
