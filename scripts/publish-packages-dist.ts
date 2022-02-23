@@ -51,7 +51,7 @@ async function publishNpmPackages(): Promise<void> {
     for (const projectName in distPackages) {
       const distRoot = path.join(
         process.cwd(),
-        distPackages[projectName].distRoot
+        distPackages[projectName].distRoot!
       );
 
       await runCommand('npm', commandArgs, {
