@@ -8,11 +8,12 @@ module.exports = function (config) {
       ...config.coverageReporter,
       dir: require('path').join(process.cwd(), './coverage/__test-affected'),
       check: {
+        // TODO: Update these for 100% code coverage!
         global: {
-          statements: 99.62,
-          branches: 99.06,
-          functions: 99.56,
-          lines: 99.66,
+          statements: 50,
+          branches: 50,
+          functions: 50,
+          lines: 50,
         },
       },
     },
