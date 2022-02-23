@@ -6,12 +6,17 @@ import { getPublishableProjects } from './lib/get-publishable-projects';
 import { getDistTags } from './utils/npm-utils';
 import { runCommand } from './utils/spawn';
 
-async function createNpmrcFile(npmToken: string): Promise<void> {
-  const npmFilePath = path.join(process.cwd(), '.npmrc');
+async function createNpmrcFile(
+  distRoot: string,
+  npmToken: string
+): Promise<void> {
+  const npmFilePath = path.join(distRoot, '.npmrc');
 
   await fs.ensureFile(npmFilePath);
-
-  fs.writeFileSync(npmFilePath, `//registry.npmjs.org/:_authToken=${npmToken}`);
+  await fs.writeFile(
+    npmFilePath,
+    `//registry.npmjs.org/:_authToken=${npmToken}`
+  );
 }
 
 async function publishNpmPackages(): Promise<void> {
@@ -23,8 +28,6 @@ async function publishNpmPackages(): Promise<void> {
     }
 
     const npmToken: string = process.env.NPM_TOKEN!;
-
-    await createNpmrcFile(npmToken);
 
     const version = (
       await fs.readJson(path.join(process.cwd(), 'package.json'))
@@ -46,7 +49,7 @@ async function publishNpmPackages(): Promise<void> {
       }
     }
 
-    const commandArgs = ['publish', '--access=public'];
+    const commandArgs = ['publish', '--access', 'public', '--dry-run'];
     if (npmPublishTag) {
       commandArgs.push(npmPublishTag);
     }
@@ -66,6 +69,8 @@ async function publishNpmPackages(): Promise<void> {
         process.cwd(),
         distPackages[projectName].distRoot!
       );
+
+      await createNpmrcFile(distRoot, npmToken);
 
       await runCommand('npm', commandArgs, {
         cwd: distRoot,
