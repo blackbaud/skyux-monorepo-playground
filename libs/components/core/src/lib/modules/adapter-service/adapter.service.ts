@@ -27,6 +27,8 @@ const SKY_TABBABLE_SELECTOR = [
   providedIn: 'root',
 })
 export class SkyCoreAdapterService {
+  public foo: string;
+
   private renderer: Renderer2;
 
   constructor(private rendererFactory: RendererFactory2) {
