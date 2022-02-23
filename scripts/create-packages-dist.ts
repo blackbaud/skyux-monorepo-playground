@@ -22,11 +22,13 @@ import { runCommand } from './utils/spawn';
  */
 async function replacePlaceholderTextWithVersion(
   filePath: string,
-  skyuxVersion: string
+  skyuxVersion: string,
+  skyuxPackagesVersion: string
 ) {
   const contents = (await readFile(filePath))
     .toString()
-    .replace(/0\.0\.0-PLACEHOLDER/g, skyuxVersion);
+    .replace(/0\.0\.0-PLACEHOLDER/g, skyuxVersion)
+    .replace(/0\.0\.0-PACKAGES_PLACEHOLDER/g, skyuxPackagesVersion);
   await writeFile(filePath, contents);
 }
 
@@ -41,6 +43,15 @@ async function createPackagesDist(): Promise<void> {
     const packageJson: PackageJson = await readJson(join(cwd, 'package.json'));
 
     const skyuxVersion = packageJson.version;
+
+    // Add 1000 to the minor version number.
+    // e.g. 5.5.1 --> 5.1005.1
+    const skyuxPackagesVersion = packageJson.version.replace(
+      /\.([0-9])\./,
+      (match, group) => {
+        return match.replace(/[0-9]/, `${+group + 1000}`);
+      }
+    );
 
     await removeSync('dist');
 
@@ -84,7 +95,8 @@ async function createPackagesDist(): Promise<void> {
 
       await replacePlaceholderTextWithVersion(
         join(distPackage.distRoot!, 'package.json'),
-        skyuxVersion
+        skyuxVersion,
+        skyuxPackagesVersion
       );
 
       inlineExternalResourcesPaths(distPackage.distRoot!);
@@ -101,7 +113,8 @@ async function createPackagesDist(): Promise<void> {
       if (existsSync(migrationCollectionJsonPath)) {
         await replacePlaceholderTextWithVersion(
           migrationCollectionJsonPath,
-          skyuxVersion
+          skyuxVersion,
+          skyuxPackagesVersion
         );
       }
     }

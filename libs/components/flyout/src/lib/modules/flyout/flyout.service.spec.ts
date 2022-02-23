@@ -70,6 +70,30 @@ describe('Flyout service', () => {
     applicationRef.tick();
     expect(spy).toHaveBeenCalledWith({
       type: SkyFlyoutMessageType.Close,
+      data: {
+        ignoreBeforeClose: false,
+      },
+    });
+  });
+
+  it('should respect close method arguments', () => {
+    spyOn(window as any, 'setTimeout').and.callFake((fun: any) => {
+      fun();
+      return 0;
+    });
+    service.open(SkyFlyoutHostsTestComponent);
+    applicationRef.tick();
+    const spy = spyOn(
+      service['host'].instance.messageStream,
+      'next'
+    ).and.callThrough();
+    service.close({ ignoreBeforeClose: true });
+    applicationRef.tick();
+    expect(spy).toHaveBeenCalledWith({
+      type: SkyFlyoutMessageType.Close,
+      data: {
+        ignoreBeforeClose: true,
+      },
     });
   });
 
@@ -92,7 +116,6 @@ describe('Flyout service', () => {
   it('should close when the user navigates through history', fakeAsync(() => {
     service.open(SkyFlyoutHostsTestComponent);
     const closeSpy = spyOn(service, 'close').and.callThrough();
-
     tick();
     applicationRef.tick();
 
@@ -102,6 +125,45 @@ describe('Flyout service', () => {
     applicationRef.tick();
 
     expect(closeSpy).toHaveBeenCalled();
+  }));
+
+  it('should remove the host after close when the user navigates through history', fakeAsync(() => {
+    service.open(SkyFlyoutHostsTestComponent);
+    const dynamicService = TestBed.inject(SkyDynamicComponentService);
+    const removeComponentSpy = spyOn(
+      dynamicService,
+      'removeComponent'
+    ).and.callThrough();
+
+    tick();
+    applicationRef.tick();
+
+    router.navigate(['/']);
+
+    tick();
+    applicationRef.tick();
+
+    expect(removeComponentSpy).toHaveBeenCalledTimes(1);
+  }));
+
+  it('should remove the host when the user navigates through history if no closed event is fired in 500ms - sanity check', fakeAsync(() => {
+    service.open(SkyFlyoutHostsTestComponent);
+    const dynamicService = TestBed.inject(SkyDynamicComponentService);
+    const removeComponentSpy = spyOn(
+      dynamicService,
+      'removeComponent'
+    ).and.callThrough();
+    spyOn(service['host'].instance.messageStream, 'next').and.stub();
+
+    tick();
+    applicationRef.tick();
+
+    router.navigate(['/']);
+
+    tick();
+    applicationRef.tick();
+
+    expect(removeComponentSpy).toHaveBeenCalled();
   }));
 
   it('should not close on route change if it is already closed', fakeAsync(() => {
