@@ -12,6 +12,8 @@ import { SkyAppWindowRef, SkyMediaBreakpoints } from '@skyux/core';
  */
 @Injectable()
 export class SkyFlyoutAdapterService {
+  public foo: string;
+
   private renderer: Renderer2;
 
   constructor(
