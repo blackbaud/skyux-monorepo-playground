@@ -1,5 +1,5 @@
 {
-  "npmScope": "skyux-components",
+  "npmScope": "skyux",
   "affected": {
     "defaultBase": "main"
   },
