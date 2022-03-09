@@ -1,0 +1,21 @@
+{
+  "overrides": [
+    {
+      "files": ["*.ts"],
+      "rules": {
+        "@typescript-eslint/ban-types": "warn",
+        "@typescript-eslint/no-empty-function": "warn",
+        "@typescript-eslint/no-non-null-assertion": "warn"
+      }
+    },
+    {
+      "files": ["*.spec.ts", "**/fixtures/**/*.ts"],
+      "rules": {
+        "@nrwl/nx/enforce-module-boundaries": "warn",
+        "@angular-eslint/component-selector": "warn",
+        "@typescript-eslint/no-empty-function": "warn",
+        "@typescript-eslint/ban-ts-comment": "warn"
+      }
+    }
+  ]
+}
