@@ -4,38 +4,31 @@ import {
   ChangeDetectorRef,
   Directive,
   ElementRef,
-  forwardRef,
   HostListener,
   Input,
   OnDestroy,
   OnInit,
   Optional,
   Renderer2,
+  forwardRef,
 } from '@angular/core';
-
 import {
   AbstractControl,
   ControlValueAccessor,
   NG_VALIDATORS,
   NG_VALUE_ACCESSOR,
-  Validator,
   ValidationErrors,
+  Validator,
 } from '@angular/forms';
-
 import { SkyAppLocaleProvider, SkyLibResourcesService } from '@skyux/i18n';
 
 import { Subject } from 'rxjs';
-
 import { distinctUntilChanged, takeUntil } from 'rxjs/operators';
 
 import { SkyDateFormatter } from './date-formatter';
-
 import { SkyDatepickerConfigService } from './datepicker-config.service';
-
 import { SkyDatepickerComponent } from './datepicker.component';
-
 import { SkyFuzzyDate } from './fuzzy-date';
-
 import { SkyFuzzyDateService } from './fuzzy-date.service';
 
 // tslint:disable:no-forward-ref no-use-before-declare
@@ -179,7 +172,9 @@ export class SkyFuzzyDatepickerInputDirective
   @Input()
   public set skyFuzzyDatepickerInput(
     value: SkyDatepickerComponent | undefined | ''
-  ) {}
+  ) {
+    // TODO: Remove this property in a future version of SKY UX.
+  }
 
   /**
    * Specifies the starting day of the week in the calendar, where `0` sets the starting day
@@ -300,7 +295,7 @@ export class SkyFuzzyDatepickerInputDirective
 
   private ngUnsubscribe = new Subject<void>();
 
-  private _futureDisabled: boolean = false;
+  private _futureDisabled = false;
 
   private _dateFormat: string;
 
@@ -314,7 +309,7 @@ export class SkyFuzzyDatepickerInputDirective
 
   private _value: any;
 
-  private _yearRequired: boolean = false;
+  private _yearRequired = false;
 
   constructor(
     private changeDetector: ChangeDetectorRef,
@@ -413,7 +408,7 @@ export class SkyFuzzyDatepickerInputDirective
   public onInputBlur(): void {
     this.onTouched();
 
-    let formattedDate = this.fuzzyDateService.format(
+    const formattedDate = this.fuzzyDateService.format(
       this.value,
       this.dateFormat,
       this.locale
@@ -603,8 +598,10 @@ export class SkyFuzzyDatepickerInputDirective
     );
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
   private onChange = (_: any) => {};
-  /*istanbul ignore next */
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
   private onTouched = () => {};
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
   private onValidatorChange = () => {};
 }

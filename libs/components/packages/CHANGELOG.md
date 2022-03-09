@@ -2,6 +2,18 @@
 
 ---
 
+# 5.150.0 (2022-02-24)
+
+- `@skyux/lookup@5.2.2` [Release notes](https://github.com/blackbaud/skyux-lookup/blob/5.2.2/CHANGELOG.md)
+
+# 5.149.0 (2022-02-24)
+
+- `@skyux/ag-grid@5.2.2` [Release notes](https://github.com/blackbaud/skyux-ag-grid/blob/5.2.2/CHANGELOG.md)
+
+# 5.148.0 (2022-02-24)
+
+- `@skyux/progress-indicator@5.0.3` [Release notes](https://github.com/blackbaud/skyux-progress-indicator/blob/5.0.3/CHANGELOG.md)
+
 # 5.147.0 (2022-02-23)
 
 - `@skyux/data-manager@5.0.3` [Release notes](https://github.com/blackbaud/skyux-data-manager/blob/5.0.3/CHANGELOG.md)

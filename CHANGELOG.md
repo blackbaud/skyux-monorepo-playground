@@ -2,21 +2,29 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-## 5.5.0-alpha.0 (2022-02-23)
-
-### Features
-
-- add @skyux/i18n schematics ([#17](https://github.com/blackbaud/skyux-monorepo-playground/issues/17)) ([85b852f](https://github.com/blackbaud/skyux-monorepo-playground/commit/85b852f563ad98280f93a7a25156b2fb09f29be9))
-- add @skyux/packages ([#16](https://github.com/blackbaud/skyux-monorepo-playground/issues/16)) ([aeb33cc](https://github.com/blackbaud/skyux-monorepo-playground/commit/aeb33ccd18fa64d2ab61e0496242043854103ffe))
-- generate docs ([#22](https://github.com/blackbaud/skyux-monorepo-playground/issues/22)) ([485d1d0](https://github.com/blackbaud/skyux-monorepo-playground/commit/485d1d0cc3840638ac864d1f465b8cd9f3ebb9fb))
-- move code examples to dedicated application ([e70158e](https://github.com/blackbaud/skyux-monorepo-playground/commit/e70158e5119acc71c881e7234ca04e61d399cbb5))
+### [5.6.1](https://github.com/blackbaud/skyux/compare/5.6.0...5.6.1) (2022-03-04)
 
 ### Bug Fixes
 
-- add console log for publish packages dist ([2864eae](https://github.com/blackbaud/skyux-monorepo-playground/commit/2864eae50653d499bae0b458142a8ea953ad8356))
-- code coverage thresholds ([#38](https://github.com/blackbaud/skyux-monorepo-playground/issues/38)) ([6ac80df](https://github.com/blackbaud/skyux-monorepo-playground/commit/6ac80df8c7b728d2ab671e8ba92fc9848fbbdbdf))
-- code example imports ([#39](https://github.com/blackbaud/skyux-monorepo-playground/issues/39)) ([0ae94ff](https://github.com/blackbaud/skyux-monorepo-playground/commit/0ae94ffb4102ccf637554d9a95489877e92de1ed))
-- karma config to output json-summary ([c6f4481](https://github.com/blackbaud/skyux-monorepo-playground/commit/c6f44813e695ac53ec3fa72c9c3bf0165c1b736a))
-- publish-packages-dist ([6b7ae9c](https://github.com/blackbaud/skyux-monorepo-playground/commit/6b7ae9c1a6db4bda05986983a618412d76323dce))
-- sdk-testing build ([#40](https://github.com/blackbaud/skyux-monorepo-playground/issues/40)) ([2d145c9](https://github.com/blackbaud/skyux-monorepo-playground/commit/2d145c9e5878db233eaf89619cd5450f59f94ca0))
-- try fix publish ([e043aa6](https://github.com/blackbaud/skyux-monorepo-playground/commit/e043aa672218a593ff216a5c93782c45c03ad699))
+- **text-editor:** updated `dompurify` dependency to version `2.3.6` ([#37](https://github.com/blackbaud/skyux/issues/37)) ([9bb7915](https://github.com/blackbaud/skyux/commit/9bb791583dcdfae011823d4b9021c4040514fb8b))
+
+## 5.6.0 (2022-03-02)
+
+### Features
+
+- **ci:** Updated release process to follow `standard-version` changelog conventions.
+
+### Bug Fixes
+
+- **grids:** Fix grid component to properly update columns when they are changed via the `columns` input ([#6](https://github.com/blackbaud/skyux/issues/6)) ([b3bf822](https://github.com/blackbaud/skyux/commit/b3bf822653671050e2cbc711fb2c2245df311957))
+- **grids:** Fix the grid component to not improperly add the aria-selected property to grid rows ([#3](https://github.com/blackbaud/skyux/issues/3)) ([117da75](https://github.com/blackbaud/skyux/commit/117da755814d88fc6d7906b390699ddafe641c79))
+- **ng-add:** only add config if none exist ([#4](https://github.com/blackbaud/skyux/issues/4)) ([a859f9b](https://github.com/blackbaud/skyux/commit/a859f9b40134a21d09a1fdad77bbe1c9e7ce285a))
+- **prettier-schematics:** Fix dist bundle to include the collection.json file ([#11](https://github.com/blackbaud/skyux/issues/11)) ([fda225d](https://github.com/blackbaud/skyux/commit/fda225dc4324d5eec6fd1aeb0881ab464c33ceee))
+
+## 5.5.0 (2022-02-25)
+
+- First stable release for monorepo.
+
+## 5.5.0-beta.0 (2022-02-25)
+
+- First beta release for monorepo.

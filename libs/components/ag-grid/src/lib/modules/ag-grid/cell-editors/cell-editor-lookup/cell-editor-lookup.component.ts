@@ -5,12 +5,14 @@ import {
   ElementRef,
 } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+
 import { ICellEditorAngularComp } from 'ag-grid-angular';
 import { IPopupComponent } from 'ag-grid-community/dist/lib/interfaces/iPopupComponent';
+
 import { SkyCellEditorLookupParams } from '../../types/cell-editor-lookup-params';
 import {
-  applySkyLookupPropertiesDefaults,
   SkyLookupProperties,
+  applySkyLookupPropertiesDefaults,
 } from '../../types/lookup-properties';
 
 @Component({
@@ -23,13 +25,14 @@ export class SkyAgGridCellEditorLookupComponent
   implements ICellEditorAngularComp, IPopupComponent<any>
 {
   public skyComponentProperties?: SkyLookupProperties;
-  public isAlive = true;
+  public isAlive = false;
   public lookupForm = new FormGroup({
     currentSelection: new FormControl({
       value: [],
       disabled: false,
     }),
   });
+  public useAsyncSearch = false;
 
   private params: SkyCellEditorLookupParams;
 
@@ -49,6 +52,9 @@ export class SkyAgGridCellEditorLookupComponent
       control.disable();
     }
     this.skyComponentProperties = this.updateComponentProperties(this.params);
+    this.useAsyncSearch =
+      typeof this.skyComponentProperties.searchAsync === 'function';
+    this.isAlive = true;
     this.changeDetector.markForCheck();
   }
 
