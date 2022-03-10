@@ -1,5 +1,11 @@
 # Changelog
 
+## [6.0.0-beta.1](https://github.com/blackbaud/skyux-monorepo-playground/compare/6.0.0-beta.0...6.0.0-beta.1) (2022-03-10)
+
+### Bug Fixes
+
+- updated zone.js dependency to 0.11.5 ([#48](https://github.com/blackbaud/skyux-monorepo-playground/issues/48)) ([#52](https://github.com/blackbaud/skyux-monorepo-playground/issues/52)) ([c69f362](https://github.com/blackbaud/skyux-monorepo-playground/commit/c69f36209f775610e4aa620e52bf8792fbd34f4d))
+
 ## [6.0.0-beta.0](https://github.com/blackbaud/skyux-monorepo-playground/compare/5.5.0...6.0.0-beta.0) (2022-03-10)
 
 ### ⚠ BREAKING CHANGES
