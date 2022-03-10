@@ -36,9 +36,10 @@ function isPrerelease(version: string): string | undefined {
  */
 async function getStandardVersionConfig(nextVersion: string, overrides = {}) {
   const config: standardVersion.Options = {
+    header: '# Changelog',
     noVerify: true, // skip any precommit hooks
-    releaseCommitMessageFormat:
-      'docs: Add release notes for {{currentTag}} release',
+    // releaseCommitMessageFormat:
+    //   'docs: Add release notes for {{currentTag}} release',
     tagPrefix: '', // don't prefix tags with 'v'
   };
 
@@ -126,7 +127,7 @@ async function promptPushOrigin(version: string) {
     process.exit(0);
   }
 
-  // await runCommand('git', ['push', '--follow-tags', 'origin', 'main']);
+  await runCommand('git', ['push', '--follow-tags', 'origin', 'main']);
   console.log('Successfully pushed tag and commits to origin.');
 }
 
