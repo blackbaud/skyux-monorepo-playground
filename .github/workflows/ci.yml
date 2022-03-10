@@ -64,27 +64,27 @@ jobs:
         with:
           # We need to fetch all branches and commits so that Nx affected has a base to compare against.
           fetch-depth: 0
-      - uses: actions/setup-node@v3
-        with:
-          node-version: '14'
-      # Rebase must happen before installing dependencies.
-      - name: Rebase current branch
-        run: node ./scripts/rebase-pr.js
-      - name: Derive appropriate SHAs for base and head for `nx affected` commands
-        uses: nrwl/nx-set-shas@v2
-      - name: Retrieve node_modules cache
-        uses: actions/cache@v2
-        with:
-          path: node_modules
-          key: cache-node-modules-${{ hashFiles('package-lock.json') }}
-      - name: Check library dependencies
-        run: npm run ci:check-library-dependencies
-      - name: Check library missing peers
-        run: npm run ci:check-library-missing-peers
-      - name: Check code formatting
-        run: npx prettier --check .
-      - name: Run lint
-        run: npx nx affected:lint --quiet --silent --parallel --maxParallel=5
+      # - uses: actions/setup-node@v3
+      #   with:
+      #     node-version: '14'
+      # # Rebase must happen before installing dependencies.
+      # - name: Rebase current branch
+      #   run: node ./scripts/rebase-pr.js
+      # - name: Derive appropriate SHAs for base and head for `nx affected` commands
+      #   uses: nrwl/nx-set-shas@v2
+      # - name: Retrieve node_modules cache
+      #   uses: actions/cache@v2
+      #   with:
+      #     path: node_modules
+      #     key: cache-node-modules-${{ hashFiles('package-lock.json') }}
+      # - name: Check library dependencies
+      #   run: npm run ci:check-library-dependencies
+      # - name: Check library missing peers
+      #   run: npm run ci:check-library-missing-peers
+      # - name: Check code formatting
+      #   run: npx prettier --check .
+      # - name: Run lint
+      #   run: npx nx affected:lint --quiet --silent --parallel --maxParallel=5
 
   build:
     name: Build
@@ -95,21 +95,21 @@ jobs:
         with:
           # We need to fetch all branches and commits so that Nx affected has a base to compare against.
           fetch-depth: 0
-      - uses: actions/setup-node@v3
-        with:
-          node-version: '14'
-      # Rebase must happen before installing dependencies.
-      - name: Rebase current branch
-        run: node ./scripts/rebase-pr.js
-      - name: Derive appropriate SHAs for base and head for `nx affected` commands
-        uses: nrwl/nx-set-shas@v2
-      - name: Retrieve node_modules cache
-        uses: actions/cache@v2
-        with:
-          path: node_modules
-          key: cache-node-modules-${{ hashFiles('package-lock.json') }}
-      - name: Build
-        run: npx nx affected --target=build --parallel --maxParallel=5
+      # - uses: actions/setup-node@v3
+      #   with:
+      #     node-version: '14'
+      # # Rebase must happen before installing dependencies.
+      # - name: Rebase current branch
+      #   run: node ./scripts/rebase-pr.js
+      # - name: Derive appropriate SHAs for base and head for `nx affected` commands
+      #   uses: nrwl/nx-set-shas@v2
+      # - name: Retrieve node_modules cache
+      #   uses: actions/cache@v2
+      #   with:
+      #     path: node_modules
+      #     key: cache-node-modules-${{ hashFiles('package-lock.json') }}
+      # - name: Build
+      #   run: npx nx affected --target=build --parallel --maxParallel=5
 
   coverage:
     name: Code coverage
@@ -120,23 +120,23 @@ jobs:
         with:
           # We need to fetch all branches and commits so that Nx affected has a base to compare against.
           fetch-depth: 0
-      - uses: actions/setup-node@v3
-        with:
-          node-version: '14'
-      # Rebase must happen before installing dependencies.
-      - name: Rebase current branch
-        run: node ./scripts/rebase-pr.js
-      - name: Derive appropriate SHAs for base and head for `nx affected` commands
-        uses: nrwl/nx-set-shas@v2
-      - name: Retrieve node_modules cache
-        uses: actions/cache@v2
-        with:
-          path: node_modules
-          key: cache-node-modules-${{ hashFiles('package-lock.json') }}
-      - name: Code coverage
-        run: |
-          export NX_CLOUD_DISTRIBUTED_EXECUTION=false
-          npm run ci:test-affected --codeCoverage=false
+      # - uses: actions/setup-node@v3
+      #   with:
+      #     node-version: '14'
+      # # Rebase must happen before installing dependencies.
+      # - name: Rebase current branch
+      #   run: node ./scripts/rebase-pr.js
+      # - name: Derive appropriate SHAs for base and head for `nx affected` commands
+      #   uses: nrwl/nx-set-shas@v2
+      # - name: Retrieve node_modules cache
+      #   uses: actions/cache@v2
+      #   with:
+      #     path: node_modules
+      #     key: cache-node-modules-${{ hashFiles('package-lock.json') }}
+      # - name: Code coverage
+      #   run: |
+      #     export NX_CLOUD_DISTRIBUTED_EXECUTION=false
+      #     npm run ci:test-affected --codeCoverage=false
 
   browserstack:
     name: Cross-browser testing
@@ -147,23 +147,23 @@ jobs:
         with:
           # We need to fetch all branches and commits so that Nx affected has a base to compare against.
           fetch-depth: 0
-      - uses: actions/setup-node@v3
-        with:
-          node-version: '14'
-      # Rebase must happen before installing dependencies.
-      - name: Rebase current branch
-        run: node ./scripts/rebase-pr.js
-      - name: Derive appropriate SHAs for base and head for `nx affected` commands
-        uses: nrwl/nx-set-shas@v2
-      - name: Retrieve node_modules cache
-        uses: actions/cache@v2
-        with:
-          path: node_modules
-          key: cache-node-modules-${{ hashFiles('package-lock.json') }}
-      - name: Cross-browser tests
-        run: |
-          export NX_CLOUD_DISTRIBUTED_EXECUTION=false
-          npm run ci:test-affected -- --codeCoverage=false --karmaConfig=config/karma/karma.ci.conf.js --onlyComponents
+      # - uses: actions/setup-node@v3
+      #   with:
+      #     node-version: '14'
+      # # Rebase must happen before installing dependencies.
+      # - name: Rebase current branch
+      #   run: node ./scripts/rebase-pr.js
+      # - name: Derive appropriate SHAs for base and head for `nx affected` commands
+      #   uses: nrwl/nx-set-shas@v2
+      # - name: Retrieve node_modules cache
+      #   uses: actions/cache@v2
+      #   with:
+      #     path: node_modules
+      #     key: cache-node-modules-${{ hashFiles('package-lock.json') }}
+      # - name: Cross-browser tests
+      #   run: |
+      #     export NX_CLOUD_DISTRIBUTED_EXECUTION=false
+      #     npm run ci:test-affected -- --codeCoverage=false --karmaConfig=config/karma/karma.ci.conf.js --onlyComponents
 
   stop-agents:
     name: Stop Nx Cloud agents

@@ -4,8 +4,8 @@ import { outside as semverOutside, parse as semverParse } from 'semver';
 import standardVersion from 'standard-version';
 
 import { getSkyuxDevConfig } from './lib/get-skyux-dev-config';
-import { fetchAll, getCurrentBranch, isGitClean } from './utils/git-utils';
-import { checkVersionExists } from './utils/npm-utils';
+// import { fetchAll, getCurrentBranch, isGitClean } from './utils/git-utils';
+// import { checkVersionExists } from './utils/npm-utils';
 import { getCommandOutput, runCommand } from './utils/spawn';
 
 /**
@@ -126,7 +126,7 @@ async function promptPushOrigin(version: string) {
     process.exit(0);
   }
 
-  await runCommand('git', ['push', '--follow-tags', 'origin', 'main']);
+  // await runCommand('git', ['push', '--follow-tags', 'origin', 'main']);
   console.log('Successfully pushed tag and commits to origin.');
 }
 
@@ -137,29 +137,31 @@ async function createRelease() {
   try {
     console.log('Preparing workspace for release...');
 
-    // Ensure all remote changes are represented locally.
-    await fetchAll();
+    // // Ensure all remote changes are represented locally.
+    // await fetchAll();
 
-    // Ensure releases are executed against the main branch.
-    if ((await getCurrentBranch()) !== 'main') {
-      throw new Error('Releases can only be triggered on the "main" branch!');
-    }
+    // // Ensure releases are executed against the main branch.
+    // if ((await getCurrentBranch()) !== 'main') {
+    //   throw new Error('Releases can only be triggered on the "main" branch!');
+    // }
 
-    // Ensure local git is clean.
-    if (!(await isGitClean())) {
-      throw new Error(
-        'Your local branch does not match the remote. ' +
-          'Please pull any changes from the remote (or stash any local changes) before creating a release.'
-      );
-    }
+    // // Ensure local git is clean.
+    // if (!(await isGitClean())) {
+    //   throw new Error(
+    //     'Your local branch does not match the remote. ' +
+    //       'Please pull any changes from the remote (or stash any local changes) before creating a release.'
+    //   );
+    // }
 
     const packageJson = await fs.readJson('package.json');
     const currentVersion = packageJson.version;
 
-    const versionExists = await checkVersionExists(
-      '@skyux/core', // 'core' is arbitrary since all packages have the same version
-      currentVersion
-    );
+    // const versionExists = await checkVersionExists(
+    //   '@skyux/core', // 'core' is arbitrary since all packages have the same version
+    //   currentVersion
+    // );
+
+    const versionExists = false;
 
     let nextVersion: string;
     if (versionExists) {
