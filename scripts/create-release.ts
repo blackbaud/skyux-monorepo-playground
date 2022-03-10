@@ -162,7 +162,7 @@ async function createRelease() {
     //   currentVersion
     // );
 
-    const versionExists = false;
+    const versionExists = true;
 
     let nextVersion: string;
     if (versionExists) {
