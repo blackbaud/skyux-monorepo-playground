@@ -1,5 +1,15 @@
 # Changelog
 
+## [6.0.0-beta.0](https://github.com/blackbaud/skyux-monorepo-playground/compare/5.5.0...6.0.0-beta.0) (2022-03-10)
+
+### ⚠ BREAKING CHANGES
+
+- dropped support for Angular 12 (#50)
+
+### Features
+
+- dropped support for Angular 12 ([#50](https://github.com/blackbaud/skyux-monorepo-playground/issues/50)) ([929ce70](https://github.com/blackbaud/skyux-monorepo-playground/commit/929ce705d1a2d070d5a98ecab647c9f1bbe0a7e3))
+
 ## 5.5.0 (2022-03-10)
 
 ### Features
