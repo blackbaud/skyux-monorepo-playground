@@ -28,16 +28,16 @@ async function promptCommit() {
   }
 
   try {
-    console.log('Attempting to merge origin/5.x.x into feature branch...');
+    console.log('Attempting to merge origin/main into feature branch...');
     await exec('git fetch --all');
-    await exec('git merge origin/5.x.x');
+    await exec('git merge origin/main');
   } catch (err) {
     console.log('Address any conflicts and try running the command again.');
     process.exit();
   }
 
   await exec(
-    'git reset $(git merge-base origin/5.x.x $(git branch --show-current))'
+    'git reset $(git merge-base origin/main $(git branch --show-current))'
   );
   await exec('git add .');
   await exec('npx cz');
@@ -67,10 +67,8 @@ async function promptPush() {
 
 async function devPristine() {
   try {
-    if ((await getCurrentBranch()) === '5.x.x') {
-      throw new Error(
-        "This command may not be executed on the '5.x.x' branch."
-      );
+    if ((await getCurrentBranch()) === 'main') {
+      throw new Error("This command may not be executed on the 'main' branch.");
     }
 
     await promptCommit();

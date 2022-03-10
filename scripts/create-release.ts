@@ -127,7 +127,7 @@ async function promptPushOrigin(version: string) {
     process.exit(0);
   }
 
-  await runCommand('git', ['push', '--follow-tags', 'origin', '5.x.x']);
+  await runCommand('git', ['push', '--follow-tags', 'origin', 'main']);
   console.log('Successfully pushed tag and commits to origin.');
 }
 
