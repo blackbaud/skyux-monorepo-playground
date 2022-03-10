@@ -1,5 +1,11 @@
 # Changelog
 
+## [6.0.0-beta.2](https://github.com/blackbaud/skyux-monorepo-playground/compare/6.0.0-beta.1...6.0.0-beta.2) (2022-03-10)
+
+### Features
+
+- **components/colorpicker:** add foo to slider directive ([#53](https://github.com/blackbaud/skyux-monorepo-playground/issues/53)) ([0a1c2a3](https://github.com/blackbaud/skyux-monorepo-playground/commit/0a1c2a3fcf768bdfb77296b7b6cffead8770ecc9))
+
 ## [5.6.0](https://github.com/blackbaud/skyux-monorepo-playground/compare/5.5.1...5.6.0) (2022-03-10)
 
 ### Features
