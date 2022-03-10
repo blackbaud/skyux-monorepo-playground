@@ -17,6 +17,8 @@ import { SkyColorpickerChangeAxis } from './types/colorpicker-axis';
   selector: '[skyColorpickerSlider]',
 })
 export class SkyColorpickerSliderDirective {
+  public foo: string;
+
   @Output()
   public newColorContrast = new EventEmitter<SkyColorpickerChangeAxis>();
   @Input()
