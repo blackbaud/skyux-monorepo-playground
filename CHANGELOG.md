@@ -10,6 +10,12 @@
 
 - dropped support for Angular 12 ([#50](https://github.com/blackbaud/skyux-monorepo-playground/issues/50)) ([929ce70](https://github.com/blackbaud/skyux-monorepo-playground/commit/929ce705d1a2d070d5a98ecab647c9f1bbe0a7e3))
 
+### [5.5.1](https://github.com/blackbaud/skyux-monorepo-playground/compare/5.5.0...5.5.1) (2022-03-10)
+
+### Bug Fixes
+
+- updated zone.js dependency to 0.11.5 ([#48](https://github.com/blackbaud/skyux-monorepo-playground/issues/48)) ([bcaa2c0](https://github.com/blackbaud/skyux-monorepo-playground/commit/bcaa2c05dd0e71ff1c69888680288f825ffd5611))
+
 ## 5.5.0 (2022-03-10)
 
 ### Features
